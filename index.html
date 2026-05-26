@@ -44,7 +44,7 @@
 
     body {
       margin: 0;
-      text-transform: uppercase;
+      text-transform: none;
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--text);
@@ -983,7 +983,7 @@
     }
 
     .button-link.info {
-      background: #90BE6D; border-color: #ffffff; color: #ffffff;
+      background: #90BE6D; border-color: #111111 !important; color: #111111 !important;
     }
 
     .button-link.drive-hidden {
@@ -1109,7 +1109,7 @@
     body.musei .button-link.info,
     body.edifici .button-link.info,
     body.locali .button-link.info {
-      background: #90BE6D !important; border-color: #ffffff !important; color: #ffffff !important;
+      background: #90BE6D !important; border-color: #ffffff !important; color: #111111 !important;
     }
 
     body.musei .button-link.scheda-luogo,
@@ -1130,7 +1130,7 @@
     body.musei .popup-actions a.popup-info,
     body.edifici .popup-actions a.popup-info,
     body.locali .popup-actions a.popup-info {
-      background: #90BE6D !important; border-color: #ffffff !important; color: #ffffff !important;
+      background: #90BE6D !important; border-color: #ffffff !important; color: #111111 !important;
     }
 
     body.musei .popup-actions a.popup-scheda,
@@ -1222,11 +1222,11 @@
     body.mia .button-link {
       background: var(--purple) !important;
       border-color: var(--purple) !important;
-      color: #ffffff !important;
+      color: #111111 !important;
     }
 
     body.mia .button-link.info {
-      background: #90BE6D !important; border-color: #ffffff !important; color: #ffffff !important;
+      background: #90BE6D !important; border-color: #ffffff !important; color: #111111 !important;
     }
 
     body.mia .button-link.scheda-luogo {
@@ -1241,7 +1241,7 @@
     }
 
     body.mia .popup-actions a.popup-info {
-      background: #90BE6D !important; border-color: #ffffff !important; color: #ffffff !important;
+      background: #90BE6D !important; border-color: #ffffff !important; color: #111111 !important;
     }
 
     body.mia .popup-actions a.popup-scheda {
@@ -1423,7 +1423,7 @@
     }
 
 
-    /* Finestra Info utili */
+    /* Finestra Informazioni */
     .info-useful-window {
       border-color: var(--category-color, var(--blue));
     }
@@ -1556,7 +1556,7 @@ body.mia .popup-actions a.popup-scheda {
 }
 
 
-/* FORZA PORTAMI QUI SEMPRE ROSSO */
+/* FORZA Vai a questo luogo SEMPRE ROSSO */
 a.button-link:not(.scheda-luogo):not(.info),
 .popup-actions a[href*="google.com/maps"] {
   background: #c40000 !important;
@@ -1565,7 +1565,7 @@ a.button-link:not(.scheda-luogo):not(.info),
 }
 
 
-/* FIX DEFINITIVO PORTAMI QUI */
+/* FIX DEFINITIVO Vai a questo luogo */
 .poi-actions a:nth-child(1),
 .popup-actions a:nth-child(1) {
   background: #c40000 !important;
@@ -1584,7 +1584,7 @@ body.mia .poi-actions a:nth-child(1) {
 }
 
 
-/* PORTAMI QUI SEMPRE ROSSO - REGOLA DEFINITIVA */
+/* Vai a questo luogo SEMPRE ROSSO - REGOLA DEFINITIVA */
 a.portami-qui,
 .button-link.portami-qui,
 .poi-actions a.portami-qui,
@@ -1603,7 +1603,7 @@ body.mia .button-link.portami-qui {
 }
 
 
-/* PORTAMI QUI: ROSSO ASSOLUTO */
+/* Vai a questo luogo: ROSSO ASSOLUTO */
 a.portami-qui[style],
 a.portami-qui,
 .button-link.portami-qui {
@@ -2180,8 +2180,8 @@ a.portami-qui,
 
 body.musei .button-link.scheda-luogo,
 body.musei .popup-actions a.popup-scheda {
-  background: var(--blue) !important;
-  border-color: var(--blue) !important;
+  background: #277DA1 !important;
+  border-color: #277DA1 !important;
   color: #ffffff !important;
 }
 
@@ -3401,8 +3401,8 @@ a.portami-qui,
 
 body.musei .button-link.scheda-luogo,
 body.musei .popup-actions a.popup-scheda {
-  background: var(--blue) !important;
-  border-color: var(--blue) !important;
+  background: #277DA1 !important;
+  border-color: #277DA1 !important;
   color: #ffffff !important;
 }
 
@@ -3850,7 +3850,7 @@ html, body, * {
 }
 
 
-/* COLORE PULSANTE PORTAMI QUI */
+/* COLORE PULSANTE Vai a questo luogo */
 .button-link.portami-qui {
   background: #F94144 !important;
   border-color: #F94144 !important;
@@ -3864,9 +3864,9 @@ a.button-link.info,
 .popup-actions a.popup-info,
 .popup-actions a.open-info-utili,
 .popup-actions a.open-note {
-  background: #43aa8b !important;
-  border-color: #43aa8b !important;
-  color: #ffffff !important;
+  background: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #111111 !important;
 }
 
 .button-link.portami-qui,
@@ -3966,7 +3966,7 @@ body.mia .map-title {
 }
 
 
-/* COLORE INFO UTILI AGGIORNATO */
+/* COLORE Informazioni AGGIORNATO */
 .button-link.info,
 .popup-actions a.popup-info,
 a.button-link.info {
@@ -3976,7 +3976,7 @@ a.button-link.info {
 }
 
 
-/* COLORE DEFINITIVO INFO UTILI */
+/* COLORE DEFINITIVO Informazioni */
 body .button-link.info,
 body a.button-link.info,
 body .poi-actions .button-link.info,
@@ -3991,76 +3991,8 @@ body.edifici .popup-actions a.popup-info,
 body.mia .popup-actions a.popup-info {
   background: #90BE6D !important;
   border-color: #ffffff !important;
-  color: #ffffff !important;
+  color: #111111 !important;
 }
-
-
-/* GOCCIA ROSSA ACCANTO A CLICCA QUI */
-.map-note {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 900;
-}
-
-.map-pin {
-  width: 18px;
-  height: 18px;
-  background: #F94144;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-  position: relative;
-}
-
-.map-pin::after {
-  content: "";
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #fff;
-  border-radius: 50%;
-  top: 5px;
-  left: 5px;
-}
-
-
-/* GOCCIA ROSSA SICURA ACCANTO A CLICCA QUI */
-.map-title,
-.map-note {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-}
-
-.map-pin-inline {
-  width: 22px !important;
-  height: 22px !important;
-  background: #F94144 !important;
-  border: 2px solid #ffffff !important;
-  border-radius: 50% 50% 50% 0 !important;
-  transform: rotate(-45deg) !important;
-  position: relative !important;
-  display: inline-block !important;
-  flex: 0 0 auto !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,.30) !important;
-}
-
-.map-pin-inline::after {
-  content: "" !important;
-  position: absolute !important;
-  width: 8px !important;
-  height: 8px !important;
-  background: #ffffff !important;
-  border-radius: 50% !important;
-  top: 5px !important;
-  left: 5px !important;
-}
-
-.map-pin-inline + span {
-  display: inline-block !important;
-}
-
-
 /* SCAMBIO COLORI SEZIONI: EDIFICI PUBBLICI GIALLO, LA MIA MAPPA ARANCIONE */
 :root {
   --green: #F9C74F !important;
@@ -4166,7 +4098,7 @@ body.mia .purple-button.secondary {
 }
 
 
-/* PORTAMI QUI SEMPRE ROSSO DEFINITIVO */
+/* Vai a questo luogo SEMPRE ROSSO DEFINITIVO */
 a.portami-qui,
 .button-link.portami-qui,
 .poi-actions a.portami-qui,
@@ -4199,7 +4131,7 @@ body.mia a.portami-qui {
 }
 
 
-/* INFO UTILI VERDE DEFINITIVO */
+/* Informazioni VERDE DEFINITIVO */
 .button-link.info,
 a.button-link.info,
 .open-info-utili,
@@ -4207,7 +4139,7 @@ a.button-link.info,
 .popup-actions a.popup-info {
   background: #90BE6D !important;
   border-color: #90BE6D !important;
-  color: #ffffff !important;
+  color: #111111 !important;
 }
 
 
@@ -4259,7 +4191,7 @@ a.button-link.info,
   width: 100% !important;
 }
 
-/* INFO UTILI VERDE DEFINITIVO */
+/* Informazioni VERDE DEFINITIVO */
 .button-link.info,
 a.button-link.info,
 .open-info-utili,
@@ -4275,7 +4207,7 @@ body.locali .popup-actions a.popup-info,
 body.mia .popup-actions a.popup-info {
   background: #90BE6D !important;
   border-color: #90BE6D !important;
-  color: #ffffff !important;
+  color: #111111 !important;
 }
 
 @media (max-width: 759px) {
@@ -4284,29 +4216,6 @@ body.mia .popup-actions a.popup-info {
   }
 }
 
-
-/* PULSANTE MUOVI/BLOCCA MAPPA */
-.map-lock-button {
-  width: 100%;
-  min-height: 56px;
-  border: 0;
-  background: #111111;
-  color: #ffffff;
-  font-weight: 900;
-  font-size: 1rem;
-  letter-spacing: .03em;
-  cursor: pointer;
-  border-top: 2px solid rgba(255,255,255,.35);
-}
-
-.map-lock-button.map-active {
-  background: #F94144;
-  color: #ffffff;
-}
-
-#map.map-locked {
-  touch-action: pan-y !important;
-}
 
 
 /* CONTENITORE VISIBILE PULSANTE MUOVI/BLOCCA MAPPA */
@@ -4381,40 +4290,7 @@ body.mia .popup-actions a.popup-info {
 }
 
 
-/* PULSANTE MAPPA COLORE SEZIONE RICHIESTO */
-body.musei #attivaMappa {
-  background: var(--blue) !important;
-  border-color: var(--blue) !important;
-  color: #ffffff !important;
-}
 
-body.edifici #attivaMappa {
-  background: var(--yellow) !important;
-  border-color: var(--yellow) !important;
-  color: #000000 !important;
-}
-
-
-
-
-
-/* PULSANTE MUOVI MAPPA REINSERITO: TRA MAPPA E TAPPE */
-#attivaMappa.attiva-mappa-button {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  min-height: 58px !important;
-  margin: 10px 0 14px 0 !important;
-  padding: 12px 14px !important;
-  border-radius: 14px !important;
-  font-size: 1rem !important;
-  font-weight: 900 !important;
-  text-align: center !important;
-  cursor: pointer !important;
-  position: relative !important;
-  z-index: 3000 !important;
-}
 
 /* LUOGHI DA VISITARE: BLU */
 body.musei #attivaMappa.attiva-mappa-button {
@@ -4655,6 +4531,1670 @@ h3.popup-title {
   z-index: 10 !important;
 }
 
+
+/* === PALETTE DEFINITIVA RICHIESTA - NON MODIFICARE === */
+
+/* Variabili palette */
+:root {
+  --col-luoghi: #277DA1;
+  --col-edifici: #F9C74F;
+  --col-mia: #4D908E;
+  --col-portami: #F94144;
+  --col-neutro: #F2EFEA;
+  --col-sfondo: #FAFAF8;
+  --col-bordo: #D9D6D0;
+  --col-testo: #000000;
+  --col-bianco: #ffffff;
+}
+
+/* Sfondo generale */
+html,
+body {
+  background: var(--col-sfondo) !important;
+  color: var(--col-testo) !important;
+}
+
+/* Bordi e separatori principali */
+.section,
+.place-card,
+.poi-card,
+.access-details,
+.info-box,
+.modal-window,
+.map-card,
+.home-city-map-card {
+  border-color: var(--col-bordo) !important;
+}
+
+/* Colore categoria */
+body.musei {
+  --category-color: var(--col-luoghi) !important;
+}
+
+body.edifici {
+  --category-color: var(--col-edifici) !important;
+}
+
+body.mia {
+  --category-color: var(--col-mia) !important;
+}
+
+/* LUOGHI DA VISITARE: blu petrolio, testo bianco */
+body.musei header,
+body.musei .map-title,
+body.musei .home-city-map-title,
+body.musei .category-button[data-category="musei"] {
+  background: var(--col-luoghi) !important;
+  background-color: var(--col-luoghi) !important;
+  border-color: var(--col-luoghi) !important;
+  color: var(--col-bianco) !important;
+}
+
+/* EDIFICI PUBBLICI: ocra caldo, testo nero */
+body.edifici header,
+body.edifici .map-title,
+body.edifici .home-city-map-title,
+body.edifici .category-button[data-category="edifici"] {
+  background: var(--col-edifici) !important;
+  background-color: var(--col-edifici) !important;
+  border-color: var(--col-edifici) !important;
+  color: var(--col-testo) !important;
+}
+
+/* LA MIA MAPPA: verde petrolio, testo bianco */
+body.mia header,
+body.mia .map-title,
+body.mia .home-city-map-title,
+body.mia .category-button[data-category="mia"] {
+  background: var(--col-mia) !important;
+  background-color: var(--col-mia) !important;
+  border-color: var(--col-mia) !important;
+  color: var(--col-bianco) !important;
+}
+
+
+/* Vai a questo luogo: rosso deciso fisso, testo bianco. Non cambia mai. */
+a.portami-qui,
+a.button-link.portami-qui,
+.button-link.portami-qui,
+.poi-actions a.portami-qui,
+.popup-actions a.portami-qui,
+a[href*="google.com/maps"],
+a[href*="maps.google"],
+a[href*="maps/dir"],
+.poi-actions a[href*="google.com/maps"],
+.popup-actions a[href*="google.com/maps"],
+body.musei a.portami-qui,
+body.edifici a.portami-qui,
+body.locali a.portami-qui,
+body.mia a.portami-qui,
+body.musei .button-link.portami-qui,
+body.edifici .button-link.portami-qui,
+body.locali .button-link.portami-qui,
+body.mia .button-link.portami-qui,
+body.musei .poi-actions a.portami-qui,
+body.edifici .poi-actions a.portami-qui,
+body.locali .poi-actions a.portami-qui,
+body.mia .poi-actions a.portami-qui,
+body.musei .popup-actions a.portami-qui,
+body.edifici .popup-actions a.portami-qui,
+body.locali .popup-actions a.portami-qui,
+body.mia .popup-actions a.portami-qui {
+  background: var(--col-portami) !important;
+  background-color: var(--col-portami) !important;
+  border-color: var(--col-portami) !important;
+  color: var(--col-bianco) !important;
+}
+
+/* Vai a questo luogo: stesso colore anche in hover/focus/active/visited */
+a.portami-qui:hover,
+a.portami-qui:focus,
+a.portami-qui:active,
+a.portami-qui:visited,
+a.button-link.portami-qui:hover,
+a.button-link.portami-qui:focus,
+a.button-link.portami-qui:active,
+a.button-link.portami-qui:visited,
+.button-link.portami-qui:hover,
+.button-link.portami-qui:focus,
+.button-link.portami-qui:active,
+.button-link.portami-qui:visited,
+.poi-actions a.portami-qui:hover,
+.poi-actions a.portami-qui:focus,
+.poi-actions a.portami-qui:active,
+.poi-actions a.portami-qui:visited,
+.popup-actions a.portami-qui:hover,
+.popup-actions a.portami-qui:focus,
+.popup-actions a.portami-qui:active,
+.popup-actions a.portami-qui:visited,
+a[href*="google.com/maps"]:hover,
+a[href*="google.com/maps"]:focus,
+a[href*="google.com/maps"]:active,
+a[href*="google.com/maps"]:visited,
+a[href*="maps.google"]:hover,
+a[href*="maps.google"]:focus,
+a[href*="maps.google"]:active,
+a[href*="maps.google"]:visited {
+  background: var(--col-portami) !important;
+  background-color: var(--col-portami) !important;
+  border-color: var(--col-portami) !important;
+  color: var(--col-bianco) !important;
+}
+
+/* Pulsanti neutri / info: sabbia chiaro, testo nero */
+.button-link.info,
+.popup-actions a.popup-info,
+body.musei .button-link.info,
+body.edifici .button-link.info,
+body.locali .button-link.info,
+body.mia .button-link.info,
+body.musei .popup-actions a.popup-info,
+body.edifici .popup-actions a.popup-info,
+body.locali .popup-actions a.popup-info,
+body.mia .popup-actions a.popup-info {
+  background: var(--col-neutro) !important;
+  background-color: var(--col-neutro) !important;
+  border-color: var(--col-bordo) !important;
+  color: var(--col-testo) !important;
+}
+
+/* Scheda luogo: colore fisso blu petrolio, testo bianco */
+.button-link.scheda-luogo,
+a.button-link.scheda-luogo,
+.popup-actions a.popup-scheda,
+body.musei .button-link.scheda-luogo,
+body.edifici .button-link.scheda-luogo,
+body.locali .button-link.scheda-luogo,
+body.mia .button-link.scheda-luogo,
+body.musei .popup-actions a.popup-scheda,
+body.edifici .popup-actions a.popup-scheda,
+body.locali .popup-actions a.popup-scheda,
+body.mia .popup-actions a.popup-scheda {
+  background: var(--col-luoghi) !important;
+  background-color: var(--col-luoghi) !important;
+  border-color: var(--col-luoghi) !important;
+  color: var(--col-bianco) !important;
+}
+
+/* Scheda luogo: blocco hover/focus/active */
+.button-link.scheda-luogo:hover,
+.button-link.scheda-luogo:focus,
+.button-link.scheda-luogo:active,
+.popup-actions a.popup-scheda:hover,
+.popup-actions a.popup-scheda:focus,
+.popup-actions a.popup-scheda:active {
+  background: var(--col-luoghi) !important;
+  background-color: var(--col-luoghi) !important;
+  border-color: var(--col-luoghi) !important;
+  color: var(--col-bianco) !important;
+}
+
+
+
+/* SCHEDA DEL LUOGO: COLORE FISSO #277DA1 */
+a.popup-scheda.open-scheda,
+a.button-link.scheda-luogo.open-scheda,
+.popup-actions a.popup-scheda.open-scheda,
+.poi-actions a.button-link.scheda-luogo.open-scheda {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+
+/* EDIFICI PUBBLICI: COLORE #4D908E */
+body.edifici {
+  --category-color: #4D908E !important;
+}
+
+body.edifici header,
+body.edifici .map-title,
+body.edifici .home-city-map-title,
+body.edifici .category-button[data-category="edifici"],
+body.edifici #attivaMappa,
+body.edifici #attivaMappa.attiva-mappa-button {
+  background: #4D908E !important;
+  background-color: #4D908E !important;
+  border-color: #4D908E !important;
+  color: #ffffff !important;
+}
+
+
+/* === CORREZIONE DEFINITIVA COLORI: INVERSIONE LUOGHI / SCHEDA === */
+
+/* LUOGHI DA VISITARE: usa il colore ex Scheda del luogo */
+body.musei {
+  --category-color: #277DA1 !important;
+}
+
+body.musei header,
+body.musei .map-title,
+body.musei .home-city-map-title,
+body.musei .category-button[data-category="musei"],
+body.musei #attivaMappa,
+body.musei #attivaMappa.attiva-mappa-button {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+/* SCHEDA DEL LUOGO: usa il colore ex Luoghi da visitare */
+a.popup-scheda.open-scheda,
+a.button-link.scheda-luogo.open-scheda,
+.button-link.scheda-luogo,
+.popup-actions a.popup-scheda,
+.poi-actions a.button-link.scheda-luogo,
+body.musei .button-link.scheda-luogo,
+body.edifici .button-link.scheda-luogo,
+body.locali .button-link.scheda-luogo,
+body.mia .button-link.scheda-luogo,
+body.musei .popup-actions a.popup-scheda,
+body.edifici .popup-actions a.popup-scheda,
+body.locali .popup-actions a.popup-scheda,
+body.mia .popup-actions a.popup-scheda {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+/* SCHEDA DEL LUOGO: blocco variazioni hover/focus/active/visited */
+a.popup-scheda.open-scheda:hover,
+a.popup-scheda.open-scheda:focus,
+a.popup-scheda.open-scheda:active,
+a.popup-scheda.open-scheda:visited,
+a.button-link.scheda-luogo.open-scheda:hover,
+a.button-link.scheda-luogo.open-scheda:focus,
+a.button-link.scheda-luogo.open-scheda:active,
+a.button-link.scheda-luogo.open-scheda:visited,
+.button-link.scheda-luogo:hover,
+.button-link.scheda-luogo:focus,
+.button-link.scheda-luogo:active,
+.button-link.scheda-luogo:visited,
+.popup-actions a.popup-scheda:hover,
+.popup-actions a.popup-scheda:focus,
+.popup-actions a.popup-scheda:active,
+.popup-actions a.popup-scheda:visited {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+/* EDIFICI PUBBLICI: resta del colore richiesto */
+body.edifici {
+  --category-color: #4D908E !important;
+}
+
+body.edifici header,
+body.edifici .map-title,
+body.edifici .home-city-map-title,
+body.edifici .category-button[data-category="edifici"],
+body.edifici #attivaMappa,
+body.edifici #attivaMappa.attiva-mappa-button {
+  background: #4D908E !important;
+  background-color: #4D908E !important;
+  border-color: #4D908E !important;
+  color: #ffffff !important;
+}
+
+
+/* === COLORI FISSI DEFINITIVI (NO CAMBI AL CLICK) === */
+
+/* LUOGHI DA VISITARE */
+body.musei,
+body.musei header,
+body.musei .map-title,
+body.musei .category-button[data-category="musei"],
+body.musei #attivaMappa {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+/* EDIFICI PUBBLICI */
+body.edifici,
+body.edifici header,
+body.edifici .map-title,
+body.edifici .category-button[data-category="edifici"],
+body.edifici #attivaMappa {
+  background: #4D908E !important;
+  background-color: #4D908E !important;
+  border-color: #4D908E !important;
+  color: #ffffff !important;
+}
+
+/* SCHEDA DEL LUOGO - SEMPRE BLU */
+.button-link.scheda-luogo,
+.popup-actions a.popup-scheda,
+a.popup-scheda.open-scheda {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+/* BLOCCO TUTTE LE VARIAZIONI */
+.button-link.scheda-luogo:hover,
+.button-link.scheda-luogo:active,
+.button-link.scheda-luogo:focus,
+.popup-actions a.popup-scheda:hover,
+.popup-actions a.popup-scheda:active,
+.popup-actions a.popup-scheda:focus,
+a.popup-scheda.open-scheda:hover,
+a.popup-scheda.open-scheda:active,
+a.popup-scheda.open-scheda:focus {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+
+
+
+/* === CORREZIONE REALE COLORI FISSI === */
+
+/* PULSANTE E SEZIONE: LUOGHI DA VISITARE sempre #277DA1 */
+.category-button[data-category="musei"],
+.category-button[data-category="musei"]:hover,
+.category-button[data-category="musei"]:active,
+.category-button[data-category="musei"]:focus,
+body.musei .category-button[data-category="musei"],
+body.musei .category-button[data-category="musei"]:hover,
+body.musei .category-button[data-category="musei"]:active,
+body.musei .category-button[data-category="musei"]:focus,
+body.musei header,
+body.musei .map-title,
+body.musei .home-city-map-title,
+body.musei #attivaMappa,
+body.musei #attivaMappa:hover,
+body.musei #attivaMappa:active,
+body.musei #attivaMappa:focus {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+/* PULSANTE E SEZIONE: EDIFICI PUBBLICI sempre #4D908E */
+.category-button[data-category="edifici"],
+.category-button[data-category="edifici"]:hover,
+.category-button[data-category="edifici"]:active,
+.category-button[data-category="edifici"]:focus,
+body.edifici .category-button[data-category="edifici"],
+body.edifici .category-button[data-category="edifici"]:hover,
+body.edifici .category-button[data-category="edifici"]:active,
+body.edifici .category-button[data-category="edifici"]:focus,
+body.edifici header,
+body.edifici .map-title,
+body.edifici .home-city-map-title,
+body.edifici #attivaMappa,
+body.edifici #attivaMappa:hover,
+body.edifici #attivaMappa:active,
+body.edifici #attivaMappa:focus {
+  background: #4D908E !important;
+  background-color: #4D908E !important;
+  border-color: #4D908E !important;
+  color: #ffffff !important;
+}
+
+/* PULSANTE: SCHEDA DEL LUOGO sempre #277DA1 */
+.button-link.scheda-luogo,
+a.button-link.scheda-luogo,
+a.button-link.scheda-luogo.open-scheda,
+.popup-actions a.popup-scheda,
+a.popup-scheda,
+a.popup-scheda.open-scheda,
+.poi-actions .button-link.scheda-luogo,
+body.musei .button-link.scheda-luogo,
+body.edifici .button-link.scheda-luogo,
+body.locali .button-link.scheda-luogo,
+body.mia .button-link.scheda-luogo,
+body.musei .popup-actions a.popup-scheda,
+body.edifici .popup-actions a.popup-scheda,
+body.locali .popup-actions a.popup-scheda,
+body.mia .popup-actions a.popup-scheda {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+/* SCHEDA DEL LUOGO: stesso colore anche su click/focus/passaggio */
+.button-link.scheda-luogo:hover,
+.button-link.scheda-luogo:active,
+.button-link.scheda-luogo:focus,
+a.button-link.scheda-luogo:hover,
+a.button-link.scheda-luogo:active,
+a.button-link.scheda-luogo:focus,
+.popup-actions a.popup-scheda:hover,
+.popup-actions a.popup-scheda:active,
+.popup-actions a.popup-scheda:focus,
+a.popup-scheda:hover,
+a.popup-scheda:active,
+a.popup-scheda:focus {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+
+/* === RIFINITURA CONTRASTI WCAG === */
+
+/* Sfondo e testo base */
+html,
+body {
+  background: #FAFAF8 !important;
+  color: #000000 !important;
+}
+
+/* Bordi e separatori più leggibili */
+.section,
+.place-card,
+.poi-card,
+.access-details,
+.info-box,
+.modal-window,
+.map-card,
+.home-city-map-card,
+select,
+input,
+textarea {
+  border-color: #C5C1BA !important;
+}
+
+/* EDIFICI PUBBLICI: #4D908E con testo nero per maggiore contrasto */
+.category-button[data-category="edifici"],
+.category-button[data-category="edifici"]:hover,
+.category-button[data-category="edifici"]:active,
+.category-button[data-category="edifici"]:focus,
+body.edifici .category-button[data-category="edifici"],
+body.edifici .category-button[data-category="edifici"]:hover,
+body.edifici .category-button[data-category="edifici"]:active,
+body.edifici .category-button[data-category="edifici"]:focus,
+body.edifici header,
+body.edifici .map-title,
+body.edifici .home-city-map-title,
+body.edifici #attivaMappa,
+body.edifici #attivaMappa:hover,
+body.edifici #attivaMappa:active,
+body.edifici #attivaMappa:focus {
+  background: #4D908E !important;
+  background-color: #4D908E !important;
+  border-color: #4D908E !important;
+  color: #000000 !important;
+}
+
+/* Informazioni: verde accessibile con testo nero */
+.button-link.info,
+.popup-actions a.popup-info,
+body.musei .button-link.info,
+body.edifici .button-link.info,
+body.locali .button-link.info,
+body.mia .button-link.info,
+body.musei .popup-actions a.popup-info,
+body.edifici .popup-actions a.popup-info,
+body.locali .popup-actions a.popup-info,
+body.mia .popup-actions a.popup-info,
+.button-link.info:hover,
+.button-link.info:active,
+.button-link.info:focus,
+.popup-actions a.popup-info:hover,
+.popup-actions a.popup-info:active,
+.popup-actions a.popup-info:focus {
+  background: #90BE6D !important;
+  background-color: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #000000 !important;
+}
+
+/* Vai a questo luogo: rosso deciso con testo nero per contrasto migliore */
+a.portami-qui,
+a.button-link.portami-qui,
+.button-link.portami-qui,
+.poi-actions a.portami-qui,
+.popup-actions a.portami-qui,
+a[href*="google.com/maps"],
+a[href*="maps.google"],
+a[href*="maps/dir"],
+.poi-actions a[href*="google.com/maps"],
+.popup-actions a[href*="google.com/maps"],
+body.musei a.portami-qui,
+body.edifici a.portami-qui,
+body.locali a.portami-qui,
+body.mia a.portami-qui,
+body.musei .button-link.portami-qui,
+body.edifici .button-link.portami-qui,
+body.locali .button-link.portami-qui,
+body.mia .button-link.portami-qui,
+body.musei .poi-actions a.portami-qui,
+body.edifici .poi-actions a.portami-qui,
+body.locali .poi-actions a.portami-qui,
+body.mia .poi-actions a.portami-qui,
+body.musei .popup-actions a.portami-qui,
+body.edifici .popup-actions a.portami-qui,
+body.locali .popup-actions a.portami-qui,
+body.mia .popup-actions a.portami-qui {
+  background: #F94144 !important;
+  background-color: #F94144 !important;
+  border-color: #F94144 !important;
+  color: #000000 !important;
+}
+
+/* Vai a questo luogo: blocco variazioni di colore */
+a.portami-qui:hover,
+a.portami-qui:focus,
+a.portami-qui:active,
+a.portami-qui:visited,
+a.button-link.portami-qui:hover,
+a.button-link.portami-qui:focus,
+a.button-link.portami-qui:active,
+a.button-link.portami-qui:visited,
+.button-link.portami-qui:hover,
+.button-link.portami-qui:focus,
+.button-link.portami-qui:active,
+.button-link.portami-qui:visited,
+.poi-actions a.portami-qui:hover,
+.poi-actions a.portami-qui:focus,
+.poi-actions a.portami-qui:active,
+.poi-actions a.portami-qui:visited,
+.popup-actions a.portami-qui:hover,
+.popup-actions a.portami-qui:focus,
+.popup-actions a.portami-qui:active,
+.popup-actions a.portami-qui:visited,
+a[href*="google.com/maps"]:hover,
+a[href*="google.com/maps"]:focus,
+a[href*="google.com/maps"]:active,
+a[href*="google.com/maps"]:visited,
+a[href*="maps.google"]:hover,
+a[href*="maps.google"]:focus,
+a[href*="maps.google"]:active,
+a[href*="maps.google"]:visited {
+  background: #F94144 !important;
+  background-color: #F94144 !important;
+  border-color: #F94144 !important;
+  color: #000000 !important;
+}
+
+/* Focus visibile per navigazione da tastiera */
+a:focus,
+button:focus,
+select:focus,
+input:focus,
+textarea:focus,
+[tabindex]:focus {
+  outline: 4px solid #000000 !important;
+  outline-offset: 3px !important;
+}
+
+/* Hover/active senza cambio colore: piccola ombra, non nuova tinta */
+.button-link:hover,
+.purple-button:hover,
+.back-button:hover,
+.category-button:hover {
+  filter: none !important;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.18) !important;
+}
+
+.button-link:active,
+.purple-button:active,
+.back-button:active,
+.category-button:active {
+  filter: none !important;
+}
+
+
+/* =========================================================
+   SISTEMA UNICO PULSANTI - COLORI BLOCCATI
+   ========================================================= */
+
+/* Regola base: tutti i pulsanti/link-pulsante restano stabili */
+.button-link,
+.button-link:visited,
+.button-link:hover,
+.button-link:active,
+.button-link:focus,
+.popup-actions a,
+.popup-actions a:visited,
+.popup-actions a:hover,
+.popup-actions a:active,
+.popup-actions a:focus,
+.purple-button,
+.purple-button:hover,
+.purple-button:active,
+.purple-button:focus,
+.back-button,
+.back-button:hover,
+.back-button:active,
+.back-button:focus,
+.category-button,
+.category-button:hover,
+.category-button:active,
+.category-button:focus,
+#attivaMappa,
+#attivaMappa:hover,
+#attivaMappa:active,
+#attivaMappa:focus {
+  text-decoration: none !important;
+  filter: none !important;
+}
+
+/* Vai a questo luogo: rosso fisso, testo nero, nessuna variazione */
+a.portami-qui,
+a.portami-qui:visited,
+a.portami-qui:hover,
+a.portami-qui:active,
+a.portami-qui:focus,
+.button-link.portami-qui,
+.button-link.portami-qui:visited,
+.button-link.portami-qui:hover,
+.button-link.portami-qui:active,
+.button-link.portami-qui:focus,
+.poi-actions a.portami-qui,
+.poi-actions a.portami-qui:visited,
+.poi-actions a.portami-qui:hover,
+.poi-actions a.portami-qui:active,
+.poi-actions a.portami-qui:focus,
+.popup-actions a.portami-qui,
+.popup-actions a.portami-qui:visited,
+.popup-actions a.portami-qui:hover,
+.popup-actions a.portami-qui:active,
+.popup-actions a.portami-qui:focus,
+a[href*="google.com/maps"],
+a[href*="google.com/maps"]:visited,
+a[href*="google.com/maps"]:hover,
+a[href*="google.com/maps"]:active,
+a[href*="google.com/maps"]:focus,
+a[href*="maps.google"],
+a[href*="maps.google"]:visited,
+a[href*="maps.google"]:hover,
+a[href*="maps.google"]:active,
+a[href*="maps.google"]:focus,
+a[href*="maps/dir"],
+a[href*="maps/dir"]:visited,
+a[href*="maps/dir"]:hover,
+a[href*="maps/dir"]:active,
+a[href*="maps/dir"]:focus {
+  background: #F94144 !important;
+  background-color: #F94144 !important;
+  border-color: #F94144 !important;
+  color: #000000 !important;
+}
+
+/* SCHEDA DEL LUOGO: blu fisso, testo bianco */
+.button-link.scheda-luogo,
+.button-link.scheda-luogo:visited,
+.button-link.scheda-luogo:hover,
+.button-link.scheda-luogo:active,
+.button-link.scheda-luogo:focus,
+a.button-link.scheda-luogo,
+a.button-link.scheda-luogo:visited,
+a.button-link.scheda-luogo:hover,
+a.button-link.scheda-luogo:active,
+a.button-link.scheda-luogo:focus,
+.popup-actions a.popup-scheda,
+.popup-actions a.popup-scheda:visited,
+.popup-actions a.popup-scheda:hover,
+.popup-actions a.popup-scheda:active,
+.popup-actions a.popup-scheda:focus,
+a.popup-scheda,
+a.popup-scheda:visited,
+a.popup-scheda:hover,
+a.popup-scheda:active,
+a.popup-scheda:focus {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+/* Informazioni: verde fisso, testo nero */
+.button-link.info,
+.button-link.info:visited,
+.button-link.info:hover,
+.button-link.info:active,
+.button-link.info:focus,
+.popup-actions a.popup-info,
+.popup-actions a.popup-info:visited,
+.popup-actions a.popup-info:hover,
+.popup-actions a.popup-info:active,
+.popup-actions a.popup-info:focus,
+a.popup-info,
+a.popup-info:visited,
+a.popup-info:hover,
+a.popup-info:active,
+a.popup-info:focus {
+  background: #90BE6D !important;
+  background-color: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #000000 !important;
+}
+
+/* LUOGHI DA VISITARE: pulsante categoria e pulsante mappa fissi */
+.category-button[data-category="musei"],
+.category-button[data-category="musei"]:visited,
+.category-button[data-category="musei"]:hover,
+.category-button[data-category="musei"]:active,
+.category-button[data-category="musei"]:focus,
+body.musei .category-button[data-category="musei"],
+body.musei .category-button[data-category="musei"]:visited,
+body.musei .category-button[data-category="musei"]:hover,
+body.musei .category-button[data-category="musei"]:active,
+body.musei .category-button[data-category="musei"]:focus,
+body.musei #attivaMappa,
+body.musei #attivaMappa:hover,
+body.musei #attivaMappa:active,
+body.musei #attivaMappa:focus,
+body.musei .map-title {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+/* EDIFICI PUBBLICI: pulsante categoria e pulsante mappa fissi */
+.category-button[data-category="edifici"],
+.category-button[data-category="edifici"]:visited,
+.category-button[data-category="edifici"]:hover,
+.category-button[data-category="edifici"]:active,
+.category-button[data-category="edifici"]:focus,
+body.edifici .category-button[data-category="edifici"],
+body.edifici .category-button[data-category="edifici"]:visited,
+body.edifici .category-button[data-category="edifici"]:hover,
+body.edifici .category-button[data-category="edifici"]:active,
+body.edifici .category-button[data-category="edifici"]:focus,
+body.edifici #attivaMappa,
+body.edifici #attivaMappa:hover,
+body.edifici #attivaMappa:active,
+body.edifici #attivaMappa:focus,
+body.edifici .map-title {
+  background: #4D908E !important;
+  background-color: #4D908E !important;
+  border-color: #4D908E !important;
+  color: #000000 !important;
+}
+
+/* LA MIA MAPPA: pulsante categoria e pulsante mappa fissi */
+.category-button[data-category="mia"],
+.category-button[data-category="mia"]:visited,
+.category-button[data-category="mia"]:hover,
+.category-button[data-category="mia"]:active,
+.category-button[data-category="mia"]:focus,
+body.mia .category-button[data-category="mia"],
+body.mia .category-button[data-category="mia"]:visited,
+body.mia .category-button[data-category="mia"]:hover,
+body.mia .category-button[data-category="mia"]:active,
+body.mia .category-button[data-category="mia"]:focus,
+body.mia #attivaMappa,
+body.mia #attivaMappa:hover,
+body.mia #attivaMappa:active,
+body.mia #attivaMappa:focus,
+body.mia .map-title {
+  background: #F3722C !important;
+  background-color: #F3722C !important;
+  border-color: #F3722C !important;
+  color: #ffffff !important;
+}
+
+/* Pulsanti secondari non classificati: neutri e stabili */
+.button-link:not(.portami-qui):not(.scheda-luogo):not(.info),
+.button-link:not(.portami-qui):not(.scheda-luogo):not(.info):visited,
+.button-link:not(.portami-qui):not(.scheda-luogo):not(.info):hover,
+.button-link:not(.portami-qui):not(.scheda-luogo):not(.info):active,
+.button-link:not(.portami-qui):not(.scheda-luogo):not(.info):focus {
+  background: #F2EFEA !important;
+  background-color: #F2EFEA !important;
+  border-color: #D9D6D0 !important;
+  color: #000000 !important;
+}
+
+/* Focus accessibile: resta visibile ma non altera i colori */
+a:focus,
+button:focus,
+select:focus,
+input:focus,
+textarea:focus,
+[tabindex]:focus {
+  outline: 4px solid #000000 !important;
+  outline-offset: 3px !important;
+}
+
+
+/* =========================================================
+   DESIGN SYSTEM DEFINITIVO - MAPPA ACCESSIBILE
+   Mantiene layout e funzioni; stabilizza solo colori, contrasti,
+   stati dei pulsanti e leggibilità.
+   ========================================================= */
+
+:root {
+  --ds-bg: #FAFAF8;
+  --ds-text: #000000;
+  --ds-white: #ffffff;
+  --ds-border: #C5C1BA;
+
+  --ds-luoghi: #277DA1;
+  --ds-scheda: #277DA1;
+  --ds-edifici: #4D908E;
+  --ds-mia: #F3722C;
+  --ds-portami: #F94144;
+  --ds-info: #90BE6D;
+  --ds-neutral: #F2EFEA;
+
+  --ds-radius: 14px;
+  --ds-focus: #000000;
+}
+
+/* Base leggibile */
+html,
+body {
+  background: var(--ds-bg) !important;
+  color: var(--ds-text) !important;
+}
+
+/* Bordi e separatori coerenti */
+.section,
+.map-card,
+.home-city-map-card,
+.place-card,
+.poi-card,
+.access-details,
+.info-box,
+.modal-window,
+select,
+input,
+textarea {
+  border-color: var(--ds-border) !important;
+}
+
+/* Colori sezione */
+body.musei {
+  --category-color: var(--ds-luoghi) !important;
+}
+
+body.edifici {
+  --category-color: var(--ds-edifici) !important;
+}
+
+body.mia {
+  --category-color: var(--ds-mia) !important;
+}
+
+/* Titoli, header e cornici sezione */
+body.musei header,
+body.musei .map-title,
+body.musei .home-city-map-title {
+  background: var(--ds-luoghi) !important;
+  border-color: var(--ds-luoghi) !important;
+  color: var(--ds-white) !important;
+}
+
+body.edifici header,
+body.edifici .map-title,
+body.edifici .home-city-map-title {
+  background: var(--ds-edifici) !important;
+  border-color: var(--ds-edifici) !important;
+  color: var(--ds-text) !important;
+}
+
+body.mia header,
+body.mia .map-title,
+body.mia .home-city-map-title {
+  background: var(--ds-mia) !important;
+  border-color: var(--ds-mia) !important;
+  color: var(--ds-white) !important;
+}
+
+body.musei .map-card {
+  border-color: var(--ds-luoghi) !important;
+}
+
+body.edifici .map-card {
+  border-color: var(--ds-edifici) !important;
+}
+
+body.mia .map-card {
+  border-color: var(--ds-mia) !important;
+}
+
+/* Stato comune dei pulsanti */
+.button-link,
+.popup-actions a,
+.category-button,
+.purple-button,
+.back-button,
+#attivaMappa {
+  border-radius: var(--ds-radius) !important;
+  text-decoration: none !important;
+  filter: none !important;
+  transition: none !important;
+}
+
+/* Luoghi da visitare */
+.category-button[data-category="musei"],
+.category-button[data-category="musei"]:visited,
+.category-button[data-category="musei"]:hover,
+.category-button[data-category="musei"]:active,
+.category-button[data-category="musei"]:focus,
+body.musei .category-button[data-category="musei"],
+body.musei .category-button[data-category="musei"]:visited,
+body.musei .category-button[data-category="musei"]:hover,
+body.musei .category-button[data-category="musei"]:active,
+body.musei .category-button[data-category="musei"]:focus,
+body.musei #attivaMappa,
+body.musei #attivaMappa:hover,
+body.musei #attivaMappa:active,
+body.musei #attivaMappa:focus {
+  background: var(--ds-luoghi) !important;
+  background-color: var(--ds-luoghi) !important;
+  border-color: var(--ds-luoghi) !important;
+  color: var(--ds-white) !important;
+}
+
+/* Edifici pubblici */
+.category-button[data-category="edifici"],
+.category-button[data-category="edifici"]:visited,
+.category-button[data-category="edifici"]:hover,
+.category-button[data-category="edifici"]:active,
+.category-button[data-category="edifici"]:focus,
+body.edifici .category-button[data-category="edifici"],
+body.edifici .category-button[data-category="edifici"]:visited,
+body.edifici .category-button[data-category="edifici"]:hover,
+body.edifici .category-button[data-category="edifici"]:active,
+body.edifici .category-button[data-category="edifici"]:focus,
+body.edifici #attivaMappa,
+body.edifici #attivaMappa:hover,
+body.edifici #attivaMappa:active,
+body.edifici #attivaMappa:focus {
+  background: var(--ds-edifici) !important;
+  background-color: var(--ds-edifici) !important;
+  border-color: var(--ds-edifici) !important;
+  color: var(--ds-text) !important;
+}
+
+/* La mia mappa */
+.category-button[data-category="mia"],
+.category-button[data-category="mia"]:visited,
+.category-button[data-category="mia"]:hover,
+.category-button[data-category="mia"]:active,
+.category-button[data-category="mia"]:focus,
+body.mia .category-button[data-category="mia"],
+body.mia .category-button[data-category="mia"]:visited,
+body.mia .category-button[data-category="mia"]:hover,
+body.mia .category-button[data-category="mia"]:active,
+body.mia .category-button[data-category="mia"]:focus,
+body.mia #attivaMappa,
+body.mia #attivaMappa:hover,
+body.mia #attivaMappa:active,
+body.mia #attivaMappa:focus {
+  background: var(--ds-mia) !important;
+  background-color: var(--ds-mia) !important;
+  border-color: var(--ds-mia) !important;
+  color: var(--ds-white) !important;
+}
+
+/* Vai a questo luogo: rosso fisso, nessuna variazione dopo click */
+a.portami-qui,
+a.portami-qui:visited,
+a.portami-qui:hover,
+a.portami-qui:active,
+a.portami-qui:focus,
+.button-link.portami-qui,
+.button-link.portami-qui:visited,
+.button-link.portami-qui:hover,
+.button-link.portami-qui:active,
+.button-link.portami-qui:focus,
+.poi-actions a.portami-qui,
+.poi-actions a.portami-qui:visited,
+.poi-actions a.portami-qui:hover,
+.poi-actions a.portami-qui:active,
+.poi-actions a.portami-qui:focus,
+.popup-actions a.portami-qui,
+.popup-actions a.portami-qui:visited,
+.popup-actions a.portami-qui:hover,
+.popup-actions a.portami-qui:active,
+.popup-actions a.portami-qui:focus,
+a[href*="google.com/maps"],
+a[href*="google.com/maps"]:visited,
+a[href*="google.com/maps"]:hover,
+a[href*="google.com/maps"]:active,
+a[href*="google.com/maps"]:focus,
+a[href*="maps.google"],
+a[href*="maps.google"]:visited,
+a[href*="maps.google"]:hover,
+a[href*="maps.google"]:active,
+a[href*="maps.google"]:focus,
+a[href*="maps/dir"],
+a[href*="maps/dir"]:visited,
+a[href*="maps/dir"]:hover,
+a[href*="maps/dir"]:active,
+a[href*="maps/dir"]:focus {
+  background: var(--ds-portami) !important;
+  background-color: var(--ds-portami) !important;
+  border-color: var(--ds-portami) !important;
+  color: var(--ds-text) !important;
+}
+
+/* Scheda del luogo */
+.button-link.scheda-luogo,
+.button-link.scheda-luogo:visited,
+.button-link.scheda-luogo:hover,
+.button-link.scheda-luogo:active,
+.button-link.scheda-luogo:focus,
+a.button-link.scheda-luogo,
+a.button-link.scheda-luogo:visited,
+a.button-link.scheda-luogo:hover,
+a.button-link.scheda-luogo:active,
+a.button-link.scheda-luogo:focus,
+.popup-actions a.popup-scheda,
+.popup-actions a.popup-scheda:visited,
+.popup-actions a.popup-scheda:hover,
+.popup-actions a.popup-scheda:active,
+.popup-actions a.popup-scheda:focus,
+a.popup-scheda,
+a.popup-scheda:visited,
+a.popup-scheda:hover,
+a.popup-scheda:active,
+a.popup-scheda:focus {
+  background: var(--ds-scheda) !important;
+  background-color: var(--ds-scheda) !important;
+  border-color: var(--ds-scheda) !important;
+  color: var(--ds-white) !important;
+}
+
+/* Informazioni */
+.button-link.info,
+.button-link.info:visited,
+.button-link.info:hover,
+.button-link.info:active,
+.button-link.info:focus,
+.popup-actions a.popup-info,
+.popup-actions a.popup-info:visited,
+.popup-actions a.popup-info:hover,
+.popup-actions a.popup-info:active,
+.popup-actions a.popup-info:focus,
+a.popup-info,
+a.popup-info:visited,
+a.popup-info:hover,
+a.popup-info:active,
+a.popup-info:focus {
+  background: var(--ds-info) !important;
+  background-color: var(--ds-info) !important;
+  border-color: var(--ds-info) !important;
+  color: var(--ds-text) !important;
+}
+
+/* Altri pulsanti secondari */
+.button-link:not(.portami-qui):not(.scheda-luogo):not(.info),
+.button-link:not(.portami-qui):not(.scheda-luogo):not(.info):visited,
+.button-link:not(.portami-qui):not(.scheda-luogo):not(.info):hover,
+.button-link:not(.portami-qui):not(.scheda-luogo):not(.info):active,
+.button-link:not(.portami-qui):not(.scheda-luogo):not(.info):focus {
+  background: var(--ds-neutral) !important;
+  background-color: var(--ds-neutral) !important;
+  border-color: var(--ds-border) !important;
+  color: var(--ds-text) !important;
+}
+
+/* Focus accessibile: visibile senza cambiare colore */
+a:focus,
+button:focus,
+select:focus,
+input:focus,
+textarea:focus,
+[tabindex]:focus {
+  outline: 4px solid var(--ds-focus) !important;
+  outline-offset: 3px !important;
+}
+
+/* Hover/active: nessun cambio cromatico */
+.button-link:hover,
+.button-link:active,
+.popup-actions a:hover,
+.popup-actions a:active,
+.category-button:hover,
+.category-button:active,
+.purple-button:hover,
+.purple-button:active,
+.back-button:hover,
+.back-button:active,
+#attivaMappa:hover,
+#attivaMappa:active {
+  filter: none !important;
+}
+
+
+/* Vai a questo luogo DEFINITIVO: COLORE BLOCCATO */
+a.portami-qui,
+a.portami-qui:link,
+a.portami-qui:visited,
+a.portami-qui:hover,
+a.portami-qui:active,
+a.portami-qui:focus,
+.button-link.portami-qui,
+.button-link.portami-qui:link,
+.button-link.portami-qui:visited,
+.button-link.portami-qui:hover,
+.button-link.portami-qui:active,
+.button-link.portami-qui:focus,
+.popup-actions a.portami-qui,
+.popup-actions a.portami-qui:link,
+.popup-actions a.portami-qui:visited,
+.popup-actions a.portami-qui:hover,
+.popup-actions a.portami-qui:active,
+.popup-actions a.portami-qui:focus,
+.poi-actions a.portami-qui,
+.poi-actions a.portami-qui:link,
+.poi-actions a.portami-qui:visited,
+.poi-actions a.portami-qui:hover,
+.poi-actions a.portami-qui:active,
+.poi-actions a.portami-qui:focus,
+a[href*="google.com/maps"],
+a[href*="google.com/maps"]:link,
+a[href*="google.com/maps"]:visited,
+a[href*="google.com/maps"]:hover,
+a[href*="google.com/maps"]:active,
+a[href*="google.com/maps"]:focus,
+a[href*="maps.google"],
+a[href*="maps.google"]:link,
+a[href*="maps.google"]:visited,
+a[href*="maps.google"]:hover,
+a[href*="maps.google"]:active,
+a[href*="maps.google"]:focus {
+  background: #F94144 !important;
+  background-color: #F94144 !important;
+  border-color: #F94144 !important;
+  color: #000000 !important;
+  text-decoration: none !important;
+  filter: none !important;
+}
+
+
+/* Informazioni DEFINITIVO: VERDE #90BE6D, TESTO NERO */
+.button-link.info,
+.button-link.info:link,
+.button-link.info:visited,
+.button-link.info:hover,
+.button-link.info:active,
+.button-link.info:focus,
+.popup-actions a.popup-info,
+.popup-actions a.popup-info:link,
+.popup-actions a.popup-info:visited,
+.popup-actions a.popup-info:hover,
+.popup-actions a.popup-info:active,
+.popup-actions a.popup-info:focus,
+a.popup-info,
+a.popup-info:link,
+a.popup-info:visited,
+a.popup-info:hover,
+a.popup-info:active,
+a.popup-info:focus {
+  background: #90BE6D !important;
+  background-color: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #000000 !important;
+  text-decoration: none !important;
+  filter: none !important;
+}
+
+
+/* Informazioni DEFINITIVO CON CLASSE PULITA */
+.info-utili,
+.info-utili:visited,
+.info-utili:hover,
+.info-utili:active,
+.info-utili:focus {
+  background: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #000000 !important;
+}
+
+
+/* GOCCIA SELEZIONATA: GIALLO #F9C74F */
+.leaflet-marker-icon.selected-marker {
+  filter: hue-rotate(60deg) saturate(1.5) brightness(1.1) !important;
+}
+
+/* alternativa: cerchio sotto marker selezionato */
+.selected-marker-highlight {
+  width: 20px;
+  height: 20px;
+  background: #F9C74F;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 400;
+}
+
+
+/* Informazioni: VERDE #90BE6D FISSO DEFINITIVO */
+a.info-utili,
+a.info-utili:link,
+a.info-utili:visited,
+a.info-utili:hover,
+a.info-utili:active,
+a.info-utili:focus,
+.button-link.info-utili,
+.button-link.info-utili:link,
+.button-link.info-utili:visited,
+.button-link.info-utili:hover,
+.button-link.info-utili:active,
+.button-link.info-utili:focus,
+.popup-actions a.info-utili,
+.popup-actions a.info-utili:link,
+.popup-actions a.info-utili:visited,
+.popup-actions a.info-utili:hover,
+.popup-actions a.info-utili:active,
+.popup-actions a.info-utili:focus,
+.poi-actions a.info-utili,
+.poi-actions a.info-utili:link,
+.poi-actions a.info-utili:visited,
+.poi-actions a.info-utili:hover,
+.poi-actions a.info-utili:active,
+.poi-actions a.info-utili:focus {
+  background: #90BE6D !important;
+  background-color: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #000000 !important;
+  text-decoration: none !important;
+  filter: none !important;
+}
+
+/* GOCCIA SELEZIONATA: GIALLO FISSO DEFINITIVO */
+.leaflet-marker-icon.marker-selected .marker,
+.leaflet-marker-icon.marker-selected .map-marker,
+.leaflet-marker-icon.marker-selected .pin,
+.leaflet-marker-icon.marker-selected div,
+.marker.marker-selected,
+.marker.selected,
+.marker.is-selected {
+  background: #F9C74F !important;
+  background-color: #F9C74F !important;
+  border-color: #000000 !important;
+  color: #000000 !important;
+  box-shadow: 0 0 0 4px #000000, 0 3px 14px rgba(0,0,0,.35) !important;
+}
+
+
+/* Informazioni / NOTE: VERDE #90BE6D DEFINITIVO IN TUTTI GLI STATI */
+a.info-utili,
+a.info-utili:link,
+a.info-utili:visited,
+a.info-utili:hover,
+a.info-utili:active,
+a.info-utili:focus,
+a.open-info-utili,
+a.open-info-utili:link,
+a.open-info-utili:visited,
+a.open-info-utili:hover,
+a.open-info-utili:active,
+a.open-info-utili:focus,
+a.open-note,
+a.open-note:link,
+a.open-note:visited,
+a.open-note:hover,
+a.open-note:active,
+a.open-note:focus,
+.button-link.info,
+.button-link.info:link,
+.button-link.info:visited,
+.button-link.info:hover,
+.button-link.info:active,
+.button-link.info:focus,
+.popup-actions a.popup-info,
+.popup-actions a.popup-info:link,
+.popup-actions a.popup-info:visited,
+.popup-actions a.popup-info:hover,
+.popup-actions a.popup-info:active,
+.popup-actions a.popup-info:focus,
+.poi-actions a.open-info-utili,
+.poi-actions a.open-info-utili:link,
+.poi-actions a.open-info-utili:visited,
+.poi-actions a.open-info-utili:hover,
+.poi-actions a.open-info-utili:active,
+.poi-actions a.open-info-utili:focus {
+  background: #90BE6D !important;
+  background-color: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #000000 !important;
+  text-decoration: none !important;
+  filter: none !important;
+}
+
+
+/* GOCCE MAPPA: ROSSO NORMALE, GIALLO SOLO SE SELEZIONATE */
+.leaflet-marker-icon .marker,
+.leaflet-marker-icon:not(.marker-selected) .marker {
+  background: #F94144 !important;
+  background-color: #F94144 !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.leaflet-marker-icon.marker-selected .marker {
+  background: #F9C74F !important;
+  background-color: #F9C74F !important;
+  border-color: #000000 !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+  transform: scale(1.2);
+}
+
+
+/* RIMOZIONE DEFINITIVA RIQUADRO NERO SULLA GOCCIA SELEZIONATA */
+.leaflet-marker-icon.marker-selected,
+.leaflet-marker-icon.marker-selected:focus,
+.leaflet-marker-icon.marker-selected:focus-visible,
+.leaflet-marker-icon.marker-selected:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.leaflet-marker-icon.marker-selected .marker,
+.leaflet-marker-icon.marker-selected:focus .marker,
+.leaflet-marker-icon.marker-selected:focus-visible .marker,
+.leaflet-marker-icon.marker-selected:active .marker {
+  background: #F9C74F !important;
+  background-color: #F9C74F !important;
+  border-color: #ffffff !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+}
+
+/* evita che la regola generale del focus crei il quadrato nero sui marker */
+.leaflet-marker-icon:focus,
+.leaflet-marker-icon:focus-visible,
+.leaflet-marker-icon div:focus,
+.leaflet-marker-icon div:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   CORREZIONE CHIRURGICA RICHIESTA
+   Scheda del luogo = #F9C74F sempre
+   Informazioni / Note = #90BE6D sempre
+   ========================================================= */
+
+/* SCHEDA DEL LUOGO: GIALLO SEMPRE */
+.scheda-gialla-fissa,
+.scheda-gialla-fissa:link,
+.scheda-gialla-fissa:visited,
+.scheda-gialla-fissa:hover,
+.scheda-gialla-fissa:active,
+.scheda-gialla-fissa:focus,
+.button-link.scheda-luogo,
+.button-link.scheda-luogo:link,
+.button-link.scheda-luogo:visited,
+.button-link.scheda-luogo:hover,
+.button-link.scheda-luogo:active,
+.button-link.scheda-luogo:focus,
+.popup-actions a.popup-scheda,
+.popup-actions a.popup-scheda:link,
+.popup-actions a.popup-scheda:visited,
+.popup-actions a.popup-scheda:hover,
+.popup-actions a.popup-scheda:active,
+.popup-actions a.popup-scheda:focus,
+a.open-scheda,
+a.open-scheda:link,
+a.open-scheda:visited,
+a.open-scheda:hover,
+a.open-scheda:active,
+a.open-scheda:focus {
+  background: #F9C74F !important;
+  background-color: #F9C74F !important;
+  border-color: #F9C74F !important;
+  color: #000000 !important;
+  text-decoration: none !important;
+  filter: none !important;
+}
+
+/* Informazioni / NOTE: VERDE CHIARO SEMPRE */
+.info-verde-fissa,
+.info-verde-fissa:link,
+.info-verde-fissa:visited,
+.info-verde-fissa:hover,
+.info-verde-fissa:active,
+.info-verde-fissa:focus,
+.info-utili,
+.info-utili:link,
+.info-utili:visited,
+.info-utili:hover,
+.info-utili:active,
+.info-utili:focus,
+.button-link.info,
+.button-link.info:link,
+.button-link.info:visited,
+.button-link.info:hover,
+.button-link.info:active,
+.button-link.info:focus,
+.popup-actions a.popup-info,
+.popup-actions a.popup-info:link,
+.popup-actions a.popup-info:visited,
+.popup-actions a.popup-info:hover,
+.popup-actions a.popup-info:active,
+.popup-actions a.popup-info:focus,
+a.open-info-utili,
+a.open-info-utili:link,
+a.open-info-utili:visited,
+a.open-info-utili:hover,
+a.open-info-utili:active,
+a.open-info-utili:focus,
+a.open-note,
+a.open-note:link,
+a.open-note:visited,
+a.open-note:hover,
+a.open-note:active,
+a.open-note:focus {
+  background: #90BE6D !important;
+  background-color: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #000000 !important;
+  text-decoration: none !important;
+  filter: none !important;
+}
+
+
+/* LUOGHI DA VISITARE: COLORE #277DA1 SEMPRE */
+body.musei header,
+body.musei .map-title,
+body.musei .home-city-map-title,
+body.musei .map-card,
+body.musei #attivaMappa,
+body.musei #attivaMappa:hover,
+body.musei #attivaMappa:active,
+body.musei #attivaMappa:focus,
+.category-button[data-category="musei"],
+.category-button[data-category="musei"]:link,
+.category-button[data-category="musei"]:visited,
+.category-button[data-category="musei"]:hover,
+.category-button[data-category="musei"]:active,
+.category-button[data-category="musei"]:focus {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+
+/* Informazioni DEFINITIVO – VERDE CHIARO STABILE */
+a.popup-info,
+a.open-info-utili,
+a.open-note,
+a.button-link.info,
+.info-utili,
+.info-verde,
+.info-verde-fissa,
+a.popup-info:link,
+a.popup-info:visited,
+a.popup-info:hover,
+a.popup-info:active,
+a.popup-info:focus,
+a.open-info-utili:link,
+a.open-info-utili:visited,
+a.open-info-utili:hover,
+a.open-info-utili:active,
+a.open-info-utili:focus,
+a.open-note:link,
+a.open-note:visited,
+a.open-note:hover,
+a.open-note:active,
+a.open-note:focus {
+  background: #90BE6D !important;
+  background-color: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #000000 !important;
+  text-decoration: none !important;
+  filter: none !important;
+}
+
+
+
+/* Migliorie accessibilità e leggibilità */
+.intro-accessibile,
+.map-instruction {
+  margin: 10px 0 12px;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  background: #ffffff;
+  color: #111111;
+  font-weight: 800;
+  text-transform: none !important;
+}
+
+.button-link.info,
+a.button-link.info,
+.open-info-utili,
+.open-note,
+.popup-actions a.popup-info,
+.info-utili {
+  background: #90BE6D !important;
+  background-color: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #111111 !important;
+}
+
+.button-link.scheda-luogo,
+.button-link.scheda-luogo:visited,
+.button-link.scheda-luogo:hover,
+.button-link.scheda-luogo:active,
+.button-link.scheda-luogo:focus,
+.popup-actions a.popup-scheda,
+.popup-actions a.popup-scheda:visited,
+.popup-actions a.popup-scheda:hover,
+.popup-actions a.popup-scheda:active,
+.popup-actions a.popup-scheda:focus {
+  background: #277DA1 !important;
+  background-color: #277DA1 !important;
+  border-color: #277DA1 !important;
+  color: #ffffff !important;
+}
+
+.modal-window:focus {
+  outline: 5px solid var(--yellow);
+  outline-offset: -8px;
+}
+
+body {
+  text-transform: none !important;
+}
+
+.category-button,
+.map-title,
+.home-city-map-title,
+.info-label {
+  text-transform: none !important;
+}
+
+
+/* ACCESSIBILITÀ: leggibilità, focus e testi */
+.map-instruction {
+  background: #ffffff;
+  color: #111111;
+  padding: 12px;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+  border-top: 2px solid var(--border);
+}
+
+.button-link.info,
+.popup-actions a.popup-info,
+body .button-link.info,
+body a.button-link.info,
+body .poi-actions .button-link.info,
+body .popup-actions a.popup-info {
+  background: #90BE6D !important;
+  border-color: #90BE6D !important;
+  color: #111111 !important;
+}
+
+.category-button[data-category="edifici"],
+body.edifici .map-title,
+body.edifici .button-link.scheda-luogo,
+body.edifici .popup-actions a.popup-scheda,
+body.mia .map-title,
+body.mia .button-link,
+body.mia .popup-actions a:first-child {
+  color: #111111 !important;
+}
+
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 5px solid #ffbf00 !important;
+  outline-offset: 4px !important;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-window:focus {
+  outline: 5px solid #ffbf00 !important;
+  outline-offset: -8px !important;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+
+/* TESTI SEMPLIFICATI: leggibilità */
+.map-instruction {
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+}
+
+.map-instruction strong {
+  font-weight: 800 !important;
+}
+
+.place-description,
+.info-value,
+.subtitle {
+  line-height: 1.55 !important;
+}
+
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -4672,23 +6212,23 @@ h3.popup-title {
   <main>
     <section id="homeScreen" class="section home-screen">
 <div class="category-grid">
-        <button class="category-button" type="button" data-category="musei" aria-label="Apri musei"> LUOGHI DA VISITARE <span class="small">Turismo in città</span>
+        <button class="category-button" type="button" data-category="musei" aria-label="Apri luoghi da visitare"> LUOGHI DA VISITARE <span class="small">Da vedere</span>
         </button>
 
-        <button class="category-button" type="button" data-category="edifici" aria-label="Apri edifici pubblici">EDIFICI PUBBLICI<span class="small">Servizi e uffici</span>
+        <button class="category-button" type="button" data-category="edifici" aria-label="Apri edifici pubblici">EDIFICI PUBBLICI<span class="small">Luoghi utili</span>
         </button>
-<button class="category-button" type="button" data-category="mia" aria-label="Apri la mia mappa">LA MIA MAPPA<span class="small">Luoghi preferiti e percorso personale</span>
+<button class="category-button" type="button" data-category="mia" aria-label="Apri la mia mappa">LA MIA MAPPA<span class="small">I tuoi luoghi</span>
         </button>
       </div>
 
 <section class="section home-city-map-card" aria-labelledby="homeCityMapTitle">
-        <div id="homeCityMapTitle" class="home-city-map-title">Mappa della città di Bra</div>
+        <h2 id="homeCityMapTitle" class="home-city-map-title">Mappa della città di Bra</h2>
         <div id="homeCityMap" aria-label="Mappa della città di Bra"></div>
       </section>
     </section>
 
     <div id="appScreen" class="app-screen">
-      <button id="backHome" class="back-button" type="button">Torna alle categorie</button>
+      <button id="backHome" class="back-button" type="button">Torna indietro</button>
 
       <section class="section category-title" aria-labelledby="categoryPageTitle">
         <h2 id="categoryPageTitle">Categoria</h2>
@@ -4697,7 +6237,7 @@ h3.popup-title {
 
       <section id="personalTools" class="section personal-tools" aria-labelledby="personalToolsTitle">
         <h2 id="personalToolsTitle">LA MIA MAPPA</h2>
-        <button id="showAddPlace" class="purple-button" type="button">Aggiungi luogo</button>
+        <button id="showAddPlace" class="purple-button" type="button">Aggiungi un luogo</button>
 
         <div id="addPlacePanel" class="add-place-panel">
           <h3 style="text-align:center;">LA MIA MAPPA</h3>
@@ -4758,19 +6298,21 @@ h3.popup-title {
       </div>
 
       <section class="section map-card" aria-labelledby="mappa-title">
-      <div class="map-title" id="mappa-title"><span class="map-pin-inline" aria-hidden="true"></span><span>CLICCA QUI</span></div>
+      <h2 class="map-title" id="mappa-title">Mappa</h2>
       
-      <div id="map" aria-label="Mappa visiva del percorso scelto con tappe numerate"></div>
+      <p id="mapInstructions" class="map-instruction"><strong>Puoi usare la mappa.<br>Oppure puoi usare la lista sotto.</strong></p>
+      
+      <div id="map" tabindex="0" aria-label="Mappa visiva del percorso scelto con tappe numerate" aria-describedby="mapInstructions"></div>
       
       </section>
 
-    <button id="attivaMappa" class="button-link attiva-mappa-button" type="button">
-      TOCCA QUI PER MUOVERE LA MAPPA
+    <button id="attivaMappa" class="button-link attiva-mappa-button" type="button" aria-label="Attiva la mappa">
+      Attiva la mappa
     </button>
 
 
     <section class="section" id="lista-tappe" aria-labelledby="lista-title">
-      <h2 id="lista-title">Tappe del percorso</h2>
+      <h2 id="lista-title">Elenco dei luoghi</h2>
 
       <p id="statusMessage" class="status" aria-live="polite"></p>
       <ul id="placesList" class="places-list"></ul>
@@ -4778,8 +6320,8 @@ h3.popup-title {
     </div>
   </main>
 
-  <div id="schedaModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-window">
+  <div id="schedaModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="schedaTitle" tabindex="-1">
+    <div class="modal-window" tabindex="-1">
       <button id="modalClose" class="modal-close" type="button" aria-label="Chiudi scheda">×</button>
       <h2 id="modalTitle" class="modal-title">Scheda tappa</h2>
       <img id="modalPhoto" class="modal-photo" src="" alt="" onerror="this.remove();">
@@ -4793,9 +6335,9 @@ h3.popup-title {
 
 
   <div id="infoUtiliModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="infoUtiliTitle">
-    <div class="modal-window info-useful-window">
+    <div class="modal-window info-useful-window" tabindex="-1">
       <button id="infoUtiliClose" class="modal-close" type="button" aria-label="Chiudi info utili">×</button>
-      <h2 id="infoUtiliTitle" class="modal-title">Info utili</h2>
+      <h2 id="infoUtiliTitle" class="modal-title">Informazioni</h2>
 
       <div class="info-useful-content">
         <div class="info-box">
@@ -4819,7 +6361,7 @@ h3.popup-title {
 
 
   <div id="noteModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="noteTitle">
-    <div class="modal-window">
+    <div class="modal-window" tabindex="-1">
       <button id="noteClose" class="modal-close" type="button" aria-label="Chiudi note">×</button>
       <h2 id="noteTitle" class="modal-title">NOTE</h2>
       <p id="noteText" class="modal-text"></p>
@@ -5280,10 +6822,10 @@ h3.popup-title {
     };
 
     const categorie = {
-      musei: { nome: "Luoghi da visitare", descrizione: "Turismo in città." },
-      edifici: { nome: "Edifici pubblici", descrizione: "Mappa e tappe di Comune, biblioteca e altri servizi pubblici." },
+      musei: { nome: "Luoghi da visitare", descrizione: "Qui trovi luoghi belli da vedere a Bra." },
+      edifici: { nome: "Edifici pubblici", descrizione: "Qui trovi luoghi utili della città." },
 
-      mia: { nome: "La mia mappa", descrizione: "Mappa personale con luoghi preferiti e tappe scelte." }
+      mia: { nome: "La mia mappa", descrizione: "Qui trovi i luoghi che scegli tu." }
     };
 
     let currentCategory = null;
@@ -5297,6 +6839,8 @@ h3.popup-title {
     const backHome = document.getElementById("backHome");
     const categoryPageTitle = document.getElementById("categoryPageTitle");
     const categoryPageDescription = document.getElementById("categoryPageDescription");
+    const mappaTitle = document.getElementById("mappa-title");
+    const mapInstructions = document.getElementById("mapInstructions");
     const showAddPlace = document.getElementById("showAddPlace");
     const addPlacePanel = document.getElementById("addPlacePanel");
     const personalPlaceForm = document.getElementById("personalPlaceForm");
@@ -5383,7 +6927,7 @@ h3.popup-title {
       }
 
       if (btnMappa) {
-        btnMappa.textContent = "TOCCA QUI PER MUOVERE LA MAPPA";
+        btnMappa.textContent = "Attiva la mappa";
         btnMappa.classList.remove("attiva");
         btnMappa.dataset.attiva = "false";
         document.body.classList.remove("mappa-attiva");
@@ -5662,9 +7206,9 @@ h3.popup-title {
 <div>${tappa.descrizione}</div>
 
           <div class="popup-actions">
-            <a class="portami-qui" style="background:#F94144 !important; border-color:#F94144 !important; color:#ffffff !important;" href="${googleMapsLink(tappa, "walking")}" target="_blank" rel="noopener">Portami qui</a>
-            ${tappa.isPersonal ? `<a href="#" class="popup-info open-note" data-index="${index}">NOTE</a>` : `<a href="#" class="popup-info open-info-utili" data-index="${index}">Info utili</a>`}
-            ${tappa.isPersonal ? `<a href="#" class="popup-delete delete-place" data-delete-index="${tappa.personalIndex}">ELIMINA LUOGO</a>` : `<a href="#" class="popup-scheda open-scheda" data-index="${index}">Scheda del luogo</a>`}
+            <a class="portami-qui" aria-label="Apri il percorso verso questo luogo su Google Maps" style="background:#F94144 !important; border-color:#F94144 !important; color:#ffffff !important; background:#F94144 !important; background-color:#F94144 !important; border-color:#F94144 !important; color:#111111 !important;" href="${googleMapsLink(tappa, "walking")}" target="_blank" rel="noopener">Vai a questo luogo</a>
+            ${tappa.isPersonal ? `<a href="#" class="popup-info info-utili open-note info-utili info-verde-fissa" data-index="${index}" style="background:#90BE6D !important; background-color:#90BE6D !important; border-color:#90BE6D !important; color:#111111 !important;" aria-label="Apri le note del luogo">NOTE</a>` : `<a href="#" class="popup-info info-utili open-info-utili info-utili info-verde-fissa" data-index="${index}" style="background:#90BE6D !important; background-color:#90BE6D !important; border-color:#90BE6D !important; color:#111111 !important;" aria-label="Apri informazioni utili del luogo">Informazioni</a>`}
+            ${tappa.isPersonal ? `<a href="#" class="popup-delete delete-place" data-delete-index="${tappa.personalIndex}">ELIMINA LUOGO</a>` : `<a href="#" class="popup-scheda open-scheda scheda-gialla-fissa" data-index="${index}" style="background:#F9C74F !important; background-color:#F9C74F !important; border-color:#F9C74F !important; color:#111111 !important;">Scheda del luogo</a>`}
           </div>
         `);
 
@@ -5729,17 +7273,17 @@ h3.popup-title {
               </div>
 
               <div class="actions poi-actions place-actions-side" aria-label="Azioni per ${tappa.nome}">
-                <a class="button-link portami-qui" style="background:#F94144 !important; border-color:#F94144 !important; color:#ffffff !important;" href="${googleMapsLink(tappa, "walking")}" target="_blank" rel="noopener">
-                  Portami qui
+                <a class="button-link portami-qui" style="background:#F94144 !important; border-color:#F94144 !important; color:#ffffff !important; background:#F94144 !important; background-color:#F94144 !important; border-color:#F94144 !important; color:#111111 !important;" href="${googleMapsLink(tappa, "walking")}" target="_blank" rel="noopener">
+                  Vai a questo luogo
                 </a>
-                ${tappa.isPersonal ? `<a class="button-link info open-note" href="#" data-index="${index}">
+                ${tappa.isPersonal ? `<a class="button-link info open-note info-utili info-verde-fissa" href="#" data-index="${index}" style="background:#90BE6D !important; background-color:#90BE6D !important; border-color:#90BE6D !important; color:#111111 !important;">
                   NOTE
-                </a>` : `<a class="button-link info open-info-utili" href="#" data-index="${index}">
-                  Info utili
+                </a>` : `<a class="button-link info-utili info open-info-utili info-utili info-verde-fissa" href="#" data-index="${index}" style="background:#90BE6D !important; background-color:#90BE6D !important; border-color:#90BE6D !important; color:#111111 !important;">
+                  Informazioni
                 </a>`}
                 ${tappa.isPersonal ? `<a class="button-link delete-place" href="#" data-delete-index="${tappa.personalIndex}">
                   ELIMINA LUOGO
-                </a>` : `<a class="button-link scheda-luogo open-scheda" href="#" data-index="${index}">
+                </a>` : `<a class="button-link scheda-luogo open-scheda scheda-gialla-fissa" href="#" data-index="${index}" style="background:#F9C74F !important; background-color:#F9C74F !important; border-color:#F9C74F !important; color:#111111 !important;">
                   Scheda del luogo
                 </a>`}
               </div>
@@ -5754,7 +7298,7 @@ h3.popup-title {
 
     function forcePortamiQuiRosso() {
       document.querySelectorAll("a").forEach(function(link) {
-        if (link.textContent.trim().toUpperCase() === "PORTAMI QUI") {
+        if (link.textContent.trim().toUpperCase() === "Vai a questo luogo") {
           link.classList.add("portami-qui");
           link.style.setProperty("background", "#c40000", "important");
           link.style.setProperty("border-color", "#c40000", "important");
@@ -5842,6 +7386,26 @@ h3.popup-title {
 
       categoryPageTitle.textContent = category.nome;
       categoryPageDescription.textContent = category.descrizione;
+
+      if (mappaTitle) {
+        mappaTitle.textContent = category.nome;
+      }
+
+      if (mapInstructions) {
+        mapInstructions.innerHTML = currentCategory === "mia"
+          ? "<strong>Qui puoi aggiungere i tuoi luoghi.<br>Puoi anche modificarli o eliminarli.</strong>"
+          : "<strong>Puoi usare la mappa.<br>Oppure puoi usare la lista sotto.</strong>";
+      }
+
+      if (mappaTitle) {
+        mappaTitle.textContent = category.nome;
+      }
+
+      if (mapInstructions) {
+        mapInstructions.innerHTML = currentCategory === "mia"
+          ? "<strong>Qui puoi aggiungere i tuoi luoghi.<br>Puoi anche modificarli o eliminarli.</strong>"
+          : "<strong>Puoi usare la mappa.<br>Oppure puoi usare la lista sotto.</strong>";
+      }
 
       homeScreen.style.display = "grid";
       appScreen.classList.add("open");
@@ -5953,6 +7517,7 @@ h3.popup-title {
     const noteText = document.getElementById("noteText");
 
     function openNote(index) {
+      lastFocusedElement = document.activeElement;
       const stops = getCurrentStops();
       const tappa = stops[index];
       if (!tappa) return;
@@ -5965,6 +7530,9 @@ h3.popup-title {
 
     function closeNote() {
       noteModal.classList.remove("open");
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
     }
 
     if (noteClose) {
@@ -5995,8 +7563,8 @@ h3.popup-title {
     const infoSito = document.getElementById("infoSito");
 
     function formatSito(value) {
-      if (!value || value === "Sito internet non inserito." || value === "Inserisci qui il sito internet." || value === "SITO INTERNET NON INSERITO." || value === "INSERISCI QUI IL SITO INTERNET.") {
-        return value || "Sito internet non inserito.";
+      if (!value || value === "Sito web non inserito." || value === "Inserisci qui il sito internet." || value === "SITO INTERNET NON INSERITO." || value === "INSERISCI QUI IL SITO INTERNET.") {
+        return value || "Sito web non inserito.";
       }
 
       const safeText = value;
@@ -6005,6 +7573,7 @@ h3.popup-title {
     }
 
     function openInfoUtili(index) {
+      lastFocusedElement = document.activeElement;
       const stops = getCurrentStops();
       const tappa = stops[index];
       if (!tappa) return;
@@ -6015,7 +7584,7 @@ h3.popup-title {
         sito: "INSERISCI QUI IL SITO INTERNET."
       };
 
-      infoUtiliTitle.textContent = "Info utili - " + tappa.nome;
+      infoUtiliTitle.textContent = "Informazioni - " + tappa.nome;
       infoOrari.textContent = info.orari || "ORARI NON INSERITI.";
       infoContatti.textContent = info.contatti || "CONTATTI NON INSERITI.";
       infoSito.innerHTML = formatSito(info.sito);
@@ -6026,6 +7595,9 @@ h3.popup-title {
 
     function closeInfoUtili() {
       infoUtiliModal.classList.remove("open");
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
     }
 
     infoUtiliClose.addEventListener("click", closeInfoUtili);
@@ -6165,13 +7737,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".portami-qui").forEach(function (el) {
       el.style.setProperty("background", "#F94144", "important");
       el.style.setProperty("border-color", "#F94144", "important");
-      el.style.setProperty("color", "#ffffff", "important");
+      el.style.setProperty("color", "#111111", "important");
     });
 
     document.querySelectorAll(".button-link.info, .popup-info, .open-info-utili, .open-note").forEach(function (el) {
-      el.style.setProperty("background", "#43aa8b", "important");
-      el.style.setProperty("border-color", "#43aa8b", "important");
-      el.style.setProperty("color", "#ffffff", "important");
+      el.style.setProperty("background", "#90BE6D", "important");
+      el.style.setProperty("border-color", "#90BE6D", "important");
+      el.style.setProperty("color", \"#111111\", "important");
     });
   }
 
@@ -6187,9 +7759,9 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   function forzaColoreInfoUtili() {
     document.querySelectorAll(".button-link.info, .popup-info, .open-info-utili, .open-note").forEach(function (el) {
-      el.style.setProperty("background", "#43aa8b", "important");
-      el.style.setProperty("border-color", "#43aa8b", "important");
-      el.style.setProperty("color", "#ffffff", "important");
+      el.style.setProperty("background", "#90BE6D", "important");
+      el.style.setProperty("border-color", "#90BE6D", "important");
+      el.style.setProperty("color", \"#111111\", "important");
     });
   }
 
@@ -6222,7 +7794,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".button-link.info, .open-info-utili, .open-note, .popup-info").forEach(function (el) {
       el.style.setProperty("background", "#90BE6D", "important");
       el.style.setProperty("border-color", "#90BE6D", "important");
-      el.style.setProperty("color", "#ffffff", "important");
+      el.style.setProperty("color", \"#111111\", "important");
     });
   }
 
@@ -6233,6 +7805,213 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+
+
+<script>
+/* Informazioni: controllo finale colore, anche dopo rendering dinamico */
+(function() {
+  function fixInfoButtons() {
+    document.querySelectorAll('.info-utili, .open-info-utili, .popup-info, .open-note').forEach(function(el) {
+      el.classList.add('info-utili');
+      el.style.setProperty('background', '#90BE6D', 'important');
+      el.style.setProperty('background-color', '#90BE6D', 'important');
+      el.style.setProperty('border-color', '#90BE6D', 'important');
+      el.style.setProperty('color', '#111111', 'important');
+      el.style.setProperty('filter', 'none', 'important');
+      el.style.setProperty('text-decoration', 'none', 'important');
+    });
+  }
+  document.addEventListener('DOMContentLoaded', fixInfoButtons);
+  document.addEventListener('click', function() {
+    setTimeout(fixInfoButtons, 0);
+  }, true);
+  setInterval(fixInfoButtons, 500);
+})();
+</script>
+
+
+<script>
+/* GOCCE MAPPA: SELEZIONE PRECISA E RIPRISTINO ROSSO */
+(function() {
+  function clearSelectedMarkers() {
+    document.querySelectorAll('.leaflet-marker-icon.marker-selected').forEach(function(marker) {
+      marker.classList.remove('marker-selected');
+    });
+  }
+
+  function selectMarkerFromEvent(event) {
+    const markerIcon = event.target.closest('.leaflet-marker-icon');
+    if (!markerIcon) return;
+    clearSelectedMarkers();
+    markerIcon.classList.add('marker-selected');
+  }
+
+  document.addEventListener('click', function(event) {
+    const clickedMarker = event.target.closest('.leaflet-marker-icon');
+    if (clickedMarker) {
+      selectMarkerFromEvent(event);
+      return;
+    }
+
+    const clickedClose =
+      event.target.closest('.leaflet-popup-close-button') ||
+      event.target.closest('.modal-close') ||
+      event.target.closest('#modalClose') ||
+      event.target.closest('#infoUtiliClose') ||
+      event.target.closest('#chiudiScheda');
+
+    if (clickedClose) {
+      clearSelectedMarkers();
+    }
+  }, true);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      clearSelectedMarkers();
+    }
+  });
+
+  document.addEventListener('popupclose', clearSelectedMarkers, true);
+
+  const observer = new MutationObserver(function() {
+    const hasOpenPopup = document.querySelector('.leaflet-popup');
+    const hasOpenModal = document.querySelector('.modal-overlay.open');
+    if (!hasOpenPopup && !hasOpenModal) {
+      clearSelectedMarkers();
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['class']
+  });
+})();
+</script>
+
+
+<script>
+/* CORREZIONE MIRATA COLORI PULSANTI DOPO RENDERING DINAMICO */
+(function() {
+  function forceRequestedButtonColors() {
+    document.querySelectorAll('.scheda-luogo, .popup-scheda, .open-scheda, .scheda-gialla-fissa').forEach(function(el) {
+      el.classList.add('scheda-gialla-fissa');
+      el.style.setProperty('background', '#F9C74F', 'important');
+      el.style.setProperty('background-color', '#F9C74F', 'important');
+      el.style.setProperty('border-color', '#F9C74F', 'important');
+      el.style.setProperty('color', '#111111', 'important');
+      el.style.setProperty('filter', 'none', 'important');
+      el.style.setProperty('text-decoration', 'none', 'important');
+    });
+
+    document.querySelectorAll('.info, .popup-info, .open-info-utili, .open-note, .info-utili, .info-verde-fissa').forEach(function(el) {
+      el.classList.add('info-verde-fissa');
+      el.style.setProperty('background', '#90BE6D', 'important');
+      el.style.setProperty('background-color', '#90BE6D', 'important');
+      el.style.setProperty('border-color', '#90BE6D', 'important');
+      el.style.setProperty('color', '#111111', 'important');
+      el.style.setProperty('filter', 'none', 'important');
+      el.style.setProperty('text-decoration', 'none', 'important');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', forceRequestedButtonColors);
+  document.addEventListener('click', function() {
+    setTimeout(forceRequestedButtonColors, 0);
+  }, true);
+
+  const observer = new MutationObserver(forceRequestedButtonColors);
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script>
+
+
+<script>
+(function () {
+  let lastFocusedElement = null;
+
+  function getFocusable(container) {
+    return Array.from(container.querySelectorAll(
+      'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(el => el.offsetParent !== null || el === document.activeElement);
+  }
+
+  function openModalAccessibly(modal) {
+    if (!modal) return;
+    lastFocusedElement = document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    const focusables = getFocusable(modal);
+    const target = focusables[0] || modal;
+    if (!modal.hasAttribute('tabindex')) modal.setAttribute('tabindex', '-1');
+    setTimeout(() => target.focus(), 0);
+  }
+
+  function closeModalAccessibly(modal) {
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+      setTimeout(() => lastFocusedElement.focus(), 0);
+    }
+  }
+
+  document.addEventListener('keydown', function (event) {
+    const openModal = document.querySelector('.modal-overlay.open');
+    if (!openModal) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      const closeButton = openModal.querySelector('.modal-close, [data-close-modal]');
+      if (closeButton) closeButton.click();
+      else closeModalAccessibly(openModal);
+      return;
+    }
+
+    if (event.key === 'Tab') {
+      const focusables = getFocusable(openModal);
+      if (!focusables.length) {
+        event.preventDefault();
+        openModal.focus();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  document.querySelectorAll('.modal-close').forEach(button => {
+    button.setAttribute('aria-label', 'Chiudi finestra');
+    button.addEventListener('click', function () {
+      const modal = button.closest('.modal-overlay');
+      closeModalAccessibly(modal);
+    });
+  });
+
+  document.querySelectorAll('.modal-overlay').forEach(modal => {
+    modal.setAttribute('aria-hidden', modal.classList.contains('open') ? 'false' : 'true');
+    modal.addEventListener('click', function (event) {
+      if (event.target === modal) closeModalAccessibly(modal);
+    });
+  });
+
+  // Rende disponibile la funzione senza rompere il codice esistente.
+  window.openModalAccessibly = openModalAccessibly;
+  window.closeModalAccessibly = closeModalAccessibly;
+})();
+</script>
 
 </body>
 </html>
