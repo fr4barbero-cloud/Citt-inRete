@@ -4614,6 +4614,47 @@ body.mia #attivaMappa.attiva-mappa-button {
   }
 }
 
+
+/* POPUP GOCCE ROSSE: UNA SOLA IMMAGINE VISIBILE */
+.popup-photo {
+  display: block !important;
+  width: 100% !important;
+  height: 110px !important;
+  max-height: 110px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 10px !important;
+  margin: 8px 0 10px 0 !important;
+  border: 1px solid #cccccc !important;
+}
+
+.popup-image-space {
+  display: none !important;
+}
+
+
+/* FIX: evita sovrapposizione X sul titolo */
+.modal-header,
+.popup-header {
+  position: relative !important;
+}
+
+.modal-title,
+.popup-title,
+h2.modal-title,
+h3.popup-title {
+  padding-right: 44px !important; /* spazio per la X */
+}
+
+.close-button,
+.modal-close,
+.popup-close {
+  position: absolute !important;
+  right: 10px !important;
+  top: 10px !important;
+  z-index: 10 !important;
+}
+
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -5618,8 +5659,7 @@ body.mia #attivaMappa.attiva-mappa-button {
 
           <div class="popup-title"> ${tappa.nome}</div>
           <img class="popup-photo" src="${tappa.foto}" alt="Foto di ${tappa.nome}" onerror="this.remove();">
-          <div class="popup-image-space">Spazio immagine</div>
-          <div>${tappa.descrizione}</div>
+<div>${tappa.descrizione}</div>
 
           <div class="popup-actions">
             <a class="portami-qui" style="background:#F94144 !important; border-color:#F94144 !important; color:#ffffff !important;" href="${googleMapsLink(tappa, "walking")}" target="_blank" rel="noopener">Portami qui</a>
