@@ -7104,6 +7104,74 @@ button {
   }
 }
 
+
+/* =========================================================
+   PULIZIA CAA RICHIESTA - TITOLI E ISTRUZIONI
+   ========================================================= */
+
+.map-title {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.personal-tools h2#personalToolsTitle {
+  display: none !important;
+}
+
+.personal-tools .personal-caa-instruction {
+  display: block !important;
+  margin-bottom: 12px !important;
+}
+
+.personal-tools .personal-caa-instruction strong {
+  display: grid !important;
+  gap: 8px !important;
+}
+
+.caa-row {
+  background: #ffffff;
+  border: 2px solid var(--caa-line, #d8e0ea);
+  border-radius: 14px;
+  padding: 8px;
+}
+
+.map-instruction strong {
+  display: grid !important;
+  gap: 8px !important;
+}
+
+.caa-text {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+#showAddPlace.caa-action {
+  margin-top: 8px !important;
+}
+
+#showAddPlace .caa-action-row {
+  grid-template-columns: 44px 1fr !important;
+}
+
+#showAddPlace .caa-text {
+  text-align: center !important;
+  font-weight: 900 !important;
+}
+
+
+/* NASCONDI GUIDE CAA SOLO NELLA PAGINA LA MIA MAPPA */
+body.mia .caa-page-note,
+body.mia .caa-sequence {
+  display: none !important;
+}
+
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -7157,14 +7225,59 @@ Se un pittogramma manca, compare un riquadro "CAA".
       </div>
 
 
+
+
 <section class="section caa-page-note" aria-labelledby="caaStartTitle">
-  <h2 id="caaStartTitle">Come usare questa mappa</h2>
-  <div class="caa-grid-3">
-    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/luoghi.png" alt="Simbolo scelta" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Scegli una sezione.</span></span></div>
-    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/mappa.png" alt="Simbolo mappa" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Guarda la mappa.</span></span></div>
-    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/lista.png" alt="Simbolo lista" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Leggi la lista dei luoghi.</span></span></div>
+  <h2 id="caaStartTitle">Come usare la mappa</h2>
+  <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px;">
+
+    <div class="caa-card">
+      <span class="caa-row">
+        <span class="caa-symbol-placeholder">CAA</span>
+        <span class="caa-text">Scegli una sezione.</span>
+      </span>
+    </div>
+
+    <div style="font-size:24px; font-weight:900;">→</div>
+
+    <div class="caa-card">
+      <span class="caa-row">
+        <span class="caa-symbol-placeholder">CAA</span>
+        <span class="caa-text">Guarda la mappa.</span>
+      </span>
+    </div>
+
+    <div style="font-size:24px; font-weight:900;">→</div>
+
+    <div class="caa-card">
+      <span class="caa-row">
+        <span class="caa-symbol-placeholder">CAA</span>
+        <span class="caa-text">Scegli il luogo</span>
+      </span>
+    </div>
+
+    <div style="font-size:24px; font-weight:900;">→</div>
+
+    <div class="caa-card">
+      <span class="caa-row">
+        <span class="caa-symbol-placeholder">CAA</span>
+        <span class="caa-text">Apri le informazioni del luogo.</span>
+      </span>
+    </div>
+
+    <div style="font-size:24px; font-weight:900;">→</div>
+
+    <div class="caa-card">
+      <span class="caa-row">
+        <span class="caa-symbol-placeholder">CAA</span>
+        <span class="caa-text">Vai a questo luogo.</span>
+      </span>
+    </div>
+
   </div>
 </section>
+
+
 
 <section class="section home-city-map-card" aria-labelledby="homeCityMapTitle">
         <h2 id="homeCityMapTitle" class="home-city-map-title">Mappa della città di Bra</h2>
@@ -7181,8 +7294,9 @@ Se un pittogramma manca, compare un riquadro "CAA".
       </section>
 
       <section id="personalTools" class="section personal-tools" aria-labelledby="personalToolsTitle">
-        <h2 id="personalToolsTitle">LA MIA MAPPA</h2>
-        <button id="showAddPlace" class="purple-button" type="button">Aggiungi un luogo</button>
+        <h2 id="personalToolsTitle" class="sr-only">La mia mappa</h2>
+        <p class="personal-caa-instruction"><strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/aggiungere.png" alt="Simbolo aggiungere" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Aggiungi un luogo alla tua mappa.</span></span><span class="caa-row"><img class="caa-symbol" src="img/arasac/modificare.png" alt="Simbolo modificare" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Puoi cambiare o cancellare un luogo.</span></span></strong></p>
+        <button id="showAddPlace" class="purple-button caa-action" data-caa-symbol="aggiungere" type="button">Aggiungi un luogo</button>
 
         <div id="addPlacePanel" class="add-place-panel">
           <h3 style="text-align:center;">LA MIA MAPPA</h3>
@@ -7245,7 +7359,7 @@ Se un pittogramma manca, compare un riquadro "CAA".
       <section class="section map-card" aria-labelledby="mappa-title">
       <h2 class="map-title" id="mappa-title">Mappa</h2>
       
-      <p id="mapInstructions" class="map-instruction"><strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/mappa.png" alt="Simbolo mappa" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Puoi usare la mappa.</span></span><span class="caa-row"><img class="caa-symbol" src="img/arasac/lista.png" alt="Simbolo lista" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Oppure puoi usare la lista sotto.</span></span></strong></p>
+      <p id="mapInstructions" class="map-instruction"><strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/mappa.png" alt="Simbolo mappa" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Guarda la mappa.</span></span><span class="caa-row"><img class="caa-symbol" src="img/arasac/lista.png" alt="Simbolo lista" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Oppure leggi la lista dei luoghi.</span></span></strong></p>
       
       <div id="map" tabindex="0" aria-label="Mappa visiva del percorso scelto con tappe numerate" aria-describedby="mapInstructions"></div>
       
@@ -7264,9 +7378,9 @@ Se un pittogramma manca, compare un riquadro "CAA".
 <div class="caa-sequence" aria-labelledby="caaListGuideTitle">
   <h2 id="caaListGuideTitle" class="caa-sequence-title">Come leggere i luoghi</h2>
   <div class="caa-grid-3">
-    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/luogo.png" alt="Simbolo luogo" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Leggi il nome del luogo.</span></span></div>
-    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/informazioni.png" alt="Simbolo informazioni" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Apri le informazioni.</span></span></div>
-    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/percorso.png" alt="Simbolo percorso" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Vai al luogo.</span></span></div>
+    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/luogo.png" alt="Simbolo luogo" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Scegli il luogo</span></span></div>
+    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/informazioni.png" alt="Simbolo informazioni" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Apri le informazioni del luogo.</span></span></div>
+    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/percorso.png" alt="Simbolo percorso" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Vai a questo luogo.</span></span></div>
   </div>
 </div>
 
@@ -8359,13 +8473,13 @@ Se un pittogramma manca, compare un riquadro "CAA".
       categoryPageDescription.textContent = category.descrizione;
 
       if (mappaTitle) {
-        mappaTitle.textContent = category.nome;
+        mappaTitle.textContent = "";
       }
 
       if (mapInstructions) {
         mapInstructions.innerHTML = currentCategory === "mia"
-          ? `<strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/aggiungere.png" alt="Simbolo aggiungere" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Qui puoi aggiungere i tuoi luoghi.</span></span><span class="caa-row"><img class="caa-symbol" src="img/arasac/modificare.png" alt="Simbolo modificare" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Puoi anche modificarli o eliminarli.</span></span></strong>`
-          : `<strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/mappa.png" alt="Simbolo mappa" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Puoi usare la mappa.</span></span><span class="caa-row"><img class="caa-symbol" src="img/arasac/lista.png" alt="Simbolo lista" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Oppure puoi usare la lista sotto.</span></span></strong>`;
+          ? ""
+          : `<strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/mappa.png" alt="Simbolo mappa" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Guarda la mappa.</span></span><span class="caa-row"><img class="caa-symbol" src="img/arasac/lista.png" alt="Simbolo lista" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Oppure leggi la lista dei luoghi.</span></span></strong>`;
       }
 
       if (mappaTitle) {
@@ -8374,8 +8488,8 @@ Se un pittogramma manca, compare un riquadro "CAA".
 
       if (mapInstructions) {
         mapInstructions.innerHTML = currentCategory === "mia"
-          ? "<strong>Qui puoi aggiungere i tuoi luoghi.<br>Puoi anche modificarli o eliminarli.</strong>"
-          : "<strong>Puoi usare la mappa.<br>Oppure puoi usare la lista sotto.</strong>";
+          ? "<strong>Aggiungi un luogo alla tua mappa.<br>Puoi cambiare o cancellare un luogo.</strong>"
+          : "<strong>Guarda la mappa.<br>Oppure leggi la lista dei luoghi.</strong>";
       }
 
       homeScreen.style.display = "grid";
@@ -9205,6 +9319,36 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     improveLeafletPopups();
   }
+})();
+</script>
+
+
+<script>
+(function () {
+  function ensureAddPlaceCaaButton() {
+    const button = document.getElementById('showAddPlace');
+    if (!button || button.dataset.addPlaceCaaReady === 'true') return;
+
+    button.classList.add('caa-action');
+    button.setAttribute('data-caa-symbol', 'aggiungere');
+
+    if (!button.querySelector('.caa-action-row')) {
+      const label = button.textContent.trim() || 'Aggiungi un luogo';
+      button.innerHTML =
+        '<span class="caa-action-row">' +
+        '<img class="caa-symbol-small" src="img/arasac/aggiungere.png" alt="" aria-hidden="true" ' +
+        'onerror="this.outerHTML=\\'<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>\\'">' +
+        '<span class="caa-text">' + label + '</span>' +
+        '</span>';
+    }
+
+    button.dataset.addPlaceCaaReady = 'true';
+  }
+
+  document.addEventListener('DOMContentLoaded', ensureAddPlaceCaaButton);
+  document.addEventListener('click', function () {
+    setTimeout(ensureAddPlaceCaaButton, 80);
+  });
 })();
 </script>
 
