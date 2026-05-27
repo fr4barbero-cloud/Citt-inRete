@@ -3801,7 +3801,7 @@ body.mappa-attiva .leaflet-container {
 
 /* FONT OPEN SANS GLOBALE */
 html, body, * {
-  font-family: 'Open Sans', Arial, sans-serif !important;
+  font-family: 'Lexend', Arial, sans-serif;
 }
 
 
@@ -3838,7 +3838,7 @@ html, body, * {
 
 /* FONT GELASIO GLOBALE */
 html, body, * {
-  font-family: 'Gelasio', serif !important;
+  font-family: 'Lexend', Arial, sans-serif;
 }
 
 
@@ -7172,9 +7172,160 @@ body.mia .caa-sequence {
   display: none !important;
 }
 
+
+/* ACCESSIBILITÀ SCREEN READER - NON MODIFICA LA GRAFICA */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sr-only-focusable:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 8px !important;
+  padding: 12px !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+  background: #ffbf00 !important;
+  color: #000000 !important;
+  z-index: 9999 !important;
+}
+
+
+/* SCREEN READER COMPLETO - INTERVENTI INVISIBILI */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sr-status {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+}
+
+
+/* SPAZIATURA MODULO LA MIA MAPPA */
+body.mia .personal-form label {
+  display: block !important;
+  margin-bottom: 12px !important;
+  line-height: 1.45 !important;
+}
+
+body.mia .personal-form input,
+body.mia .personal-form textarea {
+  margin-top: 4px !important;
+}
+
+body.mia .personal-form > div {
+  margin-bottom: 18px !important;
+}
+
+body.mia .personal-form small,
+body.mia .personal-form .help-text,
+body.mia .personal-form .form-help {
+  display: block !important;
+  margin: 8px 0 12px !important;
+  line-height: 1.45 !important;
+}
+
+
+/* DETTATURA VOCALE - SENZA MODIFICARE IL LAYOUT DEL MODULO */
+.voice-dictation-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+
+.voice-dictation-button {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: #577590;
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 900;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voice-dictation-button.is-listening {
+  background: #F94144;
+}
+
+.voice-dictation-status {
+  margin-top: 8px;
+  font-weight: 800;
+  color: #111111;
+}
+
+
+/* LEXEND ACCESSIBILITY FONT */
+html, body, button, input, textarea, select, option,
+h1, h2, h3, h4, h5, h6, p, span, div, a, li, ul, ol, label {
+  font-family: 'Lexend', Arial, sans-serif !important;
+}
+
+
+/* PULSANTE INDIETRO E CAA FORM */
+#cancelAddPlace {
+  color: #ffffff !important;
+  font-family: 'Lexend', Arial, sans-serif !important;
+}
+
+#cancelAddPlace .caa-action-row,
+#personalPlaceForm .caa-action-row {
+  font-family: 'Lexend', Arial, sans-serif !important;
+}
+
+#personalPlaceForm label .caa-symbol-placeholder-small {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+#personalPlaceForm label .caa-label-text {
+  vertical-align: middle;
+}
+
+
+/* CAA PULSANTE AGGIUNGI LUOGO */
+#showAddPlace .caa-action-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Lexend', Arial, sans-serif !important;
+}
+
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -7208,14 +7359,26 @@ Se un pittogramma manca, compare un riquadro "CAA".
 -->
 
   <!-- IMMAGINI ESTERNE: inserire i file nella cartella img accanto a questo HTML. Non sono incorporate nel file. -->
-  <a href="#lista-tappe" class="skip-link">Vai alla lista delle tappe</a>
+  <a href="#lista-tappe" class="skip-link sr-only-focusable">Vai alla lista dei luoghi</a>
 
   <div id="mobileAppHeader" class="mobile-app-header" aria-hidden="true">
     <div class="mobile-app-title">MAPPA ACCESSIBILE</div>
     <div id="mobileAppSubtitle" class="mobile-app-subtitle">SCEGLI UNA SEZIONE</div>
   </div>
 
-  <main>
+  
+<div id="srLiveRegion" class="sr-status" aria-live="polite" aria-atomic="true"></div>
+<div id="srAssertiveRegion" class="sr-status" aria-live="assertive" aria-atomic="true"></div>
+
+<main aria-label="Contenuto principale della mappa accessibile">
+
+<p id="screenReaderIntro" class="sr-only">
+Questa pagina contiene una mappa visiva e una lista di luoghi.
+La mappa è solo visiva.
+Se usi uno screen reader, usa la lista dei luoghi.
+La lista contiene le informazioni e i pulsanti necessari.
+</p>
+
     <section id="homeScreen" class="section home-screen">
 <div class="category-grid">
         <button class="category-button" type="button" data-category="musei" aria-label="Apri luoghi da visitare"><img class="caa-symbol-small" src="img/arasac/luoghi.png" alt="" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Luoghi da visitare<span class="small">Da vedere</span></span></button>
@@ -7227,50 +7390,60 @@ Se un pittogramma manca, compare un riquadro "CAA".
 
 
 
+
+
 <section class="section caa-page-note" aria-labelledby="caaStartTitle">
   <h2 id="caaStartTitle">Come usare la mappa</h2>
+
   <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px;">
 
     <div class="caa-card">
       <span class="caa-row">
-        <span class="caa-symbol-placeholder">CAA</span>
-        <span class="caa-text">Scegli una sezione.</span>
+        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
+        <span class="caa-text">1. Scegli la sezione.</span>
       </span>
     </div>
 
-    <div style="font-size:24px; font-weight:900;">→</div>
+    <div style="font-size:24px; font-weight:900;" aria-hidden="true">→</div>
 
     <div class="caa-card">
       <span class="caa-row">
-        <span class="caa-symbol-placeholder">CAA</span>
-        <span class="caa-text">Guarda la mappa.</span>
+        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
+        <span class="caa-text">2. Guarda la mappa.</span>
       </span>
     </div>
 
-    <div style="font-size:24px; font-weight:900;">→</div>
+    
+<div class="caa-card" style="padding:6px 10px;">
+  <span class="caa-row">
+    <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
+    <span class="caa-text">o</span>
+  </span>
+</div>
+
 
     <div class="caa-card">
       <span class="caa-row">
-        <span class="caa-symbol-placeholder">CAA</span>
-        <span class="caa-text">Scegli il luogo</span>
+        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
+        <span class="caa-text">3. Guarda la lista.</span>
       </span>
     </div>
 
-    <div style="font-size:24px; font-weight:900;">→</div>
+    <div style="font-size:24px; font-weight:900;" aria-hidden="true">→</div>
 
     <div class="caa-card">
       <span class="caa-row">
-        <span class="caa-symbol-placeholder">CAA</span>
-        <span class="caa-text">Apri le informazioni del luogo.</span>
+        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
+        <span class="caa-text">4. Scegli un luogo.</span>
       </span>
     </div>
 
-    <div style="font-size:24px; font-weight:900;">→</div>
+    <div style="font-size:24px; font-weight:900;" aria-hidden="true">→</div>
 
     <div class="caa-card">
       <span class="caa-row">
-        <span class="caa-symbol-placeholder">CAA</span>
-        <span class="caa-text">Vai a questo luogo.</span>
+        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
+        <span class="caa-text">5. Clicca sul luogo.</span>
       </span>
     </div>
 
@@ -7279,9 +7452,11 @@ Se un pittogramma manca, compare un riquadro "CAA".
 
 
 
+
+
 <section class="section home-city-map-card" aria-labelledby="homeCityMapTitle">
         <h2 id="homeCityMapTitle" class="home-city-map-title">Mappa della città di Bra</h2>
-        <div id="homeCityMap" aria-label="Mappa della città di Bra"></div>
+        <div id="homeCityMap" aria-hidden="true" tabindex="-1"></div>
       </section>
     </section>
 
@@ -7296,25 +7471,28 @@ Se un pittogramma manca, compare un riquadro "CAA".
       <section id="personalTools" class="section personal-tools" aria-labelledby="personalToolsTitle">
         <h2 id="personalToolsTitle" class="sr-only">La mia mappa</h2>
         <p class="personal-caa-instruction"><strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/aggiungere.png" alt="Simbolo aggiungere" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Aggiungi un luogo alla tua mappa.</span></span><span class="caa-row"><img class="caa-symbol" src="img/arasac/modificare.png" alt="Simbolo modificare" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Puoi cambiare o cancellare un luogo.</span></span></strong></p>
-        <button id="showAddPlace" class="purple-button caa-action" data-caa-symbol="aggiungere" type="button">Aggiungi un luogo</button>
+        <button id="showAddPlace" class="purple-button caa-action" data-caa-symbol="aggiungere" type="button"><span class="caa-action-row"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-text">Aggiungi un luogo</span></span></button>
 
         <div id="addPlacePanel" class="add-place-panel">
           <h3 style="text-align:center;">LA MIA MAPPA</h3>
           <form id="personalPlaceForm" class="personal-form">
             <div>
-              <label for="personalName">Nome del luogo</label>
+              <label for="personalName"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-label-text">Nome del luogo</span></label>
               <input id="personalName" type="text" required>
+              <div class="voice-dictation-row"><button type="button" class="voice-dictation-button" data-voice-target="personalName" aria-label="Detta nome del luogo" aria-pressed="false">🎤</button></div>
             </div>
 
             <div>
-              <label for="personalAddress">INDIRIZZO COMPLETO</label>
+              <label for="personalAddress"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-label-text">INDIRIZZO COMPLETO</span></label>
               <input id="personalAddress" type="text" required placeholder="ESEMPIO: VIA ROMA 10, BRA">
+              <div class="voice-dictation-row"><button type="button" class="voice-dictation-button" data-voice-target="personalAddress" aria-label="Detta indirizzo completo" aria-pressed="false">🎤</button></div>
               <div class="address-help">SCRIVI VIA, NUMERO CIVICO E CITTÀ. ESEMPIO: VIA ROMA 10, BRA.</div>
             </div>
 
             <div>
-              <label for="personalDescription">NOTE</label>
+              <label for="personalDescription"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-label-text">NOTE</span></label>
               <textarea id="personalDescription" required></textarea>
+              <div class="voice-dictation-row"><button type="button" class="voice-dictation-button" data-voice-target="personalDescription" aria-label="Detta note" aria-pressed="false">🎤</button></div>
             </div>
 
             
@@ -7334,14 +7512,15 @@ Se un pittogramma manca, compare un riquadro "CAA".
             
 
             <div>
-              <label for="personalImage">Immagine</label>
+              <label for="personalImage"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-label-text">Immagine</span></label>
               <input id="personalImage" type="file" accept="image/*">
             </div>
 
             <div class="form-actions">
-              <button class="purple-button" type="submit">Salva luogo</button>
-              <button id="cancelAddPlace" class="purple-button secondary" type="button">Annulla</button>
+              <button class="purple-button" type="submit" aria-label="Salva luogo"><span class="caa-action-row"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-text">Salva luogo</span></span></button>
+              <button id="cancelAddPlace" class="purple-button secondary" type="button" aria-label="Indietro"><span class="caa-action-row"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-text">Indietro</span></span></button>
             </div>
+          <p id="voiceDictationStatus" class="voice-dictation-status" aria-live="polite"></p>
           </form>
         </div>
       </section>
@@ -7359,9 +7538,9 @@ Se un pittogramma manca, compare un riquadro "CAA".
       <section class="section map-card" aria-labelledby="mappa-title">
       <h2 class="map-title" id="mappa-title">Mappa</h2>
       
-      <p id="mapInstructions" class="map-instruction"><strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/mappa.png" alt="Simbolo mappa" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Guarda la mappa.</span></span><span class="caa-row"><img class="caa-symbol" src="img/arasac/lista.png" alt="Simbolo lista" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Oppure leggi la lista dei luoghi.</span></span></strong></p>
       
-      <div id="map" tabindex="0" aria-label="Mappa visiva del percorso scelto con tappe numerate" aria-describedby="mapInstructions"></div>
+      
+      <div id="map" aria-hidden="true" tabindex="-1"></div>
       
       </section>
 
@@ -7370,26 +7549,44 @@ Se un pittogramma manca, compare un riquadro "CAA".
     </button>
 
 
-    <section class="section" id="lista-tappe" aria-labelledby="lista-title">
+    <section class="section" id="lista-tappe" aria-labelledby="lista-title" aria-describedby="screenReaderIntro" role="region">
       <h2 id="lista-title">Elenco dei luoghi</h2>
 
       <p id="statusMessage" class="status" aria-live="polite"></p>
       
+
 <div class="caa-sequence" aria-labelledby="caaListGuideTitle">
   <h2 id="caaListGuideTitle" class="caa-sequence-title">Come leggere i luoghi</h2>
-  <div class="caa-grid-3">
-    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/luogo.png" alt="Simbolo luogo" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Scegli il luogo</span></span></div>
-    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/informazioni.png" alt="Simbolo informazioni" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Apri le informazioni del luogo.</span></span></div>
-    <div class="caa-card"><span class="caa-row"><img class="caa-symbol" src="img/arasac/percorso.png" alt="Simbolo percorso" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Vai a questo luogo.</span></span></div>
+
+  <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px;">
+
+    <div class="caa-card">
+      <span class="caa-row">
+        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
+        <span class="caa-text">1. Guarda la lista.</span>
+      </span>
+    </div>
+
+    <div style="font-size:24px; font-weight:900;" aria-hidden="true">→</div>
+
+    <div class="caa-card">
+      <span class="caa-row">
+        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
+        <span class="caa-text">2. Scegli un luogo.</span>
+      </span>
+    </div>
+
   </div>
 </div>
 
-      <ul id="placesList" class="places-list"></ul>
+</div>
+
+      <ul id="placesList" class="places-list" aria-live="polite"></ul>
     </section>
     </div>
   </main>
 
-  <div id="schedaModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="schedaTitle" tabindex="-1">
+  <div id="schedaModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true" tabindex="-1">
     <div class="modal-window" tabindex="-1">
       <button id="modalClose" class="modal-close" type="button" aria-label="Chiudi scheda">×</button>
       <h2 id="modalTitle" class="modal-title">Scheda tappa</h2>
@@ -8477,9 +8674,7 @@ Se un pittogramma manca, compare un riquadro "CAA".
       }
 
       if (mapInstructions) {
-        mapInstructions.innerHTML = currentCategory === "mia"
-          ? ""
-          : `<strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/mappa.png" alt="Simbolo mappa" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Guarda la mappa.</span></span><span class="caa-row"><img class="caa-symbol" src="img/arasac/lista.png" alt="Simbolo lista" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Oppure leggi la lista dei luoghi.</span></span></strong>`;
+        mapInstructions.innerHTML = "";
       }
 
       if (mappaTitle) {
@@ -8489,7 +8684,7 @@ Se un pittogramma manca, compare un riquadro "CAA".
       if (mapInstructions) {
         mapInstructions.innerHTML = currentCategory === "mia"
           ? "<strong>Aggiungi un luogo alla tua mappa.<br>Puoi cambiare o cancellare un luogo.</strong>"
-          : "<strong>Guarda la mappa.<br>Oppure leggi la lista dei luoghi.</strong>";
+          : "<strong></strong>";
       }
 
       homeScreen.style.display = "grid";
@@ -9348,6 +9543,649 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener('DOMContentLoaded', ensureAddPlaceCaaButton);
   document.addEventListener('click', function () {
     setTimeout(ensureAddPlaceCaaButton, 80);
+  });
+})();
+</script>
+
+
+<script>
+/* ACCESSIBILITÀ SCREEN READER DINAMICA */
+(function () {
+  function textClean(value) {
+    return (value || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function setIfMissing(el, attr, value) {
+    if (el && !el.hasAttribute(attr)) el.setAttribute(attr, value);
+  }
+
+  function improveCategoryButtons() {
+    document.querySelectorAll('.category-button').forEach(function (button) {
+      const label = textClean(button.innerText || button.textContent);
+      if (label) {
+        button.setAttribute('aria-label', 'Apri sezione: ' + label);
+      }
+    });
+  }
+
+  function improvePlaceCards() {
+    document.querySelectorAll('.place-card, .poi-card').forEach(function (card, index) {
+      if (card.dataset.srReady === 'true') return;
+
+      const title = card.querySelector('h3');
+      const titleText = textClean(title ? title.textContent : '');
+      const cardLabel = titleText ? 'Luogo: ' + titleText : 'Luogo numero ' + (index + 1);
+
+      card.setAttribute('role', 'listitem');
+      card.setAttribute('aria-label', cardLabel);
+
+      if (title && !title.id) {
+        title.id = 'place-title-' + index;
+      }
+      if (title) {
+        card.setAttribute('aria-labelledby', title.id);
+      }
+
+      card.querySelectorAll('a, button').forEach(function (control) {
+        const controlText = textClean(control.innerText || control.textContent);
+        if (!controlText) return;
+
+        if (titleText && !control.hasAttribute('aria-label')) {
+          control.setAttribute('aria-label', controlText + ' per ' + titleText);
+        }
+      });
+
+      card.dataset.srReady = 'true';
+    });
+  }
+
+  function improvePopupLinks() {
+    document.querySelectorAll('.leaflet-popup-content').forEach(function (popup) {
+      const title = textClean((popup.querySelector('.popup-title') || {}).textContent || '');
+      popup.setAttribute('role', 'dialog');
+      if (title) popup.setAttribute('aria-label', 'Informazioni su ' + title);
+
+      popup.querySelectorAll('a, button').forEach(function (control) {
+        const label = textClean(control.innerText || control.textContent);
+        if (label && title && !control.hasAttribute('aria-label')) {
+          control.setAttribute('aria-label', label + ' per ' + title);
+        }
+      });
+    });
+  }
+
+  function improveModals() {
+    document.querySelectorAll('.modal-overlay').forEach(function (modal) {
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      if (!modal.hasAttribute('tabindex')) modal.setAttribute('tabindex', '-1');
+
+      if (modal.classList.contains('open')) {
+        modal.setAttribute('aria-hidden', 'false');
+      } else {
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  let lastFocusedElement = null;
+
+  function getFocusable(container) {
+    return Array.from(container.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(function (el) {
+      return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    });
+  }
+
+  function focusOpenModal() {
+    const modal = document.querySelector('.modal-overlay.open');
+    if (!modal) return;
+
+    modal.setAttribute('aria-hidden', 'false');
+    const focusables = getFocusable(modal);
+    const target = focusables[0] || modal;
+    setTimeout(function () { target.focus(); }, 40);
+  }
+
+  document.addEventListener('click', function (event) {
+    const opensModal = event.target.closest('.open-scheda, .open-info-utili, .open-note, .popup-info, .popup-scheda');
+    if (opensModal) {
+      lastFocusedElement = document.activeElement;
+      setTimeout(function () {
+        improveModals();
+        focusOpenModal();
+      }, 120);
+    }
+
+    const close = event.target.closest('.modal-close');
+    if (close) {
+      const modal = close.closest('.modal-overlay');
+      if (modal) modal.setAttribute('aria-hidden', 'true');
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        setTimeout(function () { lastFocusedElement.focus(); }, 80);
+      }
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    const modal = document.querySelector('.modal-overlay.open');
+    if (!modal) return;
+
+    if (event.key === 'Escape') {
+      const closeButton = modal.querySelector('.modal-close');
+      if (closeButton) {
+        event.preventDefault();
+        closeButton.click();
+      }
+      return;
+    }
+
+    if (event.key === 'Tab') {
+      const focusables = getFocusable(modal);
+      if (!focusables.length) {
+        event.preventDefault();
+        modal.focus();
+        return;
+      }
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      }
+
+      if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  function improveAll() {
+    improveCategoryButtons();
+    improvePlaceCards();
+    improvePopupLinks();
+    improveModals();
+  }
+
+  document.addEventListener('DOMContentLoaded', improveAll);
+  document.addEventListener('popupopen', function () {
+    setTimeout(function () {
+      improvePopupLinks();
+      const popup = document.querySelector('.leaflet-popup-content a, .leaflet-popup-content button');
+      if (popup) popup.focus();
+    }, 80);
+  });
+
+  const observer = new MutationObserver(improveAll);
+  document.addEventListener('DOMContentLoaded', function () {
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+})();
+</script>
+
+
+<script>
+/* SCREEN READER COMPLETO - LOGICA INVISIBILE */
+(function () {
+  let lastFocusedElement = null;
+
+  function cleanText(value) {
+    return (value || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function announce(message, assertive) {
+    const region = document.getElementById(assertive ? 'srAssertiveRegion' : 'srLiveRegion');
+    if (!region || !message) return;
+    region.textContent = '';
+    setTimeout(function () {
+      region.textContent = message;
+    }, 30);
+  }
+
+  function setHiddenDecoratives() {
+    document.querySelectorAll('.caa-symbol-placeholder, .caa-symbol-placeholder-small').forEach(function (el) {
+      el.setAttribute('aria-hidden', 'true');
+    });
+
+    document.querySelectorAll('div').forEach(function (el) {
+      if (cleanText(el.textContent) === '→') {
+        el.setAttribute('aria-hidden', 'true');
+      }
+      if (cleanText(el.textContent).toLowerCase() === 'o' && el.closest('.caa-card')) {
+        /* la parola "o" nella sequenza è informativa: non nasconderla */
+      }
+    });
+
+    document.querySelectorAll('img[alt=""]').forEach(function (img) {
+      img.setAttribute('aria-hidden', 'true');
+    });
+  }
+
+  function improveCategoryButtons() {
+    document.querySelectorAll('.category-button').forEach(function (button) {
+      const label = cleanText(button.innerText || button.textContent);
+      if (label) {
+        button.setAttribute('aria-label', 'Apri sezione ' + label);
+      }
+    });
+  }
+
+  function improveMap() {
+    const map = document.getElementById('map');
+    if (map) {
+      map.setAttribute('role', 'img');
+      map.setAttribute('aria-label', 'Mappa visiva. Per usare il sito con screen reader, usa la lista dei luoghi sotto la mappa.');
+    }
+
+    const homeMap = document.getElementById('homeCityMap');
+    if (homeMap) {
+      homeMap.setAttribute('role', 'img');
+      homeMap.setAttribute('aria-label', 'Mappa visiva della città di Bra.');
+    }
+  }
+
+  function improvePlaceList() {
+    const list = document.getElementById('placesList');
+    if (list) {
+      list.setAttribute('role', 'list');
+      list.setAttribute('aria-label', 'Lista dei luoghi. Ogni luogo contiene nome, descrizione e pulsanti di azione.');
+    }
+
+    document.querySelectorAll('.place-card, .poi-card').forEach(function (card, index) {
+      const title = cleanText((card.querySelector('h3') || {}).textContent || '');
+      const meta = cleanText((card.querySelector('.place-meta') || {}).textContent || '');
+      const desc = cleanText((card.querySelector('.place-description') || {}).textContent || '');
+      const buttons = Array.from(card.querySelectorAll('a, button')).map(function (b) {
+        return cleanText(b.innerText || b.textContent);
+      }).filter(Boolean);
+
+      card.setAttribute('role', 'listitem');
+
+      if (title) {
+        if (!card.querySelector('h3').id) {
+          card.querySelector('h3').id = 'sr-place-title-' + index;
+        }
+        card.setAttribute('aria-labelledby', card.querySelector('h3').id);
+      }
+
+      const fullLabel = [
+        title ? 'Luogo ' + (index + 1) + ': ' + title + '.' : 'Luogo ' + (index + 1) + '.',
+        meta ? 'Informazione: ' + meta + '.' : '',
+        desc ? 'Descrizione: ' + desc + '.' : '',
+        buttons.length ? 'Pulsanti disponibili: ' + buttons.join(', ') + '.' : ''
+      ].filter(Boolean).join(' ');
+
+      card.setAttribute('aria-label', fullLabel);
+
+      card.querySelectorAll('a, button').forEach(function (control) {
+        const controlText = cleanText(control.innerText || control.textContent);
+        if (controlText && title) {
+          control.setAttribute('aria-label', controlText + ' per ' + title);
+        }
+      });
+    });
+  }
+
+  function improvePopups() {
+    document.querySelectorAll('.leaflet-popup-content').forEach(function (popup) {
+      const title = cleanText((popup.querySelector('.popup-title') || {}).textContent || '');
+      const desc = cleanText((popup.querySelector('div:not(.popup-title):not(.popup-actions)') || {}).textContent || '');
+      const buttons = Array.from(popup.querySelectorAll('a, button')).map(function (b) {
+        return cleanText(b.innerText || b.textContent);
+      }).filter(Boolean);
+
+      popup.setAttribute('role', 'dialog');
+      popup.setAttribute('aria-modal', 'false');
+      popup.setAttribute('tabindex', '-1');
+
+      const label = [
+        title ? 'Finestra del luogo: ' + title + '.' : 'Finestra del luogo.',
+        desc ? desc + '.' : '',
+        buttons.length ? 'Pulsanti disponibili: ' + buttons.join(', ') + '.' : ''
+      ].filter(Boolean).join(' ');
+
+      popup.setAttribute('aria-label', label);
+
+      popup.querySelectorAll('a, button').forEach(function (control) {
+        const controlText = cleanText(control.innerText || control.textContent);
+        if (controlText && title) {
+          control.setAttribute('aria-label', controlText + ' per ' + title);
+        }
+      });
+
+      announce(label, false);
+
+      const firstControl = popup.querySelector('a, button');
+      setTimeout(function () {
+        if (firstControl) firstControl.focus();
+        else popup.focus();
+      }, 80);
+    });
+  }
+
+  function improveModals() {
+    document.querySelectorAll('.modal-overlay').forEach(function (modal) {
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      if (!modal.hasAttribute('tabindex')) modal.setAttribute('tabindex', '-1');
+      modal.setAttribute('aria-hidden', modal.classList.contains('open') ? 'false' : 'true');
+
+      const title = modal.querySelector('.modal-title, h2, h3');
+      if (title) {
+        if (!title.id) title.id = 'sr-modal-title-' + Math.random().toString(36).slice(2, 8);
+        modal.setAttribute('aria-labelledby', title.id);
+      }
+
+      modal.querySelectorAll('.modal-close').forEach(function (btn) {
+        btn.setAttribute('aria-label', 'Chiudi finestra');
+      });
+    });
+  }
+
+  function getFocusable(container) {
+    return Array.from(container.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(function (el) {
+      return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    });
+  }
+
+  function focusOpenModal() {
+    const modal = document.querySelector('.modal-overlay.open');
+    if (!modal) return;
+
+    modal.setAttribute('aria-hidden', 'false');
+    const title = cleanText((modal.querySelector('.modal-title, h2, h3') || {}).textContent || 'Finestra aperta');
+    announce(title + '. Finestra aperta.', true);
+
+    const focusables = getFocusable(modal);
+    const target = focusables[0] || modal;
+    setTimeout(function () { target.focus(); }, 80);
+  }
+
+  function improveAll() {
+    setHiddenDecoratives();
+    improveCategoryButtons();
+    improveMap();
+    improvePlaceList();
+    improvePopups();
+    improveModals();
+  }
+
+  document.addEventListener('click', function (event) {
+    const category = event.target.closest('.category-button');
+    if (category) {
+      setTimeout(function () {
+        const label = cleanText(category.innerText || category.textContent);
+        announce('Sezione aperta: ' + label + '.', true);
+        improveAll();
+      }, 250);
+    }
+
+    const modalTrigger = event.target.closest('.open-scheda, .open-info-utili, .open-note, .popup-info, .popup-scheda');
+    if (modalTrigger) {
+      lastFocusedElement = document.activeElement;
+      setTimeout(function () {
+        improveAll();
+        focusOpenModal();
+      }, 120);
+    }
+
+    const close = event.target.closest('.modal-close');
+    if (close) {
+      const modal = close.closest('.modal-overlay');
+      if (modal) {
+        modal.setAttribute('aria-hidden', 'true');
+      }
+      announce('Finestra chiusa.', false);
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        setTimeout(function () { lastFocusedElement.focus(); }, 80);
+      }
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    const modal = document.querySelector('.modal-overlay.open');
+
+    if (event.key === 'Escape') {
+      const popupClose = document.querySelector('.leaflet-popup-close-button');
+      if (popupClose) {
+        popupClose.click();
+        announce('Finestra luogo chiusa.', false);
+        return;
+      }
+
+      if (modal) {
+        const closeButton = modal.querySelector('.modal-close');
+        if (closeButton) {
+          event.preventDefault();
+          closeButton.click();
+        }
+        return;
+      }
+    }
+
+    if (event.key === 'Tab' && modal) {
+      const focusables = getFocusable(modal);
+      if (!focusables.length) {
+        event.preventDefault();
+        modal.focus();
+        return;
+      }
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  document.addEventListener('popupopen', function () {
+    setTimeout(function () {
+      improvePopups();
+    }, 80);
+  });
+
+  document.addEventListener('popupclose', function () {
+    announce('Finestra luogo chiusa.', false);
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    improveAll();
+
+    const observer = new MutationObserver(function () {
+      improveAll();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+
+  window.srImproveAll = improveAll;
+})();
+</script>
+
+
+<script>
+/* SCREEN READER: MAPPA ESCLUSA, LISTA COME PERCORSO PRINCIPALE */
+(function () {
+  function excludeMapsFromScreenReader() {
+    ['map', 'homeCityMap'].forEach(function (id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.setAttribute('aria-hidden', 'true');
+      el.setAttribute('tabindex', '-1');
+      el.removeAttribute('role');
+      el.removeAttribute('aria-label');
+      el.removeAttribute('aria-describedby');
+
+      el.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach(function (child) {
+        child.setAttribute('tabindex', '-1');
+        child.setAttribute('aria-hidden', 'true');
+      });
+    });
+  }
+
+  function makeListPrimaryForScreenReader() {
+    const listSection = document.getElementById('lista-tappe');
+    const list = document.getElementById('placesList');
+
+    if (listSection) {
+      listSection.setAttribute('role', 'region');
+      listSection.setAttribute('aria-labelledby', 'lista-title');
+      listSection.setAttribute('aria-describedby', 'screenReaderIntro');
+    }
+
+    if (list) {
+      list.setAttribute('role', 'list');
+      list.setAttribute('aria-label', 'Lista dei luoghi. Usa questa lista per scegliere un luogo con screen reader.');
+    }
+  }
+
+  function applyScreenReaderMapExclusion() {
+    excludeMapsFromScreenReader();
+    makeListPrimaryForScreenReader();
+  }
+
+  document.addEventListener('DOMContentLoaded', applyScreenReaderMapExclusion);
+  document.addEventListener('click', function () {
+    setTimeout(applyScreenReaderMapExclusion, 100);
+    setTimeout(applyScreenReaderMapExclusion, 400);
+  });
+
+  const observer = new MutationObserver(applyScreenReaderMapExclusion);
+  document.addEventListener('DOMContentLoaded', function () {
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+})();
+</script>
+
+
+<script>
+/* DETTATURA VOCALE - MODULO LA MIA MAPPA */
+(function () {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let recognition = null;
+  let activeButton = null;
+  let activeField = null;
+
+  function status(text) {
+    const el = document.getElementById('voiceDictationStatus');
+    if (el) el.textContent = text || '';
+  }
+
+  function resetButtons() {
+    document.querySelectorAll('.voice-dictation-button').forEach(function (button) {
+      button.classList.remove('is-listening');
+      button.setAttribute('aria-pressed', 'false');
+    });
+  }
+
+  function stopDictation() {
+    if (recognition) {
+      try { recognition.stop(); } catch (e) {}
+    }
+    recognition = null;
+    activeButton = null;
+    activeField = null;
+    resetButtons();
+  }
+
+  function insertText(field, text) {
+    const clean = (text || '').trim();
+    if (!clean) return;
+
+    const before = field.value.trim();
+    field.value = before ? before + ' ' + clean : clean;
+
+    field.dispatchEvent(new Event('input', { bubbles: true }));
+    field.dispatchEvent(new Event('change', { bubbles: true }));
+    field.focus();
+  }
+
+  function startDictation(button) {
+    const targetId = button.getAttribute('data-voice-target');
+    const field = document.getElementById(targetId);
+
+    if (!field) {
+      status('Campo non trovato.');
+      return;
+    }
+
+    if (!SpeechRecognition) {
+      status('La dettatura vocale non è disponibile su questo browser. Usa Chrome o Edge.');
+      return;
+    }
+
+    stopDictation();
+
+    recognition = new SpeechRecognition();
+    activeButton = button;
+    activeField = field;
+
+    recognition.lang = 'it-IT';
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    button.classList.add('is-listening');
+    button.setAttribute('aria-pressed', 'true');
+    status('Sto ascoltando. Parla ora.');
+
+    recognition.onresult = function (event) {
+      const result = event.results && event.results[0] && event.results[0][0];
+      if (result && activeField) {
+        insertText(activeField, result.transcript);
+        status('Testo inserito.');
+      }
+    };
+
+    recognition.onerror = function (event) {
+      if (event.error === 'not-allowed') {
+        status('Permesso microfono non attivo. Consenti il microfono nel browser.');
+      } else if (event.error === 'no-speech') {
+        status('Non ho sentito parole. Riprova.');
+      } else {
+        status('Dettatura non riuscita. Riprova.');
+      }
+      resetButtons();
+    };
+
+    recognition.onend = function () {
+      resetButtons();
+      recognition = null;
+      activeButton = null;
+      activeField = null;
+    };
+
+    try {
+      recognition.start();
+    } catch (e) {
+      status('La dettatura è già attiva. Riprova tra poco.');
+      resetButtons();
+    }
+  }
+
+  document.addEventListener('click', function (event) {
+    const button = event.target.closest('.voice-dictation-button');
+    if (!button) return;
+
+    event.preventDefault();
+
+    if (button.classList.contains('is-listening')) {
+      status('Dettatura fermata.');
+      stopDictation();
+    } else {
+      startDictation(button);
+    }
   });
 })();
 </script>
