@@ -8805,6 +8805,451 @@ body.mia .internal-section-buttons .category-button[data-category="mia"] {
   }
 }
 
+
+/* Home map bloccata fino al click */
+.home-map-wrapper {
+  position: relative;
+}
+
+.home-map-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.92);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+}
+
+.activate-map-button {
+  min-height: 64px;
+  padding: 14px 22px;
+  border: 0;
+  border-radius: 16px;
+  background: #277DA1;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+}
+
+.home-map-overlay.hidden {
+  display: none;
+}
+
+
+/* Modifica richiesta: nella home la mappa resta bloccata finché non si preme Attiva mappa */
+.home-city-map-card {
+  position: relative;
+}
+
+.home-map-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 48px;
+  bottom: 0;
+  z-index: 1200;
+  background: rgba(255,255,255,0.01);
+  cursor: not-allowed;
+}
+
+.home-map-overlay.hidden {
+  display: none !important;
+}
+
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
+  display: none !important;
+}
+
+
+/* FINESTRE GRANDI PER LE GOCCE ROSSE DELLA MAPPA */
+.big-map-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0,0,0,.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.big-map-popup-overlay.open {
+  display: flex;
+}
+
+.big-map-popup-window {
+  width: min(760px, 94vw);
+  max-height: 88vh;
+  overflow: auto;
+  background: #ffffff;
+  color: #111111;
+  border-radius: 24px;
+  border: 5px solid var(--blue, #277DA1);
+  box-shadow: 0 12px 42px rgba(0,0,0,.42);
+  padding: 18px;
+  position: relative;
+}
+
+.big-map-popup-close {
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 4px solid #000000;
+  background: #ffbf00;
+  color: #000000;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.big-map-popup-body {
+  font-size: 1.08rem;
+  line-height: 1.45;
+}
+
+.big-map-popup-body .popup-title {
+  font-size: 1.35rem !important;
+  line-height: 1.25 !important;
+  margin: 8px 0 12px !important;
+  padding-right: 0 !important;
+}
+
+.big-map-popup-body img,
+.big-map-popup-body .popup-photo {
+  width: 100% !important;
+  max-height: 320px !important;
+  object-fit: cover !important;
+  border-radius: 16px !important;
+  display: block !important;
+  margin: 10px 0 14px !important;
+}
+
+.big-map-popup-body .popup-actions {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+  margin-top: 16px !important;
+}
+
+.big-map-popup-body .popup-actions a {
+  min-height: 56px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 14px !important;
+  padding: 12px !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+}
+
+@media (max-width: 759px) {
+  .big-map-popup-overlay {
+    padding: 8px;
+    align-items: flex-end;
+  }
+
+  .big-map-popup-window {
+    width: 100vw;
+    max-width: 100vw;
+    height: 92vh;
+    max-height: 92vh;
+    border-radius: 26px 26px 0 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    padding: 14px;
+  }
+
+  .big-map-popup-window::before {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 6px;
+    border-radius: 999px;
+    background: #c8c8c8;
+    margin: 0 auto 8px;
+  }
+
+  .big-map-popup-close {
+    width: 54px;
+    height: 54px;
+    font-size: 32px;
+  }
+
+  .big-map-popup-body {
+    font-size: 1.04rem;
+  }
+
+  .big-map-popup-body .popup-title {
+    font-size: 1.28rem !important;
+  }
+
+  .big-map-popup-body img,
+  .big-map-popup-body .popup-photo {
+    max-height: 34vh !important;
+  }
+
+  .big-map-popup-body .popup-actions a {
+    min-height: 58px !important;
+    font-size: 1rem !important;
+  }
+}
+
+
+/* Ordine verticale nelle finestre grandi: immagine, nome, testo, pulsanti */
+.big-map-popup-body,
+.big-map-popup-body > * {
+  display: block;
+}
+
+.big-map-popup-body .popup-photo,
+.big-map-popup-body .popup-image-space,
+.big-map-popup-body img {
+  order: 1;
+}
+
+.big-map-popup-body .popup-title {
+  order: 2;
+}
+
+.big-map-popup-body .popup-actions {
+  order: 99;
+}
+
+
+/* =========================================================
+   FINESTRA LUOGO VERTICALE + INFORMAZIONI CORRETTE
+   Soluzione pulita per smartphone: il popup della goccia
+   diventa una scheda verticale dal basso.
+   ========================================================= */
+
+.big-map-popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0,0,0,.46);
+  z-index: 7000;
+  padding: 0;
+}
+
+.big-map-popup-overlay.open {
+  display: flex;
+}
+
+.big-map-popup-window {
+  width: min(560px, 100vw);
+  max-height: 88vh;
+  overflow-y: auto;
+  background: #ffffff;
+  color: #111111;
+  border-radius: 26px 26px 0 0;
+  border-top: 5px solid var(--category-color, var(--blue));
+  box-shadow: 0 -8px 30px rgba(0,0,0,.30);
+  padding: 14px 14px max(18px, env(safe-area-inset-bottom));
+}
+
+.big-map-popup-window::before {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 6px;
+  border-radius: 999px;
+  background: #c8c8c8;
+  margin: 0 auto 10px;
+}
+
+.big-map-popup-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 4px solid #000000;
+  background: #ffbf00;
+  color: #000000;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 0 6px auto;
+}
+
+.big-map-popup-body {
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.02rem;
+  line-height: 1.42;
+}
+
+.big-map-popup-body .popup-photo {
+  display: block !important;
+  width: 100% !important;
+  max-height: 230px !important;
+  object-fit: cover !important;
+  border-radius: 18px !important;
+  margin: 0 0 4px !important;
+}
+
+.big-map-popup-body .popup-title {
+  font-size: 1.25rem !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: 900 !important;
+}
+
+.big-map-popup-body .popup-actions {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 10px !important;
+  margin-top: 8px !important;
+  width: 100% !important;
+}
+
+.big-map-popup-body .popup-actions a {
+  width: 100% !important;
+  min-height: 56px !important;
+  border-radius: 16px !important;
+  padding: 12px !important;
+  font-size: 1rem !important;
+  line-height: 1.18 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  font-weight: 900 !important;
+  text-decoration: none !important;
+}
+
+/* La finestra informazioni deve stare sempre sopra alla scheda luogo */
+#infoUtiliModal,
+#noteModal,
+#schedaModal {
+  z-index: 12000 !important;
+}
+
+#infoUtiliModal.open,
+#noteModal.open,
+#schedaModal.open {
+  display: flex !important;
+}
+
+@media (max-width: 759px) {
+  /* nasconde il popup Leaflet tradizionale: viene sostituito dalla scheda verticale */
+  .leaflet-popup {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  #infoUtiliModal,
+  #noteModal,
+  #schedaModal {
+    align-items: flex-end !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    background: rgba(0,0,0,.54) !important;
+  }
+
+  #infoUtiliModal .modal-window,
+  #noteModal .modal-window,
+  #schedaModal .modal-window {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: 88vh !important;
+    overflow-y: auto !important;
+    border-radius: 26px 26px 0 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    padding: 14px 14px max(18px, env(safe-area-inset-bottom)) !important;
+    box-sizing: border-box !important;
+  }
+
+  #infoUtiliModal .modal-close,
+  #noteModal .modal-close,
+  #schedaModal .modal-close {
+    position: sticky !important;
+    top: 0 !important;
+    float: right !important;
+    z-index: 4 !important;
+    width: 52px !important;
+    height: 52px !important;
+    font-size: 32px !important;
+    margin: 0 0 4px auto !important;
+  }
+
+  #infoUtiliModal .modal-title,
+  #noteModal .modal-title,
+  #schedaModal .modal-title {
+    clear: both !important;
+    font-size: 1.22rem !important;
+    line-height: 1.22 !important;
+    text-align: left !important;
+    padding: 0 !important;
+    margin: 4px 0 12px !important;
+  }
+
+  #infoUtiliModal .info-useful-content {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    clear: both !important;
+  }
+
+  #infoUtiliModal .info-box {
+    width: 100% !important;
+    padding: 14px !important;
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  #infoUtiliModal .info-label {
+    display: block !important;
+    font-size: 1rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  #infoUtiliModal .info-value {
+    font-size: 1rem !important;
+    line-height: 1.42 !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+
+@media (min-width: 760px) {
+  .big-map-popup-overlay {
+    background: rgba(0,0,0,.55);
+  }
+
+  .big-map-popup-window {
+    border-radius: 26px;
+    margin: 20px;
+    max-height: 86vh;
+  }
+}
+
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -8853,14 +9298,15 @@ La lista contiene le informazioni e i pulsanti necessari.
 <section id="homeScreen" class="section home-screen">
 <section class="section home-city-map-card" aria-labelledby="homeCityMapTitle">
         <h2 id="homeCityMapTitle" class="home-city-map-title">Mappa della città di Bra</h2>
+        <div id="homeMapOverlay" class="home-map-overlay" aria-hidden="true"></div>
         <div id="homeCityMap" aria-hidden="true" tabindex="-1"></div>
       </section>
 
   
 
 
-<button id="attivaMappaHome" class="button-link attiva-mappa-button" type="button" aria-label="Muovi la mappa">
-  Muovi la mappa
+<button id="attivaMappaHome" class="button-link attiva-mappa-button" type="button" aria-label="Attiva mappa">
+  Attiva mappa
 </button>
 
 <section class="section caa-page-note" aria-labelledby="caaStartTitle">
@@ -8906,6 +9352,11 @@ La lista contiene le informazioni e i pulsanti necessari.
         <button class="category-button internal-section-button" type="button" data-category="edifici" aria-label="Apri edifici pubblici"><img class="caa-symbol-small" src="img/arasac/edifici.png" alt="" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Edifici pubblici</span></button>
         <button class="category-button internal-section-button" type="button" data-category="mia" aria-label="Apri la mia mappa"><img class="caa-symbol-small" src="img/arasac/personale.png" alt="" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">La mia mappa</span></button>
       </nav>
+      <section class="section personal-map-guide caa-sequence-like" aria-labelledby="personalMapGuideTitle">
+          <h2 id="personalMapGuideTitle">Come usare la MIA MAPPA</h2>
+          <p class="personal-caa-instruction"><strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/aggiungere.png" alt="Simbolo aggiungere" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Puoi aggiungere luoghi alla tua mappa, cambiarli o cancellarli.</span></span></strong></p>
+        </section>
+
       <section class="section map-card" aria-labelledby="mappa-title">
       <h2 class="map-title" id="mappa-title">Mappa</h2>
 
@@ -8922,12 +9373,6 @@ La lista contiene le informazioni e i pulsanti necessari.
 
       <section id="personalTools" class="section personal-tools" aria-labelledby="personalToolsTitle">
         <h2 id="personalToolsTitle" class="sr-only">La mia mappa</h2>
-
-        <section class="section personal-map-guide caa-sequence-like" aria-labelledby="personalMapGuideTitle">
-          <h2 id="personalMapGuideTitle">Come usare la MIA MAPPA</h2>
-          <p class="personal-caa-instruction"><strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/aggiungere.png" alt="Simbolo aggiungere" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Puoi aggiungere luoghi alla tua mappa, cambiarli o cancellarli.</span></span></strong></p>
-        </section>
-
 <button id="showAddPlace" class="purple-button caa-action" data-caa-symbol="aggiungere" type="button"><span class="caa-action-row"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-text">Aggiungi un luogo</span></span></button>
 
         <div id="addPlacePanel" class="add-place-panel">
@@ -9886,8 +10331,8 @@ La lista contiene le informazioni e i pulsanti necessari.
 
         marker.bindPopup(`
 
-          <div class="popup-title"> ${tappa.nome}</div>
           <img class="popup-photo" src="${tappa.foto}" alt="Foto di ${tappa.nome}" onerror="this.remove();">
+          <div class="popup-title"> ${tappa.nome}</div>
 <div>${tappa.descrizione}</div>
 
           <div class="popup-actions">
@@ -11853,20 +12298,255 @@ Usa ESC per chiudere una finestra.
 
 
 <script>
-/* MUOVI MAPPA HOME SAFE */
+/* MAPPA HOME BLOCCATA FINO AL CLICK */
 (function(){
   function setup(){
     const homeButton = document.getElementById('attivaMappaHome');
-    const appButton = document.getElementById('attivaMappa');
+    const overlay = document.getElementById('homeMapOverlay');
     if (!homeButton || homeButton.dataset.ready === 'true') return;
     homeButton.dataset.ready = 'true';
     homeButton.addEventListener('click', function(){
-      if (appButton) appButton.click();
+      if (overlay) overlay.classList.add('hidden');
+      if (window.homeCityMap) {
+        window.homeCityMap.dragging.enable();
+        window.homeCityMap.touchZoom.enable();
+        window.homeCityMap.doubleClickZoom.enable();
+        window.homeCityMap.scrollWheelZoom.enable();
+        window.homeCityMap.invalidateSize();
+      }
+      homeButton.textContent = 'Mappa attiva';
+      homeButton.setAttribute('aria-label', 'Mappa attiva');
+      homeButton.dataset.attiva = 'true';
     });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
   else setup();
 })();
 </script>
+
+
+
+<script>
+(function () {
+  function getOverlay() {
+    let overlay = document.getElementById('bigMapPopupOverlay');
+    if (overlay) return overlay;
+
+    overlay = document.createElement('div');
+    overlay.id = 'bigMapPopupOverlay';
+    overlay.className = 'big-map-popup-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Informazioni sul luogo');
+
+    overlay.innerHTML =
+      '<div class="big-map-popup-window" role="document">' +
+        '<button type="button" class="big-map-popup-close" aria-label="Chiudi finestra">×</button>' +
+        '<div class="big-map-popup-body"></div>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', function (event) {
+      if (event.target === overlay || event.target.classList.contains('big-map-popup-close')) {
+        closeBigPopup();
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && overlay.classList.contains('open')) {
+        closeBigPopup();
+      }
+    });
+
+    return overlay;
+  }
+
+  function closeBigPopup() {
+    const overlay = document.getElementById('bigMapPopupOverlay');
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    overlay.querySelector('.big-map-popup-body').innerHTML = '';
+  }
+
+  function openBigPopupFromLeafletPopup(popupContent) {
+    const overlay = getOverlay();
+    const body = overlay.querySelector('.big-map-popup-body');
+    const clonedContent = popupContent.cloneNode(true);
+
+    const firstImage = clonedContent.querySelector('img, .popup-photo, .popup-image-space');
+    const title = clonedContent.querySelector('.popup-title');
+
+    if (firstImage && title && firstImage.compareDocumentPosition(title) & Node.DOCUMENT_POSITION_PRECEDING) {
+      title.parentNode.insertBefore(firstImage, title);
+    }
+
+    body.innerHTML = '';
+    body.appendChild(clonedContent);
+    overlay.classList.add('open');
+
+    const originalClose = document.querySelector('.leaflet-popup-close-button');
+    if (originalClose) originalClose.click();
+
+    const closeButton = overlay.querySelector('.big-map-popup-close');
+    if (closeButton) closeButton.focus();
+  }
+
+  function observeLeafletPopups() {
+    const observer = new MutationObserver(function () {
+      const overlay = document.getElementById('bigMapPopupOverlay');
+      if (overlay && overlay.classList.contains('open')) return;
+
+      const popupContent = document.querySelector('.leaflet-popup-content');
+      if (!popupContent) return;
+
+      openBigPopupFromLeafletPopup(popupContent);
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', observeLeafletPopups);
+})();
+</script>
+
+
+
+<script>
+/* =========================================================
+   Sostituisce il popup Leaflet con una scheda verticale.
+   Non modifica i dati originali: recupera il contenuto già
+   generato dal popup, quindi mantiene contatti, orari, sito,
+   note e schede del luogo.
+   ========================================================= */
+(function () {
+  function isMobile() {
+    return window.matchMedia && window.matchMedia('(max-width: 759px)').matches;
+  }
+
+  function getOverlay() {
+    let overlay = document.getElementById('bigMapPopupOverlay');
+    if (overlay) return overlay;
+
+    overlay = document.createElement('div');
+    overlay.id = 'bigMapPopupOverlay';
+    overlay.className = 'big-map-popup-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Scheda del luogo');
+
+    overlay.innerHTML =
+      '<div class="big-map-popup-window" role="document">' +
+        '<button type="button" class="big-map-popup-close" aria-label="Chiudi finestra">×</button>' +
+        '<div class="big-map-popup-body"></div>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', function (event) {
+      if (event.target === overlay || event.target.classList.contains('big-map-popup-close')) {
+        closeBigPopup();
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && overlay.classList.contains('open')) {
+        closeBigPopup();
+      }
+    });
+
+    return overlay;
+  }
+
+  function closeBigPopup() {
+    const overlay = document.getElementById('bigMapPopupOverlay');
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    const body = overlay.querySelector('.big-map-popup-body');
+    if (body) body.innerHTML = '';
+  }
+
+  function openBigPopupFromLeafletPopup(popupContent) {
+    if (!isMobile()) return;
+
+    const overlay = getOverlay();
+    const body = overlay.querySelector('.big-map-popup-body');
+    const clonedContent = popupContent.cloneNode(true);
+
+    body.innerHTML = '';
+    body.appendChild(clonedContent);
+    overlay.classList.add('open');
+
+    const originalClose = document.querySelector('.leaflet-popup-close-button');
+    if (originalClose) originalClose.click();
+
+    const closeButton = overlay.querySelector('.big-map-popup-close');
+    if (closeButton) closeButton.focus();
+  }
+
+  function observeLeafletPopups() {
+    const observer = new MutationObserver(function () {
+      if (!isMobile()) return;
+
+      const overlay = document.getElementById('bigMapPopupOverlay');
+      if (overlay && overlay.classList.contains('open')) return;
+
+      const popupContent = document.querySelector('.leaflet-popup-content');
+      if (!popupContent) return;
+
+      openBigPopupFromLeafletPopup(popupContent);
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  /* Quando si apre Informazioni, Note o Scheda, la finestra del luogo si chiude.
+     Così la finestra contatti non finisce mai sotto. */
+  document.addEventListener('click', function (event) {
+    const action = event.target.closest(
+      '#bigMapPopupOverlay .open-info-utili, #bigMapPopupOverlay .open-note, #bigMapPopupOverlay .open-scheda'
+    );
+    if (!action) return;
+
+    setTimeout(function () {
+      closeBigPopup();
+
+      const openedModal = document.querySelector('.modal-overlay.open');
+      if (openedModal) {
+        openedModal.style.zIndex = '12000';
+      }
+    }, 0);
+  }, false);
+
+  /* Se una modale viene aperta da qualunque punto, resta davanti. */
+  const modalObserver = new MutationObserver(function () {
+    document.querySelectorAll('.modal-overlay.open').forEach(function (modal) {
+      modal.style.zIndex = '12000';
+    });
+  });
+
+  function init() {
+    observeLeafletPopups();
+    modalObserver.observe(document.body, {
+      attributes: true,
+      subtree: true,
+      attributeFilter: ['class']
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
 </body>
 </html>
