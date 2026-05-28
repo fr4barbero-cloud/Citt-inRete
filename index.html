@@ -7614,10 +7614,1195 @@ body.caa-off .category-button .small {
 .poi-card h3::before,
 .place-title::before,
 .poi-title::before {
-  content: "📍";
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
   margin-right: 8px;
-  font-size: 1em;
   vertical-align: middle;
+  background: #d62828;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  position: relative;
+  top: -1px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}
+
+
+/* LAYOUT RICHIESTO HOME E SEZIONI */
+.mobile-app-subtitle,
+.subtitle,
+#categoryPageDescription {
+  display: none !important;
+}
+
+.mobile-app-header {
+  position: relative !important;
+}
+
+.top-home-button {
+  position: absolute !important;
+  left: 10px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  min-height: 36px !important;
+  padding: 6px 10px !important;
+  border: 2px solid #577590 !important;
+  background: #ffffff !important;
+  color: #111111 !important;
+  border-radius: 999px !important;
+  font-family: 'Lexend', Arial, sans-serif !important;
+  font-size: .82rem !important;
+  font-weight: 900 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15) !important;
+}
+
+body:not(.musei):not(.edifici):not(.mia) #topHomeButton {
+  display: none !important;
+}
+
+.mobile-app-title {
+  padding-left: 76px !important;
+  padding-right: 76px !important;
+}
+
+body.musei #homeScreen .caa-page-note,
+body.edifici #homeScreen .caa-page-note,
+body.mia #homeScreen .caa-page-note,
+body.musei .screenreader-controls,
+body.edifici .screenreader-controls,
+body.mia .screenreader-controls {
+  display: none !important;
+}
+
+body.mia .caa-sequence {
+  display: none !important;
+}
+
+body.mia .personal-map-guide {
+  display: block !important;
+}
+
+body.musei .personal-map-guide,
+body.edifici .personal-map-guide {
+  display: none !important;
+}
+
+.caa-home-simple {
+  display: block !important;
+}
+
+.caa-mode-toggle,
+.screenreader-button {
+  min-height: 42px !important;
+  padding: 7px 12px !important;
+  border-radius: 12px !important;
+  font-size: .9rem !important;
+}
+
+.screenreader-controls {
+  gap: 8px !important;
+}
+
+@media (max-width: 759px) {
+  .caa-mode-toggle,
+  .screenreader-button {
+    min-height: 40px !important;
+    padding: 7px 10px !important;
+    font-size: .86rem !important;
+  }
+
+  .screenreader-controls {
+    margin: 6px 0 8px !important;
+  }
+
+  .caa-page-note,
+  .caa-sequence,
+  .personal-map-guide {
+    margin: 8px 0 !important;
+    padding: 10px !important;
+  }
+
+  .leaflet-popup {
+    max-width: 98vw !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    width: 94vw !important;
+    max-width: 94vw !important;
+    min-height: 68vh !important;
+    border-radius: 20px !important;
+  }
+
+  .leaflet-popup-content {
+    width: calc(94vw - 28px) !important;
+    max-width: calc(94vw - 28px) !important;
+    max-height: 72vh !important;
+    overflow-y: auto !important;
+    margin: 18px 14px 14px !important;
+  }
+
+  .leaflet-popup-content .popup-photo {
+    max-height: 190px !important;
+  }
+
+  .popup-actions a {
+    min-height: 48px !important;
+  }
+}
+
+
+/* RIPRISTINO HOME E TITOLO-PULSANTE */
+.mobile-app-header {
+  display: block !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 2600 !important;
+  padding: max(8px, env(safe-area-inset-top)) 10px 8px !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(0,0,0,.12) !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,.10) !important;
+}
+
+.title-home-button {
+  width: 100% !important;
+  min-height: 44px !important;
+  border: 3px solid #577590 !important;
+  background: #577590 !important;
+  color: #ffffff !important;
+  border-radius: 16px !important;
+  padding: 8px 12px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  font-family: 'Lexend', Arial, sans-serif !important;
+  font-size: 1.05rem !important;
+  font-weight: 900 !important;
+  letter-spacing: .02em !important;
+  cursor: pointer !important;
+  text-align: center !important;
+}
+
+.home-icon-svg {
+  width: 24px !important;
+  height: 24px !important;
+  flex: 0 0 auto !important;
+}
+
+.home-icon-svg path {
+  fill: none !important;
+  stroke: #ffffff !important;
+  stroke-width: 2.4 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.mobile-app-subtitle,
+.subtitle,
+#categoryPageDescription {
+  display: none !important;
+}
+
+body.musei #homeScreen .caa-page-note,
+body.edifici #homeScreen .caa-page-note,
+body.mia #homeScreen .caa-page-note,
+body.musei .screenreader-controls,
+body.edifici .screenreader-controls,
+body.mia .screenreader-controls {
+  display: none !important;
+}
+
+body.mia .caa-sequence {
+  display: none !important;
+}
+
+body.mia .personal-map-guide {
+  display: block !important;
+}
+
+body.musei .personal-map-guide,
+body.edifici .personal-map-guide {
+  display: none !important;
+}
+
+.caa-mode-toggle,
+.screenreader-button {
+  min-height: 42px !important;
+  padding: 7px 12px !important;
+  border-radius: 12px !important;
+  font-size: .9rem !important;
+}
+
+.screenreader-controls {
+  gap: 8px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+
+@media (max-width: 759px) {
+  .title-home-button {
+    min-height: 42px !important;
+    font-size: .95rem !important;
+    border-radius: 14px !important;
+  }
+
+  .home-icon-svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .caa-mode-toggle,
+  .screenreader-button {
+    min-height: 40px !important;
+    padding: 7px 10px !important;
+    font-size: .86rem !important;
+  }
+
+  .leaflet-popup {
+    max-width: 98vw !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    width: 94vw !important;
+    max-width: 94vw !important;
+    min-height: 68vh !important;
+    border-radius: 20px !important;
+  }
+
+  .leaflet-popup-content {
+    width: calc(94vw - 28px) !important;
+    max-width: calc(94vw - 28px) !important;
+    max-height: 72vh !important;
+    overflow-y: auto !important;
+    margin: 18px 14px 14px !important;
+  }
+}
+
+
+/* UNIFORMAZIONE GUIDA LA MIA MAPPA */
+.personal-map-guide.caa-sequence-like {
+  background: #ffffff !important;
+  border: 3px solid var(--border) !important;
+  border-radius: 18px !important;
+  padding: 12px !important;
+  margin: 10px 0 14px !important;
+}
+
+.personal-map-guide.caa-sequence-like h2 {
+  margin: 0 0 10px !important;
+  color: var(--blue) !important;
+  font-size: 1.1rem !important;
+  font-weight: 900 !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+}
+
+.personal-map-guide.caa-sequence-like .personal-caa-instruction {
+  margin: 0 !important;
+}
+
+.personal-map-guide.caa-sequence-like .caa-text {
+  color: #111111 !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  line-height: 1.45 !important;
+}
+
+
+/* POPUP MAPPA GRANDE SU SMARTPHONE CON CONTESTO VISIVO */
+@media (max-width: 759px) {
+  .leaflet-popup {
+    max-width: 96vw !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    width: 92vw !important;
+    max-width: 92vw !important;
+    min-height: 66vh !important;
+    max-height: 82vh !important;
+    border-radius: 22px !important;
+    box-shadow: 0 8px 34px rgba(0,0,0,.35) !important;
+    overflow: hidden !important;
+  }
+
+  .leaflet-popup-content {
+    width: calc(92vw - 28px) !important;
+    max-width: calc(92vw - 28px) !important;
+    max-height: 76vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    margin: 18px 14px 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  .leaflet-popup-tip-container {
+    display: block !important;
+  }
+
+  .popup-title {
+    font-size: 1.12rem !important;
+    line-height: 1.25 !important;
+    padding-right: 42px !important;
+  }
+
+  .popup-photo,
+  .leaflet-popup-content img.popup-photo {
+    width: 100% !important;
+    max-height: 220px !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+  }
+
+  .popup-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .popup-actions a {
+    min-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: normal !important;
+    line-height: 1.25 !important;
+  }
+
+  .leaflet-popup-close-button {
+    width: 46px !important;
+    height: 46px !important;
+    line-height: 40px !important;
+    font-size: 28px !important;
+    right: 5px !important;
+    top: 5px !important;
+    z-index: 20 !important;
+  }
+}
+
+
+/* VISIBILITÀ GUIDE PER SEZIONE */
+body.musei .caa-sequence,
+body.edifici .caa-sequence {
+  display: block !important;
+}
+
+body.mia .caa-sequence {
+  display: none !important;
+}
+
+
+/* =========================================================
+   FIX VISIBILITÀ SITO - RIPRISTINO CONSERVATIVO
+   ========================================================= */
+
+/* Il sito deve sempre essere visibile */
+main,
+#homeScreen,
+#appScreen,
+.section,
+.home-city-map-card,
+.map-card,
+#lista-tappe,
+#placesList {
+  visibility: visible !important;
+}
+
+/* Home visibile quando non è selezionata una sezione */
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #homeScreen {
+  display: grid !important;
+}
+
+/* App visibile quando si entra in una sezione */
+body.musei #appScreen,
+body.edifici #appScreen,
+body.locali #appScreen,
+body.mia #appScreen {
+  display: block !important;
+}
+
+/* Home nascosta solo nelle sezioni interne */
+body.musei #homeScreen,
+body.edifici #homeScreen,
+body.locali #homeScreen,
+body.mia #homeScreen {
+  display: none !important;
+}
+
+/* App nascosta solo nella home */
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #appScreen {
+  display: none !important;
+}
+
+/* Mappa, lista e luoghi sempre presenti nelle sezioni */
+body.musei #map,
+body.edifici #map,
+body.locali #map,
+body.mia #map,
+body.musei #placesList,
+body.edifici #placesList,
+body.locali #placesList,
+body.mia #placesList {
+  display: block !important;
+}
+
+/* La mappa non deve collassare */
+#map {
+  width: 100% !important;
+  min-height: 360px !important;
+}
+
+#homeCityMap {
+  width: 100% !important;
+  min-height: 280px !important;
+}
+
+/* La lista non deve sparire */
+#placesList {
+  min-height: 40px !important;
+}
+
+/* Rende leggibile il pulsante Muovi/Attiva mappa */
+#attivaMappa,
+#attivaMappaHome,
+.attiva-mappa-button {
+  background: #577590 !important;
+  border: 2px solid #577590 !important;
+  color: #ffffff !important;
+  font-family: 'Lexend', Arial, sans-serif !important;
+  font-weight: 900 !important;
+  min-height: 34px !important;
+  padding: 6px 12px !important;
+  border-radius: 10px !important;
+  font-size: .88rem !important;
+  text-shadow: none !important;
+}
+
+/* Niente contorno nero sui pulsanti nei popup */
+.leaflet-popup-content .popup-actions a,
+.leaflet-popup-content .popup-actions a:focus,
+.leaflet-popup-content .popup-actions a:active,
+.leaflet-popup-content .popup-actions a:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Popup grande su smartphone */
+@media (max-width: 759px) {
+  .leaflet-popup {
+    max-width: 100vw !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    width: 96vw !important;
+    max-width: 96vw !important;
+    min-height: 72vh !important;
+    max-height: 88vh !important;
+    border-radius: 22px !important;
+    box-shadow: 0 10px 38px rgba(0,0,0,.42) !important;
+    overflow: hidden !important;
+  }
+
+  .leaflet-popup-content {
+    width: calc(96vw - 28px) !important;
+    max-width: calc(96vw - 28px) !important;
+    max-height: 82vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    margin: 18px 14px 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  .popup-photo,
+  .leaflet-popup-content img.popup-photo {
+    width: 100% !important;
+    max-height: 240px !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+  }
+}
+
+
+/* =========================================================
+   LAYOUT SICURO SOLO CSS - NON TOCCA FUNZIONI O DATI
+   ========================================================= */
+
+/* Pulsante Sito in CAA sotto MAPPA ACCESSIBILE */
+#caaModeToggle {
+  display: block !important;
+  width: calc(100% - 24px) !important;
+  max-width: 980px !important;
+  min-height: 40px !important;
+  padding: 7px 12px !important;
+  margin: 8px auto 10px !important;
+  border-radius: 12px !important;
+  background: #577590 !important;
+  border: 3px solid #577590 !important;
+  color: #ffffff !important;
+  font-family: 'Lexend', Arial, sans-serif !important;
+  font-size: .9rem !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+}
+
+/* Rende le schermate ordinabili senza spostare i blocchi HTML */
+#homeScreen,
+#appScreen {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Visibilità schermate */
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #homeScreen {
+  display: flex !important;
+}
+
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #appScreen {
+  display: none !important;
+}
+
+body.musei #homeScreen,
+body.edifici #homeScreen,
+body.locali #homeScreen,
+body.mia #homeScreen {
+  display: none !important;
+}
+
+body.musei #appScreen,
+body.edifici #appScreen,
+body.locali #appScreen,
+body.mia #appScreen {
+  display: flex !important;
+}
+
+/* HOME:
+   MAPPA ACCESSIBILE + casa
+   Sito in CAA
+   Ascolta guida / Ferma guida
+   Mappa
+   Muovi la mappa
+   Come usare la mappa
+   Tre pulsanti sezioni
+*/
+#homeScreen > .screenreader-controls { order: 1 !important; }
+#homeScreen > .home-city-map-card { order: 2 !important; }
+#homeScreen > #attivaMappaHome { order: 3 !important; }
+#homeScreen > .caa-page-note { order: 4 !important; }
+#homeScreen > .category-grid { order: 5 !important; }
+
+/* SEZIONI:
+   MAPPA ACCESSIBILE + casa
+   Sito in CAA
+   Tre pulsanti sezioni
+   Come scegliere / Come usare MIA MAPPA
+   Mappa
+   Muovi la mappa
+   Aggiungi / Lista
+*/
+#appScreen > .category-grid { order: 1 !important; }
+#appScreen > .caa-sequence { order: 2 !important; }
+#appScreen .personal-map-guide { order: 2 !important; }
+#appScreen > .map-card { order: 3 !important; }
+#appScreen > #attivaMappa { order: 4 !important; }
+#appScreen > #personalTools { order: 5 !important; }
+#appScreen > #lista-tappe { order: 6 !important; }
+
+/* Guide corrette per sezione */
+body.musei #appScreen .personal-map-guide,
+body.edifici #appScreen .personal-map-guide,
+body.locali #appScreen .personal-map-guide {
+  display: none !important;
+}
+
+body.musei #appScreen > .caa-sequence,
+body.edifici #appScreen > .caa-sequence,
+body.locali #appScreen > .caa-sequence {
+  display: block !important;
+}
+
+body.mia #appScreen > .caa-sequence {
+  display: none !important;
+}
+
+/* In La mia mappa, strumenti visibili sotto Muovi la mappa */
+body.mia #appScreen > #personalTools {
+  display: block !important;
+}
+
+body.musei #appScreen > #personalTools,
+body.edifici #appScreen > #personalTools,
+body.locali #appScreen > #personalTools {
+  display: none !important;
+}
+
+/* Come usare la MIA MAPPA allineato a sinistra */
+.personal-map-guide,
+.personal-map-guide h2,
+.personal-map-guide .personal-caa-instruction,
+.personal-map-guide .caa-row,
+.personal-map-guide .caa-text {
+  text-align: left !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+/* Muovi la mappa: sottile, scuro, testo bianco */
+#attivaMappa,
+#attivaMappaHome,
+.attiva-mappa-button {
+  display: block !important;
+  width: 100% !important;
+  min-height: 32px !important;
+  padding: 5px 12px !important;
+  margin: 6px 0 10px !important;
+  border-radius: 10px !important;
+  font-size: .84rem !important;
+  line-height: 1.15 !important;
+  background: #577590 !important;
+  border: 2px solid #577590 !important;
+  color: #ffffff !important;
+  font-family: 'Lexend', Arial, sans-serif !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+}
+
+#attivaMappa *,
+#attivaMappaHome *,
+.attiva-mappa-button * {
+  color: #ffffff !important;
+}
+
+/* Mappa e lista non devono mai collassare */
+#map {
+  width: 100% !important;
+  min-height: 360px !important;
+}
+
+#homeCityMap {
+  width: 100% !important;
+  min-height: 280px !important;
+}
+
+#placesList {
+  min-height: 40px !important;
+}
+
+/* Niente contorno nero sui pulsanti del popup */
+.leaflet-popup-content .popup-actions a,
+.leaflet-popup-content .popup-actions a:focus,
+.leaflet-popup-content .popup-actions a:active,
+.leaflet-popup-content .popup-actions a:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Popup grande e leggibile su smartphone */
+@media (max-width: 759px) {
+  .leaflet-popup {
+    max-width: 100vw !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    width: 96vw !important;
+    max-width: 96vw !important;
+    min-height: 72vh !important;
+    max-height: 88vh !important;
+    border-radius: 22px !important;
+    box-shadow: 0 10px 38px rgba(0,0,0,.42) !important;
+    overflow: hidden !important;
+  }
+
+  .leaflet-popup-content {
+    width: calc(96vw - 28px) !important;
+    max-width: calc(96vw - 28px) !important;
+    max-height: 82vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    margin: 18px 14px 14px !important;
+    box-sizing: border-box !important;
+    font-size: 1rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .popup-photo,
+  .leaflet-popup-content img.popup-photo {
+    width: 100% !important;
+    max-height: 240px !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+  }
+
+  .popup-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .popup-actions a {
+    min-height: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: normal !important;
+    line-height: 1.25 !important;
+  }
+}
+
+
+/* =========================================================
+   COMPLETAMENTO LAYOUT CONCORDATO - SOLO ORDINE VISIVO
+   ========================================================= */
+
+/* Il titolo MAPPA ACCESSIBILE resta il primo elemento visivo.
+   Il pulsante Sito in CAA resta subito sotto. */
+#caaModeToggle {
+  order: 0 !important;
+}
+
+/* HOME:
+   1 MAPPA ACCESSIBILE + casa
+   2 Sito in CAA
+   3 Ascolta guida / Ferma guida
+   4 Mappa
+   5 Muovi la mappa
+   6 Come usare la mappa
+   7 Tre pulsanti sezioni
+*/
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #homeScreen {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #homeScreen > .screenreader-controls {
+  order: 1 !important;
+}
+
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #homeScreen > .home-city-map-card {
+  order: 2 !important;
+}
+
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #homeScreen > #attivaMappaHome {
+  order: 3 !important;
+}
+
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #homeScreen > .caa-page-note {
+  order: 4 !important;
+}
+
+body:not(.musei):not(.edifici):not(.locali):not(.mia) #homeScreen > .category-grid {
+  order: 5 !important;
+}
+
+/* SEZIONI LUOGHI / EDIFICI:
+   1 MAPPA ACCESSIBILE + casa
+   2 Sito in CAA
+   3 Tre pulsanti sezioni
+   4 Come scegliere i luoghi
+   5 Mappa
+   6 Muovi la mappa
+   7 Lista luoghi
+*/
+body.musei #appScreen,
+body.edifici #appScreen,
+body.locali #appScreen {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body.musei #appScreen > .category-grid,
+body.edifici #appScreen > .category-grid,
+body.locali #appScreen > .category-grid {
+  order: 1 !important;
+}
+
+body.musei #appScreen > .caa-sequence,
+body.edifici #appScreen > .caa-sequence,
+body.locali #appScreen > .caa-sequence {
+  order: 2 !important;
+  display: block !important;
+}
+
+body.musei #appScreen > .map-card,
+body.edifici #appScreen > .map-card,
+body.locali #appScreen > .map-card {
+  order: 3 !important;
+}
+
+body.musei #appScreen > #attivaMappa,
+body.edifici #appScreen > #attivaMappa,
+body.locali #appScreen > #attivaMappa {
+  order: 4 !important;
+}
+
+body.musei #appScreen > #lista-tappe,
+body.edifici #appScreen > #lista-tappe,
+body.locali #appScreen > #lista-tappe {
+  order: 5 !important;
+}
+
+body.musei #appScreen > #personalTools,
+body.edifici #appScreen > #personalTools,
+body.locali #appScreen > #personalTools,
+body.musei #appScreen > .personal-map-guide,
+body.edifici #appScreen > .personal-map-guide,
+body.locali #appScreen > .personal-map-guide {
+  display: none !important;
+}
+
+/* LA MIA MAPPA:
+   1 MAPPA ACCESSIBILE + casa
+   2 Sito in CAA
+   3 Tre pulsanti sezioni
+   4 Come usare la MIA MAPPA
+   5 Mappa
+   6 Muovi la mappa
+   7 Aggiungi un luogo
+   8 Lista dei tuoi luoghi
+*/
+body.mia #appScreen {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body.mia #appScreen > .category-grid {
+  order: 1 !important;
+}
+
+body.mia #appScreen > .personal-map-guide,
+body.mia #appScreen #personalTools .personal-map-guide {
+  order: 2 !important;
+  display: block !important;
+}
+
+body.mia #appScreen > .caa-sequence {
+  display: none !important;
+}
+
+body.mia #appScreen > .map-card {
+  order: 3 !important;
+}
+
+body.mia #appScreen > #attivaMappa {
+  order: 4 !important;
+}
+
+body.mia #appScreen > #personalTools {
+  order: 5 !important;
+  display: block !important;
+}
+
+body.mia #appScreen > #lista-tappe {
+  order: 6 !important;
+}
+
+/* Dentro La mia mappa: il pulsante Aggiungi luogo deve stare prima del form */
+body.mia #showAddPlace {
+  display: block !important;
+  margin-top: 8px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Il blocco Come usare la MIA MAPPA deve essere leggibile e allineato a sinistra */
+.personal-map-guide,
+.personal-map-guide h2,
+.personal-map-guide p,
+.personal-map-guide .caa-row,
+.personal-map-guide .caa-text {
+  text-align: left !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+/* Pulsanti guida audio più compatti */
+.screenreader-controls {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.screenreader-button {
+  min-height: 38px !important;
+  padding: 6px 10px !important;
+  border-radius: 10px !important;
+  font-size: .86rem !important;
+}
+
+/* Muovi la mappa: sempre sotto la mappa, sottile, testo bianco */
+#attivaMappa,
+#attivaMappaHome,
+.attiva-mappa-button {
+  min-height: 32px !important;
+  padding: 5px 12px !important;
+  margin: 6px 0 10px !important;
+  border-radius: 10px !important;
+  background: #577590 !important;
+  border: 2px solid #577590 !important;
+  color: #ffffff !important;
+  font-family: 'Lexend', Arial, sans-serif !important;
+  font-weight: 900 !important;
+  font-size: .84rem !important;
+  line-height: 1.15 !important;
+  text-shadow: none !important;
+}
+
+#attivaMappa *,
+#attivaMappaHome *,
+.attiva-mappa-button * {
+  color: #ffffff !important;
+}
+
+/* Elimina contorno nero dai pulsanti nei popup */
+.leaflet-popup-content .popup-actions a,
+.leaflet-popup-content .popup-actions a:focus,
+.leaflet-popup-content .popup-actions a:active,
+.leaflet-popup-content .popup-actions a:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Popup grande e leggibile su smartphone */
+@media (max-width: 759px) {
+  .leaflet-popup {
+    max-width: 100vw !important;
+  }
+
+  .leaflet-popup-content-wrapper {
+    width: 96vw !important;
+    max-width: 96vw !important;
+    min-height: 72vh !important;
+    max-height: 88vh !important;
+    border-radius: 22px !important;
+    box-shadow: 0 10px 38px rgba(0,0,0,.42) !important;
+    overflow: hidden !important;
+  }
+
+  .leaflet-popup-content {
+    width: calc(96vw - 28px) !important;
+    max-width: calc(96vw - 28px) !important;
+    max-height: 82vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    margin: 18px 14px 14px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+
+/* =========================================================
+   ORDINE PAGINE INTERNE RICHIESTO
+   ========================================================= */
+
+/* Le pagine interne devono essere gestite come colonne ordinate */
+body.musei #appScreen,
+body.edifici #appScreen,
+body.mia #appScreen {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* LUOGHI DA VISITARE / EDIFICI PUBBLICI:
+   MAPPA ACCESSIBILE + casa
+   Sito in CAA
+   Tre pulsanti sezioni
+   Come scegliere i luoghi
+   Mappa
+   Muovi la mappa
+   Lista dei luoghi
+*/
+body.musei #appScreen > .category-grid,
+body.edifici #appScreen > .category-grid {
+  order: 1 !important;
+  display: grid !important;
+}
+
+body.musei #appScreen > .caa-sequence,
+body.edifici #appScreen > .caa-sequence {
+  order: 2 !important;
+  display: block !important;
+}
+
+body.musei #appScreen > .map-card,
+body.edifici #appScreen > .map-card {
+  order: 3 !important;
+  display: block !important;
+}
+
+body.musei #appScreen > #attivaMappa,
+body.edifici #appScreen > #attivaMappa {
+  order: 4 !important;
+  display: block !important;
+}
+
+body.musei #appScreen > #lista-tappe,
+body.edifici #appScreen > #lista-tappe {
+  order: 5 !important;
+  display: block !important;
+}
+
+body.musei #appScreen > #personalTools,
+body.edifici #appScreen > #personalTools,
+body.musei #appScreen > .personal-map-guide,
+body.edifici #appScreen > .personal-map-guide {
+  display: none !important;
+}
+
+/* LA MIA MAPPA:
+   MAPPA ACCESSIBILE + casa
+   Sito in CAA
+   Tre pulsanti sezioni
+   Come usare la MIA MAPPA
+   Mappa
+   Muovi la mappa
+   Aggiungi un luogo
+   Lista dei tuoi luoghi
+*/
+body.mia #appScreen > .category-grid {
+  order: 1 !important;
+  display: grid !important;
+}
+
+body.mia #appScreen > .caa-sequence {
+  display: none !important;
+}
+
+body.mia #appScreen > .personal-map-guide,
+body.mia #appScreen #personalTools .personal-map-guide {
+  order: 2 !important;
+  display: block !important;
+}
+
+body.mia #appScreen > .map-card {
+  order: 3 !important;
+  display: block !important;
+}
+
+body.mia #appScreen > #attivaMappa {
+  order: 4 !important;
+  display: block !important;
+}
+
+body.mia #appScreen > #personalTools {
+  order: 5 !important;
+  display: block !important;
+}
+
+body.mia #appScreen > #lista-tappe {
+  order: 6 !important;
+  display: block !important;
+}
+
+/* Dentro La mia mappa: guida prima, poi Aggiungi luogo, poi form */
+body.mia #personalTools {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body.mia #personalTools .personal-map-guide {
+  order: 1 !important;
+}
+
+body.mia #showAddPlace {
+  order: 2 !important;
+  display: block !important;
+  margin-top: 8px !important;
+  margin-bottom: 10px !important;
+}
+
+body.mia #addPlacePanel {
+  order: 3 !important;
+}
+
+/* Mantieni il testo della guida Mia mappa allineato a sinistra */
+.personal-map-guide,
+.personal-map-guide h2,
+.personal-map-guide p,
+.personal-map-guide .caa-row,
+.personal-map-guide .caa-text {
+  text-align: left !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+
+
+/* Pulsanti interni sotto MAPPA ACCESSIBILE */
+.internal-section-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 0 12px 0;
+  padding: 10px;
+  background: #ffffff;
+}
+
+.internal-section-buttons .category-button {
+  min-height: 64px;
+  border-radius: 16px;
+  padding: 10px 8px;
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+body.musei .internal-section-buttons .category-button[data-category="musei"],
+body.edifici .internal-section-buttons .category-button[data-category="edifici"],
+body.mia .internal-section-buttons .category-button[data-category="mia"] {
+  outline: 4px solid #111111 !important;
+  outline-offset: -4px !important;
+}
+
+@media (max-width: 759px) {
+  main {
+    padding-bottom: 16px !important;
+  }
+
+  .internal-section-buttons {
+    position: static !important;
+    height: auto !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    padding: 8px !important;
+    margin: 0 0 10px 0 !important;
+    border: 0 !important;
+    box-shadow: 0 4px 14px rgba(0,0,0,.08) !important;
+    background: #ffffff !important;
+  }
+
+  .internal-section-buttons .category-button {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 58px !important;
+    border-width: 0 !important;
+    border-radius: 14px !important;
+    padding: 8px 5px !important;
+    font-size: .82rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .internal-section-buttons .category-button::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .internal-section-buttons .caa-symbol-small {
+    width: 24px !important;
+    height: 24px !important;
+    margin-bottom: 3px !important;
+  }
+
+  #appScreen > .internal-section-buttons {
+    order: 1 !important;
+  }
+
+  #appScreen > .caa-sequence,
+  #appScreen .personal-map-guide {
+    order: 2 !important;
+  }
+
+  #appScreen > .map-card {
+    order: 3 !important;
+  }
 }
 
 </style>
@@ -7634,11 +8819,17 @@ body.caa-off .category-button .small {
 
   <a href="#lista-tappe" class="skip-link sr-only-focusable">Vai alla lista dei luoghi</a>
 
-  <div id="mobileAppHeader" class="mobile-app-header" aria-hidden="true">
-    <div class="mobile-app-title">MAPPA ACCESSIBILE</div>
-    <div id="mobileAppSubtitle" class="mobile-app-subtitle">SCEGLI UNA SEZIONE</div>
-  </div>
-
+  
+<div id="mobileAppHeader" class="mobile-app-header">
+  <button id="titleHomeButton" class="title-home-button" type="button" aria-label="Torna alla home">
+    <span>MAPPA ACCESSIBILE</span>
+    <svg class="home-icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M3 11.5L12 4l9 7.5"></path>
+      <path d="M5.5 10.5V20h5v-5.5h3V20h5v-9.5"></path>
+    </svg>
+  </button>
+  <div id="mobileAppSubtitle" class="mobile-app-subtitle" aria-hidden="true"></div>
+</div>
 <div id="srLiveRegion" class="sr-status" aria-live="polite" aria-atomic="true"></div>
 <div id="srAssertiveRegion" class="sr-status" aria-live="assertive" aria-atomic="true"></div>
 
@@ -7657,19 +8848,43 @@ Se usi uno screen reader, usa la lista dei luoghi.
 La lista contiene le informazioni e i pulsanti necessari.
 </p>
 
-    <section id="homeScreen" class="section home-screen">
-<div class="category-grid">
+    
+
+<section id="homeScreen" class="section home-screen">
+<section class="section home-city-map-card" aria-labelledby="homeCityMapTitle">
+        <h2 id="homeCityMapTitle" class="home-city-map-title">Mappa della città di Bra</h2>
+        <div id="homeCityMap" aria-hidden="true" tabindex="-1"></div>
+      </section>
+
+  
+
+
+<button id="attivaMappaHome" class="button-link attiva-mappa-button" type="button" aria-label="Muovi la mappa">
+  Muovi la mappa
+</button>
+
+<section class="section caa-page-note" aria-labelledby="caaStartTitle">
+  <h2 id="caaStartTitle">Come usare la mappa</h2>
+  <div class="caa-home-simple">
+    <span class="caa-row">
+      <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
+      <span class="caa-text">Scegli una sezione.</span>
+    </span>
+  </div>
+</section>
+
+  <div class="category-grid">
         <button class="category-button" type="button" data-category="musei" aria-label="Apri luoghi da visitare"><img class="caa-symbol-small" src="img/arasac/luoghi.png" alt="" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Luoghi da visitare<span class="small">Da vedere</span></span></button>
 
         <button class="category-button" type="button" data-category="edifici" aria-label="Apri edifici pubblici"><img class="caa-symbol-small" src="img/arasac/edifici.png" alt="" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Edifici pubblici<span class="small">Luoghi utili</span></span></button>
 <button class="category-button" type="button" data-category="mia" aria-label="Apri la mia mappa"><img class="caa-symbol-small" src="img/arasac/personale.png" alt="" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">La mia mappa<span class="small">I tuoi luoghi</span></span></button>
       </div>
-
+  
 <button id="caaModeToggle" class="caa-mode-toggle" type="button" aria-pressed="false" aria-label="Attiva versione CAA">
-  CAA
+  Sito in CAA
 </button>
 
-<div class="screenreader-controls" aria-label="Controlli guida audio">
+  <div class="screenreader-controls" aria-label="Controlli guida audio">
   <button id="listenGuideButton"
           class="screenreader-button"
           type="button"
@@ -7684,71 +8899,20 @@ La lista contiene le informazioni e i pulsanti necessari.
     Ferma guida
   </button>
 </div>
-
-
-<section class="section caa-page-note" aria-labelledby="caaStartTitle">
-  <h2 id="caaStartTitle">Come usare la mappa</h2>
-
-  <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px;">
-
-    <div class="caa-card">
-      <span class="caa-row">
-        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
-        <span class="caa-text">1. Scegli la sezione.</span>
-      </span>
-    </div>
-
-    <div style="font-size:24px; font-weight:900;" aria-hidden="true">→</div>
-
-    <div class="caa-card">
-      <span class="caa-row">
-        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
-        <span class="caa-text">2. Guarda la mappa.</span>
-      </span>
-    </div>
-
-<div class="caa-card" style="padding:6px 10px;">
-  <span class="caa-row">
-    <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
-    <span class="caa-text">o</span>
-  </span>
-</div>
-
-    <div class="caa-card">
-      <span class="caa-row">
-        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
-        <span class="caa-text">Guarda la lista.</span>
-      </span>
-    </div>
-
-    <div style="font-size:24px; font-weight:900;" aria-hidden="true">→</div>
-
-    <div class="caa-card">
-      <span class="caa-row">
-        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
-        <span class="caa-text">4. Scegli un luogo.</span>
-      </span>
-    </div>
-
-    <div style="font-size:24px; font-weight:900;" aria-hidden="true">→</div>
-
-    <div class="caa-card">
-      <span class="caa-row">
-        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
-        <span class="caa-text">5. Clicca sul luogo.</span>
-      </span>
-    </div>
-
-  </div>
 </section>
+<div id="appScreen" class="app-screen">
+      <nav class="section internal-section-buttons" aria-label="Vai alle sezioni principali">
+        <button class="category-button internal-section-button" type="button" data-category="musei" aria-label="Apri luoghi da visitare"><img class="caa-symbol-small" src="img/arasac/luoghi.png" alt="" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Luoghi da visitare</span></button>
+        <button class="category-button internal-section-button" type="button" data-category="edifici" aria-label="Apri edifici pubblici"><img class="caa-symbol-small" src="img/arasac/edifici.png" alt="" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Edifici pubblici</span></button>
+        <button class="category-button internal-section-button" type="button" data-category="mia" aria-label="Apri la mia mappa"><img class="caa-symbol-small" src="img/arasac/personale.png" alt="" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">La mia mappa</span></button>
+      </nav>
+      <section class="section map-card" aria-labelledby="mappa-title">
+      <h2 class="map-title" id="mappa-title">Mappa</h2>
 
-<section class="section home-city-map-card" aria-labelledby="homeCityMapTitle">
-        <h2 id="homeCityMapTitle" class="home-city-map-title">Mappa della città di Bra</h2>
-        <div id="homeCityMap" aria-hidden="true" tabindex="-1"></div>
+      <div id="map" aria-hidden="true" tabindex="-1"></div>
+      
       </section>
-    </section>
 
-    <div id="appScreen" class="app-screen">
       <button id="backHome" class="back-button" type="button">Torna indietro</button>
 
       <section class="section category-title" aria-labelledby="categoryPageTitle">
@@ -7758,11 +8922,15 @@ La lista contiene le informazioni e i pulsanti necessari.
 
       <section id="personalTools" class="section personal-tools" aria-labelledby="personalToolsTitle">
         <h2 id="personalToolsTitle" class="sr-only">La mia mappa</h2>
-        <p class="personal-caa-instruction"><strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/aggiungere.png" alt="Simbolo aggiungere" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Aggiungi un luogo alla tua mappa.</span></span><span class="caa-row"><img class="caa-symbol" src="img/arasac/modificare.png" alt="Simbolo modificare" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Puoi cambiare o cancellare un luogo.</span></span></strong></p>
-        <button id="showAddPlace" class="purple-button caa-action" data-caa-symbol="aggiungere" type="button"><span class="caa-action-row"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-text">Aggiungi un luogo</span></span></button>
+
+        <section class="section personal-map-guide caa-sequence-like" aria-labelledby="personalMapGuideTitle">
+          <h2 id="personalMapGuideTitle">Come usare la MIA MAPPA</h2>
+          <p class="personal-caa-instruction"><strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/aggiungere.png" alt="Simbolo aggiungere" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Puoi aggiungere luoghi alla tua mappa, cambiarli o cancellarli.</span></span></strong></p>
+        </section>
+
+<button id="showAddPlace" class="purple-button caa-action" data-caa-symbol="aggiungere" type="button"><span class="caa-action-row"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-text">Aggiungi un luogo</span></span></button>
 
         <div id="addPlacePanel" class="add-place-panel">
-          <h3 style="text-align:center;">LA MIA MAPPA</h3>
           <form id="personalPlaceForm" class="personal-form">
             <div>
               <label for="personalName"><span class="caa-symbol-placeholder-small" aria-hidden="true">CAA</span><span class="caa-label-text">Nome del luogo</span></label>
@@ -7807,15 +8975,23 @@ La lista contiene le informazioni e i pulsanti necessari.
         <p id="routeInfo"></p>
       </div>
 
-      <section class="section map-card" aria-labelledby="mappa-title">
-      <h2 class="map-title" id="mappa-title">Mappa</h2>
+      <div class="caa-sequence" aria-labelledby="caaListGuideTitle">
+  <h2 id="caaListGuideTitle" class="caa-sequence-title">Come scegliere i luoghi</h2>
+  <div class="caa-home-simple">
+    <span class="caa-row">
+      <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
+      <span class="caa-text">Scegli i luoghi dalla mappa o dalla lista sotto.</span>
+    </span>
+  </div>
+</div>
 
-      <div id="map" aria-hidden="true" tabindex="-1"></div>
-      
-      </section>
 
-    <button id="attivaMappa" class="button-link attiva-mappa-button" type="button" aria-label="Attiva la mappa">
-      Attiva la mappa
+</div>
+
+</div>
+
+    <button id="attivaMappa" class="button-link attiva-mappa-button" type="button" aria-label="Muovi la mappa">
+      Muovi la mappa
     </button>
 
     <section class="section" id="lista-tappe" aria-labelledby="lista-title" aria-describedby="screenReaderIntro" role="region">
@@ -7823,33 +8999,9 @@ La lista contiene le informazioni e i pulsanti necessari.
 
       <p id="statusMessage" class="status" aria-live="polite"></p>
 
-<div class="caa-sequence" aria-labelledby="caaListGuideTitle">
-  <h2 id="caaListGuideTitle" class="caa-sequence-title">Come leggere i luoghi</h2>
 
-  <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px;">
 
-    <div class="caa-card">
-      <span class="caa-row">
-        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
-        <span class="caa-text">1. Guarda la lista.</span>
-      </span>
-    </div>
-
-    <div style="font-size:24px; font-weight:900;" aria-hidden="true">→</div>
-
-    <div class="caa-card">
-      <span class="caa-row">
-        <span class="caa-symbol-placeholder" aria-hidden="true">CAA</span>
-        <span class="caa-text">2. Scegli un luogo.</span>
-      </span>
-    </div>
-
-  </div>
-</div>
-
-</div>
-
-      <ul id="placesList" class="places-list" aria-live="polite"></ul>
+<ul id="placesList" class="places-list" aria-live="polite"></ul>
     </section>
     </div>
   </main>
@@ -8452,7 +9604,7 @@ La lista contiene le informazioni e i pulsanti necessari.
       }
 
       if (btnMappa) {
-        btnMappa.textContent = "Attiva la mappa";
+        btnMappa.textContent = "Muovi la mappa";
         btnMappa.classList.remove("attiva");
         btnMappa.dataset.attiva = "false";
         document.body.classList.remove("mappa-attiva");
@@ -10430,7 +11582,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const button = document.getElementById('caaModeToggle');
     if (!button) return;
 
-    button.textContent = isOn ? 'NO CAA' : 'CAA';
+    button.textContent = isOn ? 'NO CAA' : 'Sito in CAA';
     button.setAttribute('aria-pressed', isOn ? 'true' : 'false');
     button.setAttribute('aria-label', isOn ? 'Disattiva versione CAA' : 'Attiva versione CAA');
   }
@@ -10639,5 +11791,82 @@ Usa ESC per chiudere una finestra.
 })();
 </script>
 
+
+<script>
+/* PULSANTE HOME COMPATTO */
+(function () {
+  function setupTopHomeButton() {
+    const btn = document.getElementById('topHomeButton');
+    if (!btn || btn.dataset.ready === 'true') return;
+    btn.dataset.ready = 'true';
+    btn.addEventListener('click', function () {
+      const back = document.getElementById('backHome');
+      if (back) {
+        back.click();
+      } else {
+        document.body.classList.remove('musei', 'edifici', 'locali', 'mia');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTopHomeButton);
+  } else {
+    setupTopHomeButton();
+  }
+})();
+</script>
+
+
+<script>
+/* TITOLO MAPPA ACCESSIBILE COME PULSANTE HOME */
+(function () {
+  function goHome() {
+    const back = document.getElementById('backHome');
+    if (back) {
+      back.click();
+      return;
+    }
+    document.body.classList.remove('musei', 'edifici', 'locali', 'mia');
+    const appScreen = document.getElementById('appScreen');
+    if (appScreen) appScreen.classList.remove('open', 'musei', 'edifici', 'locali', 'mia');
+    const homeScreen = document.getElementById('homeScreen');
+    if (homeScreen) homeScreen.style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function setupTitleHome() {
+    const btn = document.getElementById('titleHomeButton');
+    if (!btn || btn.dataset.ready === 'true') return;
+    btn.dataset.ready = 'true';
+    btn.addEventListener('click', goHome);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTitleHome);
+  } else {
+    setupTitleHome();
+  }
+})();
+</script>
+
+
+<script>
+/* MUOVI MAPPA HOME SAFE */
+(function(){
+  function setup(){
+    const homeButton = document.getElementById('attivaMappaHome');
+    const appButton = document.getElementById('attivaMappa');
+    if (!homeButton || homeButton.dataset.ready === 'true') return;
+    homeButton.dataset.ready = 'true';
+    homeButton.addEventListener('click', function(){
+      if (appButton) appButton.click();
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+  else setup();
+})();
+</script>
 </body>
 </html>
