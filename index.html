@@ -9030,9 +9030,274 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
 }
 
 
-/* ===== MOBILE_FULLSCREEN_CARDS_START ===== */
-.mobile-fullscreen-card{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;background:#fff;color:#111;z-index:9000;display:none;overflow:hidden}.mobile-fullscreen-card.open{display:block}#mobileInfoScreen{z-index:10000}.mobile-fullscreen-card-inner{width:100%;height:100%;display:grid;grid-template-rows:auto minmax(0,1fr);background:#fff}.mobile-fullscreen-card-header{min-height:66px;padding:max(10px,env(safe-area-inset-top)) 12px 10px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--category-color,var(--blue));color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.20)}.mobile-fullscreen-card-title{margin:0;font-size:1.08rem;line-height:1.18;font-weight:900;word-break:break-word}.mobile-fullscreen-card-close{width:52px;height:52px;min-width:52px;border-radius:50%;border:4px solid #000;background:#ffbf00;color:#000;font-size:32px;font-weight:900;line-height:1;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}.mobile-fullscreen-card-content{min-height:0;height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 14px calc(18px + env(safe-area-inset-bottom));box-sizing:border-box}.mobile-fullscreen-card-content .popup-title{font-size:1.3rem!important;line-height:1.2!important;margin:0 0 10px!important;padding:0!important;font-weight:900!important}.mobile-fullscreen-card-content .popup-photo{display:block!important;width:100%!important;max-height:34dvh!important;object-fit:cover!important;border-radius:18px!important;margin:0 0 12px!important;border:0!important;background:#eee!important}.mobile-fullscreen-card-content .popup-actions,.mobile-fullscreen-card-content .modal-actions{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;margin-top:16px!important}.mobile-fullscreen-card-content .popup-actions a,.mobile-fullscreen-card-content .button-link,.mobile-fullscreen-card-content .modal-actions a{width:100%!important;min-height:56px!important;border-radius:16px!important;padding:12px!important;font-size:1rem!important;line-height:1.18!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;font-weight:900!important;text-decoration:none!important;box-sizing:border-box!important}.mobile-info-grid{display:grid;grid-template-columns:1fr;gap:12px}.mobile-info-box{border:3px solid var(--border);border-radius:18px;padding:14px;background:#fff;box-sizing:border-box}.mobile-info-label{display:block;font-size:1rem;font-weight:900;color:var(--category-color,var(--blue));margin-bottom:7px;text-transform:uppercase}.mobile-info-value{font-size:1rem;line-height:1.45;font-weight:800;overflow-wrap:anywhere}.mobile-info-value a{color:var(--blue);font-weight:900}@media(max-width:759px){body.mobile-fullscreen-open{overflow:hidden!important}}@media(min-width:760px){.mobile-fullscreen-card{display:none!important}}
-/* ===== MOBILE_FULLSCREEN_CARDS_END ===== */
+
+
+
+/* ===== MOBILE_ACCESSIBLE_WINDOWS_CLEAN_START ===== */
+/*
+  Gestione mobile unica e accessibile.
+  Intervento limitato alle finestre su smartphone:
+  - scheda luogo a schermo intero;
+  - scheda informazioni a schermo intero sopra la scheda luogo;
+  - altezza mai oltre lo schermo;
+  - scroll solo nel contenuto;
+  - chiusura informazioni: ritorno alla scheda luogo;
+  - chiusura luogo: ritorno alla sezione corrente.
+*/
+
+.mobile-place-screen,
+.mobile-info-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  display: none;
+  background: #ffffff;
+  color: #111111;
+  overflow: hidden;
+}
+
+.mobile-place-screen.open,
+.mobile-info-screen.open {
+  display: block;
+}
+
+.mobile-place-screen {
+  z-index: 20000;
+}
+
+.mobile-info-screen {
+  z-index: 21000;
+}
+
+.mobile-screen-shell {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  background: #ffffff;
+}
+
+.mobile-screen-header {
+  min-height: 68px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: max(10px, env(safe-area-inset-top)) 12px 10px 12px;
+  background: var(--category-color, var(--blue));
+  color: #ffffff;
+  box-shadow: 0 3px 14px rgba(0,0,0,.22);
+}
+
+.mobile-screen-title {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.2;
+  font-weight: 900;
+  word-break: break-word;
+}
+
+.mobile-screen-close {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  border-radius: 50%;
+  border: 4px solid #000000;
+  background: #ffbf00;
+  color: #000000;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mobile-screen-close:focus {
+  outline: 5px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.mobile-screen-content {
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 14px 14px calc(20px + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+/* Contenuto della scheda luogo */
+.mobile-place-content .popup-title {
+  font-size: 1.32rem !important;
+  line-height: 1.2 !important;
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+  font-weight: 900 !important;
+}
+
+.mobile-place-content .popup-photo {
+  display: block !important;
+  width: 100% !important;
+  max-height: 34dvh !important;
+  object-fit: cover !important;
+  border-radius: 18px !important;
+  border: 0 !important;
+  margin: 0 0 12px !important;
+  background: #eeeeee !important;
+}
+
+.mobile-place-content .popup-image-space {
+  min-height: 110px !important;
+  height: auto !important;
+}
+
+.mobile-place-content .popup-actions {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 10px !important;
+  margin-top: 16px !important;
+}
+
+.mobile-place-content .popup-actions a {
+  width: 100% !important;
+  min-height: 56px !important;
+  border-radius: 16px !important;
+  padding: 12px !important;
+  font-size: 1rem !important;
+  line-height: 1.18 !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+/* Contenuto della schermata informazioni */
+.mobile-info-content .modal-window {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.mobile-info-content .modal-window::before,
+.mobile-info-content .modal-close {
+  display: none !important;
+}
+
+.mobile-info-content .modal-title {
+  font-size: 1.32rem !important;
+  line-height: 1.2 !important;
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+  text-align: left !important;
+  font-weight: 900 !important;
+}
+
+.mobile-info-content .info-useful-content {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+  margin: 0 !important;
+}
+
+.mobile-info-content .info-box {
+  width: 100% !important;
+  padding: 14px !important;
+  border-radius: 18px !important;
+  box-sizing: border-box !important;
+  background: #ffffff !important;
+}
+
+.mobile-info-content .info-label {
+  display: block !important;
+  font-size: 1rem !important;
+  margin-bottom: 6px !important;
+  font-weight: 900 !important;
+}
+
+.mobile-info-content .info-value {
+  font-size: 1rem !important;
+  line-height: 1.45 !important;
+  overflow-wrap: anywhere !important;
+}
+
+@media (max-width: 759px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body.mobile-window-open {
+    overflow: hidden !important;
+    touch-action: none;
+  }
+
+  .mobile-screen-content {
+    touch-action: pan-y;
+  }
+
+  /* Su smartphone il popup Leaflet non deve competere con la schermata accessibile. */
+  .leaflet-popup,
+  .leaflet-popup-pane,
+  .leaflet-popup-content-wrapper,
+  .leaflet-popup-tip-container {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Le modali originali vengono usate come sorgente dati e nascoste subito. */
+  #infoUtiliModal.mobile-source-hidden,
+  #noteModal.mobile-source-hidden,
+  #schedaModal.mobile-source-hidden {
+    display: none !important;
+  }
+
+  a,
+  button {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 380px) {
+  .mobile-screen-title {
+    font-size: 1rem;
+  }
+
+  .mobile-screen-close {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    font-size: 32px;
+  }
+
+  .mobile-screen-content {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+@media (min-width: 760px) {
+  .mobile-place-screen,
+  .mobile-info-screen {
+    display: none !important;
+  }
+}
+/* ===== MOBILE_ACCESSIBLE_WINDOWS_CLEAN_END ===== */
 
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -9311,9 +9576,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Dal 25 aprile a fine ottobre: sabato e domenica 10:00–18:00",
-          contatti: "Ufficio Turismo: +39 0172 430185 – turismo@comune.bra.cn.it",
-          sito: "https://www.museidibra.it/museozizzola/contatti"
+          orari: "Dal 25 aprile a fine ottobre: sabato e domenica 10:00–18:00.",
+          contatti: "Ufficio Turismo: 0172 430185 – turismo@comune.bra.cn.it",
+          sito: "https://www.museidibra.it/museozizzola"
         },
         accessibilita: {
           sediaRotelle: "Sì",
@@ -9335,8 +9600,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Apertura legata alle attività religiose e alle visite; verificare con il Monastero",
-          contatti: "Monastero Sorelle Clarisse: +39 0172 413148 – monasteroclarisse.bra@gmail.com",
+          orari: "Apertura legata alle attività religiose e alle visite. Verificare prima della visita.",
+          contatti: "Monastero Sorelle Clarisse: 0172 413148 – monasteroclarisse.bra@gmail.com",
           sito: "https://federazioneclarisse.com/vieni-a-trovarci/monastero-di-bra/"
         },
         accessibilita: {
@@ -9359,8 +9624,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Apertura variabile in base a mostre, eventi e servizi turistici",
-          contatti: "Ufficio Turismo: +39 0172 430185 – turismo@comune.bra.cn.it",
+          orari: "Apertura variabile in base a mostre, eventi e servizi turistici.",
+          contatti: "Ufficio Turismo: 0172 430185 – turismo@comune.bra.cn.it",
           sito: "https://www.comune.bra.cn.it/it/vivere/741552"
         },
         accessibilita: {
@@ -9383,8 +9648,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Giovedì 15:00–18:00; domenica 10:00–12:30 e 14:30–17:30; altri giorni su prenotazione",
-          contatti: "+39 0172 423880 – traversa@comune.bra.cn.it",
+          orari: "Giovedì 15:00–18:00; domenica 10:00–12:30 e 14:30–17:30. Altri giorni su prenotazione.",
+          contatti: "0172 423880 – traversa@comune.bra.cn.it",
           sito: "https://www.museidibra.it/museotraversa"
         },
         accessibilita: {
@@ -9407,9 +9672,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Giovedì 15:00–18:00; domenica e festivi 10:00–12:30 e 14:30–17:30; altri giorni su prenotazione",
-          contatti: "+39 0172 412010 – craveri@comune.bra.cn.it",
-          sito: "https://www.museidibra.it/museocraveri/contatti"
+          orari: "Giovedì 15:00–18:00; domenica e festivi 10:00–12:30 e 14:30–17:30. Altri giorni su prenotazione.",
+          contatti: "0172 412010 – craveri@comune.bra.cn.it",
+          sito: "https://www.museidibra.it/museocraveri"
         },
         accessibilita: {
           sediaRotelle: "Sì",
@@ -9431,8 +9696,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Domenica 10:00–12:30 e 14:30–17:30; ingresso con visita guidata. Chiusura dal 7 luglio al 25 agosto",
-          contatti: "Musei di Bra: +39 0172 423880 / +39 0172 412010",
+          orari: "Domenica 10:00–12:30 e 14:30–17:30; ingresso con visita guidata. Chiusura dal 7 luglio al 25 agosto.",
+          contatti: "Museo del Giocattolo: 0172 430185",
           sito: "https://www.museidibra.it/museogiocattolo/orari-biglietti"
         },
         accessibilita: {
@@ -9455,8 +9720,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Ufficio parrocchiale: martedì 9:30–11:30 e 17:00–18:30 solo battesimi; mercoledì 9:30–11:30; venerdì 9:30–11:30",
-          contatti: "+39 0172 754092 – parr.santandrea.bra@diocesi.to.it",
+          orari: "Ufficio parrocchiale: martedì 9:30–11:30 e 17:00–18:30 solo battesimi; mercoledì 9:30–11:30; venerdì 9:30–11:30.",
+          contatti: "0172 754092 – parr.santandrea.bra@diocesi.to.it",
           sito: "https://parrocchiebra.it/home/s-andrea-apostolo-ufficio-parrocchiale/"
         },
         accessibilita: {
@@ -9479,8 +9744,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Uffici comunali: orari diversi in base al servizio; consultare la pagina ufficiale prima di andare",
-          contatti: "Centralino: +39 0172 438111 – URP: +39 0172 438378 – urp@comune.bra.cn.it",
+          orari: "Uffici comunali: orari diversi in base al servizio. Consultare la pagina ufficiale prima di andare.",
+          contatti: "Centralino: 0172 438111 – URP: 0172 438378 – urp@comune.bra.cn.it",
           sito: "https://www.comune.bra.cn.it/it"
         },
         accessibilita: {
@@ -9503,8 +9768,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Lunedì 14:00–18:30; martedì, mercoledì e giovedì 9:00–12:00 e 14:00–18:30; venerdì 9:00–12:00 e 14:00–18:00; sabato 9:00–12:30 sezione adulti",
-          contatti: "+39 0172 413049 – biblioteca@comune.bra.cn.it",
+          orari: "Lunedì 14:00–18:30; martedì, mercoledì e giovedì 9:00–12:00 e 14:00–18:30; venerdì 9:00–12:00 e 14:00–18:00; sabato 9:00–12:30 sezione adulti.",
+          contatti: "0172 413049 – biblioteca@comune.bra.cn.it",
           sito: "https://www.comune.bra.cn.it/it/unita_organizzative/7399"
         },
         accessibilita: {
@@ -9527,8 +9792,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Apertura legata alla programmazione degli spettacoli e degli eventi",
-          contatti: "Ufficio Turismo: +39 0172 430185 – turismo@comune.bra.cn.it",
+          orari: "Apertura legata alla programmazione degli spettacoli e degli eventi.",
+          contatti: "Ufficio Turismo: 0172 430185 – turismo@comune.bra.cn.it",
           sito: "https://www.turismoinbra.it/arte-e-cultura/il-teatro-politeama/"
         },
         accessibilita: {
@@ -9551,8 +9816,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Servizio ferroviario variabile in base agli orari dei treni; verificare su RFI o Trenitalia",
-          contatti: "Stazione: +39 0172 413720 – informazioni ferroviarie tramite Trenitalia",
+          orari: "Servizio ferroviario variabile in base agli orari dei treni. Verificare su RFI o Trenitalia.",
+          contatti: "Informazioni ferroviarie tramite RFI e Trenitalia.",
           sito: "https://www.rfi.it/it/stazioni/bra.html"
         },
         accessibilita: {
@@ -9575,8 +9840,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Accesso legato ai servizi di trasporto ferroviario e urbano; verificare gli orari aggiornati dei mezzi",
-          contatti: "Trasporto urbano Bra: +39 0172 411611",
+          orari: "Accesso legato ai servizi di trasporto ferroviario e urbano. Verificare gli orari aggiornati dei mezzi.",
+          contatti: "Trasporto urbano Bra: 0172 411611",
           sito: "https://moeves.it/orari"
         },
         accessibilita: {
@@ -9599,8 +9864,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Variabili in base alle attività sportive e alle associazioni presenti",
-          contatti: "Palasport / Match Ball Bra: +39 0172 412912 – info@matchballbra.com",
+          orari: "Variabili in base alle attività sportive e alle associazioni presenti.",
+          contatti: "Palasport / Match Ball Bra: 0172 412912 – info@matchballbra.com",
           sito: "https://www.matchballbra.com/"
         },
         accessibilita: {
@@ -9623,8 +9888,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Campi di calcetto: 19:30–23:00, secondo disponibilità e prenotazione",
-          contatti: "Prenotazioni: +39 0172 431507",
+          orari: "Campi di calcetto: 19:30–23:00, secondo disponibilità e prenotazione.",
+          contatti: "Prenotazioni: 0172 431507",
           sito: "https://www.uisp.it/bra/pagina/campi-di-calcetto"
         },
         accessibilita: {
@@ -9647,8 +9912,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Accesso secondo regolamento comunale dello skate park",
-          contatti: "Comune di Bra: +39 0172 438111 – UISP Bra-Cuneo: +39 0172 431507 – bracuneo@uisp.it",
+          orari: "Accesso secondo regolamento comunale dello skate park.",
+          contatti: "Comune di Bra: 0172 438111 – UISP Bra-Cuneo: 0172 431507 – bracuneo@uisp.it",
           sito: "https://municipium-images-production.s3-eu-west-1.amazonaws.com/s3/874/allegati/regolamento-skate-park.pdf"
         },
         accessibilita: {
@@ -9671,8 +9936,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Orari variabili per stagione e attività; verificare sempre sul sito ufficiale prima di andare",
-          contatti: "+39 0172 054160 – info@piscinabra.it",
+          orari: "Orari variabili per stagione e attività. Verificare sempre sul sito ufficiale prima di andare.",
+          contatti: "0172 054160 – info@piscinabra.it",
           sito: "https://piscinabra.it/"
         },
         accessibilita: {
@@ -9695,8 +9960,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Apertura variabile in base a eventi, conferenze e attività programmate",
-          contatti: "Comune di Bra: +39 0172 438111 – urp@comune.bra.cn.it",
+          orari: "Apertura variabile in base a eventi, conferenze e attività programmate.",
+          contatti: "Comune di Bra: 0172 438111 – urp@comune.bra.cn.it",
           sito: "https://www.comune.bra.cn.it/it/vivere/centro-polifunzionale-arpino-sala-auditorium-e-sala-conferenze"
         },
         accessibilita: {
@@ -9914,7 +10179,7 @@ La lista contiene le informazioni e i pulsanti necessari.
     function buildPlacePopupHtml(tappa,index){return `\n          <img class="popup-photo" src="${tappa.foto}" alt="Foto di ${tappa.nome}" onerror="this.remove();">\n          <div class="popup-title"> ${tappa.nome}</div>\n<div>${tappa.descrizione}</div>\n\n          <div class="popup-actions">\n            <a class="portami-qui" aria-label="Apri il percorso verso questo luogo su Google Maps" style="background:#F94144 !important; border-color:#F94144 !important; color:#ffffff !important; background:#F94144 !important; background-color:#F94144 !important; border-color:#F94144 !important; color:#111111 !important;" href="${googleMapsLink(tappa,"walking")}" target="_blank" rel="noopener">Vai a questo luogo</a>\n            ${tappa.isPersonal ? `<a href="#" class="popup-info info-utili open-note info-utili info-verde-fissa" data-index="${index}" style="background:#90BE6D !important; background-color:#90BE6D !important; border-color:#90BE6D !important; color:#111111 !important;" aria-label="Apri le note del luogo">NOTE</a>` : `<a href="#" class="popup-info info-utili open-info-utili info-utili info-verde-fissa" data-index="${index}" style="background:#90BE6D !important; background-color:#90BE6D !important; border-color:#90BE6D !important; color:#111111 !important;" aria-label="Apri informazioni utili del luogo">Informazioni</a>`}\n            ${tappa.isPersonal ? `<a href="#" class="popup-delete delete-place" data-delete-index="${tappa.personalIndex}">ELIMINA LUOGO</a>` : `<a href="#" class="popup-scheda open-scheda scheda-gialla-fissa" data-index="${index}" style="background:#577590 !important; background-color:#577590 !important; border-color:#577590 !important; color:#111111 !important;">Scheda del luogo</a>`}\n          </div>\n        `;}
     function openMobilePlaceScreen(index){if(!isMobileFullscreenCard())return false;const stops=getCurrentStops();const tappa=stops[index];if(!tappa)return false;ensureMobileFullscreenScreens();const screen=document.getElementById("mobilePlaceScreen");const title=document.getElementById("mobilePlaceScreenTitle");const content=document.getElementById("mobilePlaceScreenContent");title.textContent=tappa.nome;content.innerHTML=buildPlacePopupHtml(tappa,index);content.scrollTop=0;screen.classList.add("open");document.body.classList.add("mobile-fullscreen-open");document.getElementById("mobilePlaceScreenClose").focus({preventScroll:true});return true;}
     function closeMobilePlaceScreen(){const place=document.getElementById("mobilePlaceScreen");const info=document.getElementById("mobileInfoScreen");if(info){info.classList.remove("open");document.getElementById("mobileInfoScreenContent").innerHTML="";}if(place){place.classList.remove("open");document.getElementById("mobilePlaceScreenContent").innerHTML="";}document.body.classList.remove("mobile-fullscreen-open");}
-    function openMobileInfoUtiliScreen(index){if(!isMobileFullscreenCard())return false;const stops=getCurrentStops();const tappa=stops[index];if(!tappa||tappa.isPersonal)return false;const info=tappa.infoUtili||{orari:"INSERISCI QUI GLI ORARI DEL LUOGO.",contatti:"INSERISCI QUI TELEFONO, EMAIL O REFERENTE.",sito:"INSERISCI QUI IL SITO INTERNET."};ensureMobileFullscreenScreens();const screen=document.getElementById("mobileInfoScreen");const title=document.getElementById("mobileInfoScreenTitle");const content=document.getElementById("mobileInfoScreenContent");title.textContent="Informazioni - "+tappa.nome;content.innerHTML=`<div class="mobile-info-grid"><div class="mobile-info-box"><span class="mobile-info-label">Orari</span><div class="mobile-info-value">${info.orari||"ORARI NON INSERITI."}</div></div><div class="mobile-info-box"><span class="mobile-info-label">Contatti</span><div class="mobile-info-value">${info.contatti||"CONTATTI NON INSERITI."}</div></div><div class="mobile-info-box"><span class="mobile-info-label">Sito web</span><div class="mobile-info-value">${formatSito(info.sito)}</div></div></div>`;content.scrollTop=0;screen.classList.add("open");document.body.classList.add("mobile-fullscreen-open");document.getElementById("mobileInfoScreenClose").focus({preventScroll:true});return true;}
+    function openMobileInfoUtiliScreen(index){if(!isMobileFullscreenCard())return false;const stops=getCurrentStops();const tappa=stops[index];if(!tappa||tappa.isPersonal)return false;const info=getInfoUtiliLuogo(tappa);ensureMobileFullscreenScreens();const screen=document.getElementById("mobileInfoScreen");const title=document.getElementById("mobileInfoScreenTitle");const content=document.getElementById("mobileInfoScreenContent");title.textContent="Informazioni - "+tappa.nome;content.innerHTML=`<div class="mobile-info-grid"><div class="mobile-info-box"><span class="mobile-info-label">Orari</span><div class="mobile-info-value">${info.orari||"ORARI NON INSERITI."}</div></div><div class="mobile-info-box"><span class="mobile-info-label">Contatti</span><div class="mobile-info-value">${info.contatti||"CONTATTI NON INSERITI."}</div></div><div class="mobile-info-box"><span class="mobile-info-label">Sito web</span><div class="mobile-info-value">${formatSito(info.sito)}</div></div></div>`;content.scrollTop=0;screen.classList.add("open");document.body.classList.add("mobile-fullscreen-open");document.getElementById("mobileInfoScreenClose").focus({preventScroll:true});return true;}
     function openMobileNoteScreen(index){if(!isMobileFullscreenCard())return false;const stops=getCurrentStops();const tappa=stops[index];if(!tappa)return false;ensureMobileFullscreenScreens();const screen=document.getElementById("mobileInfoScreen");const title=document.getElementById("mobileInfoScreenTitle");const content=document.getElementById("mobileInfoScreenContent");title.textContent="NOTE - "+tappa.nome;content.innerHTML=`<div class="mobile-info-box"><div class="mobile-info-value">${tappa.descrizione||"NESSUNA NOTA INSERITA."}</div></div>`;content.scrollTop=0;screen.classList.add("open");document.body.classList.add("mobile-fullscreen-open");document.getElementById("mobileInfoScreenClose").focus({preventScroll:true});return true;}
     function closeMobileInfoScreen(){const info=document.getElementById("mobileInfoScreen");if(info){info.classList.remove("open");document.getElementById("mobileInfoScreenContent").innerHTML="";}const place=document.getElementById("mobilePlaceScreen");if(!place||!place.classList.contains("open")){document.body.classList.remove("mobile-fullscreen-open");}else{document.getElementById("mobilePlaceScreenClose").focus({preventScroll:true});}}
     document.addEventListener("keydown",function(event){if(!isMobileFullscreenCard()||event.key!=="Escape")return;const info=document.getElementById("mobileInfoScreen");const place=document.getElementById("mobilePlaceScreen");if(info&&info.classList.contains("open")){event.preventDefault();closeMobileInfoScreen();}else if(place&&place.classList.contains("open")){event.preventDefault();closeMobilePlaceScreen();}});
@@ -10488,7 +10753,133 @@ La lista contiene le informazioni e i pulsanti necessari.
     const infoContatti = document.getElementById("infoContatti");
     const infoSito = document.getElementById("infoSito");
 
-    function formatSito(value) {
+    
+    /* DATI PAGINA INFORMAZIONI - CONTATTI, ORARI, SITO WEB */
+    const datiInformazioniLuoghi = {
+      "zizzola": {
+            "orari": "Dal 25 aprile a fine ottobre: sabato e domenica 10:00–18:00.",
+            "contatti": "Ufficio Turismo: 0172 430185 – turismo@comune.bra.cn.it",
+            "sito": "https://www.museidibra.it/museozizzola"
+      },
+      "santa_chiara": {
+            "orari": "Apertura legata alle attività religiose e alle visite. Verificare prima della visita.",
+            "contatti": "Monastero Sorelle Clarisse: 0172 413148 – monasteroclarisse.bra@gmail.com",
+            "sito": "https://federazioneclarisse.com/vieni-a-trovarci/monastero-di-bra/"
+      },
+      "palazzo_mathis": {
+            "orari": "Apertura variabile in base a mostre, eventi e servizi turistici.",
+            "contatti": "Ufficio Turismo: 0172 430185 – turismo@comune.bra.cn.it",
+            "sito": "https://www.comune.bra.cn.it/it/vivere/741552"
+      },
+      "palazzo_traversa": {
+            "orari": "Giovedì 15:00–18:00; domenica 10:00–12:30 e 14:30–17:30. Altri giorni su prenotazione.",
+            "contatti": "0172 423880 – traversa@comune.bra.cn.it",
+            "sito": "https://www.museidibra.it/museotraversa"
+      },
+      "museo_craveri": {
+            "orari": "Giovedì 15:00–18:00; domenica e festivi 10:00–12:30 e 14:30–17:30. Altri giorni su prenotazione.",
+            "contatti": "0172 412010 – craveri@comune.bra.cn.it",
+            "sito": "https://www.museidibra.it/museocraveri"
+      },
+      "museo_giocattolo": {
+            "orari": "Domenica 10:00–12:30 e 14:30–17:30; ingresso con visita guidata. Chiusura dal 7 luglio al 25 agosto.",
+            "contatti": "Museo del Giocattolo: 0172 430185",
+            "sito": "https://www.museidibra.it/museogiocattolo/orari-biglietti"
+      },
+      "sant_andrea": {
+            "orari": "Ufficio parrocchiale: martedì 9:30–11:30 e 17:00–18:30 solo battesimi; mercoledì 9:30–11:30; venerdì 9:30–11:30.",
+            "contatti": "0172 754092 – parr.santandrea.bra@diocesi.to.it",
+            "sito": "https://parrocchiebra.it/home/s-andrea-apostolo-ufficio-parrocchiale/"
+      },
+      "comune_bra": {
+            "orari": "Uffici comunali: orari diversi in base al servizio. Consultare la pagina ufficiale prima di andare.",
+            "contatti": "Centralino: 0172 438111 – URP: 0172 438378 – urp@comune.bra.cn.it",
+            "sito": "https://www.comune.bra.cn.it/it"
+      },
+      "biblioteca_bra": {
+            "orari": "Lunedì 14:00–18:30; martedì, mercoledì e giovedì 9:00–12:00 e 14:00–18:30; venerdì 9:00–12:00 e 14:00–18:00; sabato 9:00–12:30 sezione adulti.",
+            "contatti": "0172 413049 – biblioteca@comune.bra.cn.it",
+            "sito": "https://www.comune.bra.cn.it/it/unita_organizzative/7399"
+      },
+      "teatro_bra": {
+            "orari": "Apertura legata alla programmazione degli spettacoli e degli eventi.",
+            "contatti": "Ufficio Turismo: 0172 430185 – turismo@comune.bra.cn.it",
+            "sito": "https://www.turismoinbra.it/arte-e-cultura/il-teatro-politeama/"
+      },
+      "stazione_bra": {
+            "orari": "Servizio ferroviario variabile in base agli orari dei treni. Verificare su RFI o Trenitalia.",
+            "contatti": "Informazioni ferroviarie tramite RFI e Trenitalia.",
+            "sito": "https://www.rfi.it/it/stazioni/bra.html"
+      },
+      "movicentro_bra": {
+            "orari": "Accesso legato ai servizi di trasporto ferroviario e urbano. Verificare gli orari aggiornati dei mezzi.",
+            "contatti": "Trasporto urbano Bra: 0172 411611",
+            "sito": "https://moeves.it/orari"
+      },
+      "palazzetto_bra": {
+            "orari": "Variabili in base alle attività sportive e alle associazioni presenti.",
+            "contatti": "Palasport / Match Ball Bra: 0172 412912 – info@matchballbra.com",
+            "sito": "https://www.matchballbra.com/"
+      },
+      "campo_madonna_fiori": {
+            "orari": "Campi di calcetto: 19:30–23:00, secondo disponibilità e prenotazione.",
+            "contatti": "Prenotazioni: 0172 431507",
+            "sito": "https://www.uisp.it/bra/pagina/campi-di-calcetto"
+      },
+      "pista_skate_bra": {
+            "orari": "Accesso secondo regolamento comunale dello skate park.",
+            "contatti": "Comune di Bra: 0172 438111 – UISP Bra-Cuneo: 0172 431507 – bracuneo@uisp.it",
+            "sito": "https://municipium-images-production.s3-eu-west-1.amazonaws.com/s3/874/allegati/regolamento-skate-park.pdf"
+      },
+      "piscina_bra": {
+            "orari": "Orari variabili per stagione e attività. Verificare sempre sul sito ufficiale prima di andare.",
+            "contatti": "0172 054160 – info@piscinabra.it",
+            "sito": "https://piscinabra.it/"
+      },
+      "polifunzionale_bra": {
+            "orari": "Apertura variabile in base a eventi, conferenze e attività programmate.",
+            "contatti": "Comune di Bra: 0172 438111 – urp@comune.bra.cn.it",
+            "sito": "https://www.comune.bra.cn.it/it/vivere/centro-polifunzionale-arpino-sala-auditorium-e-sala-conferenze"
+      }
+};
+
+    function chiaveInformazioniLuogo(tappa) {
+      if (!tappa) return "";
+      if (tappa.pagina) {
+        if (tappa.pagina.includes("la-zizzola")) return "zizzola";
+        if (tappa.pagina.includes("chiesa-santa-chiara")) return "santa_chiara";
+        if (tappa.pagina.includes("palazzo-mathis")) return "palazzo_mathis";
+        if (tappa.pagina.includes("palazzo-traversa")) return "palazzo_traversa";
+        if (tappa.pagina.includes("museo-craveri")) return "museo_craveri";
+        if (tappa.pagina.includes("museo-giocattolo")) return "museo_giocattolo";
+        if (tappa.pagina.includes("chiesa-sant-andrea")) return "sant_andrea";
+        if (tappa.pagina.includes("comune-bra")) return "comune_bra";
+        if (tappa.pagina.includes("biblioteca-civica")) return "biblioteca_bra";
+        if (tappa.pagina.includes("teatro-politeama")) return "teatro_bra";
+        if (tappa.pagina.includes("stazione-bra")) return "stazione_bra";
+        if (tappa.pagina.includes("movicentro")) return "movicentro_bra";
+        if (tappa.pagina.includes("palazzetto-sport")) return "palazzetto_bra";
+        if (tappa.pagina.includes("campo-calcio-madonna-fiori")) return "campo_madonna_fiori";
+        if (tappa.pagina.includes("pista-skate")) return "pista_skate_bra";
+        if (tappa.pagina.includes("piscina-comunale")) return "piscina_bra";
+        if (tappa.pagina.includes("polifunzionale")) return "polifunzionale_bra";
+      }
+      return "";
+    }
+
+    function getInfoUtiliLuogo(tappa) {
+      const chiave = chiaveInformazioniLuogo(tappa);
+      if (chiave && datiInformazioniLuoghi[chiave]) {
+        return datiInformazioniLuoghi[chiave];
+      }
+      return tappa && tappa.infoUtili ? tappa.infoUtili : {
+        orari: "ORARI NON INSERITI.",
+        contatti: "CONTATTI NON INSERITI.",
+        sito: "SITO INTERNET NON INSERITO."
+      };
+    }
+
+function formatSito(value) {
       if (!value || value === "Sito web non inserito." || value === "Inserisci qui il sito internet." || value === "SITO INTERNET NON INSERITO." || value === "INSERISCI QUI IL SITO INTERNET.") {
         return value || "Sito web non inserito.";
       }
@@ -10505,11 +10896,7 @@ La lista contiene le informazioni e i pulsanti necessari.
       const tappa = stops[index];
       if (!tappa) return;
 
-      const info = tappa.infoUtili || {
-        orari: "INSERISCI QUI GLI ORARI DEL LUOGO.",
-        contatti: "INSERISCI QUI TELEFONO, EMAIL O REFERENTE.",
-        sito: "INSERISCI QUI IL SITO INTERNET."
-      };
+      const info = getInfoUtiliLuogo(tappa);
 
       infoUtiliTitle.textContent = "Informazioni - " + tappa.nome;
       infoOrari.textContent = info.orari || "ORARI NON INSERITI.";
@@ -12127,5 +12514,548 @@ Usa ESC per chiudere una finestra.
   else setup();
 })();
 </script>
+
+<script>
+/* ===== MOBILE_ACCESSIBLE_WINDOWS_CLEAN_SCRIPT_START ===== */
+(function () {
+  let lastPlaceHTML = "";
+  let lastPlaceTitle = "Scheda del luogo";
+  let suppressModalObserver = false;
+
+  function isMobile() {
+    return window.matchMedia && window.matchMedia("(max-width: 759px)").matches;
+  }
+
+  function createScreen(id, titleId, contentId, closeId, type) {
+    let screen = document.getElementById(id);
+    if (screen) return screen;
+
+    screen = document.createElement("div");
+    screen.id = id;
+    screen.className = type === "info" ? "mobile-info-screen" : "mobile-place-screen";
+    screen.setAttribute("role", "dialog");
+    screen.setAttribute("aria-modal", "true");
+    screen.setAttribute("aria-labelledby", titleId);
+
+    const label = type === "info" ? "Informazioni" : "Scheda del luogo";
+    const closeLabel = type === "info" ? "Chiudi informazioni" : "Chiudi scheda del luogo";
+    const contentClass = type === "info" ? "mobile-info-content" : "mobile-place-content";
+
+    screen.innerHTML = `
+      <div class="mobile-screen-shell">
+        <div class="mobile-screen-header">
+          <h2 class="mobile-screen-title" id="${titleId}">${label}</h2>
+          <button type="button" class="mobile-screen-close" id="${closeId}" aria-label="${closeLabel}">×</button>
+        </div>
+        <div class="mobile-screen-content ${contentClass}" id="${contentId}" tabindex="0"></div>
+      </div>
+    `;
+
+    document.body.appendChild(screen);
+
+    document.getElementById(closeId).addEventListener("click", function () {
+      if (type === "info") closeInfoScreen();
+      else closePlaceScreen();
+    });
+
+    return screen;
+  }
+
+  function placeScreen() {
+    return createScreen("mobilePlaceScreen", "mobilePlaceTitle", "mobilePlaceContent", "mobilePlaceClose", "place");
+  }
+
+  function infoScreen() {
+    return createScreen("mobileInfoScreen", "mobileInfoTitle", "mobileInfoContent", "mobileInfoClose", "info");
+  }
+
+  function setBodyLock() {
+    document.body.classList.add("mobile-window-open");
+  }
+
+  function releaseBodyLockIfPossible() {
+    const place = document.getElementById("mobilePlaceScreen");
+    const info = document.getElementById("mobileInfoScreen");
+
+    const placeOpen = place && place.classList.contains("open");
+    const infoOpen = info && info.classList.contains("open");
+
+    if (!placeOpen && !infoOpen) {
+      document.body.classList.remove("mobile-window-open");
+    }
+  }
+
+  function closeLeafletPopupOnly() {
+    const btn = document.querySelector(".leaflet-popup-close-button");
+    if (btn) btn.click();
+  }
+
+  function openPlaceFromHTML(html, titleText) {
+    const screen = placeScreen();
+    const title = document.getElementById("mobilePlaceTitle");
+    const content = document.getElementById("mobilePlaceContent");
+
+    title.textContent = titleText || "Scheda del luogo";
+    content.innerHTML = html;
+    content.scrollTop = 0;
+
+    screen.classList.add("open");
+    setBodyLock();
+
+    const close = document.getElementById("mobilePlaceClose");
+    if (close) close.focus({ preventScroll: true });
+  }
+
+  function openPlaceFromLeafletContent(popupContent) {
+    if (!isMobile() || !popupContent) return;
+
+    const clone = popupContent.cloneNode(true);
+    const titleNode = clone.querySelector(".popup-title");
+
+    lastPlaceTitle = titleNode ? titleNode.textContent.trim() : "Scheda del luogo";
+    lastPlaceHTML = clone.innerHTML;
+
+    openPlaceFromHTML(lastPlaceHTML, lastPlaceTitle);
+    closeLeafletPopupOnly();
+  }
+
+  function closePlaceScreen() {
+    const place = document.getElementById("mobilePlaceScreen");
+    const info = document.getElementById("mobileInfoScreen");
+
+    if (info) {
+      info.classList.remove("open");
+      document.getElementById("mobileInfoContent").innerHTML = "";
+    }
+
+    if (place) {
+      place.classList.remove("open");
+      document.getElementById("mobilePlaceContent").innerHTML = "";
+    }
+
+    closeLeafletPopupOnly();
+
+    /* Non richiama home, non cambia categoria, non modifica la mappa. */
+    releaseBodyLockIfPossible();
+  }
+
+  function openInfoFromOriginalModal(modal) {
+    if (!isMobile() || !modal || suppressModalObserver) return;
+
+    const modalWindow = modal.querySelector(".modal-window");
+    if (!modalWindow) return;
+
+    suppressModalObserver = true;
+
+    const screen = infoScreen();
+    const title = document.getElementById("mobileInfoTitle");
+    const content = document.getElementById("mobileInfoContent");
+
+    const clone = modalWindow.cloneNode(true);
+    const internalClose = clone.querySelector(".modal-close");
+    if (internalClose) internalClose.remove();
+
+    const modalTitle = clone.querySelector(".modal-title");
+    title.textContent = modalTitle ? modalTitle.textContent.trim() : "Informazioni";
+
+    content.innerHTML = "";
+    content.appendChild(clone);
+    content.scrollTop = 0;
+
+    modal.classList.add("mobile-source-hidden");
+    modal.classList.remove("open");
+    modal.style.display = "none";
+
+    screen.classList.add("open");
+    setBodyLock();
+
+    const close = document.getElementById("mobileInfoClose");
+    if (close) close.focus({ preventScroll: true });
+
+    window.setTimeout(function () {
+      modal.classList.remove("mobile-source-hidden");
+      modal.style.display = "";
+      suppressModalObserver = false;
+    }, 100);
+  }
+
+  function closeInfoScreen() {
+    const info = document.getElementById("mobileInfoScreen");
+    if (info) {
+      info.classList.remove("open");
+      document.getElementById("mobileInfoContent").innerHTML = "";
+    }
+
+    /* Dopo informazioni devo rivedere la scheda del luogo. */
+    if (lastPlaceHTML) {
+      openPlaceFromHTML(lastPlaceHTML, lastPlaceTitle);
+    } else {
+      releaseBodyLockIfPossible();
+    }
+  }
+
+  function watchLeafletPopupCreation() {
+    const observer = new MutationObserver(function () {
+      if (!isMobile()) return;
+
+      const place = document.getElementById("mobilePlaceScreen");
+      const info = document.getElementById("mobileInfoScreen");
+
+      if (place && place.classList.contains("open")) return;
+      if (info && info.classList.contains("open")) return;
+
+      const popupContent = document.querySelector(".leaflet-popup-content");
+      if (!popupContent) return;
+
+      openPlaceFromLeafletContent(popupContent);
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  function watchOriginalModalOpening() {
+    const observer = new MutationObserver(function () {
+      if (!isMobile() || suppressModalObserver) return;
+
+      const opened = document.querySelector("#infoUtiliModal.open, #noteModal.open, #schedaModal.open");
+      if (opened) openInfoFromOriginalModal(opened);
+    });
+
+    observer.observe(document.body, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["class"]
+    });
+  }
+
+  document.addEventListener("click", function (event) {
+    if (!isMobile()) return;
+
+    const actionInsidePlace = event.target.closest(
+      "#mobilePlaceScreen .open-info-utili, #mobilePlaceScreen .open-note, #mobilePlaceScreen .open-scheda, #mobilePlaceScreen .popup-info, #mobilePlaceScreen .popup-scheda"
+    );
+
+    if (!actionInsidePlace) return;
+
+    /* La funzione originale del sito genera la modale; noi la intercettiamo. */
+    window.setTimeout(function () {
+      const opened = document.querySelector("#infoUtiliModal.open, #noteModal.open, #schedaModal.open");
+      if (opened) openInfoFromOriginalModal(opened);
+    }, 0);
+  }, true);
+
+  document.addEventListener("keydown", function (event) {
+    if (!isMobile() || event.key !== "Escape") return;
+
+    const info = document.getElementById("mobileInfoScreen");
+    if (info && info.classList.contains("open")) {
+      event.preventDefault();
+      closeInfoScreen();
+      return;
+    }
+
+    const place = document.getElementById("mobilePlaceScreen");
+    if (place && place.classList.contains("open")) {
+      event.preventDefault();
+      closePlaceScreen();
+    }
+  });
+
+  function init() {
+    placeScreen();
+    infoScreen();
+    watchLeafletPopupCreation();
+    watchOriginalModalOpening();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+/* ===== MOBILE_ACCESSIBLE_WINDOWS_CLEAN_SCRIPT_END ===== */
+</script>
+
+
+<script>
+/* ===== PATCH_INFORMAZIONI_VISIBILI_START ===== */
+(function() {
+  /*
+    Patch mirata SOLO alla pagina Informazioni.
+    Non modifica mappa, colori, layout, sezioni o popup del luogo.
+    Serve a far comparire sempre contatti, orari e sito web nella schermata Informazioni.
+  */
+
+  const INFO_LUOGHI_VISIBILI = {
+    "zizzola": {
+        "orari": "Dal 25 aprile a fine ottobre: sabato e domenica 10:00–18:00.",
+        "contatti": "Ufficio Turismo: 0172 430185 – turismo@comune.bra.cn.it",
+        "sito": "https://www.museidibra.it/museozizzola"
+    },
+    "santa_chiara": {
+        "orari": "Apertura legata alle attività religiose e alle visite. Verificare prima della visita.",
+        "contatti": "Monastero Sorelle Clarisse: 0172 413148 – monasteroclarisse.bra@gmail.com",
+        "sito": "https://federazioneclarisse.com/vieni-a-trovarci/monastero-di-bra/"
+    },
+    "palazzo_mathis": {
+        "orari": "Apertura variabile in base a mostre, eventi e servizi turistici.",
+        "contatti": "Ufficio Turismo: 0172 430185 – turismo@comune.bra.cn.it",
+        "sito": "https://www.comune.bra.cn.it/it/vivere/741552"
+    },
+    "palazzo_traversa": {
+        "orari": "Giovedì 15:00–18:00; domenica 10:00–12:30 e 14:30–17:30. Altri giorni su prenotazione.",
+        "contatti": "0172 423880 – traversa@comune.bra.cn.it",
+        "sito": "https://www.museidibra.it/museotraversa"
+    },
+    "museo_craveri": {
+        "orari": "Giovedì 15:00–18:00; domenica e festivi 10:00–12:30 e 14:30–17:30. Altri giorni su prenotazione.",
+        "contatti": "0172 412010 – craveri@comune.bra.cn.it",
+        "sito": "https://www.museidibra.it/museocraveri"
+    },
+    "museo_giocattolo": {
+        "orari": "Domenica 10:00–12:30 e 14:30–17:30; ingresso con visita guidata. Chiusura dal 7 luglio al 25 agosto.",
+        "contatti": "Museo del Giocattolo: 0172 430185",
+        "sito": "https://www.museidibra.it/museogiocattolo/orari-biglietti"
+    },
+    "sant_andrea": {
+        "orari": "Ufficio parrocchiale: martedì 9:30–11:30 e 17:00–18:30 solo battesimi; mercoledì 9:30–11:30; venerdì 9:30–11:30.",
+        "contatti": "0172 754092 – parr.santandrea.bra@diocesi.to.it",
+        "sito": "https://parrocchiebra.it/home/s-andrea-apostolo-ufficio-parrocchiale/"
+    },
+    "comune_bra": {
+        "orari": "Uffici comunali: orari diversi in base al servizio. Consultare la pagina ufficiale prima di andare.",
+        "contatti": "Centralino: 0172 438111 – URP: 0172 438378 – urp@comune.bra.cn.it",
+        "sito": "https://www.comune.bra.cn.it/it"
+    },
+    "biblioteca_bra": {
+        "orari": "Lunedì 14:00–18:30; martedì, mercoledì e giovedì 9:00–12:00 e 14:00–18:30; venerdì 9:00–12:00 e 14:00–18:00; sabato 9:00–12:30 sezione adulti.",
+        "contatti": "0172 413049 – biblioteca@comune.bra.cn.it",
+        "sito": "https://www.comune.bra.cn.it/it/unita_organizzative/7399"
+    },
+    "teatro_bra": {
+        "orari": "Apertura legata alla programmazione degli spettacoli e degli eventi.",
+        "contatti": "Ufficio Turismo: 0172 430185 – turismo@comune.bra.cn.it",
+        "sito": "https://www.turismoinbra.it/arte-e-cultura/il-teatro-politeama/"
+    },
+    "stazione_bra": {
+        "orari": "Servizio ferroviario variabile in base agli orari dei treni. Verificare su RFI o Trenitalia.",
+        "contatti": "Informazioni ferroviarie tramite RFI e Trenitalia.",
+        "sito": "https://www.rfi.it/it/stazioni/bra.html"
+    },
+    "movicentro_bra": {
+        "orari": "Accesso legato ai servizi di trasporto ferroviario e urbano. Verificare gli orari aggiornati dei mezzi.",
+        "contatti": "Trasporto urbano Bra: 0172 411611",
+        "sito": "https://moeves.it/orari"
+    },
+    "palazzetto_bra": {
+        "orari": "Variabili in base alle attività sportive e alle associazioni presenti.",
+        "contatti": "Palasport / Match Ball Bra: 0172 412912 – info@matchballbra.com",
+        "sito": "https://www.matchballbra.com/"
+    },
+    "campo_madonna_fiori": {
+        "orari": "Campi di calcetto: 19:30–23:00, secondo disponibilità e prenotazione.",
+        "contatti": "Prenotazioni: 0172 431507",
+        "sito": "https://www.uisp.it/bra/pagina/campi-di-calcetto"
+    },
+    "pista_skate_bra": {
+        "orari": "Accesso secondo regolamento comunale dello skate park.",
+        "contatti": "Comune di Bra: 0172 438111 – UISP Bra-Cuneo: 0172 431507 – bracuneo@uisp.it",
+        "sito": "https://municipium-images-production.s3-eu-west-1.amazonaws.com/s3/874/allegati/regolamento-skate-park.pdf"
+    },
+    "piscina_bra": {
+        "orari": "Orari variabili per stagione e attività. Verificare sempre sul sito ufficiale prima di andare.",
+        "contatti": "0172 054160 – info@piscinabra.it",
+        "sito": "https://piscinabra.it/"
+    },
+    "polifunzionale_bra": {
+        "orari": "Apertura variabile in base a eventi, conferenze e attività programmate.",
+        "contatti": "Comune di Bra: 0172 438111 – urp@comune.bra.cn.it",
+        "sito": "https://www.comune.bra.cn.it/it/vivere/centro-polifunzionale-arpino-sala-auditorium-e-sala-conferenze"
+    }
+};
+
+  function isMobileInfoPatch() {
+    return window.matchMedia && window.matchMedia("(max-width: 759px)").matches;
+  }
+
+  function keyFromTappa(tappa) {
+    if (!tappa) return "";
+    const pagina = String(tappa.pagina || "");
+    const nome = String(tappa.nome || "").toLowerCase();
+
+    if (pagina.includes("la-zizzola") || nome.includes("zizzola")) return "zizzola";
+    if (pagina.includes("chiesa-santa-chiara") || nome.includes("santa chiara")) return "santa_chiara";
+    if (pagina.includes("palazzo-mathis") || nome.includes("mathis")) return "palazzo_mathis";
+    if (pagina.includes("palazzo-traversa") || nome.includes("traversa")) return "palazzo_traversa";
+    if (pagina.includes("museo-craveri") || nome.includes("craveri")) return "museo_craveri";
+    if (pagina.includes("museo-giocattolo") || nome.includes("giocattolo")) return "museo_giocattolo";
+    if (pagina.includes("chiesa-sant-andrea") || nome.includes("sant'andrea") || nome.includes("sant’andrea")) return "sant_andrea";
+    if (pagina.includes("comune-bra") || nome.includes("comune di bra")) return "comune_bra";
+    if (pagina.includes("biblioteca-civica") || nome.includes("biblioteca")) return "biblioteca_bra";
+    if (pagina.includes("teatro-politeama") || nome.includes("teatro")) return "teatro_bra";
+    if (pagina.includes("stazione-bra") || nome.includes("stazione")) return "stazione_bra";
+    if (pagina.includes("movicentro") || nome.includes("movicentro")) return "movicentro_bra";
+    if (pagina.includes("palazzetto-sport") || nome.includes("palazzetto")) return "palazzetto_bra";
+    if (pagina.includes("campo-calcio-madonna-fiori") || nome.includes("madonna fiori")) return "campo_madonna_fiori";
+    if (pagina.includes("pista-skate") || nome.includes("skate")) return "pista_skate_bra";
+    if (pagina.includes("piscina-comunale") || nome.includes("piscina")) return "piscina_bra";
+    if (pagina.includes("polifunzionale") || nome.includes("polifunzionale")) return "polifunzionale_bra";
+
+    return "";
+  }
+
+  function currentStopsForPatch() {
+    try {
+      if (typeof getCurrentStops === "function") return getCurrentStops();
+    } catch (e) {}
+
+    try {
+      if (typeof currentCategory !== "undefined" && typeof tappe !== "undefined") {
+        if (currentCategory === "mia" && typeof getPersonalStops === "function") return getPersonalStops();
+        return Object.values(tappe).filter(function(tappa) {
+          return tappa.categoria === currentCategory;
+        });
+      }
+    } catch (e) {}
+
+    return [];
+  }
+
+  function infoForIndex(index) {
+    const stops = currentStopsForPatch();
+    const tappa = stops[Number(index)];
+    if (!tappa) return null;
+
+    if (tappa.isPersonal) {
+      return {
+        titolo: "Informazioni - " + (tappa.nome || "Luogo"),
+        orari: tappa.orari || "ORARI NON INSERITI.",
+        contatti: tappa.contatti || "CONTATTI NON INSERITI.",
+        sito: tappa.sito || "SITO INTERNET NON INSERITO."
+      };
+    }
+
+    const key = keyFromTappa(tappa);
+    const info = INFO_LUOGHI_VISIBILI[key] || tappa.infoUtili || {};
+
+    return {
+      titolo: "Informazioni - " + (tappa.nome || "Luogo"),
+      orari: info.orari || "ORARI NON INSERITI.",
+      contatti: info.contatti || "CONTATTI NON INSERITI.",
+      sito: info.sito || "SITO INTERNET NON INSERITO."
+    };
+  }
+
+  function sitoHtmlPatch(sito) {
+    if (!sito || sito === "SITO INTERNET NON INSERITO." || sito === "INSERISCI QUI IL SITO INTERNET.") {
+      return "SITO INTERNET NON INSERITO.";
+    }
+    const href = sito.startsWith("http://") || sito.startsWith("https://") ? sito : "https://" + sito;
+    return '<a href="' + href + '" target="_blank" rel="noopener">' + sito + '</a>';
+  }
+
+  function ensureMobileInfoScreenPatch() {
+    let screen = document.getElementById("mobileInfoScreen");
+    if (!screen) {
+      screen = document.createElement("div");
+      screen.id = "mobileInfoScreen";
+      screen.className = "mobile-info-screen";
+      screen.setAttribute("role", "dialog");
+      screen.setAttribute("aria-modal", "true");
+      screen.innerHTML =
+        '<div class="mobile-screen-shell">' +
+          '<div class="mobile-screen-header">' +
+            '<h2 class="mobile-screen-title" id="mobileInfoScreenTitle">Informazioni</h2>' +
+            '<button type="button" class="mobile-screen-close" id="mobileInfoScreenClose" aria-label="Chiudi informazioni">×</button>' +
+          '</div>' +
+          '<div class="mobile-screen-content mobile-info-content" id="mobileInfoScreenContent"></div>' +
+        '</div>';
+      document.body.appendChild(screen);
+    }
+
+    const close = document.getElementById("mobileInfoScreenClose");
+    if (close && !close.dataset.infoPatchClose) {
+      close.dataset.infoPatchClose = "true";
+      close.addEventListener("click", function() {
+        screen.classList.remove("open");
+        const content = document.getElementById("mobileInfoScreenContent");
+        if (content) content.innerHTML = "";
+        const place = document.getElementById("mobilePlaceScreen");
+        if (place) place.classList.add("open");
+      });
+    }
+
+    return screen;
+  }
+
+  function openInfoPatch(index) {
+    const info = infoForIndex(index);
+    if (!info) return false;
+
+    if (isMobileInfoPatch()) {
+      const screen = ensureMobileInfoScreenPatch();
+      const title = document.getElementById("mobileInfoScreenTitle");
+      const content = document.getElementById("mobileInfoScreenContent");
+
+      if (title) title.textContent = info.titolo;
+      if (content) {
+        content.innerHTML =
+          '<div class="mobile-info-grid">' +
+            '<div class="mobile-info-box"><span class="mobile-info-label">ORARI</span><div class="mobile-info-value">' + info.orari + '</div></div>' +
+            '<div class="mobile-info-box"><span class="mobile-info-label">CONTATTI</span><div class="mobile-info-value">' + info.contatti + '</div></div>' +
+            '<div class="mobile-info-box"><span class="mobile-info-label">SITO WEB</span><div class="mobile-info-value">' + sitoHtmlPatch(info.sito) + '</div></div>' +
+          '</div>';
+        content.scrollTop = 0;
+      }
+
+      screen.classList.add("open");
+      document.body.classList.add("mobile-fullscreen-open", "mobile-window-open");
+      const close = document.getElementById("mobileInfoScreenClose");
+      if (close) close.focus({preventScroll: true});
+      return true;
+    }
+
+    const title = document.getElementById("infoUtiliTitle");
+    const orari = document.getElementById("infoOrari");
+    const contatti = document.getElementById("infoContatti");
+    const sito = document.getElementById("infoSito");
+    const modal = document.getElementById("infoUtiliModal");
+    const close = document.getElementById("infoUtiliClose");
+
+    if (title) title.textContent = info.titolo;
+    if (orari) orari.textContent = info.orari;
+    if (contatti) contatti.textContent = info.contatti;
+    if (sito) sito.innerHTML = sitoHtmlPatch(info.sito);
+    if (modal) modal.classList.add("open");
+    if (close) close.focus();
+
+    return true;
+  }
+
+  window.apriInformazioniCorrette = openInfoPatch;
+
+  document.addEventListener("click", function(event) {
+    const link = event.target.closest(".open-info-utili");
+    if (!link) return;
+
+    const index = link.dataset.index;
+    const ok = openInfoPatch(index);
+    if (ok) {
+      event.preventDefault();
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    }
+  }, true);
+
+  window.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".open-info-utili").forEach(function(link) {
+      link.setAttribute("aria-label", "Apri contatti, orari e sito web del luogo");
+    });
+  });
+})();
+/* ===== PATCH_INFORMAZIONI_VISIBILI_END ===== */
+</script>
+
 </body>
 </html>
