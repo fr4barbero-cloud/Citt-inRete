@@ -9030,225 +9030,9 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
 }
 
 
-/* =========================================================
-   FINESTRA LUOGO VERTICALE + INFORMAZIONI CORRETTE
-   Soluzione pulita per smartphone: il popup della goccia
-   diventa una scheda verticale dal basso.
-   ========================================================= */
-
-.big-map-popup-overlay {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: flex-end;
-  justify-content: center;
-  background: rgba(0,0,0,.46);
-  z-index: 7000;
-  padding: 0;
-}
-
-.big-map-popup-overlay.open {
-  display: flex;
-}
-
-.big-map-popup-window {
-  width: min(560px, 100vw);
-  max-height: 88vh;
-  overflow-y: auto;
-  background: #ffffff;
-  color: #111111;
-  border-radius: 26px 26px 0 0;
-  border-top: 5px solid var(--category-color, var(--blue));
-  box-shadow: 0 -8px 30px rgba(0,0,0,.30);
-  padding: 14px 14px max(18px, env(safe-area-inset-bottom));
-}
-
-.big-map-popup-window::before {
-  content: "";
-  display: block;
-  width: 54px;
-  height: 6px;
-  border-radius: 999px;
-  background: #c8c8c8;
-  margin: 0 auto 10px;
-}
-
-.big-map-popup-close {
-  position: sticky;
-  top: 0;
-  float: right;
-  z-index: 2;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 4px solid #000000;
-  background: #ffbf00;
-  color: #000000;
-  font-size: 32px;
-  font-weight: 900;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin: 0 0 6px auto;
-}
-
-.big-map-popup-body {
-  clear: both;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 1.02rem;
-  line-height: 1.42;
-}
-
-.big-map-popup-body .popup-photo {
-  display: block !important;
-  width: 100% !important;
-  max-height: 230px !important;
-  object-fit: cover !important;
-  border-radius: 18px !important;
-  margin: 0 0 4px !important;
-}
-
-.big-map-popup-body .popup-title {
-  font-size: 1.25rem !important;
-  line-height: 1.2 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-weight: 900 !important;
-}
-
-.big-map-popup-body .popup-actions {
-  display: grid !important;
-  grid-template-columns: 1fr !important;
-  gap: 10px !important;
-  margin-top: 8px !important;
-  width: 100% !important;
-}
-
-.big-map-popup-body .popup-actions a {
-  width: 100% !important;
-  min-height: 56px !important;
-  border-radius: 16px !important;
-  padding: 12px !important;
-  font-size: 1rem !important;
-  line-height: 1.18 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  font-weight: 900 !important;
-  text-decoration: none !important;
-}
-
-/* La finestra informazioni deve stare sempre sopra alla scheda luogo */
-#infoUtiliModal,
-#noteModal,
-#schedaModal {
-  z-index: 12000 !important;
-}
-
-#infoUtiliModal.open,
-#noteModal.open,
-#schedaModal.open {
-  display: flex !important;
-}
-
-@media (max-width: 759px) {
-  /* nasconde il popup Leaflet tradizionale: viene sostituito dalla scheda verticale */
-  .leaflet-popup {
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-
-  #infoUtiliModal,
-  #noteModal,
-  #schedaModal {
-    align-items: flex-end !important;
-    justify-content: center !important;
-    padding: 0 !important;
-    background: rgba(0,0,0,.54) !important;
-  }
-
-  #infoUtiliModal .modal-window,
-  #noteModal .modal-window,
-  #schedaModal .modal-window {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    max-height: 88vh !important;
-    overflow-y: auto !important;
-    border-radius: 26px 26px 0 0 !important;
-    border-left: 0 !important;
-    border-right: 0 !important;
-    border-bottom: 0 !important;
-    padding: 14px 14px max(18px, env(safe-area-inset-bottom)) !important;
-    box-sizing: border-box !important;
-  }
-
-  #infoUtiliModal .modal-close,
-  #noteModal .modal-close,
-  #schedaModal .modal-close {
-    position: sticky !important;
-    top: 0 !important;
-    float: right !important;
-    z-index: 4 !important;
-    width: 52px !important;
-    height: 52px !important;
-    font-size: 32px !important;
-    margin: 0 0 4px auto !important;
-  }
-
-  #infoUtiliModal .modal-title,
-  #noteModal .modal-title,
-  #schedaModal .modal-title {
-    clear: both !important;
-    font-size: 1.22rem !important;
-    line-height: 1.22 !important;
-    text-align: left !important;
-    padding: 0 !important;
-    margin: 4px 0 12px !important;
-  }
-
-  #infoUtiliModal .info-useful-content {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-    clear: both !important;
-  }
-
-  #infoUtiliModal .info-box {
-    width: 100% !important;
-    padding: 14px !important;
-    border-radius: 18px !important;
-    box-sizing: border-box !important;
-  }
-
-  #infoUtiliModal .info-label {
-    display: block !important;
-    font-size: 1rem !important;
-    margin-bottom: 6px !important;
-  }
-
-  #infoUtiliModal .info-value {
-    font-size: 1rem !important;
-    line-height: 1.42 !important;
-    overflow-wrap: anywhere !important;
-  }
-}
-
-@media (min-width: 760px) {
-  .big-map-popup-overlay {
-    background: rgba(0,0,0,.55);
-  }
-
-  .big-map-popup-window {
-    border-radius: 26px;
-    margin: 20px;
-    max-height: 86vh;
-  }
-}
+/* ===== MOBILE_FULLSCREEN_CARDS_START ===== */
+.mobile-fullscreen-card{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;background:#fff;color:#111;z-index:9000;display:none;overflow:hidden}.mobile-fullscreen-card.open{display:block}#mobileInfoScreen{z-index:10000}.mobile-fullscreen-card-inner{width:100%;height:100%;display:grid;grid-template-rows:auto minmax(0,1fr);background:#fff}.mobile-fullscreen-card-header{min-height:66px;padding:max(10px,env(safe-area-inset-top)) 12px 10px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--category-color,var(--blue));color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.20)}.mobile-fullscreen-card-title{margin:0;font-size:1.08rem;line-height:1.18;font-weight:900;word-break:break-word}.mobile-fullscreen-card-close{width:52px;height:52px;min-width:52px;border-radius:50%;border:4px solid #000;background:#ffbf00;color:#000;font-size:32px;font-weight:900;line-height:1;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}.mobile-fullscreen-card-content{min-height:0;height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 14px calc(18px + env(safe-area-inset-bottom));box-sizing:border-box}.mobile-fullscreen-card-content .popup-title{font-size:1.3rem!important;line-height:1.2!important;margin:0 0 10px!important;padding:0!important;font-weight:900!important}.mobile-fullscreen-card-content .popup-photo{display:block!important;width:100%!important;max-height:34dvh!important;object-fit:cover!important;border-radius:18px!important;margin:0 0 12px!important;border:0!important;background:#eee!important}.mobile-fullscreen-card-content .popup-actions,.mobile-fullscreen-card-content .modal-actions{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;margin-top:16px!important}.mobile-fullscreen-card-content .popup-actions a,.mobile-fullscreen-card-content .button-link,.mobile-fullscreen-card-content .modal-actions a{width:100%!important;min-height:56px!important;border-radius:16px!important;padding:12px!important;font-size:1rem!important;line-height:1.18!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;font-weight:900!important;text-decoration:none!important;box-sizing:border-box!important}.mobile-info-grid{display:grid;grid-template-columns:1fr;gap:12px}.mobile-info-box{border:3px solid var(--border);border-radius:18px;padding:14px;background:#fff;box-sizing:border-box}.mobile-info-label{display:block;font-size:1rem;font-weight:900;color:var(--category-color,var(--blue));margin-bottom:7px;text-transform:uppercase}.mobile-info-value{font-size:1rem;line-height:1.45;font-weight:800;overflow-wrap:anywhere}.mobile-info-value a{color:var(--blue);font-weight:900}@media(max-width:759px){body.mobile-fullscreen-open{overflow:hidden!important}}@media(min-width:760px){.mobile-fullscreen-card{display:none!important}}
+/* ===== MOBILE_FULLSCREEN_CARDS_END ===== */
 
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -9527,9 +9311,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Dal 25 aprile al 25 ottobre, sabato e domenica 10:00–18:00",
-          contatti: "+39 0172 430185",
-          sito: "https://www.museidibra.it/museozizzola"
+          orari: "Dal 25 aprile a fine ottobre: sabato e domenica 10:00–18:00",
+          contatti: "Ufficio Turismo: +39 0172 430185 – turismo@comune.bra.cn.it",
+          sito: "https://www.museidibra.it/museozizzola/contatti"
         },
         accessibilita: {
           sediaRotelle: "Sì",
@@ -9551,9 +9335,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Tutti i giorni 11:00–17:00; chiusura dal 26 luglio al 31 agosto",
-          contatti: "+39 0172 413148",
-          sito: "https://www.visitlmr.it/it/pois/beni-culturali/chiesa-di-santa-chiara"
+          orari: "Apertura legata alle attività religiose e alle visite; verificare con il Monastero",
+          contatti: "Monastero Sorelle Clarisse: +39 0172 413148 – monasteroclarisse.bra@gmail.com",
+          sito: "https://federazioneclarisse.com/vieni-a-trovarci/monastero-di-bra/"
         },
         accessibilita: {
           sediaRotelle: "Sì",
@@ -9575,9 +9359,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Variabili in base a mostre ed eventi",
-          contatti: "+39 0172 430185",
-          sito: "https://www.visitlmr.it/it/pois/beni-culturali/palazzo-mathis"
+          orari: "Apertura variabile in base a mostre, eventi e servizi turistici",
+          contatti: "Ufficio Turismo: +39 0172 430185 – turismo@comune.bra.cn.it",
+          sito: "https://www.comune.bra.cn.it/it/vivere/741552"
         },
         accessibilita: {
           sediaRotelle: "Sì",
@@ -9599,8 +9383,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Giovedì 15:00–18:00; domenica 10:00–12:30 e 14:30–17:30",
-          contatti: "+39 0172 423880",
+          orari: "Giovedì 15:00–18:00; domenica 10:00–12:30 e 14:30–17:30; altri giorni su prenotazione",
+          contatti: "+39 0172 423880 – traversa@comune.bra.cn.it",
           sito: "https://www.museidibra.it/museotraversa"
         },
         accessibilita: {
@@ -9623,9 +9407,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Giovedì 15:00–18:00; domenica 10:00–12:30 e 14:30–17:30",
-          contatti: "+39 0172 412010",
-          sito: "https://www.museidibra.it/museocraveri"
+          orari: "Giovedì 15:00–18:00; domenica e festivi 10:00–12:30 e 14:30–17:30; altri giorni su prenotazione",
+          contatti: "+39 0172 412010 – craveri@comune.bra.cn.it",
+          sito: "https://www.museidibra.it/museocraveri/contatti"
         },
         accessibilita: {
           sediaRotelle: "Sì",
@@ -9647,9 +9431,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Domenica 10:00–12:30 e 14:30–17:30",
-          contatti: "+39 349 4565848",
-          sito: "https://www.museidibra.it/museogiocattolo"
+          orari: "Domenica 10:00–12:30 e 14:30–17:30; ingresso con visita guidata. Chiusura dal 7 luglio al 25 agosto",
+          contatti: "Musei di Bra: +39 0172 423880 / +39 0172 412010",
+          sito: "https://www.museidibra.it/museogiocattolo/orari-biglietti"
         },
         accessibilita: {
           sediaRotelle: "Sì",
@@ -9671,9 +9455,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "musei",
         infoUtili: {
-          orari: "Verificare con la parrocchia",
-          contatti: "+39 0172 413764",
-          sito: "https://www.parrocchiebra.it"
+          orari: "Ufficio parrocchiale: martedì 9:30–11:30 e 17:00–18:30 solo battesimi; mercoledì 9:30–11:30; venerdì 9:30–11:30",
+          contatti: "+39 0172 754092 – parr.santandrea.bra@diocesi.to.it",
+          sito: "https://parrocchiebra.it/home/s-andrea-apostolo-ufficio-parrocchiale/"
         },
         accessibilita: {
           sediaRotelle: "Sì",
@@ -9695,9 +9479,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Orari variabili in base agli uffici; verificare sul sito ufficiale",
-          contatti: "+39 0172 438111",
-          sito: "https://www.comune.bra.cn.it"
+          orari: "Uffici comunali: orari diversi in base al servizio; consultare la pagina ufficiale prima di andare",
+          contatti: "Centralino: +39 0172 438111 – URP: +39 0172 438378 – urp@comune.bra.cn.it",
+          sito: "https://www.comune.bra.cn.it/it"
         },
         accessibilita: {
           sediaRotelle: "Informazioni da verificare",
@@ -9719,9 +9503,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Orari variabili; verificare sul sito ufficiale",
-          contatti: "+39 0172 413049",
-          sito: "https://www.comune.bra.cn.it"
+          orari: "Lunedì 14:00–18:30; martedì, mercoledì e giovedì 9:00–12:00 e 14:00–18:30; venerdì 9:00–12:00 e 14:00–18:00; sabato 9:00–12:30 sezione adulti",
+          contatti: "+39 0172 413049 – biblioteca@comune.bra.cn.it",
+          sito: "https://www.comune.bra.cn.it/it/unita_organizzative/7399"
         },
         accessibilita: {
           sediaRotelle: "Informazioni da verificare",
@@ -9743,9 +9527,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Apertura legata alla programmazione degli eventi",
-          contatti: "+39 0172 430185",
-          sito: "https://www.turismoinbra.it"
+          orari: "Apertura legata alla programmazione degli spettacoli e degli eventi",
+          contatti: "Ufficio Turismo: +39 0172 430185 – turismo@comune.bra.cn.it",
+          sito: "https://www.turismoinbra.it/arte-e-cultura/il-teatro-politeama/"
         },
         accessibilita: {
           sediaRotelle: "Informazioni da verificare",
@@ -9767,9 +9551,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Servizio variabile in base agli orari dei treni",
-          contatti: "Verificare sui canali ufficiali del servizio ferroviario",
-          sito: "https://www.trenitalia.com"
+          orari: "Servizio ferroviario variabile in base agli orari dei treni; verificare su RFI o Trenitalia",
+          contatti: "Stazione: +39 0172 413720 – informazioni ferroviarie tramite Trenitalia",
+          sito: "https://www.rfi.it/it/stazioni/bra.html"
         },
         accessibilita: {
           sediaRotelle: "Informazioni da verificare",
@@ -9791,9 +9575,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Accesso legato ai servizi di trasporto",
-          contatti: "Verificare sul sito del Comune di Bra",
-          sito: "https://www.comune.bra.cn.it"
+          orari: "Accesso legato ai servizi di trasporto ferroviario e urbano; verificare gli orari aggiornati dei mezzi",
+          contatti: "Trasporto urbano Bra: +39 0172 411611",
+          sito: "https://moeves.it/orari"
         },
         accessibilita: {
           sediaRotelle: "Informazioni da verificare",
@@ -9815,9 +9599,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Variabili in base alle attività sportive",
-          contatti: "Verificare sul sito del Comune di Bra",
-          sito: "https://www.comune.bra.cn.it"
+          orari: "Variabili in base alle attività sportive e alle associazioni presenti",
+          contatti: "Palasport / Match Ball Bra: +39 0172 412912 – info@matchballbra.com",
+          sito: "https://www.matchballbra.com/"
         },
         accessibilita: {
           sediaRotelle: "Informazioni da verificare",
@@ -9839,9 +9623,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Variabili in base alle attività sportive",
-          contatti: "Verificare sul sito del Comune di Bra",
-          sito: "https://www.comune.bra.cn.it"
+          orari: "Campi di calcetto: 19:30–23:00, secondo disponibilità e prenotazione",
+          contatti: "Prenotazioni: +39 0172 431507",
+          sito: "https://www.uisp.it/bra/pagina/campi-di-calcetto"
         },
         accessibilita: {
           sediaRotelle: "Informazioni da verificare",
@@ -9863,9 +9647,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Accesso variabile in base al regolamento dell’area",
-          contatti: "Verificare sul sito del Comune di Bra",
-          sito: "https://www.comune.bra.cn.it"
+          orari: "Accesso secondo regolamento comunale dello skate park",
+          contatti: "Comune di Bra: +39 0172 438111 – UISP Bra-Cuneo: +39 0172 431507 – bracuneo@uisp.it",
+          sito: "https://municipium-images-production.s3-eu-west-1.amazonaws.com/s3/874/allegati/regolamento-skate-park.pdf"
         },
         accessibilita: {
           sediaRotelle: "Informazioni da verificare",
@@ -9887,9 +9671,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Variabili in base alla stagione e alle attività",
-          contatti: "Verificare sul sito ufficiale della struttura",
-          sito: "https://www.comune.bra.cn.it"
+          orari: "Orari variabili per stagione e attività; verificare sempre sul sito ufficiale prima di andare",
+          contatti: "+39 0172 054160 – info@piscinabra.it",
+          sito: "https://piscinabra.it/"
         },
         accessibilita: {
           sediaRotelle: "Informazioni da verificare",
@@ -9911,9 +9695,9 @@ La lista contiene le informazioni e i pulsanti necessari.
         accesso: "ok",
         categoria: "edifici",
         infoUtili: {
-          orari: "Variabili in base alle attività",
-          contatti: "Verificare sul sito del Comune di Bra",
-          sito: "https://www.comune.bra.cn.it"
+          orari: "Apertura variabile in base a eventi, conferenze e attività programmate",
+          contatti: "Comune di Bra: +39 0172 438111 – urp@comune.bra.cn.it",
+          sito: "https://www.comune.bra.cn.it/it/vivere/centro-polifunzionale-arpino-sala-auditorium-e-sala-conferenze"
         },
         accessibilita: {
           sediaRotelle: "Informazioni da verificare",
@@ -10115,6 +9899,27 @@ La lista contiene le informazioni e i pulsanti necessari.
     function googleMapsLink(tappa, mode) {
       return `https://www.google.com/maps/dir/?api=1&destination=${tappa.lat},${tappa.lng}&travelmode=${mode}&dir_action=navigate`;
     }
+
+
+    /* ===== MOBILE_FULLSCREEN_CARDS_SCRIPT_START ===== */
+    function isMobileFullscreenCard(){return window.matchMedia&&window.matchMedia("(max-width: 759px)").matches;}
+    function ensureMobileFullscreenScreens(){
+      if(!document.getElementById("mobilePlaceScreen")){
+        const place=document.createElement("div");place.id="mobilePlaceScreen";place.className="mobile-fullscreen-card";place.setAttribute("role","dialog");place.setAttribute("aria-modal","true");place.setAttribute("aria-label","Scheda del luogo");place.innerHTML=`<div class="mobile-fullscreen-card-inner"><div class="mobile-fullscreen-card-header"><h2 class="mobile-fullscreen-card-title" id="mobilePlaceScreenTitle">Scheda del luogo</h2><button type="button" class="mobile-fullscreen-card-close" id="mobilePlaceScreenClose" aria-label="Chiudi scheda del luogo">×</button></div><div class="mobile-fullscreen-card-content" id="mobilePlaceScreenContent"></div></div>`;document.body.appendChild(place);document.getElementById("mobilePlaceScreenClose").addEventListener("click",closeMobilePlaceScreen);
+      }
+      if(!document.getElementById("mobileInfoScreen")){
+        const info=document.createElement("div");info.id="mobileInfoScreen";info.className="mobile-fullscreen-card";info.setAttribute("role","dialog");info.setAttribute("aria-modal","true");info.setAttribute("aria-label","Informazioni del luogo");info.innerHTML=`<div class="mobile-fullscreen-card-inner"><div class="mobile-fullscreen-card-header"><h2 class="mobile-fullscreen-card-title" id="mobileInfoScreenTitle">Informazioni</h2><button type="button" class="mobile-fullscreen-card-close" id="mobileInfoScreenClose" aria-label="Chiudi informazioni">×</button></div><div class="mobile-fullscreen-card-content" id="mobileInfoScreenContent"></div></div>`;document.body.appendChild(info);document.getElementById("mobileInfoScreenClose").addEventListener("click",closeMobileInfoScreen);
+      }
+    }
+    function buildPlacePopupHtml(tappa,index){return `\n          <img class="popup-photo" src="${tappa.foto}" alt="Foto di ${tappa.nome}" onerror="this.remove();">\n          <div class="popup-title"> ${tappa.nome}</div>\n<div>${tappa.descrizione}</div>\n\n          <div class="popup-actions">\n            <a class="portami-qui" aria-label="Apri il percorso verso questo luogo su Google Maps" style="background:#F94144 !important; border-color:#F94144 !important; color:#ffffff !important; background:#F94144 !important; background-color:#F94144 !important; border-color:#F94144 !important; color:#111111 !important;" href="${googleMapsLink(tappa,"walking")}" target="_blank" rel="noopener">Vai a questo luogo</a>\n            ${tappa.isPersonal ? `<a href="#" class="popup-info info-utili open-note info-utili info-verde-fissa" data-index="${index}" style="background:#90BE6D !important; background-color:#90BE6D !important; border-color:#90BE6D !important; color:#111111 !important;" aria-label="Apri le note del luogo">NOTE</a>` : `<a href="#" class="popup-info info-utili open-info-utili info-utili info-verde-fissa" data-index="${index}" style="background:#90BE6D !important; background-color:#90BE6D !important; border-color:#90BE6D !important; color:#111111 !important;" aria-label="Apri informazioni utili del luogo">Informazioni</a>`}\n            ${tappa.isPersonal ? `<a href="#" class="popup-delete delete-place" data-delete-index="${tappa.personalIndex}">ELIMINA LUOGO</a>` : `<a href="#" class="popup-scheda open-scheda scheda-gialla-fissa" data-index="${index}" style="background:#577590 !important; background-color:#577590 !important; border-color:#577590 !important; color:#111111 !important;">Scheda del luogo</a>`}\n          </div>\n        `;}
+    function openMobilePlaceScreen(index){if(!isMobileFullscreenCard())return false;const stops=getCurrentStops();const tappa=stops[index];if(!tappa)return false;ensureMobileFullscreenScreens();const screen=document.getElementById("mobilePlaceScreen");const title=document.getElementById("mobilePlaceScreenTitle");const content=document.getElementById("mobilePlaceScreenContent");title.textContent=tappa.nome;content.innerHTML=buildPlacePopupHtml(tappa,index);content.scrollTop=0;screen.classList.add("open");document.body.classList.add("mobile-fullscreen-open");document.getElementById("mobilePlaceScreenClose").focus({preventScroll:true});return true;}
+    function closeMobilePlaceScreen(){const place=document.getElementById("mobilePlaceScreen");const info=document.getElementById("mobileInfoScreen");if(info){info.classList.remove("open");document.getElementById("mobileInfoScreenContent").innerHTML="";}if(place){place.classList.remove("open");document.getElementById("mobilePlaceScreenContent").innerHTML="";}document.body.classList.remove("mobile-fullscreen-open");}
+    function openMobileInfoUtiliScreen(index){if(!isMobileFullscreenCard())return false;const stops=getCurrentStops();const tappa=stops[index];if(!tappa||tappa.isPersonal)return false;const info=tappa.infoUtili||{orari:"INSERISCI QUI GLI ORARI DEL LUOGO.",contatti:"INSERISCI QUI TELEFONO, EMAIL O REFERENTE.",sito:"INSERISCI QUI IL SITO INTERNET."};ensureMobileFullscreenScreens();const screen=document.getElementById("mobileInfoScreen");const title=document.getElementById("mobileInfoScreenTitle");const content=document.getElementById("mobileInfoScreenContent");title.textContent="Informazioni - "+tappa.nome;content.innerHTML=`<div class="mobile-info-grid"><div class="mobile-info-box"><span class="mobile-info-label">Orari</span><div class="mobile-info-value">${info.orari||"ORARI NON INSERITI."}</div></div><div class="mobile-info-box"><span class="mobile-info-label">Contatti</span><div class="mobile-info-value">${info.contatti||"CONTATTI NON INSERITI."}</div></div><div class="mobile-info-box"><span class="mobile-info-label">Sito web</span><div class="mobile-info-value">${formatSito(info.sito)}</div></div></div>`;content.scrollTop=0;screen.classList.add("open");document.body.classList.add("mobile-fullscreen-open");document.getElementById("mobileInfoScreenClose").focus({preventScroll:true});return true;}
+    function openMobileNoteScreen(index){if(!isMobileFullscreenCard())return false;const stops=getCurrentStops();const tappa=stops[index];if(!tappa)return false;ensureMobileFullscreenScreens();const screen=document.getElementById("mobileInfoScreen");const title=document.getElementById("mobileInfoScreenTitle");const content=document.getElementById("mobileInfoScreenContent");title.textContent="NOTE - "+tappa.nome;content.innerHTML=`<div class="mobile-info-box"><div class="mobile-info-value">${tappa.descrizione||"NESSUNA NOTA INSERITA."}</div></div>`;content.scrollTop=0;screen.classList.add("open");document.body.classList.add("mobile-fullscreen-open");document.getElementById("mobileInfoScreenClose").focus({preventScroll:true});return true;}
+    function closeMobileInfoScreen(){const info=document.getElementById("mobileInfoScreen");if(info){info.classList.remove("open");document.getElementById("mobileInfoScreenContent").innerHTML="";}const place=document.getElementById("mobilePlaceScreen");if(!place||!place.classList.contains("open")){document.body.classList.remove("mobile-fullscreen-open");}else{document.getElementById("mobilePlaceScreenClose").focus({preventScroll:true});}}
+    document.addEventListener("keydown",function(event){if(!isMobileFullscreenCard()||event.key!=="Escape")return;const info=document.getElementById("mobileInfoScreen");const place=document.getElementById("mobilePlaceScreen");if(info&&info.classList.contains("open")){event.preventDefault();closeMobileInfoScreen();}else if(place&&place.classList.contains("open")){event.preventDefault();closeMobilePlaceScreen();}});
+    /* ===== MOBILE_FULLSCREEN_CARDS_SCRIPT_END ===== */
+
 
     const modal = document.getElementById("schedaModal");
     const modalClose = document.getElementById("modalClose");
@@ -10329,24 +10134,21 @@ La lista contiene le informazioni e i pulsanti necessari.
           title: `. ${tappa.nome}`
         }).addTo(map);
 
-        marker.bindPopup(`
+        const popupHtml = buildPlacePopupHtml(tappa, index);
 
-          <img class="popup-photo" src="${tappa.foto}" alt="Foto di ${tappa.nome}" onerror="this.remove();">
-          <div class="popup-title"> ${tappa.nome}</div>
-<div>${tappa.descrizione}</div>
-
-          <div class="popup-actions">
-            <a class="portami-qui" aria-label="Apri il percorso verso questo luogo su Google Maps" style="background:#F94144 !important; border-color:#F94144 !important; color:#ffffff !important; background:#F94144 !important; background-color:#F94144 !important; border-color:#F94144 !important; color:#111111 !important;" href="${googleMapsLink(tappa, "walking")}" target="_blank" rel="noopener">Vai a questo luogo</a>
-            ${tappa.isPersonal ? `<a href="#" class="popup-info info-utili open-note info-utili info-verde-fissa" data-index="${index}" style="background:#90BE6D !important; background-color:#90BE6D !important; border-color:#90BE6D !important; color:#111111 !important;" aria-label="Apri le note del luogo">NOTE</a>` : `<a href="#" class="popup-info info-utili open-info-utili info-utili info-verde-fissa" data-index="${index}" style="background:#90BE6D !important; background-color:#90BE6D !important; border-color:#90BE6D !important; color:#111111 !important;" aria-label="Apri informazioni utili del luogo">Informazioni</a>`}
-            ${tappa.isPersonal ? `<a href="#" class="popup-delete delete-place" data-delete-index="${tappa.personalIndex}">ELIMINA LUOGO</a>` : `<a href="#" class="popup-scheda open-scheda scheda-gialla-fissa" data-index="${index}" style="background:#577590 !important; background-color:#577590 !important; border-color:#577590 !important; color:#111111 !important;">Scheda del luogo</a>`}
-          </div>
-        `, {
-          maxWidth: 380,
-          minWidth: 260,
-          autoPan: true,
-          keepInView: true,
-          autoPanPadding: [40, 40]
-        });
+        if (isMobileFullscreenCard()) {
+          marker.on("click", function() {
+            openMobilePlaceScreen(index);
+          });
+        } else {
+          marker.bindPopup(popupHtml, {
+            maxWidth: 380,
+            minWidth: 260,
+            autoPan: true,
+            keepInView: true,
+            autoPanPadding: [40, 40]
+          });
+        }
 
         marker.on("click", function() {
           document.querySelectorAll(".marker").forEach(function(el) {
@@ -10640,6 +10442,7 @@ La lista contiene le informazioni e i pulsanti necessari.
     const noteText = document.getElementById("noteText");
 
     function openNote(index) {
+      if (openMobileNoteScreen(index)) return;
       lastFocusedElement = document.activeElement;
       const stops = getCurrentStops();
       const tappa = stops[index];
@@ -10696,6 +10499,7 @@ La lista contiene le informazioni e i pulsanti necessari.
     }
 
     function openInfoUtili(index) {
+      if (openMobileInfoUtiliScreen(index)) return;
       lastFocusedElement = document.activeElement;
       const stops = getCurrentStops();
       const tappa = stops[index];
@@ -12323,230 +12127,5 @@ Usa ESC per chiudere una finestra.
   else setup();
 })();
 </script>
-
-
-
-<script>
-(function () {
-  function getOverlay() {
-    let overlay = document.getElementById('bigMapPopupOverlay');
-    if (overlay) return overlay;
-
-    overlay = document.createElement('div');
-    overlay.id = 'bigMapPopupOverlay';
-    overlay.className = 'big-map-popup-overlay';
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-label', 'Informazioni sul luogo');
-
-    overlay.innerHTML =
-      '<div class="big-map-popup-window" role="document">' +
-        '<button type="button" class="big-map-popup-close" aria-label="Chiudi finestra">×</button>' +
-        '<div class="big-map-popup-body"></div>' +
-      '</div>';
-
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener('click', function (event) {
-      if (event.target === overlay || event.target.classList.contains('big-map-popup-close')) {
-        closeBigPopup();
-      }
-    });
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && overlay.classList.contains('open')) {
-        closeBigPopup();
-      }
-    });
-
-    return overlay;
-  }
-
-  function closeBigPopup() {
-    const overlay = document.getElementById('bigMapPopupOverlay');
-    if (!overlay) return;
-    overlay.classList.remove('open');
-    overlay.querySelector('.big-map-popup-body').innerHTML = '';
-  }
-
-  function openBigPopupFromLeafletPopup(popupContent) {
-    const overlay = getOverlay();
-    const body = overlay.querySelector('.big-map-popup-body');
-    const clonedContent = popupContent.cloneNode(true);
-
-    const firstImage = clonedContent.querySelector('img, .popup-photo, .popup-image-space');
-    const title = clonedContent.querySelector('.popup-title');
-
-    if (firstImage && title && firstImage.compareDocumentPosition(title) & Node.DOCUMENT_POSITION_PRECEDING) {
-      title.parentNode.insertBefore(firstImage, title);
-    }
-
-    body.innerHTML = '';
-    body.appendChild(clonedContent);
-    overlay.classList.add('open');
-
-    const originalClose = document.querySelector('.leaflet-popup-close-button');
-    if (originalClose) originalClose.click();
-
-    const closeButton = overlay.querySelector('.big-map-popup-close');
-    if (closeButton) closeButton.focus();
-  }
-
-  function observeLeafletPopups() {
-    const observer = new MutationObserver(function () {
-      const overlay = document.getElementById('bigMapPopupOverlay');
-      if (overlay && overlay.classList.contains('open')) return;
-
-      const popupContent = document.querySelector('.leaflet-popup-content');
-      if (!popupContent) return;
-
-      openBigPopupFromLeafletPopup(popupContent);
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', observeLeafletPopups);
-})();
-</script>
-
-
-
-<script>
-/* =========================================================
-   Sostituisce il popup Leaflet con una scheda verticale.
-   Non modifica i dati originali: recupera il contenuto già
-   generato dal popup, quindi mantiene contatti, orari, sito,
-   note e schede del luogo.
-   ========================================================= */
-(function () {
-  function isMobile() {
-    return window.matchMedia && window.matchMedia('(max-width: 759px)').matches;
-  }
-
-  function getOverlay() {
-    let overlay = document.getElementById('bigMapPopupOverlay');
-    if (overlay) return overlay;
-
-    overlay = document.createElement('div');
-    overlay.id = 'bigMapPopupOverlay';
-    overlay.className = 'big-map-popup-overlay';
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-label', 'Scheda del luogo');
-
-    overlay.innerHTML =
-      '<div class="big-map-popup-window" role="document">' +
-        '<button type="button" class="big-map-popup-close" aria-label="Chiudi finestra">×</button>' +
-        '<div class="big-map-popup-body"></div>' +
-      '</div>';
-
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener('click', function (event) {
-      if (event.target === overlay || event.target.classList.contains('big-map-popup-close')) {
-        closeBigPopup();
-      }
-    });
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && overlay.classList.contains('open')) {
-        closeBigPopup();
-      }
-    });
-
-    return overlay;
-  }
-
-  function closeBigPopup() {
-    const overlay = document.getElementById('bigMapPopupOverlay');
-    if (!overlay) return;
-    overlay.classList.remove('open');
-    const body = overlay.querySelector('.big-map-popup-body');
-    if (body) body.innerHTML = '';
-  }
-
-  function openBigPopupFromLeafletPopup(popupContent) {
-    if (!isMobile()) return;
-
-    const overlay = getOverlay();
-    const body = overlay.querySelector('.big-map-popup-body');
-    const clonedContent = popupContent.cloneNode(true);
-
-    body.innerHTML = '';
-    body.appendChild(clonedContent);
-    overlay.classList.add('open');
-
-    const originalClose = document.querySelector('.leaflet-popup-close-button');
-    if (originalClose) originalClose.click();
-
-    const closeButton = overlay.querySelector('.big-map-popup-close');
-    if (closeButton) closeButton.focus();
-  }
-
-  function observeLeafletPopups() {
-    const observer = new MutationObserver(function () {
-      if (!isMobile()) return;
-
-      const overlay = document.getElementById('bigMapPopupOverlay');
-      if (overlay && overlay.classList.contains('open')) return;
-
-      const popupContent = document.querySelector('.leaflet-popup-content');
-      if (!popupContent) return;
-
-      openBigPopupFromLeafletPopup(popupContent);
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-  }
-
-  /* Quando si apre Informazioni, Note o Scheda, la finestra del luogo si chiude.
-     Così la finestra contatti non finisce mai sotto. */
-  document.addEventListener('click', function (event) {
-    const action = event.target.closest(
-      '#bigMapPopupOverlay .open-info-utili, #bigMapPopupOverlay .open-note, #bigMapPopupOverlay .open-scheda'
-    );
-    if (!action) return;
-
-    setTimeout(function () {
-      closeBigPopup();
-
-      const openedModal = document.querySelector('.modal-overlay.open');
-      if (openedModal) {
-        openedModal.style.zIndex = '12000';
-      }
-    }, 0);
-  }, false);
-
-  /* Se una modale viene aperta da qualunque punto, resta davanti. */
-  const modalObserver = new MutationObserver(function () {
-    document.querySelectorAll('.modal-overlay.open').forEach(function (modal) {
-      modal.style.zIndex = '12000';
-    });
-  });
-
-  function init() {
-    observeLeafletPopups();
-    modalObserver.observe(document.body, {
-      attributes: true,
-      subtree: true,
-      attributeFilter: ['class']
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script>
-
 </body>
 </html>
