@@ -13547,6 +13547,9 @@ Usa ESC per chiudere una finestra.
     pointer-events: auto !important;
   }
 
+
+  #finalPlaceWindow { z-index: 2147483000 !important; }
+  #finalInfoWindow { z-index: 2147483200 !important; }
   @media (max-width: 759px) {
     #finalPlaceWindow,
     #finalInfoWindow {
@@ -13606,6 +13609,9 @@ Usa ESC per chiudere una finestra.
 
     screen.querySelector('.final-window-close').addEventListener('click', function(){
       screen.classList.remove('open');
+      screen.style.removeProperty('display');
+      screen.style.removeProperty('visibility');
+      screen.style.removeProperty('opacity');
     });
 
     screen.addEventListener('click', function(event){
@@ -13672,11 +13678,17 @@ Usa ESC per chiudere una finestra.
     if (!info && !tappa.isPersonal) {
       info = document.createElement('a');
       info.href = '#';
-      info.className = 'open-info-utili popup-info button-link info';
       info.textContent = 'Informazioni';
       actions.appendChild(info);
     }
-    if (info) info.setAttribute('data-index', String(index));
+    if (info) {
+      /* Classe nuova e separata: evita che i vecchi listener intercettino il click
+         e aprano la finestra informazioni sbagliata/nascosta. */
+      info.className = 'final-info-trigger button-link info';
+      info.setAttribute('href', '#');
+      info.setAttribute('data-index', String(index));
+      info.setAttribute('aria-label', 'Apri informazioni del luogo');
+    }
 
     return wrap.innerHTML;
   }
@@ -13760,7 +13772,12 @@ Usa ESC per chiudere una finestra.
     var content = document.getElementById('finalInfoContent');
     content.innerHTML = buildInfoHtml(tappa);
     content.scrollTop = 0;
+    var oldInfo = document.getElementById('mobileInfoScreen');
+    if (oldInfo) oldInfo.classList.remove('open');
     info.classList.add('open');
+    info.style.setProperty('display', 'flex', 'important');
+    info.style.setProperty('visibility', 'visible', 'important');
+    info.style.setProperty('opacity', '1', 'important');
     return true;
   };
 
@@ -13773,13 +13790,23 @@ Usa ESC per chiudere una finestra.
       return;
     }
 
-    var infoLink = event.target.closest('#finalPlaceWindow .open-info-utili, #finalPlaceWindow .popup-info');
+    var infoLink = event.target.closest('#finalPlaceWindow .final-info-trigger');
     if (infoLink) {
       event.preventDefault();
       event.stopImmediatePropagation();
       window.openMobileInfoUtiliScreen(infoLink.getAttribute('data-index'));
       return;
     }
+  }, true);
+
+
+  /* Listener finale, separato dai vecchi pulsanti Informazioni. */
+  document.addEventListener('click', function(event){
+    var infoLink = event.target.closest('#finalPlaceWindow .final-info-trigger');
+    if (!infoLink) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    window.openMobileInfoUtiliScreen(infoLink.getAttribute('data-index'));
   }, true);
 
   document.addEventListener('keydown', function(event){
