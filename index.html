@@ -9445,8 +9445,8 @@ La lista contiene le informazioni e i pulsanti necessari.
   <button id="stopGuideButton"
           class="screenreader-button"
           type="button"
-          aria-label="Ferma guida audio">
-    Ferma guida
+          aria-label="Ferma guida vocale">
+    Ferma guida vocale
   </button>
 </div>
 </section>
@@ -12380,16 +12380,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const synth = window.speechSynthesis;
   let utterance = null;
+  let guideStartedAutomatically = false;
 
   const guideText = `
-Benvenuto.
-Questo sito è accessibile.
-Usa la lista dei luoghi per navigare.
-Puoi scegliere una sezione.
-Poi puoi scegliere un luogo dalla lista.
-Usa il tasto TAB per passare tra gli elementi.
-Usa INVIO per aprire un pulsante.
-Usa ESC per chiudere una finestra.
+Benvenuto nella Mappa Accessibile della città di Bra.
+Questo sito è stato preparato per essere usato anche con gli screen reader più diffusi.
+Puoi scegliere una sezione tra Luoghi da visitare, Edifici pubblici e La mia mappa.
+La mappa è visibile sullo schermo, ma puoi usare anche la lista dei luoghi.
+La lista ti permette di ascoltare le informazioni, aprire la scheda del luogo e avviare il percorso con il pulsante Vai a questo luogo.
+Se usi la tastiera, premi TAB per passare da un elemento all’altro.
+Premi INVIO per aprire un pulsante o un link.
+Premi ESC per chiudere una finestra.
+Per ascoltare di nuovo questa guida premi Ascolta guida.
+Per fermare la guida premi Ferma guida vocale.
 `;
 
   function announce(text) {
@@ -12439,6 +12442,29 @@ Usa ESC per chiudere una finestra.
         stopGuide();
       });
     }
+  }
+
+  function startGuideAutomatically() {
+    if (guideStartedAutomatically) return;
+    guideStartedAutomatically = true;
+    setTimeout(function () {
+      speakGuide();
+    }, 600);
+  }
+
+  function setupAutoplayFallback() {
+    const startAfterFirstAction = function () {
+      if (!guideStartedAutomatically) {
+        startGuideAutomatically();
+      }
+      document.removeEventListener('click', startAfterFirstAction, true);
+      document.removeEventListener('keydown', startAfterFirstAction, true);
+      document.removeEventListener('touchstart', startAfterFirstAction, true);
+    };
+
+    document.addEventListener('click', startAfterFirstAction, true);
+    document.addEventListener('keydown', startAfterFirstAction, true);
+    document.addEventListener('touchstart', startAfterFirstAction, true);
   }
 
   function setupKeyboardShortcuts() {
@@ -12537,7 +12563,9 @@ Usa ESC per chiudere una finestra.
     setupGuideButtons();
     setupKeyboardShortcuts();
     setupAnnouncements();
+    setupAutoplayFallback();
     focusGuideButton();
+    startGuideAutomatically();
 
     // Annuncio iniziale BREVE
     setTimeout(function () {
@@ -13995,6 +14023,112 @@ Usa ESC per chiudere una finestra.
   }
 })();
 /* ===== PREDISPOSIZIONE_LINK_SCHEDE_LUOGO_END ===== */
+</script>
+
+
+
+<!-- PATCH ACCESSIBILITÀ SCREEN READER: le mappe restano visibili, ma il percorso accessibile usa solo gli elenchi -->
+<script>
+(function () {
+  'use strict';
+
+  function hideFromScreenReadersOnly(element) {
+    if (!element) return;
+    element.setAttribute('aria-hidden', 'true');
+    element.setAttribute('tabindex', '-1');
+    element.removeAttribute('role');
+    element.removeAttribute('aria-label');
+    element.removeAttribute('aria-labelledby');
+    element.removeAttribute('aria-describedby');
+
+    var focusableSelector = 'a, button, input, select, textarea, summary, [tabindex], [role="button"], [role="link"], .leaflet-control a, .leaflet-interactive';
+    element.querySelectorAll(focusableSelector).forEach(function (child) {
+      child.setAttribute('aria-hidden', 'true');
+      child.setAttribute('tabindex', '-1');
+      child.removeAttribute('role');
+      child.removeAttribute('aria-label');
+      child.removeAttribute('aria-labelledby');
+      child.removeAttribute('aria-describedby');
+    });
+
+    element.querySelectorAll('img, svg, canvas').forEach(function (media) {
+      media.setAttribute('aria-hidden', 'true');
+      media.setAttribute('alt', '');
+      media.setAttribute('tabindex', '-1');
+      media.removeAttribute('role');
+    });
+  }
+
+  function makeListsScreenReaderPath() {
+    var listSection = document.getElementById('lista-tappe');
+    var placesList = document.getElementById('placesList');
+
+    if (listSection) {
+      listSection.removeAttribute('aria-hidden');
+      listSection.setAttribute('role', 'region');
+      listSection.setAttribute('aria-labelledby', 'lista-title');
+      listSection.setAttribute('aria-describedby', 'screenReaderIntro');
+    }
+
+    if (placesList) {
+      placesList.removeAttribute('aria-hidden');
+      placesList.setAttribute('role', 'list');
+      placesList.setAttribute('aria-live', 'polite');
+    }
+  }
+
+  function applyScreenReaderMapExclusion() {
+    /* Nasconde agli screen reader tutta la parte visiva della mappa, senza usare display:none e senza cambiare l'aspetto del sito. */
+    document.querySelectorAll('.home-city-map-card, .map-card, #homeCityMap, #map, .leaflet-container, .leaflet-control-container, .leaflet-pane, .leaflet-popup-pane, .leaflet-marker-pane, .leaflet-tile-pane, .leaflet-overlay-pane').forEach(hideFromScreenReadersOnly);
+
+    /* Anche i pulsanti che servono solo a muovere la mappa restano visibili, ma non vengono letti dagli screen reader. */
+    ['attivaMappaHome', 'attivaMappa'].forEach(function (id) {
+      hideFromScreenReadersOnly(document.getElementById(id));
+    });
+
+    makeListsScreenReaderPath();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyScreenReaderMapExclusion);
+  } else {
+    applyScreenReaderMapExclusion();
+  }
+
+  window.addEventListener('load', function () {
+    applyScreenReaderMapExclusion();
+    setTimeout(applyScreenReaderMapExclusion, 250);
+    setTimeout(applyScreenReaderMapExclusion, 1000);
+  });
+
+  var observer = new MutationObserver(function (mutations) {
+    var shouldReapply = mutations.some(function (mutation) {
+      return Array.prototype.some.call(mutation.addedNodes, function (node) {
+        return node.nodeType === 1 && (
+          node.classList && (
+            node.classList.contains('leaflet-container') ||
+            node.classList.contains('leaflet-control-container') ||
+            node.classList.contains('leaflet-pane') ||
+            node.classList.contains('leaflet-popup') ||
+            node.classList.contains('leaflet-marker-icon')
+          )
+        );
+      });
+    });
+
+    if (shouldReapply) {
+      applyScreenReaderMapExclusion();
+    }
+  });
+
+  if (document.body) {
+    observer.observe(document.body, { childList: true, subtree: true });
+  } else {
+    document.addEventListener('DOMContentLoaded', function () {
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  }
+})();
 </script>
 
 </body>
