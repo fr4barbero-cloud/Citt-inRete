@@ -9299,6 +9299,16 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
 }
 /* ===== MOBILE_ACCESSIBLE_WINDOWS_CLEAN_END ===== */
 
+
+/* HOME: il pulsante Muovi/BLOCCA MAPPA mantiene sempre lo stesso colore. */
+#attivaMappaHome,
+#attivaMappaHome.attiva,
+#attivaMappaHome[data-attiva="true"],
+#attivaMappaHome[data-attiva="false"] {
+  background: #577590 !important;
+  border-color: #577590 !important;
+  color: #ffffff !important;
+}
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -9399,8 +9409,8 @@ La lista contiene le informazioni e i pulsanti necessari.
   
 
 
-<button id="attivaMappaHome" class="button-link attiva-mappa-button" type="button" aria-label="Attiva mappa">
-  Attiva mappa
+<button id="attivaMappaHome" class="button-link attiva-mappa-button" type="button" aria-label="Muovi la mappa">
+  Muovi la mappa
 </button>
 
 <section class="section caa-page-note" aria-labelledby="caaStartTitle">
@@ -9617,6 +9627,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Strada Fey, 1 – 12042 Bra (CN)",
         descrizione: "Punto panoramico e simbolo della città di Bra.",
         pagina: "luoghi/la-zizzola.html",
+        schedaLink: "luoghi/la-zizzola.html",
         foto: "zizzola.png",
         accesso: "ok",
         categoria: "musei",
@@ -9641,6 +9652,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Barbacana, 49 – 12042 Bra (CN)",
         descrizione: "Chiesa storica progettata da Bernardo Antonio Vittone.",
         pagina: "luoghi/chiesa-santa-chiara.html",
+        schedaLink: "luoghi/chiesa-santa-chiara.html",
         foto: "santachiara.png",
         accesso: "ok",
         categoria: "musei",
@@ -9665,6 +9677,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Piazza Caduti per la Libertà, 20 – 12042 Bra (CN)",
         descrizione: "Palazzo storico sede di mostre, eventi e iniziative culturali.",
         pagina: "luoghi/palazzo-mathis.html",
+        schedaLink: "luoghi/palazzo-mathis.html",
         foto: "palazzomathis.png",
         accesso: "ok",
         categoria: "musei",
@@ -9689,6 +9702,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Parpera, 4 – 12042 Bra (CN)",
         descrizione: "Museo civico con raccolte archeologiche e storiche.",
         pagina: "luoghi/palazzo-traversa.html",
+        schedaLink: "luoghi/palazzo-traversa.html",
         foto: "palazzotraversa.png",
         accesso: "ok",
         categoria: "musei",
@@ -9713,6 +9727,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Craveri, 15 – 12042 Bra (CN)",
         descrizione: "Museo civico dedicato alla storia naturale.",
         pagina: "luoghi/museo-craveri.html",
+        schedaLink: "luoghi/museo-craveri.html",
         foto: "museocraveri.png",
         accesso: "ok",
         categoria: "musei",
@@ -9737,6 +9752,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Ernesto Guala, 45 – 12042 Bra (CN)",
         descrizione: "Museo dedicato alla storia del giocattolo.",
         pagina: "luoghi/museo-giocattolo.html",
+        schedaLink: "luoghi/museo-giocattolo.html",
         foto: "museogiocattolo.png",
         accesso: "ok",
         categoria: "musei",
@@ -9761,6 +9777,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Vicolo Sant’Andrea, 1 – 12042 Bra (CN)",
         descrizione: "Chiesa parrocchiale del centro storico di Bra.",
         pagina: "luoghi/chiesa-sant-andrea.html",
+        schedaLink: "luoghi/chiesa-sant-andrea.html",
         foto: "santandrea.png",
         accesso: "ok",
         categoria: "musei",
@@ -9785,6 +9802,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Piazza Caduti per la Libertà, 14, 12042 Bra (CN)",
         descrizione: "Sede del Comune e degli uffici principali della città.",
         pagina: "luoghi/comune-bra.html",
+        schedaLink: "luoghi/comune-bra.html",
         foto: "comunebra.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9809,6 +9827,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Guala, 45, 12042 Bra (CN)",
         descrizione: "Biblioteca civica con spazi per lettura, studio e consultazione.",
         pagina: "luoghi/biblioteca-civica.html",
+        schedaLink: "luoghi/biblioteca-civica.html",
         foto: "biblioteca.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9833,6 +9852,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Piazza Carlo Alberto, 23, 12042 Bra (CN)",
         descrizione: "Teatro cittadino per spettacoli, rassegne ed eventi culturali.",
         pagina: "luoghi/teatro-politeama.html",
+        schedaLink: "luoghi/teatro-politeama.html",
         foto: "teatrocitta.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9857,6 +9877,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Piazza Roma, 12042 Bra (CN)",
         descrizione: "Stazione ferroviaria della città di Bra.",
         pagina: "luoghi/stazione-bra.html",
+        schedaLink: "luoghi/stazione-bra.html",
         foto: "stazione.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9881,6 +9902,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Area stazione, 12042 Bra (CN)",
         descrizione: "Area di interscambio per trasporti e mobilità cittadina.",
         pagina: "luoghi/movicentro.html",
+        schedaLink: "luoghi/movicentro.html",
         foto: "movicentro.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9905,6 +9927,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Viale Risorgimento, 31/A, 12042 Bra (CN)",
         descrizione: "Impianto sportivo cittadino per attività e manifestazioni.",
         pagina: "luoghi/palazzetto-sport.html",
+        schedaLink: "luoghi/palazzetto-sport.html",
         foto: "palazzetto.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9929,6 +9952,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Zona Madonna Fiori, 12042 Bra (CN)",
         descrizione: "Area sportiva dedicata al calcio.",
         pagina: "luoghi/campo-calcio-madonna-fiori.html",
+        schedaLink: "luoghi/campo-calcio-madonna-fiori.html",
         foto: "campocalciomadonnafiori.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9953,6 +9977,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Area verde cittadina, 12042 Bra (CN)",
         descrizione: "Spazio per attività sportive e ricreative.",
         pagina: "luoghi/pista-skate.html",
+        schedaLink: "luoghi/pista-skate.html",
         foto: "skatepark.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9977,6 +10002,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Sartori, 12042 Bra (CN)",
         descrizione: "Impianto natatorio cittadino.",
         pagina: "luoghi/piscina-comunale.html",
+        schedaLink: "luoghi/piscina-comunale.html",
         foto: "piscina.png",
         accesso: "ok",
         categoria: "edifici",
@@ -10001,6 +10027,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Bra, 12042 Bra (CN)",
         descrizione: "Spazio cittadino per attività, incontri e servizi.",
         pagina: "luoghi/polifunzionale.html",
+        schedaLink: "luoghi/polifunzionale.html",
         foto: "polifunzionale.png",
         accesso: "ok",
         categoria: "edifici",
@@ -10174,6 +10201,56 @@ La lista contiene le informazioni e i pulsanti necessari.
           btnMappa.classList.add("attiva");
           btnMappa.dataset.attiva = "true";
           document.body.classList.add("mappa-attiva");
+        }
+      });
+    }
+
+    function bloccaHomeMappaSempre() {
+      const btnHome = document.getElementById("attivaMappaHome");
+      const overlayHome = document.getElementById("homeMapOverlay");
+
+      if (homeCityMap) {
+        homeCityMap.dragging.disable();
+        homeCityMap.touchZoom.disable();
+        homeCityMap.scrollWheelZoom.disable();
+        homeCityMap.doubleClickZoom.disable();
+      }
+
+      if (overlayHome) overlayHome.classList.remove("hidden");
+
+      if (btnHome) {
+        btnHome.textContent = "Muovi la mappa";
+        btnHome.setAttribute("aria-label", "Muovi la mappa");
+        btnHome.dataset.attiva = "false";
+      }
+    }
+
+    function setupAttivaMappaHomeButton() {
+      const btnHome = document.getElementById("attivaMappaHome");
+      const overlayHome = document.getElementById("homeMapOverlay");
+      if (!btnHome || btnHome.dataset.ready === "true") return;
+
+      btnHome.dataset.ready = "true";
+      bloccaHomeMappaSempre();
+
+      btnHome.addEventListener("click", function () {
+        const attiva = btnHome.dataset.attiva === "true";
+
+        if (attiva) {
+          bloccaHomeMappaSempre();
+        } else {
+          if (homeCityMap) {
+            homeCityMap.dragging.enable();
+            homeCityMap.touchZoom.enable();
+            homeCityMap.scrollWheelZoom.enable();
+            homeCityMap.doubleClickZoom.enable();
+            homeCityMap.invalidateSize();
+          }
+
+          if (overlayHome) overlayHome.classList.add("hidden");
+          btnHome.textContent = "BLOCCA MAPPA";
+          btnHome.setAttribute("aria-label", "Blocca mappa");
+          btnHome.dataset.attiva = "true";
         }
       });
     }
@@ -10387,6 +10464,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: place.indirizzoSalvato || place.indirizzo || "NESSUN INDIRIZZO INSERITO.",
         descrizione: place.descrizione,
         pagina: "",
+        schedaLink: "",
         foto: place.foto || "",
         accesso: "ok",
         categoria: "mia",
@@ -11021,13 +11099,17 @@ function formatSito(value) {
       initMap();
       enableSmartTouch(map);
       enableSmartTouch(homeCityMap);
+      setupAttivaMappaHomeButton();
       setupAttivaMappaButton();
       bloccaMappaSempre();
+      bloccaHomeMappaSempre();
       setTimeout(bloccaMappaSempre, 500);
+      setTimeout(bloccaHomeMappaSempre, 500);
       enableMapTouchDrag();
       updateMobileAppUI(null);
       forceMobileMapRefresh();
       setTimeout(bloccaMappaSempre, 300);
+      setTimeout(bloccaHomeMappaSempre, 350);
     });
   </script>
 <script>
@@ -12534,30 +12616,7 @@ Usa ESC per chiudere una finestra.
 
 
 <script>
-/* MAPPA HOME BLOCCATA FINO AL CLICK */
-(function(){
-  function setup(){
-    const homeButton = document.getElementById('attivaMappaHome');
-    const overlay = document.getElementById('homeMapOverlay');
-    if (!homeButton || homeButton.dataset.ready === 'true') return;
-    homeButton.dataset.ready = 'true';
-    homeButton.addEventListener('click', function(){
-      if (overlay) overlay.classList.add('hidden');
-      if (window.homeCityMap) {
-        window.homeCityMap.dragging.enable();
-        window.homeCityMap.touchZoom.enable();
-        window.homeCityMap.doubleClickZoom.enable();
-        window.homeCityMap.scrollWheelZoom.enable();
-        window.homeCityMap.invalidateSize();
-      }
-      homeButton.textContent = 'Mappa attiva';
-      homeButton.setAttribute('aria-label', 'Mappa attiva');
-      homeButton.dataset.attiva = 'true';
-    });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
-  else setup();
-})();
+/* MAPPA HOME: gestione spostata nello script principale, dove la variabile homeCityMap è disponibile. */
 </script>
 
 <script>
@@ -13822,6 +13881,120 @@ Usa ESC per chiudere una finestra.
     }
   });
 })();
+</script>
+
+
+<script>
+/* ===== PREDISPOSIZIONE_LINK_SCHEDE_LUOGO_START =====
+   Questa sezione aggiunge solo la predisposizione per collegare
+   il pulsante "Scheda del luogo" a un futuro file HTML diverso
+   per ogni luogo. Non modifica mappa, finestre, dettatura o dati visivi.
+*/
+(function () {
+  function normalizzaLinkScheda(link) {
+    if (!link) return "";
+    return String(link).trim();
+  }
+
+  function getStopsScheda() {
+    try {
+      if (typeof getCurrentStops === "function") return getCurrentStops() || [];
+    } catch (e) {}
+    try {
+      if (typeof tappe === "object" && tappe) return Object.values(tappe);
+    } catch (e) {}
+    return [];
+  }
+
+  function getSchedaLuogoLink(tappa) {
+    if (!tappa) return "";
+    return normalizzaLinkScheda(
+      tappa.schedaLink ||
+      tappa.pagina ||
+      tappa.scheda ||
+      tappa.linkScheda ||
+      ""
+    );
+  }
+
+  window.getSchedaLuogoLink = getSchedaLuogoLink;
+
+  function aggiornaLinkSchedeLuogo() {
+    var stops = getStopsScheda();
+
+    document.querySelectorAll("a.open-scheda, a.popup-scheda, a.scheda-luogo").forEach(function (link) {
+      var index = Number(link.getAttribute("data-index"));
+      var tappa = Number.isFinite(index) ? stops[index] : null;
+      var scheda = getSchedaLuogoLink(tappa);
+
+      if (scheda) {
+        link.setAttribute("href", scheda);
+        link.setAttribute("data-scheda-link", scheda);
+        link.setAttribute("aria-label", "Apri la scheda del luogo" + (tappa && tappa.nome ? ": " + tappa.nome : ""));
+      } else {
+        link.setAttribute("href", "#");
+        link.setAttribute("data-scheda-link", "");
+        link.setAttribute("aria-label", "Scheda del luogo non ancora disponibile");
+      }
+    });
+  }
+
+  window.aggiornaLinkSchedeLuogo = aggiornaLinkSchedeLuogo;
+
+  document.addEventListener("click", function (event) {
+    var link = event.target.closest && event.target.closest("a.open-scheda, a.popup-scheda, a.scheda-luogo");
+    if (!link) return;
+
+    var scheda = normalizzaLinkScheda(link.getAttribute("data-scheda-link") || link.getAttribute("href"));
+    if (scheda && scheda !== "#") {
+      event.preventDefault();
+      window.location.href = scheda;
+      return;
+    }
+
+    var stops = getStopsScheda();
+    var index = Number(link.getAttribute("data-index"));
+    var tappa = Number.isFinite(index) ? stops[index] : null;
+    scheda = getSchedaLuogoLink(tappa);
+
+    if (scheda) {
+      event.preventDefault();
+      window.location.href = scheda;
+      return;
+    }
+
+    event.preventDefault();
+  }, true);
+
+  var observer = new MutationObserver(function () {
+    aggiornaLinkSchedeLuogo();
+  });
+
+  function avviaPredisposizioneSchede() {
+    try {
+      if (typeof tappe === "object" && tappe) {
+        Object.keys(tappe).forEach(function (key) {
+          if (!Object.prototype.hasOwnProperty.call(tappe[key], "schedaLink")) {
+            tappe[key].schedaLink = tappe[key].pagina || "";
+          }
+        });
+      }
+    } catch (e) {}
+
+    aggiornaLinkSchedeLuogo();
+
+    if (document.body) {
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", avviaPredisposizioneSchede);
+  } else {
+    avviaPredisposizioneSchede();
+  }
+})();
+/* ===== PREDISPOSIZIONE_LINK_SCHEDE_LUOGO_END ===== */
 </script>
 
 </body>
