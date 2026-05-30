@@ -9307,6 +9307,51 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
+<style id="finestra-indipendente-mappa-ferma-css">
+@media (max-width: 759px) {
+  #mobilePlaceScreen.mobile-place-screen,
+  #mobilePlaceScreen.mobile-fullscreen-card {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 999999 !important;
+    display: none !important;
+    background: rgba(0,0,0,.55) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    pointer-events: auto !important;
+  }
+  #mobilePlaceScreen.mobile-place-screen.open,
+  #mobilePlaceScreen.mobile-fullscreen-card.open {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  #mobilePlaceScreen .mobile-screen-shell,
+  #mobilePlaceScreen .mobile-fullscreen-card-inner {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #ffffff !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  #mobilePlaceScreen .mobile-screen-content,
+  #mobilePlaceScreen .mobile-fullscreen-card-content {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important;
+  }
+}
+</style>
 </head>
 
 <body class="caa-off">
@@ -13285,14 +13330,12 @@ Usa ESC per chiudere una finestra.
       content.scrollTop = 0;
     }
 
+    /* Finestra indipendente dalla mappa: non blocca il body e non sposta il focus.
+       Così Leaflet non ricalcola o ricentra la mappa quando si apre la scheda. */
     var info = document.getElementById('mobileInfoScreen');
     if (info) info.classList.remove('open');
     screen.classList.add('open');
-    document.body.classList.add('mobile-window-open','mobile-fullscreen-open');
-    setTimeout(function(){
-      var close = document.getElementById('mobilePlaceClose');
-      if (close) close.focus({preventScroll:true});
-    }, 0);
+    screen.scrollTop = 0;
     return true;
   };
 
