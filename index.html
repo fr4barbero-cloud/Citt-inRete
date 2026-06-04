@@ -9300,14 +9300,14 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
 /* ===== MOBILE_ACCESSIBLE_WINDOWS_CLEAN_END ===== */
 
 
-/* PREDISPOSIZIONE CAA SENZA IMMAGINI */
-body.caa-on .caa-empty-ready,
-.caa-empty-always {
+/* PREDISPOSIZIONE CAA CON RIFERIMENTI IMMAGINI - base !!!! stabile */
+body.caa-on .caa-img-host,
+.caa-img-host-always {
   background: #ffffff !important;
   border: 3px solid #111111 !important;
   border-radius: 18px !important;
   padding: 6px !important;
-  min-height: 86px !important;
+  min-height: 96px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -9318,15 +9318,28 @@ body.caa-on .caa-empty-ready,
   line-height: 0 !important;
 }
 
-/* Nessun testo visibile dentro i contenitori predisposti in CAA */
-body.caa-on .caa-empty-ready > *,
-.caa-empty-always > * {
+body.caa-on .caa-img-host > *:not(img),
+.caa-img-host-always > *:not(img) {
   display: none !important;
 }
 
-/* La versione non CAA resta normale */
-body:not(.caa-on) .caa-empty-ready,
-body.caa-off .caa-empty-ready {
+body.caa-on .caa-img-host img,
+.caa-img-host-always img {
+  display: block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  max-height: 88px !important;
+  height: auto !important;
+  object-fit: contain !important;
+  margin: 0 auto !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Fuori CAA tutto torna testuale, tranne il pulsante CAA che resta immagine */
+body:not(.caa-on) .caa-img-host,
+body.caa-off .caa-img-host {
   background: inherit !important;
   border: inherit !important;
   border-radius: inherit !important;
@@ -9337,227 +9350,90 @@ body.caa-off .caa-empty-ready {
   line-height: inherit !important;
 }
 
-/* I blocchi guida predisposti esistono solo in CAA e sono vuoti */
-.caa-empty-guide {
-  display: none;
+body:not(.caa-on) .caa-img-host img,
+body.caa-off .caa-img-host img {
+  display: none !important;
 }
 
-body.caa-on .caa-empty-guide {
+body:not(.caa-on) .caa-img-host .caa-original-visible,
+body.caa-off .caa-img-host .caa-original-visible {
+  display: inline !important;
+}
+
+body:not(.caa-on) .category-button .caa-original-visible,
+body.caa-off .category-button .caa-original-visible {
+  display: block !important;
+}
+
+body.caa-on .caa-guide-img-block {
   background: #ffffff !important;
   border: 3px solid #111111 !important;
   border-radius: 18px !important;
   padding: 6px !important;
-  min-height: 92px !important;
+  min-height: 100px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  margin: 8px 0 10px 0 !important;
+  margin: 8px 0 12px 0 !important;
 }
 
-/* Testi da eliminare solo in CAA */
-body.caa-on .caa-hide-only {
+body:not(.caa-on) .caa-guide-img-block,
+body.caa-off .caa-guide-img-block {
   display: none !important;
 }
 
-/* Riquadri tratteggiati da eliminare solo in CAA */
+body.caa-on .caa-guide-img-block img {
+  display: block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  max-height: 120px !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+body.caa-on .caa-hide-in-caa {
+  display: none !important;
+}
+
+/* Rimuove i riquadri tratteggiati solo nella CAA */
 body.caa-on .popup-image-space,
 body.caa-on .card-image-space,
-body.caa-on .caa-symbol-placeholder,
-body.caa-on .caa-symbol-placeholder-small,
-body.caa-on .caa-placeholder,
 body.caa-on [class*="placeholder"] {
   display: none !important;
 }
 
 @media (max-width: 759px) {
-  body.caa-on .caa-empty-ready,
-  .caa-empty-always {
-    min-height: 74px !important;
+  body.caa-on .caa-img-host,
+  .caa-img-host-always {
+    min-height: 78px !important;
     padding: 4px !important;
   }
 
-  body.caa-on .caa-empty-guide {
-    min-height: 78px !important;
+  body.caa-on .caa-img-host img,
+  .caa-img-host-always img {
+    max-height: 72px !important;
+  }
+
+  body.caa-on .caa-guide-img-block img {
+    max-height: 96px !important;
   }
 }
 
 
-/* FIX SMARTPHONE: finestre gocce rosse e informazioni a schermo pieno */
-@media (max-width: 759px) {
-  body.popup-mobile-open,
-  body.info-mobile-open {
-    overflow: hidden !important;
-  }
-
-  body.popup-mobile-open .leaflet-popup {
-    position: fixed !important;
-    inset: 0 !important;
-    transform: none !important;
-    margin: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    z-index: 50000 !important;
-    display: flex !important;
-    align-items: stretch !important;
-    justify-content: center !important;
-    pointer-events: auto !important;
-  }
-
-  body.popup-mobile-open .leaflet-popup-content-wrapper {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    height: 100dvh !important;
-    max-height: 100dvh !important;
-    border-radius: 0 !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    background: #ffffff !important;
-    overflow: hidden !important;
-  }
-
-  body.popup-mobile-open .leaflet-popup-content {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 100dvh !important;
-    max-height: 100dvh !important;
-    margin: 0 !important;
-    padding: 82px 14px 22px 14px !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    background: #ffffff !important;
-    font-size: 1rem !important;
-    line-height: 1.35 !important;
-  }
-
-  body.popup-mobile-open .leaflet-popup-tip,
-  body.popup-mobile-open .leaflet-popup-tip-container {
-    display: none !important;
-  }
-
-  body.popup-mobile-open .leaflet-popup-close-button {
-    position: fixed !important;
-    top: max(10px, env(safe-area-inset-top)) !important;
-    right: 12px !important;
-    left: auto !important;
-    width: 58px !important;
-    height: 58px !important;
-    line-height: 48px !important;
-    font-size: 38px !important;
-    background: #ffbf00 !important;
-    color: #000000 !important;
-    border: 5px solid #000000 !important;
-    border-radius: 50% !important;
-    z-index: 51000 !important;
-    text-align: center !important;
-    font-weight: 900 !important;
-  }
-
-  body.popup-mobile-open .popup-title {
-    padding-right: 72px !important;
-    font-size: 1.25rem !important;
-    text-align: center !important;
-    margin-bottom: 12px !important;
-  }
-
-  body.popup-mobile-open .popup-actions {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-    margin-top: 16px !important;
-  }
-
-  body.popup-mobile-open .popup-actions a,
-  body.popup-mobile-open .popup-actions button {
-    width: 100% !important;
-    min-height: 62px !important;
-    border-radius: 16px !important;
-    font-size: 1.05rem !important;
-    line-height: 1.2 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  body.info-mobile-open .modal-overlay.open,
-  body.info-mobile-open .modal-overlay {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    max-height: 100dvh !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex !important;
-    align-items: stretch !important;
-    justify-content: center !important;
-    z-index: 52000 !important;
-    background: #ffffff !important;
-  }
-
-  body.info-mobile-open .modal-window,
-  body.info-mobile-open .info-useful-window {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    height: 100dvh !important;
-    max-height: 100dvh !important;
-    border-radius: 0 !important;
-    border: 0 !important;
-    padding: 82px 14px 22px 14px !important;
-    margin: 0 !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    background: #ffffff !important;
-    box-shadow: none !important;
-  }
-
-  body.info-mobile-open .modal-window::before {
-    display: none !important;
-  }
-
-  body.info-mobile-open .modal-close {
-    position: fixed !important;
-    top: max(10px, env(safe-area-inset-top)) !important;
-    right: 12px !important;
-    width: 58px !important;
-    height: 58px !important;
-    min-width: 58px !important;
-    min-height: 58px !important;
-    border-radius: 50% !important;
-    border: 5px solid #000000 !important;
-    background: #ffbf00 !important;
-    color: #000000 !important;
-    font-size: 38px !important;
-    font-weight: 900 !important;
-    z-index: 53000 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    line-height: 1 !important;
-  }
-
-  body.info-mobile-open .modal-title {
-    padding-right: 72px !important;
-    text-align: center !important;
-    font-size: 1.25rem !important;
-    line-height: 1.2 !important;
-  }
-
-  body.info-mobile-open .info-useful-content {
-    display: grid !important;
-    gap: 12px !important;
-  }
-
-  body.info-mobile-open .info-box {
-    padding: 12px !important;
-    border-radius: 14px !important;
-  }
-
-  body.info-mobile-open .info-value,
-  body.info-mobile-open .info-label {
-    font-size: 1rem !important;
-    overflow-wrap: anywhere !important;
-  }
+/* RIFERIMENTI FILE PNG NELLA PREDISPOSIZIONE CAA: nessuna immagine caricata */
+.caa-file-reference {
+  display: block !important;
+  color: #000000 !important;
+  font-size: 16px !important;
+  line-height: 1.25 !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+  word-break: break-word !important;
+}
+body.caa-on .caa-img-host .caa-file-reference,
+body.caa-on .caa-guide-img-block .caa-file-reference,
+.caa-img-host-always .caa-file-reference {
+  display: block !important;
 }
 
 </style>
@@ -9571,6 +9447,7 @@ body.caa-on [class*="placeholder"] {
 </head>
 
 <body class="caa-off">
+<audio id="guidaVocaleAudio" src="guida.mp3" preload="auto"></audio>
 
   <a href="#lista-tappe" class="skip-link sr-only-focusable">Vai alla lista dei luoghi</a>
 
@@ -13407,386 +13284,229 @@ Usa ESC per chiudere una finestra.
 
 
 <script>
-/* PREDISPOSIZIONE CAA SENZA INSERIRE IMMAGINI */
+/* PREDISPOSIZIONE CAA COME MODELLO MAPPA_ACCESSIBILE + AUDIO */
 (function(){
   function isCAA(){
-    return document.body.classList.contains('caa-on') &&
-           !document.body.classList.contains('caa-off');
+    return document.body.classList.contains('caa-on') && !document.body.classList.contains('caa-off');
+  }
+
+  function makeImg(src, alt){
+    return '<span class="caa-file-reference" data-image-file="' + src + '">' + src + '</span>';
   }
 
   function remember(el){
-    if(!el || el.dataset.caaOriginalHtmlNoImg) return;
-    el.dataset.caaOriginalHtmlNoImg = el.innerHTML;
-    el.dataset.caaOriginalAriaNoImg = el.getAttribute('aria-label') || '';
-    el.dataset.caaOriginalTitleNoImg = el.getAttribute('title') || '';
+    if(!el || el.dataset.caaOrigHtml) return;
+    el.dataset.caaOrigHtml = el.innerHTML;
+    el.dataset.caaOrigAria = el.getAttribute('aria-label') || '';
+    el.dataset.caaOrigTitle = el.getAttribute('title') || '';
   }
 
-  function prepareEmpty(el, key, alt, always){
+  function setCaaImage(el, src, alt, always){
     if(!el) return;
     remember(el);
 
-    if(isCAA() || always){
-      el.innerHTML = "";
-      el.setAttribute("aria-label", alt);
-      el.setAttribute("title", alt);
-      el.dataset.caaImageKey = key;
-
-      if(always){
-        el.classList.add("caa-empty-always");
-      } else {
-        el.classList.add("caa-empty-ready");
+    if(always || isCAA()){
+      if(el.dataset.caaImgSrc !== src){
+        el.innerHTML = makeImg(src, alt);
+        el.setAttribute('aria-label', alt);
+        el.setAttribute('title', alt);
+        el.dataset.caaImgSrc = src;
       }
+      el.classList.add(always ? 'caa-img-host-always' : 'caa-img-host');
+    } else {
+      restore(el);
     }
   }
 
   function restore(el){
-    if(!el || !el.dataset.caaOriginalHtmlNoImg) return;
+    if(!el || !el.dataset.caaOrigHtml) return;
+    if(el.classList.contains('caa-img-host-always')) return;
     if(isCAA()) return;
-    if(el.classList.contains("caa-empty-always")) return;
 
-    el.innerHTML = el.dataset.caaOriginalHtmlNoImg;
-    el.classList.remove("caa-empty-ready");
-    delete el.dataset.caaImageKey;
+    el.innerHTML = el.dataset.caaOrigHtml;
+    el.classList.remove('caa-img-host');
+    delete el.dataset.caaImgSrc;
 
-    if(el.dataset.caaOriginalAriaNoImg) el.setAttribute("aria-label", el.dataset.caaOriginalAriaNoImg);
-    else el.removeAttribute("aria-label");
+    if(el.dataset.caaOrigAria) el.setAttribute('aria-label', el.dataset.caaOrigAria);
+    else el.removeAttribute('aria-label');
 
-    if(el.dataset.caaOriginalTitleNoImg) el.setAttribute("title", el.dataset.caaOriginalTitleNoImg);
-    else el.removeAttribute("title");
+    if(el.dataset.caaOrigTitle) el.setAttribute('title', el.dataset.caaOrigTitle);
+    else el.removeAttribute('title');
   }
 
   function textOf(el){
     return (
-      (el.textContent || "") + " " +
-      (el.getAttribute("aria-label") || "") + " " +
-      (el.getAttribute("title") || "") + " " +
-      (el.id || "") + " " +
-      (el.className || "") + " " +
-      (el.getAttribute("href") || "")
+      (el.textContent || '') + ' ' +
+      (el.getAttribute('aria-label') || '') + ' ' +
+      (el.getAttribute('title') || '') + ' ' +
+      (el.id || '') + ' ' +
+      (el.className || '') + ' ' +
+      (el.getAttribute('href') || '')
     ).toLowerCase();
   }
 
   function controlsContaining(words){
-    const terms = words.map(function(w){ return w.toLowerCase(); });
-    return Array.from(document.querySelectorAll("button, a")).filter(function(el){
-      if(el.closest(".leaflet-control-container")) return false;
+    return Array.from(document.querySelectorAll('button, a')).filter(function(el){
+      if(el.closest('.leaflet-control-container')) return false;
       const t = textOf(el);
-      return terms.some(function(term){ return t.includes(term); });
+      return words.some(function(w){ return t.includes(w.toLowerCase()); });
     });
   }
 
-  function prepareMain(){
-    document.querySelectorAll("#titleHomeButton").forEach(function(el){
-      prepareEmpty(el, "mappaaccessibile", "Mappa accessibile", false);
+  function setSelector(selector, src, alt){
+    document.querySelectorAll(selector).forEach(function(el){
+      setCaaImage(el, src, alt, false);
     });
+  }
 
-    document.querySelectorAll('.category-button[data-category="musei"]').forEach(function(el){
-      prepareEmpty(el, "luoghidavisitare", "Luoghi da visitare", false);
-    });
+  function prepareCaaButtons(){
+    setSelector('#titleHomeButton', 'mappaaccessibile.png', 'Mappa accessibile');
+    setSelector('.category-button[data-category="musei"]', 'luoghidavisitare.png', 'Luoghi da visitare');
+    setSelector('.category-button[data-category="edifici"]', 'edificipubblici.png', 'Edifici pubblici');
+    setSelector('.category-button[data-category="mia"]', 'miamappa.png', 'La mia mappa');
 
-    document.querySelectorAll('.category-button[data-category="edifici"]').forEach(function(el){
-      prepareEmpty(el, "edificipubblici", "Edifici pubblici", false);
-    });
-
-    document.querySelectorAll('.category-button[data-category="mia"]').forEach(function(el){
-      prepareEmpty(el, "miamappa", "La mia mappa", false);
-    });
-
-    Array.from(document.querySelectorAll("#caaModeToggle, .caa-mode-toggle, button, a")).forEach(function(el){
-      if(el.id === "titleHomeButton") return;
-      if(el.matches(".category-button")) return;
-      if(el.closest(".leaflet-control-container")) return;
+    Array.from(document.querySelectorAll('#caaModeToggle, .caa-mode-toggle, button, a')).forEach(function(el){
+      if(el.id === 'titleHomeButton') return;
+      if(el.matches('.category-button')) return;
+      if(el.closest('.leaflet-control-container')) return;
 
       const t = textOf(el);
-
-      if(t.includes("no caa") || t.includes("disattiva caa")){
-        prepareEmpty(el, "nocaa", "NO CAA", false);
-      } else if(t.includes("caa") || t.includes("comunicazione aumentativa")){
-        prepareEmpty(el, "caa", "CAA", true);
+      if(t.includes('no caa') || t.includes('disattiva caa')){
+        setCaaImage(el, 'nocaa.png', 'NO CAA', false);
+      } else if(t.includes('caa') || t.includes('comunicazione aumentativa')){
+        setCaaImage(el, 'caa.png', 'CAA', true);
       }
     });
-  }
 
-  function preparePopupButtons(){
-    document.querySelectorAll("a.portami-qui, .button-link.portami-qui, .popup-actions a.portami-qui").forEach(function(el){
-      prepareEmpty(el, "vai", "Vai a questo luogo", false);
+    setSelector('a.portami-qui, .button-link.portami-qui, .popup-actions a.portami-qui', 'vai.png', 'Vai a questo luogo');
+    setSelector('a.popup-info, .button-link.info, .popup-actions a.popup-info', 'informazioni.png', 'Informazioni');
+    setSelector('a.popup-scheda, .button-link.scheda-luogo, .popup-actions a.popup-scheda', 'schedaluogo.png', 'Scheda luogo');
+
+    controlsContaining(['ascolta guida vocale', 'ascolta audio', 'ascolta guida']).forEach(function(el){
+      setCaaImage(el, 'ascolta.png', 'Ascolta guida vocale', false);
     });
-
-    document.querySelectorAll("a.popup-info, .button-link.info, .popup-actions a.popup-info").forEach(function(el){
-      prepareEmpty(el, "informazioni", "Informazioni", false);
+    controlsContaining(['ferma guida vocale', 'ferma audio', 'ferma guida', 'stop guida']).forEach(function(el){
+      setCaaImage(el, 'stopascolta.png', 'Ferma guida vocale', false);
     });
-
-    document.querySelectorAll("a.popup-scheda, .button-link.scheda-luogo, .popup-actions a.popup-scheda").forEach(function(el){
-      prepareEmpty(el, "schedaluogo", "Scheda luogo", false);
+    controlsContaining(['muovi mappa', 'attiva mappa']).forEach(function(el){
+      setCaaImage(el, 'muovimappa.png', 'Muovi mappa', false);
     });
-  }
-
-  function prepareOtherButtons(){
-    controlsContaining(["muovi mappa", "attiva mappa"]).forEach(function(el){
-      prepareEmpty(el, "muovimappa", "Muovi mappa", false);
+    controlsContaining(['aggiungi luogo', 'aggiungi un luogo']).forEach(function(el){
+      setCaaImage(el, 'aggiungiluogo.png', 'Aggiungi luogo', false);
     });
-
-    controlsContaining(["aggiungi luogo", "aggiungi un luogo"]).forEach(function(el){
-      prepareEmpty(el, "aggiungiluogo", "Aggiungi luogo", false);
+    controlsContaining(['indietro', 'torna']).forEach(function(el){
+      setCaaImage(el, 'indietro.png', 'Indietro', false);
     });
-
-    controlsContaining(["indietro", "torna"]).forEach(function(el){
-      prepareEmpty(el, "indietro", "Indietro", false);
+    controlsContaining(['elimina luogo', 'cancella luogo', 'elimina']).forEach(function(el){
+      setCaaImage(el, 'eliminaluogo.png', 'Elimina luogo', false);
     });
-
-    controlsContaining(["elimina luogo", "cancella luogo", "elimina"]).forEach(function(el){
-      prepareEmpty(el, "eliminaluogo", "Elimina luogo", false);
-    });
-  }
-
-  function hideExactText(text){
-    const wanted = text.replace(/\s+/g, " ").trim().toLowerCase();
-    Array.from(document.querySelectorAll("p, div, span, label")).forEach(function(el){
-      if(el.children.length > 2) return;
-      const clean = (el.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
-      if(clean === wanted) el.classList.add("caa-hide-only");
-    });
-  }
-
-  function emptyGuideAfterTitle(titleText, key, alt){
-    const wanted = titleText.replace(/\s+/g, " ").trim().toLowerCase();
-
-    Array.from(document.querySelectorAll("h2, h3, strong, p, div")).forEach(function(el){
-      const clean = (el.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
-      if(clean !== wanted) return;
-      if(el.dataset.caaGuideKey === key) return;
-
-      const block = document.createElement("div");
-      block.className = "caa-empty-guide";
-      block.dataset.caaImageKey = key;
-      block.setAttribute("aria-label", alt);
-
-      el.insertAdjacentElement("afterend", block);
-      el.classList.add("caa-hide-only");
-      el.dataset.caaGuideKey = key;
-    });
-  }
-
-  function prepareSections(){
-    emptyGuideAfterTitle("Come usare la MIA MAPPA", "comeusaremiamappa", "Come usare la mia mappa");
-    emptyGuideAfterTitle("Come scegliere i luoghi", "scegliluogo", "Come scegliere i luoghi");
-    emptyGuideAfterTitle("Come usare la mappa", "comeusaremappa", "Come usare la mappa");
-
-    hideExactText("Puoi aggiungere luoghi alla tua mappa, cambiarli o cancellarli.");
-    hideExactText("Scegli i luoghi dalla mappa o dalla lista sotto.");
-    hideExactText("Scegli una sezione.");
-    hideExactText("SCRIVI VIA, NUMERO CIVICO E CITTÀ. ESEMPIO: VIA ROMA 10, BRA.");
-  }
-
-  function prepareFormLabels(){
-    const map = [
-      {terms:["nome del luogo", "nome luogo", "nome"], key:"nomeluogo", alt:"Nome del luogo"},
-      {terms:["indirizzo completo", "indirizzo"], key:"indirizzocompleto", alt:"Indirizzo completo"},
-      {terms:["note"], key:"note", alt:"Note"},
-      {terms:["immagine"], key:"immagine", alt:"Immagine"}
-    ];
-
-    Array.from(document.querySelectorAll(".personal-form label, .add-place-panel label, label")).forEach(function(label){
-      if(label.closest(".leaflet-control-container")) return;
-      const t = (label.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
-
-      const match = map.find(function(item){
-        return item.terms.some(function(term){ return t === term || t.includes(term); });
-      });
-
-      if(match) prepareEmpty(label, match.key, match.alt, false);
-    });
-  }
-
-  function run(){
-    prepareMain();
-    preparePopupButtons();
-    prepareOtherButtons();
-    prepareSections();
-    prepareFormLabels();
 
     if(!isCAA()){
-      document.querySelectorAll(".caa-empty-ready").forEach(restore);
+      document.querySelectorAll('.caa-img-host').forEach(restore);
     }
   }
 
-  if(document.readyState === "loading"){
-    document.addEventListener("DOMContentLoaded", run);
-  } else {
-    run();
+  function addGuideAfterExactText(text, src, alt){
+    const wanted = text.replace(/\s+/g, ' ').trim().toLowerCase();
+
+    Array.from(document.querySelectorAll('h2, h3, p, div, strong')).forEach(function(el){
+      const clean = (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+      if(clean !== wanted) return;
+      if(el.dataset.caaGuideSrc === src) return;
+
+      const block = document.createElement('div');
+      block.className = 'caa-guide-img-block';
+      block.innerHTML = makeImg(src, alt);
+      block.setAttribute('aria-label', alt);
+      el.insertAdjacentElement('afterend', block);
+      el.classList.add('caa-hide-in-caa');
+      el.dataset.caaGuideSrc = src;
+    });
   }
 
-  document.addEventListener("click", function(){
-    setTimeout(run, 120);
-    setTimeout(run, 350);
-  }, false);
+  function hideExactInCaa(text){
+    const wanted = text.replace(/\s+/g, ' ').trim().toLowerCase();
+    Array.from(document.querySelectorAll('p, div, span, label')).forEach(function(el){
+      if(el.children.length > 2) return;
+      const clean = (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+      if(clean === wanted) el.classList.add('caa-hide-in-caa');
+    });
+  }
 
-  const observer = new MutationObserver(function(mutations){
-    let needed = false;
-    mutations.forEach(function(mutation){
-      mutation.addedNodes.forEach(function(node){
-        if(node.nodeType === 1) needed = true;
+  function prepareCaaTextBlocks(){
+    addGuideAfterExactText('Come usare la MIA MAPPA', 'comeusaremiamappa.png', 'Come usare la mia mappa');
+    addGuideAfterExactText('Come scegliere i luoghi', 'scegliluogo.png', 'Come scegliere i luoghi');
+    addGuideAfterExactText('Come usare la mappa', 'comeusaremappa.png', 'Come usare la mappa');
+
+    hideExactInCaa('Puoi aggiungere luoghi alla tua mappa, cambiarli o cancellarli.');
+    hideExactInCaa('Scegli i luoghi dalla mappa o dalla lista sotto.');
+    hideExactInCaa('Scegli una sezione.');
+    hideExactInCaa('SCRIVI VIA, NUMERO CIVICO E CITTÀ. ESEMPIO: VIA ROMA 10, BRA.');
+
+    const formLabels = [
+      {words:['nome del luogo', 'nome luogo', 'nome'], src:'nomeluogo.png', alt:'Nome del luogo'},
+      {words:['indirizzo completo', 'indirizzo'], src:'indirizzocompleto.png', alt:'Indirizzo completo'},
+      {words:['note'], src:'note.png', alt:'Note'},
+      {words:['immagine'], src:'immagine.png', alt:'Immagine'}
+    ];
+
+    Array.from(document.querySelectorAll('.personal-form label, .add-place-panel label, label')).forEach(function(label){
+      if(label.closest('.leaflet-control-container')) return;
+      const t = (label.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+      const match = formLabels.find(function(item){
+        return item.words.some(function(w){ return t === w || t.includes(w); });
       });
+      if(match) setCaaImage(label, match.src, match.alt, false);
     });
-    if(needed) window.requestAnimationFrame(run);
-  });
+  }
 
-  observer.observe(document.body, { childList: true, subtree: true });
-})();
-</script>
+  function setupAudio(){
+    const audio = document.getElementById('guidaVocaleAudio');
+    if(!audio) return;
 
-
-<script>
-/* FIX RICHIESTO: gocce rosse senza spostamento mappa + pulsanti stabili */
-(function(){
-  function disablePopupAutoPan(){
-    if(!window.L || !L.Popup) return;
-
-    if(!L.Popup.prototype._caaNoAutoPanPatched){
-      const originalInit = L.Popup.prototype.initialize;
-      L.Popup.prototype.initialize = function(options, source){
-        options = Object.assign({}, options || {}, {
-          autoPan: false,
-          keepInView: false
-        });
-        originalInit.call(this, options, source);
-      };
-      L.Popup.prototype._caaNoAutoPanPatched = true;
+    function play(){
+      try{
+        audio.currentTime = 0;
+        const p = audio.play();
+        if(p && typeof p.catch === 'function') p.catch(function(){});
+      }catch(e){}
     }
 
-    document.querySelectorAll('.leaflet-popup').forEach(function(popup){
-      popup.style.transformOrigin = 'center center';
-    });
-  }
+    function stop(){
+      try{
+        audio.pause();
+        audio.currentTime = 0;
+      }catch(e){}
+    }
 
-  function patchExistingPopups(){
-    if(!window.map || typeof window.map.eachLayer !== 'function') return;
-
-    window.map.eachLayer(function(layer){
-      if(layer && layer._popup){
-        layer._popup.options.autoPan = false;
-        layer._popup.options.keepInView = false;
-        layer._popup.options.autoPanPadding = [0, 0];
-        layer._popup.options.autoPanPaddingTopLeft = [0, 0];
-        layer._popup.options.autoPanPaddingBottomRight = [0, 0];
-      }
-    });
-  }
-
-  function stabilizeButtons(){
-    document.querySelectorAll('button, a, input, textarea, select').forEach(function(el){
-      el.style.touchAction = 'manipulation';
-    });
-
-    document.querySelectorAll('a[href="#"], button').forEach(function(el){
-      if(el.dataset.caaButtonStable) return;
-      el.dataset.caaButtonStable = 'true';
-      el.addEventListener('click', function(ev){
-        if(el.getAttribute('href') === '#'){
-          ev.preventDefault();
-        }
+    controlsContaining(['ascolta guida vocale', 'ascolta audio', 'ascolta guida']).forEach(function(btn){
+      if(btn.dataset.audioPlayBound) return;
+      btn.dataset.audioPlayBound = 'true';
+      btn.addEventListener('click', function(ev){
+        ev.preventDefault();
+        play();
       }, false);
     });
-  }
 
-  function runFix(){
-    disablePopupAutoPan();
-    patchExistingPopups();
-    stabilizeButtons();
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', runFix);
-  } else {
-    runFix();
-  }
-
-  window.addEventListener('load', function(){
-    runFix();
-    setTimeout(runFix, 300);
-    setTimeout(runFix, 900);
-  });
-
-  document.addEventListener('click', function(ev){
-    if(ev.target.closest('.leaflet-marker-icon, .marker, .leaflet-interactive')){
-      const beforeCenter = window.map && typeof window.map.getCenter === 'function' ? window.map.getCenter() : null;
-      const beforeZoom = window.map && typeof window.map.getZoom === 'function' ? window.map.getZoom() : null;
-
-      setTimeout(function(){
-        runFix();
-        if(beforeCenter && window.map && typeof window.map.setView === 'function'){
-          window.map.setView(beforeCenter, beforeZoom, {animate:false});
-        }
-      }, 60);
-    }
-  }, true);
-})();
-</script>
-
-
-<script>
-/* FIX SMARTPHONE: apertura stabile popup gocce e finestra informazioni */
-(function(){
-  function isMobile(){
-    return window.matchMedia && window.matchMedia('(max-width: 759px)').matches;
-  }
-
-  function refreshMobileWindows(){
-    if(!isMobile()){
-      document.body.classList.remove('popup-mobile-open');
-      document.body.classList.remove('info-mobile-open');
-      return;
-    }
-
-    if(document.querySelector('.leaflet-popup')) {
-      document.body.classList.add('popup-mobile-open');
-    } else {
-      document.body.classList.remove('popup-mobile-open');
-    }
-
-    if(document.querySelector('.modal-overlay.open')) {
-      document.body.classList.add('info-mobile-open');
-    } else {
-      document.body.classList.remove('info-mobile-open');
-    }
-
-    document.querySelectorAll('.leaflet-popup-close-button').forEach(function(btn){
-      if(btn.dataset.mobilePopupCloseFixed) return;
-      btn.dataset.mobilePopupCloseFixed = 'true';
-      btn.setAttribute('aria-label', 'Chiudi finestra');
-      btn.addEventListener('click', function(){
-        setTimeout(function(){
-          document.body.classList.remove('popup-mobile-open');
-        }, 80);
-      }, true);
-    });
-
-    document.querySelectorAll('.modal-close').forEach(function(btn){
-      if(btn.dataset.mobileModalCloseFixed) return;
-      btn.dataset.mobileModalCloseFixed = 'true';
-      btn.setAttribute('aria-label', 'Chiudi finestra');
-      btn.addEventListener('click', function(){
-        setTimeout(function(){
-          document.body.classList.remove('info-mobile-open');
-        }, 80);
-      }, true);
-    });
-  }
-
-  function makeInfoButtonsWork(){
-    document.querySelectorAll('a.popup-info, .button-link.info, .popup-actions a.popup-info').forEach(function(btn){
-      if(btn.dataset.infoOpenMobileFixed) return;
-      btn.dataset.infoOpenMobileFixed = 'true';
-      btn.addEventListener('click', function(){
-        setTimeout(refreshMobileWindows, 80);
-        setTimeout(refreshMobileWindows, 250);
+    controlsContaining(['ferma guida vocale', 'ferma audio', 'ferma guida', 'stop guida']).forEach(function(btn){
+      if(btn.dataset.audioStopBound) return;
+      btn.dataset.audioStopBound = 'true';
+      btn.addEventListener('click', function(ev){
+        ev.preventDefault();
+        stop();
       }, false);
     });
+
+    if(!sessionStorage.getItem('mappaAccessibileAudioUnaVolta')){
+      sessionStorage.setItem('mappaAccessibileAudioUnaVolta', '1');
+      setTimeout(play, 700);
+    }
   }
 
   function run(){
-    refreshMobileWindows();
-    makeInfoButtonsWork();
+    prepareCaaButtons();
+    prepareCaaTextBlocks();
+    setupAudio();
   }
 
   if(document.readyState === 'loading'){
@@ -13795,25 +13515,21 @@ Usa ESC per chiudere una finestra.
     run();
   }
 
-  document.addEventListener('click', function(ev){
-    if(ev.target.closest('.leaflet-marker-icon, .marker, .leaflet-interactive, .popup-info, .button-link.info, .modal-close, .leaflet-popup-close-button')){
-      setTimeout(run, 80);
-      setTimeout(run, 250);
-    }
+  document.addEventListener('click', function(){
+    setTimeout(run, 100);
+    setTimeout(run, 300);
   }, false);
 
-  const observer = new MutationObserver(function(){
-    window.requestAnimationFrame(run);
+  const observer = new MutationObserver(function(mutations){
+    let needed = false;
+    mutations.forEach(function(m){
+      m.addedNodes.forEach(function(n){
+        if(n.nodeType === 1) needed = true;
+      });
+    });
+    if(needed) requestAnimationFrame(run);
   });
-
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  document.addEventListener('keydown', function(ev){
-    if(ev.key === 'Escape'){
-      document.body.classList.remove('popup-mobile-open');
-      document.body.classList.remove('info-mobile-open');
-    }
-  }, true);
+  observer.observe(document.body, {childList:true, subtree:true});
 })();
 </script>
 
