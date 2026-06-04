@@ -9299,6 +9299,16 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
 }
 /* ===== MOBILE_ACCESSIBLE_WINDOWS_CLEAN_END ===== */
 
+
+/* HOME: il pulsante Muovi/BLOCCA MAPPA mantiene sempre lo stesso colore. */
+#attivaMappaHome,
+#attivaMappaHome.attiva,
+#attivaMappaHome[data-attiva="true"],
+#attivaMappaHome[data-attiva="false"] {
+  background: #577590 !important;
+  border-color: #577590 !important;
+  color: #ffffff !important;
+}
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -9399,8 +9409,8 @@ La lista contiene le informazioni e i pulsanti necessari.
   
 
 
-<button id="attivaMappaHome" class="button-link attiva-mappa-button" type="button" aria-label="Attiva mappa">
-  Attiva mappa
+<button id="attivaMappaHome" class="button-link attiva-mappa-button" type="button" aria-label="Muovi la mappa">
+  Muovi la mappa
 </button>
 
 <section class="section caa-page-note" aria-labelledby="caaStartTitle">
@@ -9435,8 +9445,8 @@ La lista contiene le informazioni e i pulsanti necessari.
   <button id="stopGuideButton"
           class="screenreader-button"
           type="button"
-          aria-label="Ferma guida audio">
-    Ferma guida
+          aria-label="Ferma guida vocale">
+    Ferma guida vocale
   </button>
 </div>
 </section>
@@ -9617,6 +9627,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Strada Fey, 1 – 12042 Bra (CN)",
         descrizione: "Punto panoramico e simbolo della città di Bra.",
         pagina: "luoghi/la-zizzola.html",
+        schedaLink: "luoghi/la-zizzola.html",
         foto: "zizzola.png",
         accesso: "ok",
         categoria: "musei",
@@ -9641,6 +9652,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Barbacana, 49 – 12042 Bra (CN)",
         descrizione: "Chiesa storica progettata da Bernardo Antonio Vittone.",
         pagina: "luoghi/chiesa-santa-chiara.html",
+        schedaLink: "luoghi/chiesa-santa-chiara.html",
         foto: "santachiara.png",
         accesso: "ok",
         categoria: "musei",
@@ -9665,6 +9677,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Piazza Caduti per la Libertà, 20 – 12042 Bra (CN)",
         descrizione: "Palazzo storico sede di mostre, eventi e iniziative culturali.",
         pagina: "luoghi/palazzo-mathis.html",
+        schedaLink: "luoghi/palazzo-mathis.html",
         foto: "palazzomathis.png",
         accesso: "ok",
         categoria: "musei",
@@ -9689,6 +9702,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Parpera, 4 – 12042 Bra (CN)",
         descrizione: "Museo civico con raccolte archeologiche e storiche.",
         pagina: "luoghi/palazzo-traversa.html",
+        schedaLink: "luoghi/palazzo-traversa.html",
         foto: "palazzotraversa.png",
         accesso: "ok",
         categoria: "musei",
@@ -9713,6 +9727,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Craveri, 15 – 12042 Bra (CN)",
         descrizione: "Museo civico dedicato alla storia naturale.",
         pagina: "luoghi/museo-craveri.html",
+        schedaLink: "luoghi/museo-craveri.html",
         foto: "museocraveri.png",
         accesso: "ok",
         categoria: "musei",
@@ -9737,6 +9752,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Ernesto Guala, 45 – 12042 Bra (CN)",
         descrizione: "Museo dedicato alla storia del giocattolo.",
         pagina: "luoghi/museo-giocattolo.html",
+        schedaLink: "luoghi/museo-giocattolo.html",
         foto: "museogiocattolo.png",
         accesso: "ok",
         categoria: "musei",
@@ -9761,6 +9777,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Vicolo Sant’Andrea, 1 – 12042 Bra (CN)",
         descrizione: "Chiesa parrocchiale del centro storico di Bra.",
         pagina: "luoghi/chiesa-sant-andrea.html",
+        schedaLink: "luoghi/chiesa-sant-andrea.html",
         foto: "santandrea.png",
         accesso: "ok",
         categoria: "musei",
@@ -9785,6 +9802,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Piazza Caduti per la Libertà, 14, 12042 Bra (CN)",
         descrizione: "Sede del Comune e degli uffici principali della città.",
         pagina: "luoghi/comune-bra.html",
+        schedaLink: "luoghi/comune-bra.html",
         foto: "comunebra.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9809,6 +9827,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Guala, 45, 12042 Bra (CN)",
         descrizione: "Biblioteca civica con spazi per lettura, studio e consultazione.",
         pagina: "luoghi/biblioteca-civica.html",
+        schedaLink: "luoghi/biblioteca-civica.html",
         foto: "biblioteca.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9833,6 +9852,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Piazza Carlo Alberto, 23, 12042 Bra (CN)",
         descrizione: "Teatro cittadino per spettacoli, rassegne ed eventi culturali.",
         pagina: "luoghi/teatro-politeama.html",
+        schedaLink: "luoghi/teatro-politeama.html",
         foto: "teatrocitta.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9857,6 +9877,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Piazza Roma, 12042 Bra (CN)",
         descrizione: "Stazione ferroviaria della città di Bra.",
         pagina: "luoghi/stazione-bra.html",
+        schedaLink: "luoghi/stazione-bra.html",
         foto: "stazione.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9881,6 +9902,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Area stazione, 12042 Bra (CN)",
         descrizione: "Area di interscambio per trasporti e mobilità cittadina.",
         pagina: "luoghi/movicentro.html",
+        schedaLink: "luoghi/movicentro.html",
         foto: "movicentro.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9905,6 +9927,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Viale Risorgimento, 31/A, 12042 Bra (CN)",
         descrizione: "Impianto sportivo cittadino per attività e manifestazioni.",
         pagina: "luoghi/palazzetto-sport.html",
+        schedaLink: "luoghi/palazzetto-sport.html",
         foto: "palazzetto.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9929,6 +9952,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Zona Madonna Fiori, 12042 Bra (CN)",
         descrizione: "Area sportiva dedicata al calcio.",
         pagina: "luoghi/campo-calcio-madonna-fiori.html",
+        schedaLink: "luoghi/campo-calcio-madonna-fiori.html",
         foto: "campocalciomadonnafiori.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9953,6 +9977,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Area verde cittadina, 12042 Bra (CN)",
         descrizione: "Spazio per attività sportive e ricreative.",
         pagina: "luoghi/pista-skate.html",
+        schedaLink: "luoghi/pista-skate.html",
         foto: "skatepark.png",
         accesso: "ok",
         categoria: "edifici",
@@ -9977,6 +10002,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Via Sartori, 12042 Bra (CN)",
         descrizione: "Impianto natatorio cittadino.",
         pagina: "luoghi/piscina-comunale.html",
+        schedaLink: "luoghi/piscina-comunale.html",
         foto: "piscina.png",
         accesso: "ok",
         categoria: "edifici",
@@ -10001,6 +10027,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: "Bra, 12042 Bra (CN)",
         descrizione: "Spazio cittadino per attività, incontri e servizi.",
         pagina: "luoghi/polifunzionale.html",
+        schedaLink: "luoghi/polifunzionale.html",
         foto: "polifunzionale.png",
         accesso: "ok",
         categoria: "edifici",
@@ -10174,6 +10201,56 @@ La lista contiene le informazioni e i pulsanti necessari.
           btnMappa.classList.add("attiva");
           btnMappa.dataset.attiva = "true";
           document.body.classList.add("mappa-attiva");
+        }
+      });
+    }
+
+    function bloccaHomeMappaSempre() {
+      const btnHome = document.getElementById("attivaMappaHome");
+      const overlayHome = document.getElementById("homeMapOverlay");
+
+      if (homeCityMap) {
+        homeCityMap.dragging.disable();
+        homeCityMap.touchZoom.disable();
+        homeCityMap.scrollWheelZoom.disable();
+        homeCityMap.doubleClickZoom.disable();
+      }
+
+      if (overlayHome) overlayHome.classList.remove("hidden");
+
+      if (btnHome) {
+        btnHome.textContent = "Muovi la mappa";
+        btnHome.setAttribute("aria-label", "Muovi la mappa");
+        btnHome.dataset.attiva = "false";
+      }
+    }
+
+    function setupAttivaMappaHomeButton() {
+      const btnHome = document.getElementById("attivaMappaHome");
+      const overlayHome = document.getElementById("homeMapOverlay");
+      if (!btnHome || btnHome.dataset.ready === "true") return;
+
+      btnHome.dataset.ready = "true";
+      bloccaHomeMappaSempre();
+
+      btnHome.addEventListener("click", function () {
+        const attiva = btnHome.dataset.attiva === "true";
+
+        if (attiva) {
+          bloccaHomeMappaSempre();
+        } else {
+          if (homeCityMap) {
+            homeCityMap.dragging.enable();
+            homeCityMap.touchZoom.enable();
+            homeCityMap.scrollWheelZoom.enable();
+            homeCityMap.doubleClickZoom.enable();
+            homeCityMap.invalidateSize();
+          }
+
+          if (overlayHome) overlayHome.classList.add("hidden");
+          btnHome.textContent = "BLOCCA MAPPA";
+          btnHome.setAttribute("aria-label", "Blocca mappa");
+          btnHome.dataset.attiva = "true";
         }
       });
     }
@@ -10387,6 +10464,7 @@ La lista contiene le informazioni e i pulsanti necessari.
         indirizzo: place.indirizzoSalvato || place.indirizzo || "NESSUN INDIRIZZO INSERITO.",
         descrizione: place.descrizione,
         pagina: "",
+        schedaLink: "",
         foto: place.foto || "",
         accesso: "ok",
         categoria: "mia",
@@ -11021,13 +11099,17 @@ function formatSito(value) {
       initMap();
       enableSmartTouch(map);
       enableSmartTouch(homeCityMap);
+      setupAttivaMappaHomeButton();
       setupAttivaMappaButton();
       bloccaMappaSempre();
+      bloccaHomeMappaSempre();
       setTimeout(bloccaMappaSempre, 500);
+      setTimeout(bloccaHomeMappaSempre, 500);
       enableMapTouchDrag();
       updateMobileAppUI(null);
       forceMobileMapRefresh();
       setTimeout(bloccaMappaSempre, 300);
+      setTimeout(bloccaHomeMappaSempre, 350);
     });
   </script>
 <script>
@@ -11099,7 +11181,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".button-link.info, .popup-info, .open-info-utili, .open-note").forEach(function (el) {
       el.style.setProperty("background", "#90BE6D", "important");
       el.style.setProperty("border-color", "#90BE6D", "important");
-      el.style.setProperty("color", \"#111111\", "important");
+      el.style.setProperty("color", "#111111", "important");
     });
   }
 
@@ -11116,7 +11198,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".button-link.info, .popup-info, .open-info-utili, .open-note").forEach(function (el) {
       el.style.setProperty("background", "#90BE6D", "important");
       el.style.setProperty("border-color", "#90BE6D", "important");
-      el.style.setProperty("color", \"#111111\", "important");
+      el.style.setProperty("color", "#111111", "important");
     });
   }
 
@@ -11147,7 +11229,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".button-link.info, .open-info-utili, .open-note, .popup-info").forEach(function (el) {
       el.style.setProperty("background", "#90BE6D", "important");
       el.style.setProperty("border-color", "#90BE6D", "important");
-      el.style.setProperty("color", \"#111111\", "important");
+      el.style.setProperty("color", "#111111", "important");
     });
   }
 
@@ -12298,16 +12380,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const synth = window.speechSynthesis;
   let utterance = null;
+  let guideStartedAutomatically = false;
 
   const guideText = `
-Benvenuto.
-Questo sito è accessibile.
-Usa la lista dei luoghi per navigare.
-Puoi scegliere una sezione.
-Poi puoi scegliere un luogo dalla lista.
-Usa il tasto TAB per passare tra gli elementi.
-Usa INVIO per aprire un pulsante.
-Usa ESC per chiudere una finestra.
+Benvenuto nella Mappa Accessibile della città di Bra.
+Questo sito è stato preparato per essere usato anche con gli screen reader più diffusi.
+Puoi scegliere una sezione tra Luoghi da visitare, Edifici pubblici e La mia mappa.
+La mappa è visibile sullo schermo, ma puoi usare anche la lista dei luoghi.
+La lista ti permette di ascoltare le informazioni, aprire la scheda del luogo e avviare il percorso con il pulsante Vai a questo luogo.
+Se usi la tastiera, premi TAB per passare da un elemento all’altro.
+Premi INVIO per aprire un pulsante o un link.
+Premi ESC per chiudere una finestra.
+Per ascoltare di nuovo questa guida premi Ascolta guida.
+Per fermare la guida premi Ferma guida vocale.
 `;
 
   function announce(text) {
@@ -12357,6 +12442,29 @@ Usa ESC per chiudere una finestra.
         stopGuide();
       });
     }
+  }
+
+  function startGuideAutomatically() {
+    if (guideStartedAutomatically) return;
+    guideStartedAutomatically = true;
+    setTimeout(function () {
+      speakGuide();
+    }, 600);
+  }
+
+  function setupAutoplayFallback() {
+    const startAfterFirstAction = function () {
+      if (!guideStartedAutomatically) {
+        startGuideAutomatically();
+      }
+      document.removeEventListener('click', startAfterFirstAction, true);
+      document.removeEventListener('keydown', startAfterFirstAction, true);
+      document.removeEventListener('touchstart', startAfterFirstAction, true);
+    };
+
+    document.addEventListener('click', startAfterFirstAction, true);
+    document.addEventListener('keydown', startAfterFirstAction, true);
+    document.addEventListener('touchstart', startAfterFirstAction, true);
   }
 
   function setupKeyboardShortcuts() {
@@ -12455,7 +12563,9 @@ Usa ESC per chiudere una finestra.
     setupGuideButtons();
     setupKeyboardShortcuts();
     setupAnnouncements();
+    setupAutoplayFallback();
     focusGuideButton();
+    startGuideAutomatically();
 
     // Annuncio iniziale BREVE
     setTimeout(function () {
@@ -12534,30 +12644,7 @@ Usa ESC per chiudere una finestra.
 
 
 <script>
-/* MAPPA HOME BLOCCATA FINO AL CLICK */
-(function(){
-  function setup(){
-    const homeButton = document.getElementById('attivaMappaHome');
-    const overlay = document.getElementById('homeMapOverlay');
-    if (!homeButton || homeButton.dataset.ready === 'true') return;
-    homeButton.dataset.ready = 'true';
-    homeButton.addEventListener('click', function(){
-      if (overlay) overlay.classList.add('hidden');
-      if (window.homeCityMap) {
-        window.homeCityMap.dragging.enable();
-        window.homeCityMap.touchZoom.enable();
-        window.homeCityMap.doubleClickZoom.enable();
-        window.homeCityMap.scrollWheelZoom.enable();
-        window.homeCityMap.invalidateSize();
-      }
-      homeButton.textContent = 'Mappa attiva';
-      homeButton.setAttribute('aria-label', 'Mappa attiva');
-      homeButton.dataset.attiva = 'true';
-    });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
-  else setup();
-})();
+/* MAPPA HOME: gestione spostata nello script principale, dove la variabile homeCityMap è disponibile. */
 </script>
 
 <script>
@@ -13444,6 +13531,605 @@ Usa ESC per chiudere una finestra.
 })();
 </script>
 <!-- ===== FIX_FINALE_GOCCE_MOBILE_END ===== -->
+
+
+
+<!-- PATCH FINALE: finestra luogo/informazioni indipendente e sempre visibile -->
+<style id="patch-finestra-indipendente-visibile">
+  #finalPlaceWindow,
+  #finalInfoWindow {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 2147483000 !important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    background: rgba(0,0,0,.55) !important;
+    padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
+    box-sizing: border-box !important;
+  }
+
+  #finalPlaceWindow.open,
+  #finalInfoWindow.open {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+  }
+
+  #finalPlaceWindow .final-window-shell,
+  #finalInfoWindow .final-window-shell {
+    width: min(760px, 100%) !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    border-radius: 22px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,.35) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border: 4px solid var(--category-color, #277DA1) !important;
+  }
+
+  #finalPlaceWindow .final-window-header,
+  #finalInfoWindow .final-window-header {
+    flex: 0 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    gap: 10px !important;
+    align-items: center !important;
+    padding: 12px !important;
+    border-bottom: 2px solid #d8d8d8 !important;
+    background: #ffffff !important;
+  }
+
+  #finalPlaceWindow .final-window-title,
+  #finalInfoWindow .final-window-title {
+    margin: 0 !important;
+    font-size: 1.2rem !important;
+    line-height: 1.2 !important;
+    color: #111111 !important;
+    font-weight: 900 !important;
+  }
+
+  #finalPlaceWindow .final-window-close,
+  #finalInfoWindow .final-window-close {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    border-radius: 50% !important;
+    border: 4px solid #111111 !important;
+    background: #ffbf00 !important;
+    color: #111111 !important;
+    font-size: 34px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+  }
+
+  #finalPlaceWindow .final-window-content,
+  #finalInfoWindow .final-window-content {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 14px !important;
+    background: #ffffff !important;
+  }
+
+  #finalPlaceWindow .popup-actions,
+  #finalInfoWindow .popup-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    margin-top: 14px !important;
+  }
+
+  #finalPlaceWindow a,
+  #finalInfoWindow a {
+    pointer-events: auto !important;
+  }
+
+
+  #finalPlaceWindow { z-index: 2147483000 !important; }
+  #finalInfoWindow { z-index: 2147483200 !important; }
+  @media (max-width: 759px) {
+    #finalPlaceWindow,
+    #finalInfoWindow {
+      padding: 0 !important;
+    }
+    #finalPlaceWindow .final-window-shell,
+    #finalInfoWindow .final-window-shell {
+      width: 100vw !important;
+      height: 100dvh !important;
+      max-height: 100dvh !important;
+      border-radius: 0 !important;
+      border-left: 0 !important;
+      border-right: 0 !important;
+      border-bottom: 0 !important;
+    }
+    #finalPlaceWindow .final-window-content,
+    #finalInfoWindow .final-window-content {
+      padding-bottom: 94px !important;
+    }
+  }
+</style>
+
+<script id="patch-finestra-indipendente-visibile-js">
+(function(){
+  'use strict';
+
+  function isMobileWindow(){
+    return window.matchMedia && window.matchMedia('(max-width: 759px)').matches;
+  }
+
+  function getStopsSafe(){
+    try {
+      if (typeof getCurrentStops === 'function') return getCurrentStops() || [];
+    } catch(e) {}
+    return [];
+  }
+
+  function makeWindow(id, titleId, contentId, closeLabel){
+    var existing = document.getElementById(id);
+    if (existing) return existing;
+
+    var screen = document.createElement('div');
+    screen.id = id;
+    screen.className = 'final-independent-window';
+    screen.setAttribute('role', 'dialog');
+    screen.setAttribute('aria-modal', 'true');
+    screen.setAttribute('aria-labelledby', titleId);
+    screen.innerHTML =
+      '<div class="final-window-shell">' +
+        '<div class="final-window-header">' +
+          '<h2 class="final-window-title" id="' + titleId + '">Scheda del luogo</h2>' +
+          '<button type="button" class="final-window-close" aria-label="' + closeLabel + '">×</button>' +
+        '</div>' +
+        '<div class="final-window-content" id="' + contentId + '"></div>' +
+      '</div>';
+    document.body.appendChild(screen);
+
+    screen.querySelector('.final-window-close').addEventListener('click', function(){
+      screen.classList.remove('open');
+      screen.style.removeProperty('display');
+      screen.style.removeProperty('visibility');
+      screen.style.removeProperty('opacity');
+    });
+
+    screen.addEventListener('click', function(event){
+      if (event.target === screen) screen.classList.remove('open');
+    });
+
+    return screen;
+  }
+
+  function ensurePlace(){
+    return makeWindow('finalPlaceWindow', 'finalPlaceTitle', 'finalPlaceContent', 'Chiudi scheda del luogo');
+  }
+
+  function ensureInfo(){
+    return makeWindow('finalInfoWindow', 'finalInfoTitle', 'finalInfoContent', 'Chiudi informazioni');
+  }
+
+  function getMapLink(tappa){
+    try {
+      if (typeof googleMapsLink === 'function') return googleMapsLink(tappa, 'walking');
+    } catch(e) {}
+    if (tappa && Number.isFinite(Number(tappa.lat)) && Number.isFinite(Number(tappa.lng))) {
+      return 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(tappa.lat + ',' + tappa.lng) + '&travelmode=walking';
+    }
+    return '#';
+  }
+
+  function buildPlaceHtml(tappa, index){
+    var html = '';
+    try {
+      if (typeof buildPlacePopupHtml === 'function') html = buildPlacePopupHtml(tappa, index) || '';
+    } catch(e) {}
+
+    if (!html) {
+      html =
+        (tappa.foto ? '<img class="popup-photo" src="' + tappa.foto + '" alt="Foto di ' + (tappa.nome || 'luogo') + '">' : '') +
+        '<div class="popup-title">' + (tappa.nome || 'Luogo') + '</div>' +
+        '<div>' + (tappa.descrizione || '') + '</div>' +
+        '<div class="popup-actions"></div>';
+    }
+
+    var wrap = document.createElement('div');
+    wrap.innerHTML = html;
+
+    var actions = wrap.querySelector('.popup-actions');
+    if (!actions) {
+      actions = document.createElement('div');
+      actions.className = 'popup-actions';
+      wrap.appendChild(actions);
+    }
+
+    var go = wrap.querySelector('.portami-qui');
+    if (!go) {
+      go = document.createElement('a');
+      go.className = 'portami-qui button-link';
+      go.textContent = 'Vai a questo luogo';
+      actions.insertBefore(go, actions.firstChild);
+    }
+    go.setAttribute('href', getMapLink(tappa));
+    go.setAttribute('target', '_blank');
+    go.setAttribute('rel', 'noopener');
+
+    var info = wrap.querySelector('.open-info-utili, .popup-info');
+    if (!info && !tappa.isPersonal) {
+      info = document.createElement('a');
+      info.href = '#';
+      info.textContent = 'Informazioni';
+      actions.appendChild(info);
+    }
+    if (info) {
+      /* Classe nuova e separata: evita che i vecchi listener intercettino il click
+         e aprano la finestra informazioni sbagliata/nascosta. */
+      info.className = 'final-info-trigger button-link info';
+      info.setAttribute('href', '#');
+      info.setAttribute('data-index', String(index));
+      info.setAttribute('aria-label', 'Apri informazioni del luogo');
+    }
+
+    return wrap.innerHTML;
+  }
+
+  function getInfo(tappa){
+    var info = (tappa && tappa.infoUtili) ? tappa.infoUtili : {};
+    try {
+      if (typeof getInfoUtiliLuogo === 'function') info = getInfoUtiliLuogo(tappa) || info;
+    } catch(e) {}
+    return info || {};
+  }
+
+  function formatSite(sito){
+    try {
+      if (typeof formatSito === 'function') return formatSito(sito);
+    } catch(e) {}
+    if (sito && String(sito).indexOf('http') === 0) {
+      return '<a href="' + sito + '" target="_blank" rel="noopener">' + sito + '</a>';
+    }
+    return sito || 'SITO INTERNET NON INSERITO.';
+  }
+
+  function buildInfoHtml(tappa){
+    var info = getInfo(tappa);
+    return '<div class="info-useful-content">' +
+      '<div class="info-box"><span class="info-label">Orari</span><div class="info-value">' + (info.orari || tappa.orari || 'ORARI NON INSERITI.') + '</div></div>' +
+      '<div class="info-box"><span class="info-label">Contatti</span><div class="info-value">' + (info.contatti || tappa.contatti || 'CONTATTI NON INSERITI.') + '</div></div>' +
+      '<div class="info-box"><span class="info-label">Sito web</span><div class="info-value">' + formatSite(info.sito || tappa.sito) + '</div></div>' +
+      '</div>';
+  }
+
+  function rememberMapState(){
+    try {
+      if (window.map && typeof map.getCenter === 'function') {
+        return {center: map.getCenter(), zoom: map.getZoom()};
+      }
+    } catch(e) {}
+    return null;
+  }
+
+  function restoreMapState(state){
+    if (!state) return;
+    setTimeout(function(){
+      try {
+        if (window.map && typeof map.setView === 'function') {
+          map.setView(state.center, state.zoom, {animate:false, pan:false});
+        }
+      } catch(e) {}
+    }, 0);
+  }
+
+  window.openMobilePlaceScreen = function(index){
+    if (!isMobileWindow()) return false;
+    var state = rememberMapState();
+    var stops = getStopsSafe();
+    var tappa = stops[Number(index)];
+    if (!tappa) return false;
+
+    var place = ensurePlace();
+    var info = document.getElementById('finalInfoWindow');
+    if (info) info.classList.remove('open');
+
+    document.getElementById('finalPlaceTitle').textContent = tappa.nome || 'Scheda del luogo';
+    var content = document.getElementById('finalPlaceContent');
+    content.innerHTML = buildPlaceHtml(tappa, Number(index));
+    content.scrollTop = 0;
+
+    place.classList.add('open');
+    restoreMapState(state);
+    return true;
+  };
+
+  window.openMobileInfoUtiliScreen = function(index){
+    if (!isMobileWindow()) return false;
+    var stops = getStopsSafe();
+    var tappa = stops[Number(index)];
+    if (!tappa) return false;
+
+    var info = ensureInfo();
+    document.getElementById('finalInfoTitle').textContent = 'Informazioni - ' + (tappa.nome || 'luogo');
+    var content = document.getElementById('finalInfoContent');
+    content.innerHTML = buildInfoHtml(tappa);
+    content.scrollTop = 0;
+    var oldInfo = document.getElementById('mobileInfoScreen');
+    if (oldInfo) oldInfo.classList.remove('open');
+    info.classList.add('open');
+    info.style.setProperty('display', 'flex', 'important');
+    info.style.setProperty('visibility', 'visible', 'important');
+    info.style.setProperty('opacity', '1', 'important');
+    return true;
+  };
+
+  document.addEventListener('click', function(event){
+    var go = event.target.closest('#finalPlaceWindow .portami-qui, #finalInfoWindow .portami-qui');
+    if (go) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      if (go.href && go.href !== '#') window.open(go.href, '_blank', 'noopener');
+      return;
+    }
+
+    var infoLink = event.target.closest('#finalPlaceWindow .final-info-trigger');
+    if (infoLink) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      window.openMobileInfoUtiliScreen(infoLink.getAttribute('data-index'));
+      return;
+    }
+  }, true);
+
+
+  /* Listener finale, separato dai vecchi pulsanti Informazioni. */
+  document.addEventListener('click', function(event){
+    var infoLink = event.target.closest('#finalPlaceWindow .final-info-trigger');
+    if (!infoLink) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    window.openMobileInfoUtiliScreen(infoLink.getAttribute('data-index'));
+  }, true);
+
+  document.addEventListener('keydown', function(event){
+    if (event.key !== 'Escape') return;
+    var info = document.getElementById('finalInfoWindow');
+    var place = document.getElementById('finalPlaceWindow');
+    if (info && info.classList.contains('open')) {
+      event.preventDefault();
+      info.classList.remove('open');
+    } else if (place && place.classList.contains('open')) {
+      event.preventDefault();
+      place.classList.remove('open');
+    }
+  });
+})();
+</script>
+
+
+<script>
+/* ===== PREDISPOSIZIONE_LINK_SCHEDE_LUOGO_START =====
+   Questa sezione aggiunge solo la predisposizione per collegare
+   il pulsante "Scheda del luogo" a un futuro file HTML diverso
+   per ogni luogo. Non modifica mappa, finestre, dettatura o dati visivi.
+*/
+(function () {
+  function normalizzaLinkScheda(link) {
+    if (!link) return "";
+    return String(link).trim();
+  }
+
+  function getStopsScheda() {
+    try {
+      if (typeof getCurrentStops === "function") return getCurrentStops() || [];
+    } catch (e) {}
+    try {
+      if (typeof tappe === "object" && tappe) return Object.values(tappe);
+    } catch (e) {}
+    return [];
+  }
+
+  function getSchedaLuogoLink(tappa) {
+    if (!tappa) return "";
+    return normalizzaLinkScheda(
+      tappa.schedaLink ||
+      tappa.pagina ||
+      tappa.scheda ||
+      tappa.linkScheda ||
+      ""
+    );
+  }
+
+  window.getSchedaLuogoLink = getSchedaLuogoLink;
+
+  function aggiornaLinkSchedeLuogo() {
+    var stops = getStopsScheda();
+
+    document.querySelectorAll("a.open-scheda, a.popup-scheda, a.scheda-luogo").forEach(function (link) {
+      var index = Number(link.getAttribute("data-index"));
+      var tappa = Number.isFinite(index) ? stops[index] : null;
+      var scheda = getSchedaLuogoLink(tappa);
+
+      if (scheda) {
+        link.setAttribute("href", scheda);
+        link.setAttribute("data-scheda-link", scheda);
+        link.setAttribute("aria-label", "Apri la scheda del luogo" + (tappa && tappa.nome ? ": " + tappa.nome : ""));
+      } else {
+        link.setAttribute("href", "#");
+        link.setAttribute("data-scheda-link", "");
+        link.setAttribute("aria-label", "Scheda del luogo non ancora disponibile");
+      }
+    });
+  }
+
+  window.aggiornaLinkSchedeLuogo = aggiornaLinkSchedeLuogo;
+
+  document.addEventListener("click", function (event) {
+    var link = event.target.closest && event.target.closest("a.open-scheda, a.popup-scheda, a.scheda-luogo");
+    if (!link) return;
+
+    var scheda = normalizzaLinkScheda(link.getAttribute("data-scheda-link") || link.getAttribute("href"));
+    if (scheda && scheda !== "#") {
+      event.preventDefault();
+      window.location.href = scheda;
+      return;
+    }
+
+    var stops = getStopsScheda();
+    var index = Number(link.getAttribute("data-index"));
+    var tappa = Number.isFinite(index) ? stops[index] : null;
+    scheda = getSchedaLuogoLink(tappa);
+
+    if (scheda) {
+      event.preventDefault();
+      window.location.href = scheda;
+      return;
+    }
+
+    event.preventDefault();
+  }, true);
+
+  var observer = new MutationObserver(function () {
+    aggiornaLinkSchedeLuogo();
+  });
+
+  function avviaPredisposizioneSchede() {
+    try {
+      if (typeof tappe === "object" && tappe) {
+        Object.keys(tappe).forEach(function (key) {
+          if (!Object.prototype.hasOwnProperty.call(tappe[key], "schedaLink")) {
+            tappe[key].schedaLink = tappe[key].pagina || "";
+          }
+        });
+      }
+    } catch (e) {}
+
+    aggiornaLinkSchedeLuogo();
+
+    if (document.body) {
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", avviaPredisposizioneSchede);
+  } else {
+    avviaPredisposizioneSchede();
+  }
+})();
+/* ===== PREDISPOSIZIONE_LINK_SCHEDE_LUOGO_END ===== */
+</script>
+
+
+
+<!-- PATCH ACCESSIBILITÀ SCREEN READER: le mappe restano visibili, ma il percorso accessibile usa solo gli elenchi -->
+<script>
+(function () {
+  'use strict';
+
+  function hideFromScreenReadersOnly(element) {
+    if (!element) return;
+    element.setAttribute('aria-hidden', 'true');
+    element.setAttribute('tabindex', '-1');
+    element.removeAttribute('role');
+    element.removeAttribute('aria-label');
+    element.removeAttribute('aria-labelledby');
+    element.removeAttribute('aria-describedby');
+
+    var focusableSelector = 'a, button, input, select, textarea, summary, [tabindex], [role="button"], [role="link"], .leaflet-control a, .leaflet-interactive';
+    element.querySelectorAll(focusableSelector).forEach(function (child) {
+      child.setAttribute('aria-hidden', 'true');
+      child.setAttribute('tabindex', '-1');
+      child.removeAttribute('role');
+      child.removeAttribute('aria-label');
+      child.removeAttribute('aria-labelledby');
+      child.removeAttribute('aria-describedby');
+    });
+
+    element.querySelectorAll('img, svg, canvas').forEach(function (media) {
+      media.setAttribute('aria-hidden', 'true');
+      media.setAttribute('alt', '');
+      media.setAttribute('tabindex', '-1');
+      media.removeAttribute('role');
+    });
+  }
+
+  function makeListsScreenReaderPath() {
+    var listSection = document.getElementById('lista-tappe');
+    var placesList = document.getElementById('placesList');
+
+    if (listSection) {
+      listSection.removeAttribute('aria-hidden');
+      listSection.setAttribute('role', 'region');
+      listSection.setAttribute('aria-labelledby', 'lista-title');
+      listSection.setAttribute('aria-describedby', 'screenReaderIntro');
+    }
+
+    if (placesList) {
+      placesList.removeAttribute('aria-hidden');
+      placesList.setAttribute('role', 'list');
+      placesList.setAttribute('aria-live', 'polite');
+    }
+  }
+
+  function applyScreenReaderMapExclusion() {
+    /* Nasconde agli screen reader tutta la parte visiva della mappa, senza usare display:none e senza cambiare l'aspetto del sito. */
+    document.querySelectorAll('.home-city-map-card, .map-card, #homeCityMap, #map, .leaflet-container, .leaflet-control-container, .leaflet-pane, .leaflet-popup-pane, .leaflet-marker-pane, .leaflet-tile-pane, .leaflet-overlay-pane').forEach(hideFromScreenReadersOnly);
+
+    /* Anche i pulsanti che servono solo a muovere la mappa restano visibili, ma non vengono letti dagli screen reader. */
+    ['attivaMappaHome', 'attivaMappa'].forEach(function (id) {
+      hideFromScreenReadersOnly(document.getElementById(id));
+    });
+
+    makeListsScreenReaderPath();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyScreenReaderMapExclusion);
+  } else {
+    applyScreenReaderMapExclusion();
+  }
+
+  window.addEventListener('load', function () {
+    applyScreenReaderMapExclusion();
+    setTimeout(applyScreenReaderMapExclusion, 250);
+    setTimeout(applyScreenReaderMapExclusion, 1000);
+  });
+
+  var observer = new MutationObserver(function (mutations) {
+    var shouldReapply = mutations.some(function (mutation) {
+      return Array.prototype.some.call(mutation.addedNodes, function (node) {
+        return node.nodeType === 1 && (
+          node.classList && (
+            node.classList.contains('leaflet-container') ||
+            node.classList.contains('leaflet-control-container') ||
+            node.classList.contains('leaflet-pane') ||
+            node.classList.contains('leaflet-popup') ||
+            node.classList.contains('leaflet-marker-icon')
+          )
+        );
+      });
+    });
+
+    if (shouldReapply) {
+      applyScreenReaderMapExclusion();
+    }
+  });
+
+  if (document.body) {
+    observer.observe(document.body, { childList: true, subtree: true });
+  } else {
+    document.addEventListener('DOMContentLoaded', function () {
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
