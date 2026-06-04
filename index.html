@@ -9307,6 +9307,51 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
+<style id="finestra-indipendente-mappa-ferma-css">
+@media (max-width: 759px) {
+  #mobilePlaceScreen.mobile-place-screen,
+  #mobilePlaceScreen.mobile-fullscreen-card {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 999999 !important;
+    display: none !important;
+    background: rgba(0,0,0,.55) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    pointer-events: auto !important;
+  }
+  #mobilePlaceScreen.mobile-place-screen.open,
+  #mobilePlaceScreen.mobile-fullscreen-card.open {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  #mobilePlaceScreen .mobile-screen-shell,
+  #mobilePlaceScreen .mobile-fullscreen-card-inner {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #ffffff !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  #mobilePlaceScreen .mobile-screen-content,
+  #mobilePlaceScreen .mobile-fullscreen-card-content {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important;
+  }
+}
+</style>
 </head>
 
 <body class="caa-off">
@@ -13285,14 +13330,12 @@ Usa ESC per chiudere una finestra.
       content.scrollTop = 0;
     }
 
+    /* Finestra indipendente dalla mappa: non blocca il body e non sposta il focus.
+       Così Leaflet non ricalcola o ricentra la mappa quando si apre la scheda. */
     var info = document.getElementById('mobileInfoScreen');
     if (info) info.classList.remove('open');
     screen.classList.add('open');
-    document.body.classList.add('mobile-window-open','mobile-fullscreen-open');
-    setTimeout(function(){
-      var close = document.getElementById('mobilePlaceClose');
-      if (close) close.focus({preventScroll:true});
-    }, 0);
+    screen.scrollTop = 0;
     return true;
   };
 
@@ -13401,123 +13444,6 @@ Usa ESC per chiudere una finestra.
 })();
 </script>
 <!-- ===== FIX_FINALE_GOCCE_MOBILE_END ===== -->
-
-
-
-<script>
-/* ===== PATCH_SOLO_MAPPA_FERMA_GOCCE_START =====
-   Correzione mirata: quando si apre la finestra di un luogo dalla goccia rossa,
-   la mappa conserva esattamente centro e zoom. Non modifica dati, pulsanti,
-   finestre, dettatura o altre funzioni del sito.
-*/
-(function(){
-  var statoMappaPrimaDellaGoccia = null;
-
-  function isMobileStabile(){
-    return window.matchMedia && window.matchMedia('(max-width: 759px)').matches;
-  }
-
-  function getMainMap(){
-    try {
-      if (typeof map !== 'undefined' && map && typeof map.getCenter === 'function') return map;
-    } catch(e) {}
-    try {
-      if (window.map && typeof window.map.getCenter === 'function') return window.map;
-    } catch(e) {}
-    return null;
-  }
-
-  function salvaStatoMappa(){
-    var m = getMainMap();
-    if (!m) return;
-    try {
-      statoMappaPrimaDellaGoccia = {
-        center: m.getCenter(),
-        zoom: m.getZoom()
-      };
-    } catch(e) {}
-  }
-
-  function ripristinaStatoMappa(){
-    var m = getMainMap();
-    if (!m || !statoMappaPrimaDellaGoccia) return;
-    try {
-      m.stop();
-      m.setView(statoMappaPrimaDellaGoccia.center, statoMappaPrimaDellaGoccia.zoom, {
-        animate: false,
-        pan: { animate: false },
-        zoom: { animate: false }
-      });
-    } catch(e) {}
-  }
-
-  function ripristinaStatoMappaPiuVolte(){
-    ripristinaStatoMappa();
-    window.setTimeout(ripristinaStatoMappa, 0);
-    window.setTimeout(ripristinaStatoMappa, 40);
-    window.setTimeout(ripristinaStatoMappa, 120);
-    window.setTimeout(ripristinaStatoMappa, 300);
-  }
-
-  function clickSuGoccia(event){
-    return !!(event && event.target && event.target.closest && event.target.closest('.leaflet-marker-icon, .marker'));
-  }
-
-  document.addEventListener('pointerdown', function(event){
-    if (!isMobileStabile()) return;
-    if (!clickSuGoccia(event)) return;
-    salvaStatoMappa();
-  }, true);
-
-  document.addEventListener('touchstart', function(event){
-    if (!isMobileStabile()) return;
-    if (!clickSuGoccia(event)) return;
-    salvaStatoMappa();
-  }, true);
-
-  document.addEventListener('click', function(event){
-    if (!isMobileStabile()) return;
-    if (!clickSuGoccia(event)) return;
-    if (!statoMappaPrimaDellaGoccia) salvaStatoMappa();
-    ripristinaStatoMappaPiuVolte();
-  }, true);
-
-  function proteggiFunzioneApertura(){
-    if (typeof window.openMobilePlaceScreen !== 'function') return false;
-    if (window.openMobilePlaceScreen.__mappaFermaPatch) return true;
-
-    var funzioneOriginale = window.openMobilePlaceScreen;
-    window.openMobilePlaceScreen = function(index){
-      if (isMobileStabile()) salvaStatoMappa();
-      var risultato = funzioneOriginale.apply(this, arguments);
-      if (isMobileStabile()) ripristinaStatoMappaPiuVolte();
-      return risultato;
-    };
-    window.openMobilePlaceScreen.__mappaFermaPatch = true;
-    return true;
-  }
-
-  function disattivaAutoPanPopup(){
-    try {
-      if (window.L && L.Popup && L.Popup.prototype && L.Popup.prototype.options) {
-        L.Popup.prototype.options.autoPan = false;
-        L.Popup.prototype.options.keepInView = false;
-      }
-    } catch(e) {}
-  }
-
-  function init(){
-    proteggiFunzioneApertura();
-    disattivaAutoPanPopup();
-    window.setTimeout(proteggiFunzioneApertura, 100);
-    window.setTimeout(proteggiFunzioneApertura, 600);
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();
-/* ===== PATCH_SOLO_MAPPA_FERMA_GOCCE_END ===== */
-</script>
 
 </body>
 </html>
