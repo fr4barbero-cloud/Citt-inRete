@@ -6193,14 +6193,14 @@ textarea:focus-visible,
 
 .caa-symbol-placeholder,
 .caa-symbol-placeholder-small {
-  background: #ffffff;
-  border: 2px dashed var(--caa-line);
-  border-radius: 12px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
-  color: #333333;
+  font-size:0;
+  color: transparent;
   text-align: center;
   line-height: 1.05;
 }
@@ -9601,17 +9601,17 @@ La lista contiene le informazioni e i pulsanti necessari.
 
       <div class="info-useful-content">
         <div class="info-box">
-          <span class="info-label">ORARI</span>
+          <span class="info-label" data-caa-file="orari">ORARI</span>
           <div id="infoOrari" class="info-value"></div>
         </div>
 
         <div class="info-box">
-          <span class="info-label">CONTATTI</span>
+          <span class="info-label" data-caa-file="contatti">CONTATTI</span>
           <div id="infoContatti" class="info-value"></div>
         </div>
 
         <div class="info-box">
-          <span class="info-label">SITO INTERNET</span>
+          <span class="info-label" data-caa-file="sitoweb">SITO INTERNET</span>
           <div id="infoSito" class="info-value"></div>
         </div>
       </div>
@@ -12400,210 +12400,133 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <script>
-/* GUIDA AUDIO E ANNUNCI ACCESSIBILI */
+/* GUIDA AUDIO - guida.mp3 */
 (function () {
+  let guideAudio = null;
+  let autoPlayTried = false;
+  let autoPlayDone = false;
+  let interactionFallbackReady = false;
 
-  const synth = window.speechSynthesis;
-  let utterance = null;
-  let guideStartedAutomatically = false;
+  function getGuideAudio() {
+    if (guideAudio) return guideAudio;
 
-  const guideText = `
-Benvenuto nella Mappa Accessibile della città di Bra.
-Questo sito è stato preparato per essere usato anche con gli screen reader più diffusi.
-Puoi scegliere una sezione tra Luoghi da visitare, Edifici pubblici e La mia mappa.
-La mappa è visibile sullo schermo, ma puoi usare anche la lista dei luoghi.
-La lista ti permette di ascoltare le informazioni, aprire la scheda del luogo e avviare il percorso con il pulsante Vai a questo luogo.
-Se usi la tastiera, premi TAB per passare da un elemento all’altro.
-Premi INVIO per aprire un pulsante o un link.
-Premi ESC per chiudere una finestra.
-Per ascoltare di nuovo questa guida premi Ascolta guida.
-Per fermare la guida premi Ferma guida vocale.
-`;
+    guideAudio = document.getElementById('audioGuida');
+
+    if (!guideAudio) {
+      guideAudio = document.createElement('audio');
+      guideAudio.id = 'audioGuida';
+      document.body.appendChild(guideAudio);
+    }
+
+    guideAudio.src = 'guida.mp3';
+    guideAudio.preload = 'auto';
+    guideAudio.setAttribute('playsinline', '');
+    guideAudio.setAttribute('webkit-playsinline', '');
+
+    return guideAudio;
+  }
 
   function announce(text) {
     const region = document.getElementById('screenReaderStatus');
     if (!region) return;
-
     region.textContent = '';
     setTimeout(function () {
       region.textContent = text;
     }, 40);
   }
 
-  function stopGuide() {
-    if (synth) {
-      synth.cancel();
-    }
+  function playGuideFromStart() {
+    const audio = getGuideAudio();
+    audio.pause();
+    audio.currentTime = 0;
+    return audio.play();
   }
 
-  function speakGuide() {
-    stopGuide();
+  function stopGuide() {
+    const audio = getGuideAudio();
+    audio.pause();
+    audio.currentTime = 0;
+  }
 
-    if (!synth || !window.SpeechSynthesisUtterance) {
-      announce('La guida audio non è disponibile.');
-      return;
-    }
+  function startGuideByButton() {
+    playGuideFromStart().catch(function () {
+      announce('Premi Ascolta guida per avviare la guida audio.');
+    });
+  }
 
-    utterance = new SpeechSynthesisUtterance(guideText);
-    utterance.lang = 'it-IT';
-    utterance.rate = 0.95;
-    utterance.pitch = 1;
+  function removeInteractionFallback() {
+    document.removeEventListener('pointerdown', startGuideAfterFirstInteraction, true);
+    document.removeEventListener('keydown', startGuideAfterFirstInteraction, true);
+    document.removeEventListener('touchstart', startGuideAfterFirstInteraction, true);
+  }
 
-    synth.speak(utterance);
+  function startGuideAfterFirstInteraction() {
+    if (autoPlayDone) return;
+    autoPlayDone = true;
+    removeInteractionFallback();
+    playGuideFromStart().catch(function () {});
+  }
+
+  function prepareInteractionFallback() {
+    if (interactionFallbackReady) return;
+    interactionFallbackReady = true;
+    document.addEventListener('pointerdown', startGuideAfterFirstInteraction, true);
+    document.addEventListener('keydown', startGuideAfterFirstInteraction, true);
+    document.addEventListener('touchstart', startGuideAfterFirstInteraction, true);
+  }
+
+  function startGuideAutomaticallyOnce() {
+    if (autoPlayTried) return;
+    autoPlayTried = true;
+
+    setTimeout(function () {
+      if (autoPlayDone) return;
+      const audio = getGuideAudio();
+      audio.currentTime = 0;
+      audio.play().then(function () {
+        autoPlayDone = true;
+        removeInteractionFallback();
+      }).catch(function () {
+        prepareInteractionFallback();
+        announce('Premi Ascolta guida per avviare la guida audio.');
+      });
+    }, 600);
   }
 
   function setupGuideButtons() {
     const listenButton = document.getElementById('listenGuideButton');
     const stopButton = document.getElementById('stopGuideButton');
 
-    if (listenButton) {
+    if (listenButton && listenButton.dataset.audioReady !== 'true') {
+      listenButton.dataset.audioReady = 'true';
       listenButton.addEventListener('click', function () {
-        speakGuide();
+        autoPlayDone = true;
+        removeInteractionFallback();
+        startGuideByButton();
       });
     }
 
-    if (stopButton) {
+    if (stopButton && stopButton.dataset.audioReady !== 'true') {
+      stopButton.dataset.audioReady = 'true';
       stopButton.addEventListener('click', function () {
+        autoPlayDone = true;
+        removeInteractionFallback();
         stopGuide();
       });
     }
   }
 
-  function startGuideAutomatically() {
-    if (guideStartedAutomatically) return;
-    guideStartedAutomatically = true;
-    setTimeout(function () {
-      speakGuide();
-    }, 600);
-  }
-
-  function setupAutoplayFallback() {
-    const startAfterFirstAction = function () {
-      if (!guideStartedAutomatically) {
-        startGuideAutomatically();
-      }
-      document.removeEventListener('click', startAfterFirstAction, true);
-      document.removeEventListener('keydown', startAfterFirstAction, true);
-      document.removeEventListener('touchstart', startAfterFirstAction, true);
-    };
-
-    document.addEventListener('click', startAfterFirstAction, true);
-    document.addEventListener('keydown', startAfterFirstAction, true);
-    document.addEventListener('touchstart', startAfterFirstAction, true);
-  }
-
-  function setupKeyboardShortcuts() {
-    document.addEventListener('keydown', function (event) {
-
-      // L = ascolta guida
-      if (
-        event.key.toLowerCase() === 'l' &&
-        !event.ctrlKey &&
-        !event.altKey &&
-        !event.metaKey
-      ) {
-        const target = event.target;
-        const tag = target && target.tagName ? target.tagName.toLowerCase() : '';
-
-        // evita attivazione mentre si scrive
-        if (tag === 'input' || tag === 'textarea') return;
-
-        event.preventDefault();
-        speakGuide();
-      }
-
-      // S = stop guida
-      if (
-        event.key.toLowerCase() === 's' &&
-        !event.ctrlKey &&
-        !event.altKey &&
-        !event.metaKey
-      ) {
-        const target = event.target;
-        const tag = target && target.tagName ? target.tagName.toLowerCase() : '';
-
-        if (tag === 'input' || tag === 'textarea') return;
-
-        event.preventDefault();
-        stopGuide();
-      }
-    });
-  }
-
-  function setupAnnouncements() {
-
-    // Cambio sezione
-    document.querySelectorAll('.category-button').forEach(function (button) {
-      button.addEventListener('click', function () {
-        const text = (button.innerText || button.textContent || '').trim();
-        if (text) {
-          setTimeout(function () {
-            announce('Sezione aperta: ' + text + '.');
-          }, 200);
-        }
-      });
-    });
-
-    // Apertura popup luoghi
-    document.addEventListener('click', function (event) {
-
-      const placeButton = event.target.closest('.place-card button, .poi-card button, .leaflet-marker-icon');
-
-      if (placeButton) {
-        setTimeout(function () {
-
-          const title =
-            document.querySelector('.popup-title') ||
-            document.querySelector('.modal-title') ||
-            document.querySelector('.place-card h3');
-
-          if (title) {
-            const text = (title.innerText || title.textContent || '').trim();
-            if (text) {
-              announce('Informazioni su ' + text + '.');
-            }
-          }
-
-        }, 250);
-      }
-
-      const closeButton = event.target.closest('.modal-close');
-      if (closeButton) {
-        announce('Finestra chiusa.');
-      }
-    });
-  }
-
-  function focusGuideButton() {
-    const button = document.getElementById('listenGuideButton');
-    if (!button) return;
-
-    // solo screen reader / tastiera
-    setTimeout(function () {
-      button.setAttribute('tabindex', '0');
-    }, 100);
-  }
-
-  function initAccessibilityGuide() {
+  function initGuideAudio() {
+    getGuideAudio();
     setupGuideButtons();
-    setupKeyboardShortcuts();
-    setupAnnouncements();
-    setupAutoplayFallback();
-    focusGuideButton();
-    startGuideAutomatically();
-
-    // Annuncio iniziale BREVE
-    setTimeout(function () {
-      announce('Pagina caricata. Usa la lista dei luoghi per navigare.');
-    }, 800);
+    startGuideAutomaticallyOnce();
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAccessibilityGuide);
+    document.addEventListener('DOMContentLoaded', initGuideAudio);
   } else {
-    initAccessibilityGuide();
+    initGuideAudio();
   }
-
 })();
 </script>
 
@@ -13826,9 +13749,9 @@ Per fermare la guida premi Ferma guida vocale.
   function buildInfoHtml(tappa){
     var info = getInfo(tappa);
     return '<div class="info-useful-content">' +
-      '<div class="info-box"><span class="info-label">Orari</span><div class="info-value">' + (info.orari || tappa.orari || 'ORARI NON INSERITI.') + '</div></div>' +
-      '<div class="info-box"><span class="info-label">Contatti</span><div class="info-value">' + (info.contatti || tappa.contatti || 'CONTATTI NON INSERITI.') + '</div></div>' +
-      '<div class="info-box"><span class="info-label">Sito web</span><div class="info-value">' + formatSite(info.sito || tappa.sito) + '</div></div>' +
+      '<div class="info-box"><span class="info-label" data-caa-file="orari">Orari</span><div class="info-value">' + (info.orari || tappa.orari || 'ORARI NON INSERITI.') + '</div></div>' +
+      '<div class="info-box"><span class="info-label" data-caa-file="contatti">Contatti</span><div class="info-value">' + (info.contatti || tappa.contatti || 'CONTATTI NON INSERITI.') + '</div></div>' +
+      '<div class="info-box"><span class="info-label" data-caa-file="sitoweb">Sito web</span><div class="info-value">' + formatSite(info.sito || tappa.sito) + '</div></div>' +
       '</div>';
   }
 
@@ -14187,7 +14110,10 @@ Per fermare la guida premi Ferma guida vocale.
     schedaluogo: 'schedaluogo.png',
     ascolta: 'ascolta.png',
     stopascolta: 'stopascolta.png',
-    eliminaluogo: 'eliminaluogo.png'
+    eliminaluogo: 'eliminaluogo.png',
+    orari: 'orari.png',
+    contatti: 'contatti.png',
+    sitoweb: 'sitoweb.png'
   };
 
   function img(file) {
@@ -14285,6 +14211,14 @@ Per fermare la guida premi Ferma guida vocale.
       else restoreOriginal(section);
     });
 
+    document.querySelectorAll('.info-label[data-caa-file]').forEach(function (label) {
+      const key = label.getAttribute('data-caa-file');
+      const file = CAA_FILES[key];
+      if (!file) return;
+      if (on) setOnlyImage(label, file);
+      else restoreOriginal(label);
+    });
+
     const showAddPlace = document.getElementById('showAddPlace');
     if (showAddPlace) {
       if (on) setOnlyImage(showAddPlace, CAA_FILES.aggiungiluogo);
@@ -14343,7 +14277,7 @@ Per fermare la guida premi Ferma guida vocale.
       else restoreOriginal(button);
     });
 
-    document.querySelectorAll('.open-info-utili, .popup-info.open-info-utili').forEach(function (button) {
+    document.querySelectorAll('.open-info-utili, .popup-info.open-info-utili, .final-info-trigger').forEach(function (button) {
       if (on) setOnlyImage(button, CAA_FILES.informazioni);
       else restoreOriginal(button);
     });
@@ -14369,6 +14303,8 @@ Per fermare la guida premi Ferma guida vocale.
     updateDynamicActionButtons();
   }
 
+  window.updateAllCaaImages = updateAllCaaImages;
+
   function scheduleUpdate() {
     window.requestAnimationFrame(updateAllCaaImages);
   }
@@ -14386,6 +14322,7 @@ Per fermare la guida premi Ferma guida vocale.
       event.target.closest('#attivaMappaHome') ||
       event.target.closest('.category-button') ||
       event.target.closest('.open-info-utili') ||
+      event.target.closest('.final-info-trigger') ||
       event.target.closest('.open-scheda') ||
       event.target.closest('.open-note')
     ) {
@@ -14400,6 +14337,51 @@ Per fermare la guida premi Ferma guida vocale.
 
   if (document.body) {
     observer.observe(document.body, { childList: true, subtree: true });
+  }
+})();
+</script>
+
+
+
+<style id="patch-caa-info-etichette-e-placeholder">
+/* CAA: rimuove i riquadri tratteggiati segnaposto con scritto CAA */
+body.caa-on .popup-image-space,
+body.caa-on .card-image-space {
+  display: none !important;
+}
+</style>
+
+<script id="patch-info-mobile-lista-e-caa">
+(function () {
+  function isMobile() {
+    return window.matchMedia && window.matchMedia('(max-width: 759px)').matches;
+  }
+
+  document.addEventListener('click', function (event) {
+    var infoLink = event.target.closest('.poi-actions .open-info-utili, .place-card .open-info-utili');
+    if (!infoLink || !isMobile()) return;
+    if (typeof window.openMobileInfoUtiliScreen !== 'function') return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    window.openMobileInfoUtiliScreen(infoLink.getAttribute('data-index'));
+
+    if (typeof window.updateAllCaaImages === 'function') {
+      setTimeout(window.updateAllCaaImages, 0);
+      setTimeout(window.updateAllCaaImages, 120);
+    }
+  }, true);
+
+  var originalOpenMobileInfo = window.openMobileInfoUtiliScreen;
+  if (typeof originalOpenMobileInfo === 'function') {
+    window.openMobileInfoUtiliScreen = function (index) {
+      var result = originalOpenMobileInfo(index);
+      if (typeof window.updateAllCaaImages === 'function') {
+        setTimeout(window.updateAllCaaImages, 0);
+        setTimeout(window.updateAllCaaImages, 120);
+      }
+      return result;
+    };
   }
 })();
 </script>
