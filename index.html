@@ -9362,6 +9362,32 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
   }
 }
 </style>
+
+<style>
+/* Dimensione unica per predisposizioni PNG in modalità CAA */
+.caa-png-predisposizione {
+  display: block;
+  max-width: 100%;
+  max-height: 72px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.caa-page-note .caa-png-predisposizione,
+.caa-sequence .caa-png-predisposizione,
+.personal-map-guide .caa-png-predisposizione {
+  max-height: none;
+  width: 100%;
+}
+
+.address-help .caa-png-predisposizione {
+  display: inline-block;
+  width: 32%;
+  max-height: 80px;
+  vertical-align: middle;
+}
+</style>
+
 </head>
 
 <body class="caa-off">
@@ -11677,8 +11703,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const label = button.textContent.trim() || 'Aggiungi un luogo';
       button.innerHTML =
         '<span class="caa-action-row">' +
-        '<img class="caa-symbol-small" src="img/arasac/aggiungere.png" alt="" aria-hidden="true" ' +
-        'onerror="this.outerHTML=\\'<span class=&quot;caa-symbol-placeholder-small&quot; aria-hidden=&quot;true&quot;>CAA</span>\\'">' +
+        '<img class="caa-symbol-small" src="img/arasac/aggiungere.png" alt="" aria-hidden="true">' +
         '<span class="caa-text">' + label + '</span>' +
         '</span>';
     }
@@ -14127,6 +14152,254 @@ Per fermare la guida premi Ferma guida vocale.
     document.addEventListener('DOMContentLoaded', function () {
       observer.observe(document.body, { childList: true, subtree: true });
     });
+  }
+})();
+</script>
+
+
+<script>
+/* PREDISPOSIZIONE IMMAGINI CAA - SOLO RIFERIMENTI PNG */
+(function () {
+  const CAA_IMG_CLASS = 'caa-png-predisposizione';
+  const CAA_FILES = {
+    caa: 'caa.png',
+    nocaa: 'nocaa.png',
+    luoghi: 'luoghidavisitare.png',
+    edifici: 'edificipubblici.png',
+    mia: 'lamiamappa.png',
+    comeusaremappa: 'sceglisezione.png',
+    comescegliereluoghi: 'comescegliereluoghi.png',
+    comeusaremiamappa: 'comeusaremiamappa.png',
+    muovimappa: 'muovimappa.png',
+    bloccamappa: 'bloccamappa.png',
+    aggiungiluogo: 'aggiungiluogo.png',
+    nomeluogo: 'nomeluogo.png',
+    indirizzocompleto: 'indirizzocompleto.png',
+    via: 'via.png',
+    numerocivico: 'numerocivico.png',
+    citta: 'citta.png',
+    note: 'note.png',
+    immagine: 'immagine.png',
+    salvaluogo: 'salvaluogo.png',
+    indietro: 'indietro.png',
+    portamiqui: 'portamiqui.png',
+    informazioni: 'informazioni.png',
+    schedaluogo: 'schedaluogo.png',
+    ascolta: 'ascolta.png',
+    stopascolta: 'stopascolta.png',
+    eliminaluogo: 'eliminaluogo.png'
+  };
+
+  function img(file) {
+    return '<img class="' + CAA_IMG_CLASS + '" src="' + file + '" alt="">';
+  }
+
+  function imgRow(files) {
+    return files.map(function (file) {
+      return img(file);
+    }).join('');
+  }
+
+  function rememberOriginal(el) {
+    if (!el || el.dataset.caaOriginalHtml !== undefined) return;
+    el.dataset.caaOriginalHtml = el.innerHTML;
+  }
+
+  function restoreOriginal(el) {
+    if (!el || el.dataset.caaOriginalHtml === undefined) return;
+    if (el.innerHTML !== el.dataset.caaOriginalHtml) {
+      el.innerHTML = el.dataset.caaOriginalHtml;
+    }
+  }
+
+  function setOnlyImage(el, file) {
+    if (!el) return;
+    rememberOriginal(el);
+    const html = img(file);
+    if (el.innerHTML !== html) {
+      el.innerHTML = html;
+    }
+  }
+
+  function setOnlyImages(el, files) {
+    if (!el) return;
+    rememberOriginal(el);
+    const html = imgRow(files);
+    if (el.innerHTML !== html) {
+      el.innerHTML = html;
+    }
+  }
+
+  function isCaaOn() {
+    return document.body.classList.contains('caa-on');
+  }
+
+  function updateToggleButton() {
+    const toggle = document.getElementById('caaModeToggle');
+    if (!toggle) return;
+    const file = isCaaOn() ? CAA_FILES.nocaa : CAA_FILES.caa;
+    setOnlyImage(toggle, file);
+  }
+
+  function updateStaticCaaElements() {
+    const on = isCaaOn();
+
+    updateToggleButton();
+
+    const categoryFiles = {
+      musei: CAA_FILES.luoghi,
+      edifici: CAA_FILES.edifici,
+      mia: CAA_FILES.mia
+    };
+
+    document.querySelectorAll('.category-button[data-category]').forEach(function (button) {
+      const file = categoryFiles[button.dataset.category];
+      if (!file) return;
+      if (on) setOnlyImage(button, file);
+      else restoreOriginal(button);
+    });
+
+    ['attivaMappaHome', 'attivaMappa'].forEach(function (id) {
+      const button = document.getElementById(id);
+      if (!button) return;
+      if (on) {
+        const file = button.dataset.attiva === 'true' ? CAA_FILES.bloccamappa : CAA_FILES.muovimappa;
+        setOnlyImage(button, file);
+      } else {
+        restoreOriginal(button);
+      }
+    });
+
+    document.querySelectorAll('.caa-page-note').forEach(function (section) {
+      if (on) setOnlyImage(section, CAA_FILES.comeusaremappa);
+      else restoreOriginal(section);
+    });
+
+    document.querySelectorAll('.caa-sequence').forEach(function (section) {
+      if (on) setOnlyImage(section, CAA_FILES.comescegliereluoghi);
+      else restoreOriginal(section);
+    });
+
+    document.querySelectorAll('.personal-map-guide').forEach(function (section) {
+      if (on) setOnlyImage(section, CAA_FILES.comeusaremiamappa);
+      else restoreOriginal(section);
+    });
+
+    const showAddPlace = document.getElementById('showAddPlace');
+    if (showAddPlace) {
+      if (on) setOnlyImage(showAddPlace, CAA_FILES.aggiungiluogo);
+      else restoreOriginal(showAddPlace);
+    }
+
+    const labelFiles = {
+      personalName: CAA_FILES.nomeluogo,
+      personalAddress: CAA_FILES.indirizzocompleto,
+      personalDescription: CAA_FILES.note,
+      personalImage: CAA_FILES.immagine
+    };
+
+    Object.keys(labelFiles).forEach(function (id) {
+      const label = document.querySelector('label[for="' + id + '"]');
+      if (!label) return;
+      if (on) setOnlyImage(label, labelFiles[id]);
+      else restoreOriginal(label);
+    });
+
+    document.querySelectorAll('.address-help').forEach(function (help) {
+      if (on) setOnlyImages(help, [CAA_FILES.via, CAA_FILES.numerocivico, CAA_FILES.citta]);
+      else restoreOriginal(help);
+    });
+
+    const saveButton = document.querySelector('#personalPlaceForm button[type="submit"]');
+    if (saveButton) {
+      if (on) setOnlyImage(saveButton, CAA_FILES.salvaluogo);
+      else restoreOriginal(saveButton);
+    }
+
+    const cancelButton = document.getElementById('cancelAddPlace');
+    if (cancelButton) {
+      if (on) setOnlyImage(cancelButton, CAA_FILES.indietro);
+      else restoreOriginal(cancelButton);
+    }
+
+    const listenButton = document.getElementById('listenGuideButton');
+    if (listenButton) {
+      if (on) setOnlyImage(listenButton, CAA_FILES.ascolta);
+      else restoreOriginal(listenButton);
+    }
+
+    const stopButton = document.getElementById('stopGuideButton');
+    if (stopButton) {
+      if (on) setOnlyImage(stopButton, CAA_FILES.stopascolta);
+      else restoreOriginal(stopButton);
+    }
+  }
+
+  function updateDynamicActionButtons() {
+    const on = isCaaOn();
+
+    document.querySelectorAll('a.portami-qui, .button-link.portami-qui').forEach(function (button) {
+      if (on) setOnlyImage(button, CAA_FILES.portamiqui);
+      else restoreOriginal(button);
+    });
+
+    document.querySelectorAll('.open-info-utili, .popup-info.open-info-utili').forEach(function (button) {
+      if (on) setOnlyImage(button, CAA_FILES.informazioni);
+      else restoreOriginal(button);
+    });
+
+    document.querySelectorAll('.open-scheda, .popup-scheda').forEach(function (button) {
+      if (on) setOnlyImage(button, CAA_FILES.schedaluogo);
+      else restoreOriginal(button);
+    });
+
+    document.querySelectorAll('.open-note').forEach(function (button) {
+      if (on) setOnlyImage(button, CAA_FILES.note);
+      else restoreOriginal(button);
+    });
+
+    document.querySelectorAll('.delete-place, .popup-delete').forEach(function (button) {
+      if (on) setOnlyImage(button, CAA_FILES.eliminaluogo);
+      else restoreOriginal(button);
+    });
+  }
+
+  function updateAllCaaImages() {
+    updateStaticCaaElements();
+    updateDynamicActionButtons();
+  }
+
+  function scheduleUpdate() {
+    window.requestAnimationFrame(updateAllCaaImages);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateAllCaaImages);
+  } else {
+    updateAllCaaImages();
+  }
+
+  document.addEventListener('click', function (event) {
+    if (
+      event.target.closest('#caaModeToggle') ||
+      event.target.closest('#attivaMappa') ||
+      event.target.closest('#attivaMappaHome') ||
+      event.target.closest('.category-button') ||
+      event.target.closest('.open-info-utili') ||
+      event.target.closest('.open-scheda') ||
+      event.target.closest('.open-note')
+    ) {
+      setTimeout(updateAllCaaImages, 0);
+      setTimeout(updateAllCaaImages, 120);
+    }
+  });
+
+  const observer = new MutationObserver(function () {
+    scheduleUpdate();
+  });
+
+  if (document.body) {
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 })();
 </script>
