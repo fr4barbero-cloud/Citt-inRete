@@ -9652,8 +9652,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         lng: 7.85315,
         indirizzo: "Strada Fey, 1 – 12042 Bra (CN)",
         descrizione: "Punto panoramico e simbolo della città di Bra.",
-        pagina: "luoghi/la-zizzola.html",
-        schedaLink: "luoghi/la-zizzola.html",
+        pagina: "schedazizzola_modal_mobile.html",
+        schedaLink: "schedazizzola_modal_mobile.html",
         foto: "zizzola.png",
         accesso: "ok",
         categoria: "musei",
@@ -14383,6 +14383,107 @@ body.caa-on .card-image-space {
       return result;
     };
   }
+})();
+</script>
+
+
+<script id="fix_audio_home_una_volta_e_stop_scheda">
+(function() {
+  const AUDIO_HOME_KEY = "mappa_accessibile_audio_home_gia_ascoltato";
+
+  function getPageAudios() {
+    return Array.from(document.querySelectorAll("audio"));
+  }
+
+  function stopAllPageAudios() {
+    getPageAudios().forEach(function(audio) {
+      try {
+        audio.pause();
+        audio.currentTime = 0;
+      } catch (e) {}
+    });
+  }
+
+  function bloccaReplayAudioHome() {
+    if (sessionStorage.getItem(AUDIO_HOME_KEY) === "si") {
+      getPageAudios().forEach(function(audio) {
+        try {
+          audio.pause();
+          audio.currentTime = 0;
+          audio.removeAttribute("autoplay");
+        } catch (e) {}
+      });
+      return;
+    }
+
+    sessionStorage.setItem(AUDIO_HOME_KEY, "si");
+  }
+
+  document.addEventListener("DOMContentLoaded", bloccaReplayAudioHome);
+  window.addEventListener("pageshow", bloccaReplayAudioHome);
+
+  document.addEventListener("click", function(event) {
+    const link = event.target.closest("a");
+    if (!link) return;
+
+    const href = link.getAttribute("href") || "";
+    if (
+      href.includes("schedazizzola_modal_mobile.html") ||
+      href.includes("schedazizzola") ||
+      link.classList.contains("scheda-luogo") ||
+      link.classList.contains("open-scheda") ||
+      link.classList.contains("popup-scheda")
+    ) {
+      stopAllPageAudios();
+    }
+  }, true);
+
+  const originalOpen = window.open;
+  window.open = function(url, target, features) {
+    if (typeof url === "string" && url.includes("schedazizzola")) {
+      stopAllPageAudios();
+    }
+    return originalOpen.call(window, url, target, features);
+  };
+})();
+</script>
+
+
+<script id="fix_info_liste_mobile_definitivo">
+(function() {
+  function isInfoListButton(target) {
+    return target.closest(
+      "#lista-tappe .open-info-utili," +
+      "#lista-tappe .info-utili," +
+      "#lista-tappe .button-link.info," +
+      "#lista-tappe .final-info-trigger," +
+      ".places-list .open-info-utili," +
+      ".places-list .info-utili," +
+      ".places-list .button-link.info," +
+      ".places-list .final-info-trigger"
+    );
+  }
+
+  function openInfoFromButton(button, event) {
+    if (!button) return;
+
+    const index = Number(button.getAttribute("data-index"));
+    if (Number.isNaN(index)) return;
+
+    if (typeof openInfoUtili === "function") {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      openInfoUtili(index);
+    }
+  }
+
+  document.addEventListener("click", function(event) {
+    openInfoFromButton(isInfoListButton(event.target), event);
+  }, true);
+
+  document.addEventListener("touchend", function(event) {
+    openInfoFromButton(isInfoListButton(event.target), event);
+  }, true);
 })();
 </script>
 
