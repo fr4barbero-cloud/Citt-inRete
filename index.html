@@ -14487,5 +14487,45 @@ body.caa-on .card-image-space {
 })();
 </script>
 
+
+<div id="schedaLuogoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:99999;">
+  <div style="position:absolute;inset:10px;background:#fff;border-radius:12px;overflow:hidden;">
+    <button id="chiudiSchedaLuogo" style="position:absolute;top:10px;right:10px;z-index:2;width:48px;height:48px;border:none;border-radius:50%;background:#F94144;color:white;font-size:28px;cursor:pointer;">×</button>
+    <iframe id="schedaLuogoFrame" src="" style="width:100%;height:100%;border:none;"></iframe>
+  </div>
+</div>
+
+<script id="scheda-luogo-modal-fix">
+(function(){
+ const modal=document.getElementById('schedaLuogoModal');
+ const frame=document.getElementById('schedaLuogoFrame');
+ const close=document.getElementById('chiudiSchedaLuogo');
+
+ document.addEventListener('click',function(e){
+   const btn=e.target.closest('.scheda-luogo, .open-scheda, .schedaLink');
+   if(!btn) return;
+
+   const href=btn.getAttribute('href') || btn.dataset.href || '';
+   if(href.includes('schedazizzola_modal_mobile.html')){
+      e.preventDefault();
+      modal.style.display='block';
+      frame.src='schedazizzola_modal_mobile.html';
+   }
+ },true);
+
+ close.addEventListener('click',function(){
+   modal.style.display='none';
+   frame.src='';
+ });
+
+ modal.addEventListener('click',function(e){
+   if(e.target===modal){
+      modal.style.display='none';
+      frame.src='';
+   }
+ });
+})();
+</script>
+
 </body>
 </html>
