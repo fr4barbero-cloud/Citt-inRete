@@ -9614,6 +9614,11 @@ La lista contiene le informazioni e i pulsanti necessari.
           <span class="info-label" data-caa-file="sitoweb">SITO INTERNET</span>
           <div id="infoSito" class="info-value"></div>
         </div>
+
+        <div class="info-box">
+          <span class="info-label" data-caa-file="infoaccessibilita">INFO ACCESSIBILITÀ</span>
+          <div id="infoAccessibilita" class="info-value"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -9652,8 +9657,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         lng: 7.85315,
         indirizzo: "Strada Fey, 1 – 12042 Bra (CN)",
         descrizione: "Punto panoramico e simbolo della città di Bra.",
-        pagina: "schedazizzolastabile.html",
-        schedaLink: "schedazizzolastabile.html",
+        pagina: "schedazizzola.html",
+        schedaLink: "schedazizzola.html",
         foto: "zizzola.png",
         accesso: "ok",
         categoria: "musei",
@@ -14428,7 +14433,7 @@ body.caa-on .card-image-space {
 
     const href = link.getAttribute("href") || "";
     if (
-      href.includes("schedazizzola_modal_mobile.html") ||
+      href.includes("schedazizzola.html") ||
       href.includes("schedazizzola") ||
       link.classList.contains("scheda-luogo") ||
       link.classList.contains("open-scheda") ||
@@ -14663,6 +14668,141 @@ body.caa-on .card-image-space {
   } else {
     startObserver();
   }
+})();
+</script>
+
+
+<script id="patch_rimuovi_scheda_modal_e_info_accessibilita">
+(function () {
+  function accessibilitaHtml(tappa) {
+    var a = tappa && tappa.accessibilita ? tappa.accessibilita : {};
+    var parti = [];
+
+    if (a.sediaRotelle) parti.push("Sedia a rotelle: " + a.sediaRotelle);
+    if (a.ascensore) parti.push("Ascensore: " + a.ascensore);
+    if (a.bagno) parti.push("Bagno accessibile: " + a.bagno);
+    if (a.parcheggio) parti.push("Parcheggio: " + a.parcheggio);
+    if (a.guide) parti.push("Guide o supporti: " + a.guide);
+    if (a.note) parti.push("Note: " + a.note);
+
+    return parti.length ? parti.join("<br>") : "Informazioni sull'accessibilità da completare.";
+  }
+
+  function getTappaByIndex(index) {
+    index = Number(index);
+    if (!Number.isFinite(index)) return null;
+
+    try {
+      if (typeof getCurrentStops === "function") {
+        var stops = getCurrentStops();
+        if (stops && stops[index]) return stops[index];
+      }
+    } catch(e) {}
+
+    try {
+      if (typeof stops !== "undefined" && stops && stops[index]) return stops[index];
+    } catch(e) {}
+
+    return null;
+  }
+
+  function nascondiSchedaModalPortami() {
+    var modal = document.getElementById("schedaModal");
+    if (!modal) return;
+    modal.classList.remove("open");
+    modal.style.setProperty("display", "none", "important");
+    modal.setAttribute("aria-hidden", "true");
+  }
+
+  // Disattiva la vecchia finestra con "Guida a piedi / Guida in auto".
+  document.addEventListener("click", function(event) {
+    var closeOld = event.target.closest("#modalClose, #chiudiScheda");
+    if (closeOld) {
+      setTimeout(nascondiSchedaModalPortami, 0);
+      setTimeout(nascondiSchedaModalPortami, 100);
+      return;
+    }
+
+    var modal = document.getElementById("schedaModal");
+    if (modal && modal.contains(event.target)) {
+      setTimeout(nascondiSchedaModalPortami, 0);
+      setTimeout(nascondiSchedaModalPortami, 100);
+    }
+  }, true);
+
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      setTimeout(nascondiSchedaModalPortami, 0);
+      setTimeout(nascondiSchedaModalPortami, 100);
+    }
+  });
+
+  // Evita che riappaia dopo la chiusura di altri popup/finestre.
+  var observer = new MutationObserver(function() {
+    var modal = document.getElementById("schedaModal");
+    if (modal && modal.classList.contains("open")) {
+      nascondiSchedaModalPortami();
+    }
+  });
+
+  if (document.body) {
+    observer.observe(document.body, { attributes: true, childList: true, subtree: true, attributeFilter: ["class", "style", "aria-hidden"] });
+  }
+
+  // Compila il nuovo riquadro nella finestra Informazioni desktop.
+  var originalOpenInfoUtili = window.openInfoUtili;
+  if (typeof originalOpenInfoUtili === "function") {
+    window.openInfoUtili = function(index) {
+      var result = originalOpenInfoUtili.apply(this, arguments);
+      var tappa = getTappaByIndex(index);
+      var box = document.getElementById("infoAccessibilita");
+      if (box) box.innerHTML = accessibilitaHtml(tappa);
+      return result;
+    };
+  }
+
+  // Rafforza la schermata info mobile/final, aggiungendo il riquadro in fondo.
+  function aggiungiAccessibilitaAInfoMobile(index) {
+    var tappa = getTappaByIndex(index);
+    var containers = [
+      document.getElementById("mobileInfoContent"),
+      document.getElementById("finalInfoContent")
+    ];
+
+    containers.forEach(function(container) {
+      if (!container) return;
+      if (container.querySelector(".info-accessibilita-aggiunta")) return;
+
+      var box = document.createElement("div");
+      box.className = "info-box mobile-info-box info-accessibilita-aggiunta";
+      box.innerHTML =
+        '<span class="info-label mobile-info-label" data-caa-file="infoaccessibilita">Info accessibilità</span>' +
+        '<div class="info-value mobile-info-value">' + accessibilitaHtml(tappa) + '</div>';
+
+      var grid = container.querySelector(".info-useful-content, .mobile-info-grid");
+      if (grid) grid.appendChild(box);
+      else container.appendChild(box);
+    });
+  }
+
+  var oldMobileInfo = window.openMobileInfoUtiliScreen;
+  if (typeof oldMobileInfo === "function") {
+    window.openMobileInfoUtiliScreen = function(index) {
+      var result = oldMobileInfo.apply(this, arguments);
+      setTimeout(function(){ aggiungiAccessibilitaAInfoMobile(index); }, 0);
+      setTimeout(function(){ aggiungiAccessibilitaAInfoMobile(index); }, 120);
+      return result;
+    };
+  }
+
+  // Controllo finale dopo qualsiasi apertura Informazioni.
+  document.addEventListener("click", function(event) {
+    var infoBtn = event.target.closest(".open-info-utili, .popup-info, .button-link.info, .final-info-trigger");
+    if (!infoBtn) return;
+    var index = infoBtn.getAttribute("data-index");
+    setTimeout(function(){ aggiungiAccessibilitaAInfoMobile(index); }, 80);
+    setTimeout(function(){ aggiungiAccessibilitaAInfoMobile(index); }, 200);
+  }, true);
 })();
 </script>
 
