@@ -9668,12 +9668,12 @@ La lista contiene le informazioni e i pulsanti necessari.
           sito: "https://www.museidibra.it/museozizzola"
         },
         accessibilita: {
-          sediaRotelle: "Sì",
-          ascensore: "Informazioni da verificare",
-          bagno: "Informazioni da verificare",
-          parcheggio: "Informazioni da verificare",
-          guide: "Informazioni da verificare",
-          note: "Informazioni da completare"
+          sediaRotelle: "Luogo accessibile",
+          ascensore: "CAA",
+          bagno: "LIS",
+          parcheggio: "Mappa tattile",
+          guide: "Personale formato",
+          note: ""
         }
       },
       santa_chiara: {
@@ -14685,7 +14685,7 @@ body.caa-on .card-image-space {
     if (a.guide) parti.push("Guide o supporti: " + a.guide);
     if (a.note) parti.push("Note: " + a.note);
 
-    return parti.length ? parti.join("<br>") : "Informazioni sull'accessibilità da completare.";
+    return parti.length ? parti.join("<br>") : "";
   }
 
   function getTappaByIndex(index) {
@@ -14808,3 +14808,33 @@ body.caa-on .card-image-space {
 
 </body>
 </html>
+
+<script>
+document.addEventListener('click', function(e){
+  const t = e.target;
+  if(!t) return;
+
+  const txt = (t.textContent || '').toLowerCase();
+
+  if(txt.includes('informazioni')){
+    setTimeout(function(){
+      document.querySelectorAll('#infoAccessibilita').forEach(function(el){
+        el.innerHTML = '';
+      });
+
+      document.querySelectorAll('.info-accessibilita-aggiunta .info-value').forEach(function(el){
+        el.innerHTML = '';
+      });
+
+      const titolo = document.querySelector('.modal-title, h2, h3');
+      const isZizzola = document.body.innerText.toLowerCase().includes('zizzola');
+
+      if(isZizzola){
+        document.querySelectorAll('#infoAccessibilita, .info-accessibilita-aggiunta .info-value').forEach(function(el){
+          el.innerHTML = 'CAA<br>LIS<br>Mappa tattile<br>Personale formato<br>Luogo accessibile';
+        });
+      }
+    },150);
+  }
+}, true);
+</script>
