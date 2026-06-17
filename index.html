@@ -9388,73 +9388,6 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
 }
 </style>
 
-
-<style id="scheda_luogo_popup_css">
-#schedaLuogoOverlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-  background: rgba(0,0,0,.72);
-  padding: 14px;
-}
-#schedaLuogoOverlay.open {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#schedaLuogoWindow {
-  position: relative;
-  width: min(980px, 100%);
-  height: 92vh;
-  background: #ffffff;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 5px solid #277DA1;
-}
-#schedaLuogoClose {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 5;
-  width: 58px;
-  height: 58px;
-  border: 5px solid #000000;
-  border-radius: 50%;
-  background: #ffbf00;
-  color: #000000;
-  font-size: 36px;
-  font-weight: 900;
-  line-height: 1;
-  cursor: pointer;
-}
-#schedaLuogoFrame {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-}
-@media (max-width: 759px) {
-  #schedaLuogoOverlay {
-    padding: 0;
-  }
-  #schedaLuogoWindow {
-    width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    border-radius: 0;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
-  }
-  #schedaLuogoClose {
-    width: 54px;
-    height: 54px;
-    font-size: 34px;
-  }
-}
-</style>
-
 </head>
 
 <body class="caa-off">
@@ -9719,8 +9652,8 @@ La lista contiene le informazioni e i pulsanti necessari.
         lng: 7.85315,
         indirizzo: "Strada Fey, 1 – 12042 Bra (CN)",
         descrizione: "Punto panoramico e simbolo della città di Bra.",
-        pagina: "schedazizzola_modal_mobile.html",
-        schedaLink: "schedazizzola_modal_mobile.html",
+        pagina: "schedazizzolastabile.html",
+        schedaLink: "schedazizzolastabile.html",
         foto: "zizzola.png",
         accesso: "ok",
         categoria: "musei",
@@ -14555,96 +14488,181 @@ body.caa-on .card-image-space {
 </script>
 
 
-<div id="schedaLuogoOverlay" aria-hidden="true">
-  <div id="schedaLuogoWindow" role="dialog" aria-modal="true" aria-label="Scheda del luogo">
-    <button id="schedaLuogoClose" type="button" aria-label="Chiudi scheda del luogo">×</button>
-    <iframe id="schedaLuogoFrame" title="Scheda del luogo" src=""></iframe>
-  </div>
-</div>
+<script id="patch_dettatura_mobile_stabile">
+(function () {
+  function getSpeechRecognition() {
+    return window.SpeechRecognition || window.webkitSpeechRecognition || null;
+  }
 
+  function status(text) {
+    var el = document.getElementById("voiceDictationStatus");
+    if (el) el.textContent = text || "";
+  }
 
-<script id="scheda_luogo_popup_script">
-(function(){
-  function stopAudioMappa() {
-    document.querySelectorAll("audio").forEach(function(audio) {
-      try {
-        audio.pause();
-        audio.currentTime = 0;
-      } catch(e) {}
+  function ensureDictationButtons() {
+    var campi = [
+      { id: "personalName", label: "Detta nome del luogo" },
+      { id: "personalAddress", label: "Detta indirizzo completo" },
+      { id: "personalDescription", label: "Detta note" }
+    ];
+
+    campi.forEach(function (item) {
+      var field = document.getElementById(item.id);
+      if (!field) return;
+      var parent = field.parentElement;
+      if (!parent) return;
+      if (parent.querySelector('.voice-dictation-button[data-voice-target="' + item.id + '"]')) return;
+
+      var row = document.createElement("div");
+      row.className = "voice-dictation-row";
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "voice-dictation-button";
+      button.setAttribute("data-voice-target", item.id);
+      button.setAttribute("aria-label", item.label);
+      button.setAttribute("aria-pressed", "false");
+      button.textContent = "🎤";
+      row.appendChild(button);
+
+      if (field.nextSibling) parent.insertBefore(row, field.nextSibling);
+      else parent.appendChild(row);
+    });
+
+    var form = document.getElementById("personalPlaceForm");
+    if (form && !document.getElementById("voiceDictationStatus")) {
+      var p = document.createElement("p");
+      p.id = "voiceDictationStatus";
+      p.className = "voice-dictation-status";
+      p.setAttribute("aria-live", "polite");
+      form.appendChild(p);
+    }
+  }
+
+  var recognition = null;
+  var activeField = null;
+
+  function resetButtons() {
+    document.querySelectorAll(".voice-dictation-button").forEach(function (button) {
+      button.classList.remove("is-listening");
+      button.setAttribute("aria-pressed", "false");
     });
   }
 
-  function apriSchedaZizzola() {
-    stopAudioMappa();
-    var overlay = document.getElementById("schedaLuogoOverlay");
-    var frame = document.getElementById("schedaLuogoFrame");
-    if (!overlay || !frame) return;
-    frame.src = "schedazizzola_modal_mobile.html";
-    overlay.classList.add("open");
-    overlay.setAttribute("aria-hidden", "false");
-    var close = document.getElementById("schedaLuogoClose");
-    if (close) close.focus({preventScroll:true});
+  function stopRecognition() {
+    if (recognition) {
+      try { recognition.stop(); } catch (e) {}
+    }
+    recognition = null;
+    activeField = null;
+    resetButtons();
   }
 
-  function chiudiSchedaZizzola() {
-    var overlay = document.getElementById("schedaLuogoOverlay");
-    var frame = document.getElementById("schedaLuogoFrame");
-    if (!overlay || !frame) return;
-    overlay.classList.remove("open");
-    overlay.setAttribute("aria-hidden", "true");
-    frame.src = "";
+  function insertText(field, text) {
+    var clean = String(text || "").trim();
+    if (!clean) return;
+    var before = field.value.trim();
+    field.value = before ? before + " " + clean : clean;
+    field.dispatchEvent(new Event("input", { bubbles: true }));
+    field.dispatchEvent(new Event("change", { bubbles: true }));
   }
 
-  window.apriSchedaZizzola = apriSchedaZizzola;
-  window.chiudiSchedaZizzola = chiudiSchedaZizzola;
-
-  document.addEventListener("click", function(event) {
-    var close = event.target.closest("#schedaLuogoClose");
-    if (close) {
-      event.preventDefault();
-      chiudiSchedaZizzola();
+  function startDictation(button) {
+    ensureDictationButtons();
+    var targetId = button.getAttribute("data-voice-target");
+    var field = document.getElementById(targetId);
+    if (!field) {
+      status("Campo non trovato.");
       return;
     }
 
-    var overlay = document.getElementById("schedaLuogoOverlay");
-    if (overlay && event.target === overlay) {
-      event.preventDefault();
-      chiudiSchedaZizzola();
+    field.focus();
+
+    var SpeechRecognition = getSpeechRecognition();
+    if (!SpeechRecognition) {
+      status("Usa il microfono della tastiera del cellulare per dettare in questo campo.");
       return;
     }
 
-    var btn = event.target.closest(".open-scheda, .scheda-luogo, .popup-scheda");
-    if (!btn) return;
+    stopRecognition();
+    recognition = new SpeechRecognition();
+    activeField = field;
 
-    var index = Number(btn.getAttribute("data-index"));
-    var isZizzola = false;
+    recognition.lang = "it-IT";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    button.classList.add("is-listening");
+    button.setAttribute("aria-pressed", "true");
+    status("Sto ascoltando. Parla ora.");
+
+    recognition.onresult = function (event) {
+      var result = event.results && event.results[0] && event.results[0][0];
+      if (result && activeField) {
+        insertText(activeField, result.transcript);
+        status("Testo inserito.");
+      }
+    };
+
+    recognition.onerror = function (event) {
+      if (event.error === "not-allowed") {
+        status("Permesso microfono non attivo. Consenti il microfono nel browser.");
+      } else if (event.error === "no-speech") {
+        status("Non ho sentito parole. Riprova.");
+      } else {
+        status("Dettatura non riuscita. Puoi usare il microfono della tastiera del cellulare.");
+      }
+      resetButtons();
+    };
+
+    recognition.onend = function () {
+      recognition = null;
+      activeField = null;
+      resetButtons();
+    };
 
     try {
-      var stops = typeof getCurrentStops === "function" ? getCurrentStops() : [];
-      var tappa = stops[index];
-      if (tappa && tappa.nome && tappa.nome.toLowerCase().includes("zizzola")) {
-        isZizzola = true;
-      }
-    } catch(e) {}
-
-    var href = btn.getAttribute("href") || "";
-    var testo = (btn.textContent || "").toLowerCase();
-
-    if (
-      isZizzola ||
-      href.includes("schedazizzola") ||
-      href.includes("zizzola") ||
-      testo.includes("scheda")
-    ) {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      apriSchedaZizzola();
+      recognition.start();
+    } catch (e) {
+      status("La dettatura è già attiva. Riprova tra poco.");
+      resetButtons();
     }
+  }
+
+  function handleEvent(event) {
+    var button = event.target.closest && event.target.closest(".voice-dictation-button");
+    if (!button) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    if (button.classList.contains("is-listening")) {
+      status("Dettatura fermata.");
+      stopRecognition();
+    } else {
+      startDictation(button);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", ensureDictationButtons);
+  document.addEventListener("click", function () {
+    setTimeout(ensureDictationButtons, 0);
+    setTimeout(ensureDictationButtons, 150);
   }, true);
 
-  document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") chiudiSchedaZizzola();
-  });
+  document.addEventListener("click", handleEvent, true);
+  document.addEventListener("touchstart", handleEvent, true);
+
+  function startObserver() {
+    if (!document.body) return;
+    var observer = new MutationObserver(ensureDictationButtons);
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startObserver);
+  } else {
+    startObserver();
+  }
 })();
 </script>
 
