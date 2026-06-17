@@ -14806,6 +14806,166 @@ body.caa-on .card-image-space {
 })();
 </script>
 
+
+<script id="patch_mobile_info_video_microfoni_finale">
+(function(){
+  const ZTXT = "CAA<br>LIS<br>Mappa tattile<br>Personale formato<br>Luogo accessibile";
+
+  function stopsSafe(){
+    try{ if(typeof getCurrentStops==="function") return getCurrentStops() || []; }catch(e){}
+    try{ if(typeof stops!=="undefined" && Array.isArray(stops)) return stops; }catch(e){}
+    try{ if(typeof tappe==="object" && tappe) return Object.values(tappe); }catch(e){}
+    return [];
+  }
+
+  function tappaIndex(i){
+    i = Number(i);
+    const s = stopsSafe();
+    return Number.isFinite(i) && s[i] ? s[i] : null;
+  }
+
+  function isZ(t){ return !!(t && t.nome && String(t.nome).toLowerCase().includes("zizzola")); }
+
+  function setAccess(container, index){
+    if(!container) return;
+    const t = tappaIndex(index);
+    const value = isZ(t) ? ZTXT : "";
+
+    let box = container.querySelector(".info-accessibilita-aggiunta");
+    if(!box){
+      box = document.createElement("div");
+      box.className = "info-box mobile-info-box info-accessibilita-aggiunta";
+      box.innerHTML = '<span class="info-label mobile-info-label" data-caa-file="infoaccessibilita">Info accessibilità</span><div class="info-value mobile-info-value"></div>';
+      const grid = container.querySelector(".info-useful-content,.mobile-info-grid");
+      if(grid) grid.appendChild(box); else container.appendChild(box);
+    }
+    const v = box.querySelector(".info-value,.mobile-info-value");
+    if(v) v.innerHTML = value;
+
+    container.querySelectorAll("#infoAccessibilita").forEach(function(el){ el.innerHTML = value; });
+  }
+
+  function applyAccess(index){
+    ["mobileInfoContent","finalInfoContent","infoUtiliModal","mobileInfoScreen","finalInfoWindow"].forEach(function(id){
+      setAccess(document.getElementById(id), index);
+    });
+  }
+
+  ["openMobileInfoUtiliScreen","openFinalInfoWindow","openInfoUtili","openInfoUtiliModal"].forEach(function(name){
+    const old = window[name];
+    if(typeof old === "function" && !old.__zizzolaMobilePatch){
+      const patched = function(index){
+        const r = old.apply(this, arguments);
+        setTimeout(function(){applyAccess(index);},0);
+        setTimeout(function(){applyAccess(index);},150);
+        setTimeout(function(){applyAccess(index);},350);
+        return r;
+      };
+      patched.__zizzolaMobilePatch = true;
+      window[name] = patched;
+    }
+  });
+
+  document.addEventListener("click", function(e){
+    const b = e.target.closest && e.target.closest(".button-link.info,.popup-info,.open-info-utili,[data-info-index]");
+    if(!b) return;
+    const i = b.getAttribute("data-index") || b.getAttribute("data-info-index");
+    setTimeout(function(){applyAccess(i);},120);
+    setTimeout(function(){applyAccess(i);},350);
+  }, true);
+
+  function ensureVoice(){
+    [
+      ["personalName","Detta nome del luogo"],
+      ["personalAddress","Detta indirizzo completo"],
+      ["personalDescription","Detta note"]
+    ].forEach(function(x){
+      const f = document.getElementById(x[0]);
+      if(!f || !f.parentElement) return;
+      if(!f.parentElement.querySelector('.voice-dictation-button[data-voice-target="'+x[0]+'"]')){
+        const row = document.createElement("div");
+        row.className = "voice-dictation-row";
+        row.innerHTML = '<button type="button" class="voice-dictation-button" data-voice-target="'+x[0]+'" aria-label="'+x[1]+'" aria-pressed="false">🎤</button>';
+        f.parentElement.insertBefore(row, f.nextSibling);
+      }
+      f.setAttribute("inputmode","text");
+      f.setAttribute("autocomplete","on");
+    });
+    const form = document.getElementById("personalPlaceForm");
+    if(form && !document.getElementById("voiceDictationStatus")){
+      const p = document.createElement("p");
+      p.id = "voiceDictationStatus";
+      p.className = "voice-dictation-status";
+      p.setAttribute("aria-live","polite");
+      form.appendChild(p);
+    }
+  }
+
+  let rec = null, active = null;
+  function status(m){ const e=document.getElementById("voiceDictationStatus"); if(e) e.textContent=m||""; }
+  function reset(){ document.querySelectorAll(".voice-dictation-button").forEach(b=>{b.classList.remove("is-listening");b.setAttribute("aria-pressed","false");}); }
+  function stop(){ try{ if(rec) rec.stop(); }catch(e){} rec=null; active=null; reset(); }
+
+  function start(btn){
+    ensureVoice();
+    const f = document.getElementById(btn.getAttribute("data-voice-target"));
+    if(!f){ status("Campo non trovato."); return; }
+    f.focus();
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(!SR){ status("Tocca il campo e usa il microfono della tastiera del cellulare."); return; }
+    stop();
+    rec = new SR();
+    active = f;
+    rec.lang = "it-IT";
+    rec.continuous = false;
+    rec.interimResults = false;
+    btn.classList.add("is-listening");
+    btn.setAttribute("aria-pressed","true");
+    status("Sto ascoltando. Parla ora.");
+    rec.onresult = function(ev){
+      const r = ev.results && ev.results[0] && ev.results[0][0];
+      const txt = r ? String(r.transcript||"").trim() : "";
+      if(txt && active){
+        active.value = active.value.trim() ? active.value.trim()+" "+txt : txt;
+        active.dispatchEvent(new Event("input",{bubbles:true}));
+        active.dispatchEvent(new Event("change",{bubbles:true}));
+        status("Testo inserito.");
+      }
+    };
+    rec.onerror = function(ev){
+      status(ev.error==="not-allowed" ? "Permesso microfono non attivo. Consenti il microfono nel browser." : "Dettatura non riuscita. Puoi usare il microfono della tastiera.");
+      reset();
+    };
+    rec.onend = function(){ rec=null; active=null; reset(); };
+    try{ rec.start(); }catch(e){ status("La dettatura è già attiva. Riprova tra poco."); reset(); }
+  }
+
+  function voiceHandler(e){
+    const b = e.target.closest && e.target.closest(".voice-dictation-button");
+    if(!b) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    if(b.classList.contains("is-listening")){ status("Dettatura fermata."); stop(); }
+    else start(b);
+  }
+
+  document.addEventListener("click", function(){ setTimeout(ensureVoice,0); setTimeout(ensureVoice,150); }, true);
+  document.addEventListener("click", voiceHandler, true);
+  document.addEventListener("touchend", voiceHandler, true);
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", ensureVoice); else ensureVoice();
+  if(document.body) new MutationObserver(ensureVoice).observe(document.body,{childList:true,subtree:true});
+
+  function addMobileVideoFallback(){
+    if(document.getElementById("schedaZizzolaMobileVideoStyle")) return;
+    const st=document.createElement("style");
+    st.id="schedaZizzolaMobileVideoStyle";
+    st.textContent='@media(max-width:759px){video{max-width:100%!important;height:auto!important;min-height:200px!important;background:#000!important} .modal-window video{width:100%!important;display:block!important}}';
+    document.head.appendChild(st);
+  }
+  addMobileVideoFallback();
+})();
+</script>
+
 </body>
 </html>
 
