@@ -14966,6 +14966,26 @@ body.caa-on .card-image-space {
 })();
 </script>
 
+
+<script id="zizzola_accessibilita_fix">
+document.addEventListener("DOMContentLoaded", function () {
+  const testoZizzola = "CAA<br>LIS<br>Mappa tattile<br>Personale formato<br>Luogo accessibile";
+
+  function applicaFix(){
+    const contenitori = document.querySelectorAll("#infoAccessibilita,.info-accessibilita-aggiunta .info-value,.mobile-info-value");
+    contenitori.forEach(el=>{
+      const finestra = el.closest(".modal-window,.info-useful-content,body");
+      const testoPagina = document.body.innerText || "";
+      if(testoPagina.includes("Zizzola")){
+        el.innerHTML = testoZizzola;
+      }
+    });
+  }
+
+  setInterval(applicaFix,1000);
+});
+</script>
+
 </body>
 </html>
 
