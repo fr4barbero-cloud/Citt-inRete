@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>La Zizzola - Scheda accessibile</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #111111;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    .torna-mappa {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      min-height: 58px;
+      background: #277DA1;
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 900;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,.22);
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+    h1 {
+      text-align: center;
+      color: #277DA1;
+      font-size: 2rem;
+      margin: 18px 0 12px;
+      line-height: 1.2;
+    }
+    h2 {
+      color: #277DA1;
+      font-size: 1.45rem;
+      text-align: center;
+      margin: 0 0 14px;
+      line-height: 1.25;
+    }
+    .foto-zizzola {
+      width: 340px;
+      max-width: 82%;
+      height: auto;
+      display: block;
+      margin: 0 auto 22px;
+      border-radius: 18px;
+      border: 3px solid #c7d3e3;
+      background: #f2f2f2;
+    }
+    .audio-box,
+    .section-box {
+      margin: 18px 0;
+      padding: 16px;
+      background: #ffffff;
+      border: 3px solid #c7d3e3;
+      border-radius: 18px;
+      font-weight: 800;
+    }
+    .audio-box { background: #eef5ff; }
+    .audio-buttons, .menu-buttons {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    button, .section-link {
+      min-height: 58px;
+      padding: 12px 16px;
+      border: 0;
+      border-radius: 16px;
+      background: #277DA1;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 900;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stop-button { background: #F94144; }
+    .descrizione-video {
+      font-weight: 800;
+      background: #f2f2f2;
+      padding: 14px;
+      border-radius: 16px;
+      margin-bottom: 14px;
+    }
+    video, .section-image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      border: 3px solid #c7d3e3;
+      background: #f2f2f2;
+    }
+    video {
+      background: #000000;
+      min-height: 220px;
+    }
+    @media (min-width: 760px) {
+      .menu-buttons { grid-template-columns: repeat(3, 1fr); }
+      .audio-buttons { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      body { font-size: 18px; }
+      main { padding: 12px; }
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.3rem; }
+      .foto-zizzola { width: 250px; }
+      .section-box { padding: 12px; }
+      video {
+        min-height: 210px;
+        border-radius: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="torna-mappa" href="javascript:history.back()">← Torna alla mappa</a>
+
+  <main>
+    <h1>La Zizzola</h1>
+
+    <img class="foto-zizzola" src="fotozizzola.png" alt="Fotografia della Zizzola">
+
+    <audio id="audioGuida" src="guidazizzola.mp3" preload="auto" autoplay></audio>
+
+    <section class="audio-box" aria-label="Guida audio">
+      <p>Guida audio della scheda.</p>
+      <div class="audio-buttons">
+        <button type="button" onclick="playGuida()">Ascolta guida audio</button>
+        <button type="button" class="stop-button" onclick="stopGuida()">Stop guida audio</button>
+      </div>
+    </section>
+
+    <nav class="menu-buttons" aria-label="Sezioni della scheda">
+      <a class="section-link" href="#video-lis">Video LIS sottotitolato</a>
+      <a class="section-link" href="#caa">CAA</a>
+      <a class="section-link" href="#testo-accessibile">Testo accessibile</a>
+    </nav>
+
+    <section id="video-lis" class="section-box">
+      <h2>Video LIS sottotitolato</h2>
+      <p class="descrizione-video">
+        Il video include <strong>LIS</strong>, <strong>sottotitoli</strong> e <strong>audio in italiano</strong>.
+      </p>
+      <video controls playsinline webkit-playsinline preload="metadata">
+        <source src="videozizzola.mp4" type="video/mp4">
+        Il tuo browser non supporta il video.
+      </video>
+    </section>
+
+    <section id="caa" class="section-box">
+      <h2>CAA</h2>
+      <img class="section-image" src="caazizzola.png" alt="Scheda CAA della Zizzola">
+    </section>
+
+    <section id="testo-accessibile" class="section-box">
+      <h2>Testo accessibile</h2>
+      <img class="section-image" src="testozizzola.png" alt="Testo accessibile sulla Zizzola">
+    </section>
+  </main>
+
+  <script>
+    const audioGuida = document.getElementById("audioGuida");
+
+    function avviaGuidaAutomatica() {
+      try {
+        audioGuida.currentTime = 0;
+        const tentativo = audioGuida.play();
+        if (tentativo && typeof tentativo.catch === "function") {
+          tentativo.catch(function () {});
+        }
+      } catch (e) {}
+    }
+
+    document.addEventListener("DOMContentLoaded", avviaGuidaAutomatica);
+    window.addEventListener("load", avviaGuidaAutomatica);
+    window.addEventListener("pageshow", avviaGuidaAutomatica);
+
+    function playGuida() {
+      try {
+        audioGuida.currentTime = 0;
+        audioGuida.play();
+      } catch (e) {}
+    }
+
+    function stopGuida() {
+      try {
+        audioGuida.pause();
+        audioGuida.currentTime = 0;
+      } catch (e) {}
+    }
+  </script>
+</body>
+</html>
