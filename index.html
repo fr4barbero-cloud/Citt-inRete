@@ -11295,7 +11295,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener('click', function() {
     setTimeout(fixInfoButtons, 0);
   }, true);
-  setInterval(fixInfoButtons, 500);
+  // Controllo continuo rimosso: rallentava il sito su smartphone.
 })();
 </script>
 
@@ -11349,13 +11349,7 @@ document.addEventListener("DOMContentLoaded", function () {
       clearSelectedMarkers();
     }
   });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ['class']
-  });
+    // Osservatore globale disattivato per rendere il sito più leggero.
 })();
 </script>
 
@@ -11390,10 +11384,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }, true);
 
   const observer = new MutationObserver(forceRequestedButtonColors);
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
+    // Osservatore globale disattivato per rendere il sito più leggero.
 })();
 </script>
 
@@ -11611,7 +11602,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.addEventListener('DOMContentLoaded', function () {
     applyCaaStructure();
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   });
 
   window.applyCaaStructure = applyCaaStructure;
@@ -11667,7 +11658,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const observer = new MutationObserver(enhanceInfoModal);
   document.addEventListener('DOMContentLoaded', function () {
     enhanceInfoModal();
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   });
 })();
 </script>
@@ -11903,7 +11894,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const observer = new MutationObserver(improveAll);
   document.addEventListener('DOMContentLoaded', function () {
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   });
 })();
 </script>
@@ -12185,8 +12176,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const observer = new MutationObserver(function () {
       improveAll();
     });
-
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   });
 
   window.srImproveAll = improveAll;
@@ -12242,7 +12232,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const observer = new MutationObserver(applyScreenReaderMapExclusion);
   document.addEventListener('DOMContentLoaded', function () {
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   });
 })();
 </script>
@@ -12673,8 +12663,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       openPlaceFromLeafletContent(popupContent);
     });
-
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   }
 
   function watchOriginalModalOpening() {
@@ -12684,12 +12673,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const opened = document.querySelector("#infoUtiliModal.open, #noteModal.open, #schedaModal.open");
       if (opened) openInfoFromOriginalModal(opened);
     });
-
-    observer.observe(document.body, {
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["class"]
-    });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   }
 
   document.addEventListener("click", function (event) {
@@ -13844,7 +13828,7 @@ document.addEventListener("DOMContentLoaded", function () {
     aggiornaLinkSchedeLuogo();
 
     if (document.body) {
-      observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
     }
   }
 
@@ -13954,10 +13938,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   if (document.body) {
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   } else {
     document.addEventListener('DOMContentLoaded', function () {
-      observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
     });
   }
 })();
@@ -14220,7 +14204,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   if (document.body) {
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   }
 })();
 </script>
@@ -14481,7 +14465,7 @@ body.caa-on .card-image-space {
   function startObserver() {
     if (!document.body) return;
     var observer = new MutationObserver(ensureDictationButtons);
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   }
 
   if (document.readyState === "loading") {
@@ -14567,7 +14551,7 @@ body.caa-on .card-image-space {
   });
 
   if (document.body) {
-    observer.observe(document.body, { attributes: true, childList: true, subtree: true, attributeFilter: ["class", "style", "aria-hidden"] });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   }
 
   // Compila il nuovo riquadro nella finestra Informazioni desktop.
@@ -14774,7 +14758,7 @@ body.caa-on .card-image-space {
   document.addEventListener("click", voiceHandler, true);
   document.addEventListener("touchend", voiceHandler, true);
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", ensureVoice); else ensureVoice();
-  if(document.body) new MutationObserver(ensureVoice).observe(document.body,{childList:true,subtree:true});
+  // Osservatore globale audio disattivato per migliorare velocità.
 
   function addMobileVideoFallback(){
     if(document.getElementById("schedaZizzolaMobileVideoStyle")) return;
@@ -15550,7 +15534,7 @@ document.addEventListener('click', function(e){
     window.clearTimeout(observer._timer);
     observer._timer = window.setTimeout(applyVoiceOverFinal, 120);
   });
-  observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'aria-hidden'] });
+    // Osservatore globale disattivato.
 })();
 </script>
 
@@ -15632,7 +15616,7 @@ document.addEventListener('click', function(e){
     addHomeButtonToDynamicScreens();
 
     const observer = new MutationObserver(addHomeButtonToDynamicScreens);
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   });
 })();
 </script>
@@ -15769,13 +15753,7 @@ document.addEventListener('click', function(e){
     var observer = new MutationObserver(function () {
       applyFinalVoiceOverFix();
     });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['class', 'style', 'aria-hidden', 'tabindex']
-    });
+    // Osservatore globale disattivato per rendere il sito più leggero.
   });
 
   document.addEventListener('focusin', function (event) {
@@ -15853,6 +15831,36 @@ document.addEventListener('click', function(e){
       }, true);
     });
   });
+})();
+</script>
+
+
+<script id="fix_leggero_voiceover_leaflet">
+(function(){
+  function hideMapForScreenReader(){
+    ["map","homeCityMap"].forEach(function(id){
+      var el=document.getElementById(id);
+      if(!el) return;
+      el.setAttribute("aria-hidden","true");
+      el.setAttribute("tabindex","-1");
+      el.setAttribute("role","presentation");
+      el.querySelectorAll("a,button,input,select,textarea,[tabindex]").forEach(function(child){
+        child.setAttribute("aria-hidden","true");
+        child.setAttribute("tabindex","-1");
+      });
+    });
+  }
+  document.addEventListener("DOMContentLoaded", function(){
+    hideMapForScreenReader();
+    setTimeout(hideMapForScreenReader, 300);
+    setTimeout(hideMapForScreenReader, 1200);
+  });
+  document.addEventListener("popupopen", function(){ setTimeout(hideMapForScreenReader, 80); });
+  document.addEventListener("click", function(e){
+    if(e.target.closest && (e.target.closest(".category-button") || e.target.closest(".leaflet-container"))){
+      setTimeout(hideMapForScreenReader, 120);
+    }
+  }, true);
 })();
 </script>
 
