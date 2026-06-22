@@ -14758,7 +14758,7 @@ body.caa-on .card-image-space {
   document.addEventListener("click", voiceHandler, true);
   document.addEventListener("touchend", voiceHandler, true);
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", ensureVoice); else ensureVoice();
-  // Osservatore globale audio disattivato per migliorare velocità.
+  if(document.body) new MutationObserver(ensureVoice).observe(document.body,{childList:true,subtree:true});
 
   function addMobileVideoFallback(){
     if(document.getElementById("schedaZizzolaMobileVideoStyle")) return;
@@ -15859,6 +15859,85 @@ document.addEventListener('click', function(e){
   document.addEventListener("click", function(e){
     if(e.target.closest && (e.target.closest(".category-button") || e.target.closest(".leaflet-container"))){
       setTimeout(hideMapForScreenReader, 120);
+    }
+  }, true);
+})();
+</script>
+
+
+
+<script id="fix_link_scheda_luogo_prioritario">
+/* FIX PRIORITARIO: il pulsante "Scheda del luogo" deve aprire la pagina HTML esterna.
+   Non modifica La mia mappa, audio o mappa Leaflet. */
+(function () {
+  function pulisci(link) {
+    return (link || "").toString().trim();
+  }
+
+  function stopsCorrenti() {
+    try {
+      if (typeof getCurrentStops === "function") return getCurrentStops() || [];
+    } catch (e) {}
+    try {
+      if (typeof currentCategory !== "undefined" && typeof tappe !== "undefined" && tappe && tappe[currentCategory]) {
+        return tappe[currentCategory] || [];
+      }
+    } catch (e) {}
+    return [];
+  }
+
+  function linkDaTappa(tappa) {
+    if (!tappa) return "";
+    return pulisci(tappa.schedaLink || tappa.pagina || tappa.scheda || tappa.linkScheda || "");
+  }
+
+  function trovaLinkScheda(el) {
+    if (!el || !el.closest) return null;
+    return el.closest('a.open-scheda, a.scheda-luogo, a.popup-scheda, button.open-scheda, button.scheda-luogo, button.popup-scheda');
+  }
+
+  function aggiornaHrefSchede() {
+    var stops = stopsCorrenti();
+    document.querySelectorAll('a.open-scheda, a.scheda-luogo, a.popup-scheda').forEach(function (a) {
+      var index = Number(a.getAttribute('data-index'));
+      var tappa = Number.isFinite(index) ? stops[index] : null;
+      var link = linkDaTappa(tappa) || pulisci(a.getAttribute('data-scheda-link')) || pulisci(a.getAttribute('href'));
+      if (link && link !== '#') {
+        a.setAttribute('href', link);
+        a.setAttribute('data-scheda-link', link);
+      }
+    });
+  }
+
+  window.addEventListener('click', function (event) {
+    var a = trovaLinkScheda(event.target);
+    if (!a) return;
+
+    var link = pulisci(a.getAttribute('data-scheda-link')) || pulisci(a.getAttribute('href'));
+    if (!link || link === '#') {
+      var index = Number(a.getAttribute('data-index'));
+      var stops = stopsCorrenti();
+      var tappa = Number.isFinite(index) ? stops[index] : null;
+      link = linkDaTappa(tappa);
+    }
+
+    if (link && link !== '#') {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      window.location.href = link;
+    }
+  }, true);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', aggiornaHrefSchede);
+  } else {
+    aggiornaHrefSchede();
+  }
+
+  document.addEventListener('click', function (event) {
+    if (event.target.closest && event.target.closest('.category-button')) {
+      setTimeout(aggiornaHrefSchede, 80);
+      setTimeout(aggiornaHrefSchede, 300);
     }
   }, true);
 })();
