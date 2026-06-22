@@ -9396,7 +9396,7 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
 
   
 <div id="mobileAppHeader" class="mobile-app-header">
-  <button id="titleHomeButton" class="title-home-button" type="button" aria-label="Torna alla home Mappa Accessibile">
+  <button id="titleHomeButton" class="title-home-button" type="button" aria-label="Torna alla home">
     <span>MAPPA ACCESSIBILE</span>
     <svg class="home-icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M3 11.5L12 4l9 7.5"></path>
@@ -9418,15 +9418,15 @@ body:not(.musei):not(.edifici):not(.locali):not(.mia) #lista-title {
 
 <p id="screenReaderIntro" class="sr-only">
 Questa pagina contiene una mappa visiva e una lista di luoghi.
-La mappa è solo visiva e non viene letta da VoiceOver.
-Per continuare, passa all’elenco dei luoghi.
-L’elenco contiene le informazioni e i pulsanti necessari.
+La mappa è solo visiva.
+Se usi uno screen reader, usa la lista dei luoghi.
+La lista contiene le informazioni e i pulsanti necessari.
 </p>
 
     
 
 <section id="homeScreen" class="section home-screen">
-<section class="section home-city-map-card" aria-labelledby="homeCityMapTitle" aria-hidden="true">
+<section class="section home-city-map-card" aria-labelledby="homeCityMapTitle">
         <h2 id="homeCityMapTitle" class="home-city-map-title">Mappa della città di Bra</h2>
         <div id="homeMapOverlay" class="home-map-overlay" aria-hidden="true"></div>
         <div id="homeCityMap" aria-hidden="true" tabindex="-1"></div>
@@ -9435,7 +9435,7 @@ L’elenco contiene le informazioni e i pulsanti necessari.
   
 
 
-<button id="attivaMappaHome" class="button-link attiva-mappa-button" type="button" aria-hidden="true" tabindex="-1" aria-label="Muovi la mappa">
+<button id="attivaMappaHome" class="button-link attiva-mappa-button" type="button" aria-label="Muovi la mappa">
   Muovi la mappa
 </button>
 
@@ -9475,9 +9475,6 @@ L’elenco contiene le informazioni e i pulsanti necessari.
     Ferma guida vocale
   </button>
 </div>
-
-<audio id="siteGuideAudio" src="guida.mp3" preload="auto" playsinline></audio>
-
 </section>
 <div id="appScreen" class="app-screen">
       <nav class="section internal-section-buttons" aria-label="Vai alle sezioni principali">
@@ -9490,14 +9487,14 @@ L’elenco contiene le informazioni e i pulsanti necessari.
           <p class="personal-caa-instruction"><strong><span class="caa-row"><img class="caa-symbol" src="img/arasac/aggiungere.png" alt="Simbolo aggiungere" onerror="this.outerHTML='<span class=&quot;caa-symbol-placeholder&quot; aria-hidden=&quot;true&quot;>CAA</span>'"><span class="caa-text">Puoi aggiungere luoghi alla tua mappa, cambiarli o cancellarli.</span></span></strong></p>
         </section>
 
-      <section class="section map-card" aria-labelledby="mappa-title" aria-hidden="true">
+      <section class="section map-card" aria-labelledby="mappa-title">
       <h2 class="map-title" id="mappa-title">Mappa</h2>
 
       <div id="map" aria-hidden="true" tabindex="-1"></div>
       
       </section>
 
-      <button id="backHome" class="back-button" type="button" aria-label="Torna alla home Mappa Accessibile">MAPPA ACCESSIBILE</button>
+      <button id="backHome" class="back-button" type="button">Torna indietro</button>
 
       <section class="section category-title" aria-labelledby="categoryPageTitle">
         <h2 id="categoryPageTitle">Categoria</h2>
@@ -9586,8 +9583,7 @@ L’elenco contiene le informazioni e i pulsanti necessari.
 
   <div id="schedaModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true" tabindex="-1">
     <div class="modal-window" tabindex="-1">
-      <button id="modalClose" class="modal-close" type="button" aria-label="Chiudi scheda e torna alla pagina">×</button>
-      <button type="button" class="modal-home-button" data-go-home="true" aria-label="Torna alla home Mappa Accessibile">MAPPA ACCESSIBILE</button>
+      <button id="modalClose" class="modal-close" type="button" aria-label="Chiudi scheda">×</button>
       <h2 id="modalTitle" class="modal-title">Scheda tappa</h2>
       <img id="modalPhoto" class="modal-photo" src="" alt="" onerror="this.remove();">
       <p id="modalDescription" class="modal-text"></p>
@@ -9600,8 +9596,7 @@ L’elenco contiene le informazioni e i pulsanti necessari.
 
   <div id="infoUtiliModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="infoUtiliTitle">
     <div class="modal-window info-useful-window" tabindex="-1">
-      <button id="infoUtiliClose" class="modal-close" type="button" aria-label="Chiudi informazioni e torna alla pagina">×</button>
-      <button type="button" class="modal-home-button" data-go-home="true" aria-label="Torna alla home Mappa Accessibile">MAPPA ACCESSIBILE</button>
+      <button id="infoUtiliClose" class="modal-close" type="button" aria-label="Chiudi info utili">×</button>
       <h2 id="infoUtiliTitle" class="modal-title">Informazioni</h2>
 
       <div class="info-useful-content">
@@ -9630,8 +9625,7 @@ L’elenco contiene le informazioni e i pulsanti necessari.
 
   <div id="noteModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="noteTitle">
     <div class="modal-window" tabindex="-1">
-      <button id="noteClose" class="modal-close" type="button" aria-label="Chiudi note e torna alla pagina">×</button>
-      <button type="button" class="modal-home-button" data-go-home="true" aria-label="Torna alla home Mappa Accessibile">MAPPA ACCESSIBILE</button>
+      <button id="noteClose" class="modal-close" type="button" aria-label="Chiudi note">×</button>
       <h2 id="noteTitle" class="modal-title">NOTE</h2>
       <p id="noteText" class="modal-text"></p>
     </div>
@@ -11295,7 +11289,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener('click', function() {
     setTimeout(fixInfoButtons, 0);
   }, true);
-  // Controllo continuo rimosso: rallentava il sito su smartphone.
+  setInterval(fixInfoButtons, 500);
 })();
 </script>
 
@@ -11349,7 +11343,13 @@ document.addEventListener("DOMContentLoaded", function () {
       clearSelectedMarkers();
     }
   });
-    // Osservatore globale disattivato per rendere il sito più leggero.
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['class']
+  });
 })();
 </script>
 
@@ -11384,7 +11384,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }, true);
 
   const observer = new MutationObserver(forceRequestedButtonColors);
-    // Osservatore globale disattivato per rendere il sito più leggero.
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 })();
 </script>
 
@@ -11602,7 +11605,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.addEventListener('DOMContentLoaded', function () {
     applyCaaStructure();
-    // Osservatore globale disattivato per rendere il sito più leggero.
+    observer.observe(document.body, { childList: true, subtree: true });
   });
 
   window.applyCaaStructure = applyCaaStructure;
@@ -11658,7 +11661,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const observer = new MutationObserver(enhanceInfoModal);
   document.addEventListener('DOMContentLoaded', function () {
     enhanceInfoModal();
-    // Osservatore globale disattivato per rendere il sito più leggero.
+    observer.observe(document.body, { childList: true, subtree: true });
   });
 })();
 </script>
@@ -11894,7 +11897,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const observer = new MutationObserver(improveAll);
   document.addEventListener('DOMContentLoaded', function () {
-    // Osservatore globale disattivato per rendere il sito più leggero.
+    observer.observe(document.body, { childList: true, subtree: true });
   });
 })();
 </script>
@@ -12176,7 +12179,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const observer = new MutationObserver(function () {
       improveAll();
     });
-    // Osservatore globale disattivato per rendere il sito più leggero.
+
+    observer.observe(document.body, { childList: true, subtree: true });
   });
 
   window.srImproveAll = improveAll;
@@ -12232,7 +12236,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const observer = new MutationObserver(applyScreenReaderMapExclusion);
   document.addEventListener('DOMContentLoaded', function () {
-    // Osservatore globale disattivato per rendere il sito più leggero.
+    observer.observe(document.body, { childList: true, subtree: true });
   });
 })();
 </script>
@@ -12400,9 +12404,136 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+<script>
+/* GUIDA AUDIO - guida.mp3 */
+(function () {
+  let guideAudio = null;
+  let autoPlayTried = false;
+  let autoPlayDone = false;
+  let interactionFallbackReady = false;
 
-<!-- Script audio automatico rimosso: resta solo l’audio già presente nel sito originale. -->
+  function getGuideAudio() {
+    if (guideAudio) return guideAudio;
 
+    guideAudio = document.getElementById('audioGuida');
+
+    if (!guideAudio) {
+      guideAudio = document.createElement('audio');
+      guideAudio.id = 'audioGuida';
+      document.body.appendChild(guideAudio);
+    }
+
+    guideAudio.src = 'guida.mp3';
+    guideAudio.preload = 'auto';
+    guideAudio.setAttribute('playsinline', '');
+    guideAudio.setAttribute('webkit-playsinline', '');
+
+    return guideAudio;
+  }
+
+  function announce(text) {
+    const region = document.getElementById('screenReaderStatus');
+    if (!region) return;
+    region.textContent = '';
+    setTimeout(function () {
+      region.textContent = text;
+    }, 40);
+  }
+
+  function playGuideFromStart() {
+    const audio = getGuideAudio();
+    audio.pause();
+    audio.currentTime = 0;
+    return audio.play();
+  }
+
+  function stopGuide() {
+    const audio = getGuideAudio();
+    audio.pause();
+    audio.currentTime = 0;
+  }
+
+  function startGuideByButton() {
+    playGuideFromStart().catch(function () {
+      announce('Premi Ascolta guida per avviare la guida audio.');
+    });
+  }
+
+  function removeInteractionFallback() {
+    document.removeEventListener('pointerdown', startGuideAfterFirstInteraction, true);
+    document.removeEventListener('keydown', startGuideAfterFirstInteraction, true);
+    document.removeEventListener('touchstart', startGuideAfterFirstInteraction, true);
+  }
+
+  function startGuideAfterFirstInteraction() {
+    if (autoPlayDone) return;
+    autoPlayDone = true;
+    removeInteractionFallback();
+    playGuideFromStart().catch(function () {});
+  }
+
+  function prepareInteractionFallback() {
+    if (interactionFallbackReady) return;
+    interactionFallbackReady = true;
+    document.addEventListener('pointerdown', startGuideAfterFirstInteraction, true);
+    document.addEventListener('keydown', startGuideAfterFirstInteraction, true);
+    document.addEventListener('touchstart', startGuideAfterFirstInteraction, true);
+  }
+
+  function startGuideAutomaticallyOnce() {
+    if (autoPlayTried) return;
+    autoPlayTried = true;
+
+    setTimeout(function () {
+      if (autoPlayDone) return;
+      const audio = getGuideAudio();
+      audio.currentTime = 0;
+      audio.play().then(function () {
+        autoPlayDone = true;
+        removeInteractionFallback();
+      }).catch(function () {
+        prepareInteractionFallback();
+        announce('Premi Ascolta guida per avviare la guida audio.');
+      });
+    }, 600);
+  }
+
+  function setupGuideButtons() {
+    const listenButton = document.getElementById('listenGuideButton');
+    const stopButton = document.getElementById('stopGuideButton');
+
+    if (listenButton && listenButton.dataset.audioReady !== 'true') {
+      listenButton.dataset.audioReady = 'true';
+      listenButton.addEventListener('click', function () {
+        autoPlayDone = true;
+        removeInteractionFallback();
+        startGuideByButton();
+      });
+    }
+
+    if (stopButton && stopButton.dataset.audioReady !== 'true') {
+      stopButton.dataset.audioReady = 'true';
+      stopButton.addEventListener('click', function () {
+        autoPlayDone = true;
+        removeInteractionFallback();
+        stopGuide();
+      });
+    }
+  }
+
+  function initGuideAudio() {
+    getGuideAudio();
+    setupGuideButtons();
+    startGuideAutomaticallyOnce();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGuideAudio);
+  } else {
+    initGuideAudio();
+  }
+})();
+</script>
 
 
 <script>
@@ -12663,7 +12794,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       openPlaceFromLeafletContent(popupContent);
     });
-    // Osservatore globale disattivato per rendere il sito più leggero.
+
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 
   function watchOriginalModalOpening() {
@@ -12673,7 +12805,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const opened = document.querySelector("#infoUtiliModal.open, #noteModal.open, #schedaModal.open");
       if (opened) openInfoFromOriginalModal(opened);
     });
-    // Osservatore globale disattivato per rendere il sito più leggero.
+
+    observer.observe(document.body, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["class"]
+    });
   }
 
   document.addEventListener("click", function (event) {
@@ -13828,7 +13965,7 @@ document.addEventListener("DOMContentLoaded", function () {
     aggiornaLinkSchedeLuogo();
 
     if (document.body) {
-    // Osservatore globale disattivato per rendere il sito più leggero.
+      observer.observe(document.body, { childList: true, subtree: true });
     }
   }
 
@@ -13938,10 +14075,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   if (document.body) {
-    // Osservatore globale disattivato per rendere il sito più leggero.
+    observer.observe(document.body, { childList: true, subtree: true });
   } else {
     document.addEventListener('DOMContentLoaded', function () {
-    // Osservatore globale disattivato per rendere il sito più leggero.
+      observer.observe(document.body, { childList: true, subtree: true });
     });
   }
 })();
@@ -14204,7 +14341,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   if (document.body) {
-    // Osservatore globale disattivato per rendere il sito più leggero.
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 })();
 </script>
@@ -14255,8 +14392,66 @@ body.caa-on .card-image-space {
 </script>
 
 
-<!-- Script precedente di blocco audio rimosso: guida.mp3 resta disponibile all’apertura e dai pulsanti. -->
+<script id="fix_audio_home_una_volta_e_stop_scheda">
+(function() {
+  const AUDIO_HOME_KEY = "mappa_accessibile_audio_home_gia_ascoltato";
 
+  function getPageAudios() {
+    return Array.from(document.querySelectorAll("audio"));
+  }
+
+  function stopAllPageAudios() {
+    getPageAudios().forEach(function(audio) {
+      try {
+        audio.pause();
+        audio.currentTime = 0;
+      } catch (e) {}
+    });
+  }
+
+  function bloccaReplayAudioHome() {
+    if (sessionStorage.getItem(AUDIO_HOME_KEY) === "si") {
+      getPageAudios().forEach(function(audio) {
+        try {
+          audio.pause();
+          audio.currentTime = 0;
+          audio.removeAttribute("autoplay");
+        } catch (e) {}
+      });
+      return;
+    }
+
+    sessionStorage.setItem(AUDIO_HOME_KEY, "si");
+  }
+
+  document.addEventListener("DOMContentLoaded", bloccaReplayAudioHome);
+  window.addEventListener("pageshow", bloccaReplayAudioHome);
+
+  document.addEventListener("click", function(event) {
+    const link = event.target.closest("a");
+    if (!link) return;
+
+    const href = link.getAttribute("href") || "";
+    if (
+      href.includes("schedazizzolavideofix.html") ||
+      href.includes("schedazizzola") ||
+      link.classList.contains("scheda-luogo") ||
+      link.classList.contains("open-scheda") ||
+      link.classList.contains("popup-scheda")
+    ) {
+      stopAllPageAudios();
+    }
+  }, true);
+
+  const originalOpen = window.open;
+  window.open = function(url, target, features) {
+    if (typeof url === "string" && url.includes("schedazizzola")) {
+      stopAllPageAudios();
+    }
+    return originalOpen.call(window, url, target, features);
+  };
+})();
+</script>
 
 
 <script id="fix_info_liste_mobile_definitivo">
@@ -14465,7 +14660,7 @@ body.caa-on .card-image-space {
   function startObserver() {
     if (!document.body) return;
     var observer = new MutationObserver(ensureDictationButtons);
-    // Osservatore globale disattivato per rendere il sito più leggero.
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 
   if (document.readyState === "loading") {
@@ -14551,7 +14746,7 @@ body.caa-on .card-image-space {
   });
 
   if (document.body) {
-    // Osservatore globale disattivato per rendere il sito più leggero.
+    observer.observe(document.body, { attributes: true, childList: true, subtree: true, attributeFilter: ["class", "style", "aria-hidden"] });
   }
 
   // Compila il nuovo riquadro nella finestra Informazioni desktop.
@@ -14791,8 +14986,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+</body>
+</html>
 
-<!-- Script spostato prima della chiusura del body per HTML valido -->
 <script>
 document.addEventListener('click', function(e){
   const t = e.target;
@@ -14822,1126 +15018,3 @@ document.addEventListener('click', function(e){
   }
 }, true);
 </script>
-
-
-<!-- PATCH FINALE VOICEOVER - percorso accessibile tramite pulsanti, lista e finestre -->
-<style id="voiceover_final_style">
-  .sr-only,
-  .sr-status {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    padding: 0 !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    clip: rect(0, 0, 0, 0) !important;
-    white-space: nowrap !important;
-    border: 0 !important;
-  }
-
-  .sr-only-focusable:focus,
-  .sr-only-focusable:active {
-    position: fixed !important;
-    top: 12px !important;
-    left: 12px !important;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 14px 18px !important;
-    overflow: visible !important;
-    clip: auto !important;
-    white-space: normal !important;
-    z-index: 10000 !important;
-    background: #ffbf00 !important;
-    color: #000000 !important;
-    border: 4px solid #000000 !important;
-    border-radius: 10px !important;
-    font-weight: 900 !important;
-  }
-
-  a:focus-visible,
-  button:focus-visible,
-  input:focus-visible,
-  textarea:focus-visible,
-  select:focus-visible,
-  [tabindex]:focus-visible {
-    outline: 5px solid #ffbf00 !important;
-    outline-offset: 4px !important;
-  }
-</style>
-
-<script id="voiceover_final_patch">
-(function () {
-  'use strict';
-
-  var lastFocus = null;
-  var focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
-
-  function text(el) {
-    return (el && (el.innerText || el.textContent) || '').replace(/\s+/g, ' ').trim();
-  }
-
-  function live(message, assertive) {
-    var region = document.getElementById(assertive ? 'srAssertiveRegion' : 'srLiveRegion') || document.getElementById('screenReaderStatus');
-    if (!region || !message) return;
-    region.textContent = '';
-    window.setTimeout(function () { region.textContent = message; }, 40);
-  }
-
-  function hideTreeFromVoiceOver(root) {
-    if (!root) return;
-    root.setAttribute('aria-hidden', 'true');
-    root.setAttribute('tabindex', '-1');
-    root.querySelectorAll(focusableSelector + ', .leaflet-interactive, .leaflet-control a').forEach(function (el) {
-      el.setAttribute('aria-hidden', 'true');
-      el.setAttribute('tabindex', '-1');
-    });
-    root.querySelectorAll('img, svg, canvas').forEach(function (el) {
-      el.setAttribute('aria-hidden', 'true');
-      if (el.tagName && el.tagName.toLowerCase() === 'img') el.setAttribute('alt', '');
-      el.setAttribute('tabindex', '-1');
-    });
-  }
-
-  function makeButtonFromHashLink(link) {
-    if (!link || link.dataset.voiceoverButtonReady === 'true') return;
-    var href = link.getAttribute('href');
-    if (href === '#' || !href) {
-      link.setAttribute('role', 'button');
-      link.setAttribute('href', 'javascript:void(0)');
-    }
-    link.dataset.voiceoverButtonReady = 'true';
-  }
-
-  function improveStaticStructure() {
-    var main = document.querySelector('main');
-    if (main && !main.id) main.id = 'contenutoPrincipale';
-
-    if (!document.getElementById('voiceOverIntro')) {
-      var intro = document.createElement('p');
-      intro.id = 'voiceOverIntro';
-      intro.className = 'sr-only';
-      intro.textContent = 'Per trovare i luoghi usa l elenco dei luoghi.';
-      if (main) main.insertBefore(intro, main.firstChild);
-    }
-
-    document.querySelectorAll('.category-grid').forEach(function (nav) {
-      nav.setAttribute('role', 'navigation');
-      nav.setAttribute('aria-label', 'Sezioni della mappa accessibile');
-    });
-
-    document.querySelectorAll('.category-button').forEach(function (button) {
-      var label = text(button).replace('Da vedere', '').replace('Luoghi utili', '').trim();
-      if (label) button.setAttribute('aria-label', 'Apri ' + label);
-      button.setAttribute('type', 'button');
-    });
-
-    var listSection = document.getElementById('lista-tappe');
-    var placesList = document.getElementById('placesList');
-    if (listSection) {
-      listSection.removeAttribute('aria-hidden');
-      listSection.setAttribute('role', 'region');
-      listSection.setAttribute('aria-labelledby', 'lista-title');
-      listSection.setAttribute('aria-describedby', 'voiceOverIntro');
-    }
-    if (placesList) {
-      placesList.removeAttribute('aria-hidden');
-      placesList.setAttribute('role', 'list');
-      placesList.setAttribute('aria-live', 'polite');
-    }
-
-    document.querySelectorAll('#homeCityMap, #map, .leaflet-container, .leaflet-control-container, .leaflet-pane, .leaflet-popup-pane, .leaflet-marker-pane, .leaflet-tile-pane, .leaflet-overlay-pane').forEach(hideTreeFromVoiceOver);
-    ['attivaMappaHome', 'attivaMappa'].forEach(function (id) { hideTreeFromVoiceOver(document.getElementById(id)); });
-
-    document.querySelectorAll('a.open-info-utili, a[href="#"], .popup-actions a').forEach(makeButtonFromHashLink);
-  }
-
-  function improveDynamicPlaces() {
-    document.querySelectorAll('#placesList > li, #placesList .place-card, #placesList .poi-card').forEach(function (card, i) {
-      if (card.tagName && card.tagName.toLowerCase() === 'li') card.setAttribute('role', 'listitem');
-      var title = card.querySelector('h2, h3, .popup-title');
-      if (title) {
-        if (!title.id) title.id = 'voiceover-place-title-' + i;
-        card.setAttribute('aria-labelledby', title.id);
-      }
-      card.querySelectorAll('img').forEach(function (img) {
-        if (!img.alt || img.alt.trim() === '') {
-          var name = title ? text(title) : 'luogo';
-          img.alt = 'Foto di ' + name;
-        }
-      });
-      card.querySelectorAll('a.open-info-utili, a[href="#"]').forEach(makeButtonFromHashLink);
-    });
-  }
-
-  function currentCategoryName() {
-    if (document.body.classList.contains('musei')) return 'Luoghi da visitare';
-    if (document.body.classList.contains('edifici')) return 'Edifici pubblici';
-    if (document.body.classList.contains('locali')) return 'Altri luoghi';
-    if (document.body.classList.contains('mia')) return 'La mia mappa';
-    return 'Home';
-  }
-
-  function updateCurrentButtons() {
-    var current = currentCategoryName().toLowerCase();
-    document.querySelectorAll('.category-button').forEach(function (button) {
-      var label = text(button).toLowerCase();
-      var active = current !== 'home' && label.indexOf(current) !== -1;
-      if (active) button.setAttribute('aria-current', 'page');
-      else button.removeAttribute('aria-current');
-    });
-  }
-
-  function getFocusable(container) {
-    return Array.prototype.slice.call(container.querySelectorAll(focusableSelector)).filter(function (el) {
-      return el.offsetParent !== null && el.getAttribute('aria-hidden') !== 'true';
-    });
-  }
-
-  function improveOpenModal(modal) {
-    if (!modal || !modal.classList.contains('open')) return;
-    modal.setAttribute('aria-hidden', 'false');
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-    var title = modal.querySelector('.modal-title, h2, h3');
-    if (title && !title.id) title.id = modal.id + '-title';
-    if (title) modal.setAttribute('aria-labelledby', title.id);
-    var windowEl = modal.querySelector('.modal-window') || modal;
-    windowEl.setAttribute('tabindex', '-1');
-    lastFocus = lastFocus || document.activeElement;
-    window.setTimeout(function () {
-      var close = modal.querySelector('.modal-close, button[aria-label*="Chiudi"]');
-      (close || windowEl).focus();
-      live(title ? text(title) + '. Finestra aperta.' : 'Finestra aperta.', true);
-    }, 60);
-  }
-
-  function closeModal(modal) {
-    if (!modal) return;
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-    live('Finestra chiusa.', false);
-    if (lastFocus && typeof lastFocus.focus === 'function') {
-      window.setTimeout(function () { try { lastFocus.focus(); } catch (e) {} lastFocus = null; }, 40);
-    }
-  }
-
-  function improveModals() {
-    document.querySelectorAll('.modal-overlay').forEach(function (modal) {
-      if (!modal.classList.contains('open')) modal.setAttribute('aria-hidden', 'true');
-      modal.querySelectorAll('.modal-close').forEach(function (button) {
-        button.setAttribute('type', 'button');
-        if (!button.getAttribute('aria-label')) button.setAttribute('aria-label', 'Chiudi finestra');
-      });
-      if (modal.classList.contains('open')) improveOpenModal(modal);
-    });
-  }
-
-  document.addEventListener('click', function (event) {
-    var button = event.target.closest('.category-button');
-    if (button) {
-      window.setTimeout(function () {
-        updateCurrentButtons();
-        improveDynamicPlaces();
-        live('Sezione aperta: ' + currentCategoryName() + '. Vai all elenco dei luoghi.', false);
-      }, 250);
-    }
-
-    var close = event.target.closest('.modal-close, .mobile-fullscreen-card-close, .mobile-screen-close');
-    if (close) {
-      closeModal(close.closest('.modal-overlay'));
-    }
-  }, true);
-
-  document.addEventListener('keydown', function (event) {
-    var modal = document.querySelector('.modal-overlay.open');
-    if (!modal) return;
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      var close = modal.querySelector('.modal-close');
-      if (close) close.click(); else closeModal(modal);
-      return;
-    }
-    if (event.key === 'Tab') {
-      var focusables = getFocusable(modal);
-      if (!focusables.length) return;
-      var first = focusables[0];
-      var last = focusables[focusables.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    }
-  });
-
-  function applyAll() {
-    improveStaticStructure();
-    improveDynamicPlaces();
-    updateCurrentButtons();
-    improveModals();
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyAll);
-  else applyAll();
-  window.addEventListener('load', function () { applyAll(); window.setTimeout(applyAll, 400); window.setTimeout(applyAll, 1200); });
-
-  var observer = new MutationObserver(function (mutations) {
-    var relevant = mutations.some(function (m) { return m.type === 'childList' || m.type === 'attributes'; });
-    if (relevant) window.setTimeout(applyAll, 60);
-  });
-  if (document.documentElement) observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'aria-hidden'] });
-})();
-</script>
-
-
-
-<!-- =========================================================
-     MIGLIORIE VOICEOVER - VERSIONE RIFINITA
-     ========================================================= -->
-<style id="voiceover-final-css">
-  .sr-only {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    padding: 0 !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    clip: rect(0, 0, 0, 0) !important;
-    white-space: nowrap !important;
-    border: 0 !important;
-  }
-
-  .skip-link {
-    display: inline-block !important;
-    position: absolute !important;
-    left: 12px !important;
-    top: -120px !important;
-    z-index: 99999 !important;
-    background: #ffbf00 !important;
-    color: #000000 !important;
-    border: 4px solid #000000 !important;
-    padding: 12px 16px !important;
-    border-radius: 10px !important;
-    font-weight: 900 !important;
-  }
-
-  .skip-link:focus {
-    top: 12px !important;
-  }
-
-  :focus-visible {
-    outline: 5px solid #000000 !important;
-    outline-offset: 4px !important;
-    box-shadow: 0 0 0 4px #ffbf00 !important;
-  }
-
-  #voiceoverIntro {
-    border: 3px solid #000000 !important;
-    border-radius: 16px !important;
-    background: #ffffff !important;
-    padding: 12px !important;
-    margin-bottom: 12px !important;
-    font-weight: 800 !important;
-  }
-
-  #voiceoverIntro h2 {
-    margin-bottom: 8px !important;
-  }
-
-  #voiceoverIntro ul {
-    margin: 8px 0 0 22px !important;
-    padding: 0 !important;
-  }
-
-  #map[aria-hidden="true"],
-  #homeCityMap[aria-hidden="true"] {
-    speak: never;
-  }
-
-  .leaflet-control-container,
-  .leaflet-marker-icon,
-  .leaflet-popup-pane {
-    -webkit-user-select: none;
-    user-select: none;
-  }
-
-  .modal-overlay[aria-hidden="true"] {
-    display: none !important;
-  }
-
-  .modal-overlay.open[aria-hidden="false"] {
-    display: flex !important;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      scroll-behavior: auto !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-
-/* MIGLIORIA VOICEOVER: pulsante Home chiaro nelle finestre */
-.modal-home-button {
-  min-height: 48px;
-  border: 3px solid #577590;
-  background: #577590;
-  color: #ffffff;
-  border-radius: 14px;
-  padding: 10px 14px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  font-weight: 900;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 8px 0 10px;
-  width: 100%;
-}
-
-.modal-home-button:focus {
-  outline: 5px solid #ffbf00;
-  outline-offset: 3px;
-}
-
-@media (max-width: 759px) {
-  .modal-home-button {
-    min-height: 50px;
-    font-size: .96rem;
-    border-radius: 16px;
-  }
-}
-</style>
-
-<script id="voiceover-final-js">
-(function () {
-  'use strict';
-
-  var previousFocus = null;
-
-  function $(selector, root) {
-    return (root || document).querySelector(selector);
-  }
-
-  function $all(selector, root) {
-    return Array.prototype.slice.call((root || document).querySelectorAll(selector));
-  }
-
-  function cleanText(value) {
-    return String(value || '').replace(/\s+/g, ' ').trim();
-  }
-
-  function ensureId(el, prefix) {
-    if (!el) return '';
-    if (!el.id) el.id = prefix + '-' + Math.random().toString(36).slice(2, 9);
-    return el.id;
-  }
-
-  function makeLiveRegion() {
-    var live = $('#voiceoverLive');
-    if (!live) {
-      live = document.createElement('div');
-      live.id = 'voiceoverLive';
-      live.className = 'sr-only';
-      live.setAttribute('aria-live', 'polite');
-      live.setAttribute('aria-atomic', 'true');
-      document.body.insertBefore(live, document.body.firstChild);
-    }
-    return live;
-  }
-
-  function announce(message) {
-    var live = makeLiveRegion();
-    live.textContent = '';
-    window.setTimeout(function () { live.textContent = message; }, 30);
-  }
-
-  function improveLandmarks() {
-    var header = $('header');
-    var main = $('main');
-    if (header) header.setAttribute('role', 'banner');
-    if (main) {
-      main.id = main.id || 'contenutoPrincipale';
-      main.setAttribute('role', 'main');
-      main.setAttribute('tabindex', '-1');
-    }
-
-    var skip = $('.skip-link');
-    if (!skip && main) {
-      skip = document.createElement('a');
-      skip.className = 'skip-link';
-      skip.href = '#' + main.id;
-      skip.textContent = 'Salta al contenuto principale';
-      document.body.insertBefore(skip, document.body.firstChild);
-    } else if (skip && main) {
-      skip.href = '#' + main.id;
-      skip.textContent = 'Salta al contenuto principale';
-    }
-
-    if (!$('#voiceoverIntro') && main) {
-      var intro = document.createElement('p');
-      intro.id = 'voiceoverIntro';
-      intro.className = 'sr-only';
-      intro.textContent = 'Per trovare i luoghi usa l elenco dei luoghi.';
-      main.insertBefore(intro, main.firstChild);
-    }
-  }
-
-  function hideMapFromAssistiveTech(root) {
-    if (!root) return;
-    root.setAttribute('aria-hidden', 'true');
-    root.setAttribute('role', 'presentation');
-    root.setAttribute('tabindex', '-1');
-    root.setAttribute('data-voiceover-hidden-map', 'true');
-
-    $all('*', root).forEach(function (el) {
-      el.setAttribute('aria-hidden', 'true');
-      el.setAttribute('role', 'presentation');
-      el.setAttribute('tabindex', '-1');
-      if (el.tagName === 'A') {
-        el.setAttribute('href', 'javascript:void(0)');
-      }
-    });
-  }
-
-  function improveMaps() {
-    ['map', 'homeCityMap'].forEach(function (id) {
-      hideMapFromAssistiveTech(document.getElementById(id));
-    });
-
-    $all('.leaflet-container, .leaflet-pane, .leaflet-control-container, .leaflet-control, .leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-popup, .leaflet-popup-pane, .leaflet-tooltip-pane, .leaflet-overlay-pane, .leaflet-marker-pane, .leaflet-shadow-pane, .leaflet-tile-pane').forEach(function (el) {
-      hideMapFromAssistiveTech(el);
-    });
-  }
-
-  function improveCategoryButtons() {
-    var labels = {
-      musei: 'Apri la sezione Luoghi da visitare',
-      edifici: 'Apri la sezione Edifici pubblici',
-      locali: 'Apri la sezione Locali e luoghi utili',
-      mia: 'Apri la sezione La mia mappa'
-    };
-    var current = (document.body.className.match(/\b(musei|edifici|locali|mia)\b/) || [])[1] || '';
-    var grid = $('.category-grid');
-    if (grid) {
-      grid.setAttribute('role', 'navigation');
-      grid.setAttribute('aria-label', 'Sezioni della mappa accessibile');
-    }
-    $all('.category-button').forEach(function (button) {
-      var cat = button.getAttribute('data-category') || '';
-      button.setAttribute('type', 'button');
-      button.setAttribute('aria-label', labels[cat] || cleanText(button.textContent));
-      button.setAttribute('aria-pressed', String(cat && cat === current));
-      if (cat && cat === current) button.setAttribute('aria-current', 'page');
-      else button.removeAttribute('aria-current');
-    });
-  }
-
-  function improvePlaceCards() {
-    var list = $('#placesList') || $('#lista-tappe ul') || $('.places-list');
-    if (list) {
-      list.setAttribute('role', 'list');
-      list.setAttribute('aria-label', 'Elenco accessibile dei luoghi');
-    }
-
-    $all('.place-card, .poi-card').forEach(function (card, index) {
-      card.setAttribute('role', 'listitem');
-      var title = $('h2, h3, .popup-title', card);
-      if (title) card.setAttribute('aria-labelledby', ensureId(title, 'luogo-titolo'));
-
-      var number = $('.number', card);
-      if (number) number.setAttribute('aria-hidden', 'true');
-
-      var img = $('img', card);
-      if (img && !img.getAttribute('alt')) {
-        img.setAttribute('alt', title ? 'Immagine di ' + cleanText(title.textContent) : 'Immagine del luogo');
-      }
-
-      $all('a.button-link, button', card).forEach(function (control) {
-        var label = cleanText(control.textContent);
-        var place = title ? cleanText(title.textContent) : '';
-        if (label && place && !control.getAttribute('aria-label')) {
-          control.setAttribute('aria-label', label + ': ' + place);
-        }
-      });
-    });
-  }
-
-  function improveLinks() {
-    $all('a[href*="google.com/maps"], a[href*="maps.google"], a.portami-qui').forEach(function (a) {
-      var card = a.closest('.place-card, .poi-card, .leaflet-popup-content');
-      var title = card ? $('h2, h3, .popup-title', card) : null;
-      var place = title ? cleanText(title.textContent) : '';
-      a.setAttribute('target', '_blank');
-      a.setAttribute('rel', 'noopener noreferrer');
-      a.setAttribute('aria-label', place ? 'Apri Google Maps per raggiungere ' + place : 'Apri Google Maps per raggiungere il luogo');
-    });
-
-    $all('a.open-scheda, a.scheda-luogo, a.popup-scheda').forEach(function (a) {
-      var card = a.closest('.place-card, .poi-card, .leaflet-popup-content');
-      var title = card ? $('h2, h3, .popup-title', card) : null;
-      var place = title ? cleanText(title.textContent) : '';
-      if (place) a.setAttribute('aria-label', 'Apri la scheda accessibile di ' + place);
-    });
-
-    $all('a.popup-info, a.info, .button-link.info').forEach(function (a) {
-      var card = a.closest('.place-card, .poi-card, .leaflet-popup-content');
-      var title = card ? $('h2, h3, .popup-title', card) : null;
-      var place = title ? cleanText(title.textContent) : '';
-      if (place) a.setAttribute('aria-label', 'Apri le informazioni di ' + place);
-    });
-  }
-
-  function improveForms() {
-    $all('input, textarea, select').forEach(function (field) {
-      var id = ensureId(field, 'campo');
-      var label = document.querySelector('label[for="' + id + '"]');
-      if (!label) {
-        var previous = field.previousElementSibling;
-        if (previous && previous.tagName && previous.tagName.toLowerCase() === 'label') {
-          previous.setAttribute('for', id);
-        }
-      }
-      if (!field.getAttribute('autocomplete')) {
-        if (/indirizzo/i.test(field.name || field.id || field.placeholder || '')) field.setAttribute('autocomplete', 'street-address');
-        if (/nome/i.test(field.name || field.id || field.placeholder || '')) field.setAttribute('autocomplete', 'off');
-      }
-    });
-  }
-
-  function openModalSetup(modal) {
-    if (!modal || !modal.classList.contains('open')) return;
-    previousFocus = previousFocus || document.activeElement;
-    modal.setAttribute('aria-hidden', 'false');
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-
-    var title = $('.modal-title, h2, h3', modal);
-    if (title) modal.setAttribute('aria-labelledby', ensureId(title, 'finestra-titolo'));
-
-    var close = $('.modal-close', modal);
-    if (close) {
-      close.setAttribute('type', 'button');
-      close.setAttribute('aria-label', 'Chiudi questa finestra');
-    }
-
-    window.setTimeout(function () {
-      var target = title || close || modal;
-      if (target) {
-        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-        target.focus({ preventScroll: true });
-      }
-      if (title) announce('Finestra aperta: ' + cleanText(title.textContent));
-    }, 80);
-  }
-
-  function closeModalSetup(modal) {
-    if (!modal || modal.classList.contains('open')) return;
-    modal.setAttribute('aria-hidden', 'true');
-    if (previousFocus && document.contains(previousFocus)) {
-      previousFocus.focus({ preventScroll: true });
-    }
-    previousFocus = null;
-  }
-
-  function improveModals() {
-    $all('.modal-overlay').forEach(function (modal) {
-      if (modal.classList.contains('open')) openModalSetup(modal);
-      else closeModalSetup(modal);
-    });
-  }
-
-  function improvePopupFallback() {
-    // I popup della mappa restano visibili, ma non vengono letti da VoiceOver.
-    // Le stesse informazioni sono disponibili nella lista dei luoghi.
-    $all('.leaflet-popup, .leaflet-popup-content, .leaflet-popup-content-wrapper, .leaflet-popup-tip-container, .leaflet-popup-close-button').forEach(function (el) {
-      hideMapFromAssistiveTech(el);
-    });
-  }
-
-  function keyboardSupport() {
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') {
-        var open = $('.modal-overlay.open');
-        var close = open ? $('.modal-close', open) : null;
-        if (close) close.click();
-      }
-
-      if (event.key !== 'Tab') return;
-      var modal = $('.modal-overlay.open');
-      if (!modal) return;
-      var focusable = $all('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])', modal)
-        .filter(function (el) { return el.offsetParent !== null || el === document.activeElement; });
-      if (!focusable.length) return;
-      var first = focusable[0];
-      var last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    }, { passive: false });
-  }
-
-  function announceSectionChange() {
-    var names = { musei: 'Luoghi da visitare', edifici: 'Edifici pubblici', locali: 'Locali e luoghi utili', mia: 'La mia mappa' };
-    var last = '';
-    window.setInterval(function () {
-      var current = (document.body.className.match(/\b(musei|edifici|locali|mia)\b/) || [])[1] || '';
-      if (current && current !== last) {
-        last = current;
-        announce('Sezione aperta: ' + names[current]);
-        improveCategoryButtons();
-      }
-    }, 500);
-  }
-
-  function applyVoiceOverFinal() {
-    improveLandmarks();
-    improveMaps();
-    improveCategoryButtons();
-    improvePlaceCards();
-    improveLinks();
-    improveForms();
-    improvePopupFallback();
-    improveModals();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applyVoiceOverFinal);
-  } else {
-    applyVoiceOverFinal();
-  }
-
-  window.addEventListener('load', function () {
-    applyVoiceOverFinal();
-    window.setTimeout(applyVoiceOverFinal, 500);
-    window.setTimeout(applyVoiceOverFinal, 1500);
-  });
-
-  keyboardSupport();
-  announceSectionChange();
-
-  var observer = new MutationObserver(function () {
-    window.clearTimeout(observer._timer);
-    observer._timer = window.setTimeout(applyVoiceOverFinal, 120);
-  });
-    // Osservatore globale disattivato.
-})();
-</script>
-
-
-<script>
-/* MIGLIORIA VOICEOVER: MAPPA ACCESSIBILE torna sempre alla home */
-(function () {
-  function closeOpenWindows() {
-    document.querySelectorAll('.modal-overlay.open, .modal-overlay[aria-hidden="false"]').forEach(function (modal) {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-    });
-
-    document.querySelectorAll('.mobile-info-screen.open, .mobile-place-screen.open').forEach(function (screen) {
-      screen.classList.remove('open');
-      screen.setAttribute('aria-hidden', 'true');
-    });
-
-    document.body.classList.remove('mobile-window-open');
-  }
-
-  function goHome() {
-    closeOpenWindows();
-    document.body.classList.remove('musei', 'edifici', 'locali', 'mia');
-
-    const appScreen = document.getElementById('appScreen');
-    if (appScreen) appScreen.classList.remove('open', 'musei', 'edifici', 'locali', 'mia');
-
-    const homeScreen = document.getElementById('homeScreen');
-    if (homeScreen) homeScreen.style.display = '';
-
-    const titleHomeButton = document.getElementById('titleHomeButton');
-    if (titleHomeButton) {
-      titleHomeButton.setAttribute('aria-label', 'Torna alla home Mappa Accessibile');
-      titleHomeButton.focus({ preventScroll: true });
-    }
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    const region = document.getElementById('screenReaderStatus') || document.getElementById('srLiveRegion');
-    if (region) {
-      region.textContent = '';
-      setTimeout(function () {
-        region.textContent = 'Home Mappa Accessibile';
-      }, 60);
-    }
-  }
-
-  function addHomeButtonToDynamicScreens() {
-    document.querySelectorAll('.mobile-screen-header').forEach(function (header) {
-      if (header.querySelector('[data-go-home="true"]')) return;
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'modal-home-button';
-      button.setAttribute('data-go-home', 'true');
-      button.setAttribute('aria-label', 'Torna alla home Mappa Accessibile');
-      button.textContent = 'MAPPA ACCESSIBILE';
-      header.appendChild(button);
-    });
-  }
-
-  document.addEventListener('click', function (event) {
-    const button = event.target.closest('[data-go-home="true"], #titleHomeButton');
-    if (!button) return;
-    event.preventDefault();
-    goHome();
-  }, true);
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const backHome = document.getElementById('backHome');
-    if (backHome) {
-      backHome.textContent = 'MAPPA ACCESSIBILE';
-      backHome.setAttribute('aria-label', 'Torna alla home Mappa Accessibile');
-    }
-
-    const titleHomeButton = document.getElementById('titleHomeButton');
-    if (titleHomeButton) titleHomeButton.setAttribute('aria-label', 'Torna alla home Mappa Accessibile');
-
-    addHomeButtonToDynamicScreens();
-
-    const observer = new MutationObserver(addHomeButtonToDynamicScreens);
-    // Osservatore globale disattivato per rendere il sito più leggero.
-  });
-})();
-</script>
-
-
-<!-- FIX FINALE VOICEOVER: Leaflet escluso dalla lettura, lista luoghi principale -->
-<style id="voiceover-leaflet-final-css">
-  #map,
-  #homeCityMap,
-  .map-card[aria-hidden="true"],
-  .home-city-map-card[aria-hidden="true"],
-  .leaflet-container,
-  .leaflet-pane,
-  .leaflet-map-pane,
-  .leaflet-tile-pane,
-  .leaflet-overlay-pane,
-  .leaflet-shadow-pane,
-  .leaflet-marker-pane,
-  .leaflet-tooltip-pane,
-  .leaflet-popup-pane,
-  .leaflet-control-container {
-    speak: never;
-  }
-</style>
-
-<script id="voiceover-leaflet-final-fix">
-(function () {
-  'use strict';
-
-  var MAP_SELECTORS = [
-    '#map',
-    '#homeCityMap',
-    '.map-card',
-    '.home-city-map-card',
-    '.leaflet-container',
-    '.leaflet-pane',
-    '.leaflet-map-pane',
-    '.leaflet-tile-pane',
-    '.leaflet-overlay-pane',
-    '.leaflet-shadow-pane',
-    '.leaflet-marker-pane',
-    '.leaflet-tooltip-pane',
-    '.leaflet-popup-pane',
-    '.leaflet-control-container',
-    '.leaflet-control',
-    '.leaflet-control-zoom',
-    '.leaflet-control-attribution',
-    '.leaflet-marker-icon',
-    '.leaflet-marker-shadow',
-    '.leaflet-popup',
-    '.leaflet-popup-content-wrapper',
-    '.leaflet-popup-content',
-    '.leaflet-popup-close-button',
-    '.leaflet-tooltip'
-  ].join(',');
-
-  var FOCUSABLE = [
-    'a[href]',
-    'button',
-    'input',
-    'select',
-    'textarea',
-    '[tabindex]',
-    '[role="button"]',
-    '[role="link"]'
-  ].join(',');
-
-  function hideElementFromVoiceOver(el) {
-    if (!el) return;
-
-    el.setAttribute('aria-hidden', 'true');
-    el.setAttribute('role', 'presentation');
-    el.setAttribute('tabindex', '-1');
-    el.setAttribute('data-voiceover-map-hidden', 'true');
-
-    if (el.hasAttribute('aria-label')) el.removeAttribute('aria-label');
-    if (el.hasAttribute('aria-labelledby')) el.removeAttribute('aria-labelledby');
-    if (el.hasAttribute('aria-describedby')) el.removeAttribute('aria-describedby');
-
-    el.querySelectorAll(FOCUSABLE).forEach(function (child) {
-      child.setAttribute('aria-hidden', 'true');
-      child.setAttribute('tabindex', '-1');
-      child.setAttribute('role', 'presentation');
-    });
-
-    el.querySelectorAll('img, svg, canvas, path, span, div').forEach(function (child) {
-      child.setAttribute('aria-hidden', 'true');
-      child.setAttribute('focusable', 'false');
-    });
-  }
-
-  function protectMapCards() {
-    document.querySelectorAll('#map, #homeCityMap, .map-card, .home-city-map-card').forEach(function (el) {
-      hideElementFromVoiceOver(el);
-    });
-  }
-
-  function protectLeaflet() {
-    document.querySelectorAll(MAP_SELECTORS).forEach(function (el) {
-      hideElementFromVoiceOver(el);
-    });
-  }
-
-  function protectListPath() {
-    var listSection = document.getElementById('lista-tappe');
-    var list = document.getElementById('placesList') || document.querySelector('.places-list');
-
-    if (listSection) {
-      listSection.removeAttribute('aria-hidden');
-      listSection.setAttribute('role', 'region');
-      listSection.setAttribute('aria-labelledby', 'lista-title');
-    }
-
-    if (list) {
-      list.removeAttribute('aria-hidden');
-      list.setAttribute('role', 'list');
-      list.setAttribute('aria-label', 'Elenco dei luoghi');
-    }
-  }
-
-  function applyFinalVoiceOverFix() {
-    protectMapCards();
-    protectLeaflet();
-    protectListPath();
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    applyFinalVoiceOverFix();
-
-    setTimeout(applyFinalVoiceOverFix, 300);
-    setTimeout(applyFinalVoiceOverFix, 900);
-    setTimeout(applyFinalVoiceOverFix, 1800);
-
-    var observer = new MutationObserver(function () {
-      applyFinalVoiceOverFix();
-    });
-    // Osservatore globale disattivato per rendere il sito più leggero.
-  });
-
-  document.addEventListener('focusin', function (event) {
-    var target = event.target;
-    if (target && target.closest && target.closest(MAP_SELECTORS)) {
-      target.blur();
-      var listTitle = document.getElementById('lista-title');
-      if (listTitle) {
-        listTitle.setAttribute('tabindex', '-1');
-        listTitle.focus({ preventScroll: false });
-      }
-    }
-  }, true);
-})();
-</script>
-
-
-<script id="audio_guida_mp3_fix">
-(function () {
-  function ready(fn) {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fn);
-    } else {
-      fn();
-    }
-  }
-
-  ready(function () {
-    var audio = document.getElementById('siteGuideAudio');
-    var listenButton = document.getElementById('listenGuideButton');
-    var stopButton = document.getElementById('stopGuideButton');
-
-    if (!audio) return;
-
-    audio.setAttribute('src', 'guida.mp3');
-    audio.setAttribute('preload', 'auto');
-    audio.setAttribute('playsinline', '');
-
-    function playGuide() {
-      try {
-        audio.pause();
-        audio.currentTime = 0;
-        var playPromise = audio.play();
-        if (playPromise && typeof playPromise.catch === 'function') {
-          playPromise.catch(function () {
-            // Alcuni browser bloccano l'audio automatico finché non c'è un primo gesto dell'utente.
-          });
-        }
-      } catch (e) {}
-    }
-
-    function stopGuide() {
-      try {
-        audio.pause();
-        audio.currentTime = 0;
-      } catch (e) {}
-    }
-
-    if (listenButton) {
-      listenButton.addEventListener('click', playGuide);
-    }
-
-    if (stopButton) {
-      stopButton.addEventListener('click', stopGuide);
-    }
-
-    // Tentativo di avvio all'apertura.
-    setTimeout(playGuide, 350);
-
-    // Se il browser blocca autoplay, parte al primo gesto utile: click, touch o tastiera.
-    ['click', 'touchstart', 'keydown'].forEach(function (eventName) {
-      document.addEventListener(eventName, function startAfterFirstAction() {
-        playGuide();
-        document.removeEventListener(eventName, startAfterFirstAction, true);
-      }, true);
-    });
-  });
-})();
-</script>
-
-
-<script id="fix_leggero_voiceover_leaflet">
-(function(){
-  function hideMapForScreenReader(){
-    ["map","homeCityMap"].forEach(function(id){
-      var el=document.getElementById(id);
-      if(!el) return;
-      el.setAttribute("aria-hidden","true");
-      el.setAttribute("tabindex","-1");
-      el.setAttribute("role","presentation");
-      el.querySelectorAll("a,button,input,select,textarea,[tabindex]").forEach(function(child){
-        child.setAttribute("aria-hidden","true");
-        child.setAttribute("tabindex","-1");
-      });
-    });
-  }
-  document.addEventListener("DOMContentLoaded", function(){
-    hideMapForScreenReader();
-    setTimeout(hideMapForScreenReader, 300);
-    setTimeout(hideMapForScreenReader, 1200);
-  });
-  document.addEventListener("popupopen", function(){ setTimeout(hideMapForScreenReader, 80); });
-  document.addEventListener("click", function(e){
-    if(e.target.closest && (e.target.closest(".category-button") || e.target.closest(".leaflet-container"))){
-      setTimeout(hideMapForScreenReader, 120);
-    }
-  }, true);
-})();
-</script>
-
-
-
-<script id="fix_link_scheda_luogo_prioritario">
-/* FIX PRIORITARIO: il pulsante "Scheda del luogo" deve aprire la pagina HTML esterna.
-   Non modifica La mia mappa, audio o mappa Leaflet. */
-(function () {
-  function pulisci(link) {
-    return (link || "").toString().trim();
-  }
-
-  function stopsCorrenti() {
-    try {
-      if (typeof getCurrentStops === "function") return getCurrentStops() || [];
-    } catch (e) {}
-    try {
-      if (typeof currentCategory !== "undefined" && typeof tappe !== "undefined" && tappe && tappe[currentCategory]) {
-        return tappe[currentCategory] || [];
-      }
-    } catch (e) {}
-    return [];
-  }
-
-  function linkDaTappa(tappa) {
-    if (!tappa) return "";
-    return pulisci(tappa.schedaLink || tappa.pagina || tappa.scheda || tappa.linkScheda || "");
-  }
-
-  function trovaLinkScheda(el) {
-    if (!el || !el.closest) return null;
-    return el.closest('a.open-scheda, a.scheda-luogo, a.popup-scheda, button.open-scheda, button.scheda-luogo, button.popup-scheda');
-  }
-
-  function aggiornaHrefSchede() {
-    var stops = stopsCorrenti();
-    document.querySelectorAll('a.open-scheda, a.scheda-luogo, a.popup-scheda').forEach(function (a) {
-      var index = Number(a.getAttribute('data-index'));
-      var tappa = Number.isFinite(index) ? stops[index] : null;
-      var link = linkDaTappa(tappa) || pulisci(a.getAttribute('data-scheda-link')) || pulisci(a.getAttribute('href'));
-      if (link && link !== '#') {
-        a.setAttribute('href', link);
-        a.setAttribute('data-scheda-link', link);
-      }
-    });
-  }
-
-  window.addEventListener('click', function (event) {
-    var a = trovaLinkScheda(event.target);
-    if (!a) return;
-
-    var link = pulisci(a.getAttribute('data-scheda-link')) || pulisci(a.getAttribute('href'));
-    if (!link || link === '#') {
-      var index = Number(a.getAttribute('data-index'));
-      var stops = stopsCorrenti();
-      var tappa = Number.isFinite(index) ? stops[index] : null;
-      link = linkDaTappa(tappa);
-    }
-
-    if (link && link !== '#') {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      window.location.href = link;
-    }
-  }, true);
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', aggiornaHrefSchede);
-  } else {
-    aggiornaHrefSchede();
-  }
-
-  document.addEventListener('click', function (event) {
-    if (event.target.closest && event.target.closest('.category-button')) {
-      setTimeout(aggiornaHrefSchede, 80);
-      setTimeout(aggiornaHrefSchede, 300);
-    }
-  }, true);
-})();
-</script>
-
-</body>
-</html>
