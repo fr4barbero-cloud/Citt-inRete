@@ -9475,6 +9475,9 @@ L’elenco contiene le informazioni e i pulsanti necessari.
     Ferma guida vocale
   </button>
 </div>
+
+<audio id="siteGuideAudio" src="guida.mp3" preload="auto" playsinline></audio>
+
 </section>
 <div id="appScreen" class="app-screen">
       <nav class="section internal-section-buttons" aria-label="Vai alle sezioni principali">
@@ -14268,66 +14271,8 @@ body.caa-on .card-image-space {
 </script>
 
 
-<script id="fix_audio_home_una_volta_e_stop_scheda">
-(function() {
-  const AUDIO_HOME_KEY = "mappa_accessibile_audio_home_gia_ascoltato";
+<!-- Script precedente di blocco audio rimosso: guida.mp3 resta disponibile all’apertura e dai pulsanti. -->
 
-  function getPageAudios() {
-    return Array.from(document.querySelectorAll("audio"));
-  }
-
-  function stopAllPageAudios() {
-    getPageAudios().forEach(function(audio) {
-      try {
-        audio.pause();
-        audio.currentTime = 0;
-      } catch (e) {}
-    });
-  }
-
-  function bloccaReplayAudioHome() {
-    if (sessionStorage.getItem(AUDIO_HOME_KEY) === "si") {
-      getPageAudios().forEach(function(audio) {
-        try {
-          audio.pause();
-          audio.currentTime = 0;
-          audio.removeAttribute("autoplay");
-        } catch (e) {}
-      });
-      return;
-    }
-
-    sessionStorage.setItem(AUDIO_HOME_KEY, "si");
-  }
-
-  document.addEventListener("DOMContentLoaded", bloccaReplayAudioHome);
-  window.addEventListener("pageshow", bloccaReplayAudioHome);
-
-  document.addEventListener("click", function(event) {
-    const link = event.target.closest("a");
-    if (!link) return;
-
-    const href = link.getAttribute("href") || "";
-    if (
-      href.includes("schedazizzolavideofix.html") ||
-      href.includes("schedazizzola") ||
-      link.classList.contains("scheda-luogo") ||
-      link.classList.contains("open-scheda") ||
-      link.classList.contains("popup-scheda")
-    ) {
-      stopAllPageAudios();
-    }
-  }, true);
-
-  const originalOpen = window.open;
-  window.open = function(url, target, features) {
-    if (typeof url === "string" && url.includes("schedazizzola")) {
-      stopAllPageAudios();
-    }
-    return originalOpen.call(window, url, target, features);
-  };
-})();
-</script>
 
 
 <script id="fix_info_liste_mobile_definitivo">
@@ -15691,5 +15636,225 @@ document.addEventListener('click', function(e){
   });
 })();
 </script>
+
+
+<!-- FIX FINALE VOICEOVER: Leaflet escluso dalla lettura, lista luoghi principale -->
+<style id="voiceover-leaflet-final-css">
+  #map,
+  #homeCityMap,
+  .map-card[aria-hidden="true"],
+  .home-city-map-card[aria-hidden="true"],
+  .leaflet-container,
+  .leaflet-pane,
+  .leaflet-map-pane,
+  .leaflet-tile-pane,
+  .leaflet-overlay-pane,
+  .leaflet-shadow-pane,
+  .leaflet-marker-pane,
+  .leaflet-tooltip-pane,
+  .leaflet-popup-pane,
+  .leaflet-control-container {
+    speak: never;
+  }
+</style>
+
+<script id="voiceover-leaflet-final-fix">
+(function () {
+  'use strict';
+
+  var MAP_SELECTORS = [
+    '#map',
+    '#homeCityMap',
+    '.map-card',
+    '.home-city-map-card',
+    '.leaflet-container',
+    '.leaflet-pane',
+    '.leaflet-map-pane',
+    '.leaflet-tile-pane',
+    '.leaflet-overlay-pane',
+    '.leaflet-shadow-pane',
+    '.leaflet-marker-pane',
+    '.leaflet-tooltip-pane',
+    '.leaflet-popup-pane',
+    '.leaflet-control-container',
+    '.leaflet-control',
+    '.leaflet-control-zoom',
+    '.leaflet-control-attribution',
+    '.leaflet-marker-icon',
+    '.leaflet-marker-shadow',
+    '.leaflet-popup',
+    '.leaflet-popup-content-wrapper',
+    '.leaflet-popup-content',
+    '.leaflet-popup-close-button',
+    '.leaflet-tooltip'
+  ].join(',');
+
+  var FOCUSABLE = [
+    'a[href]',
+    'button',
+    'input',
+    'select',
+    'textarea',
+    '[tabindex]',
+    '[role="button"]',
+    '[role="link"]'
+  ].join(',');
+
+  function hideElementFromVoiceOver(el) {
+    if (!el) return;
+
+    el.setAttribute('aria-hidden', 'true');
+    el.setAttribute('role', 'presentation');
+    el.setAttribute('tabindex', '-1');
+    el.setAttribute('data-voiceover-map-hidden', 'true');
+
+    if (el.hasAttribute('aria-label')) el.removeAttribute('aria-label');
+    if (el.hasAttribute('aria-labelledby')) el.removeAttribute('aria-labelledby');
+    if (el.hasAttribute('aria-describedby')) el.removeAttribute('aria-describedby');
+
+    el.querySelectorAll(FOCUSABLE).forEach(function (child) {
+      child.setAttribute('aria-hidden', 'true');
+      child.setAttribute('tabindex', '-1');
+      child.setAttribute('role', 'presentation');
+    });
+
+    el.querySelectorAll('img, svg, canvas, path, span, div').forEach(function (child) {
+      child.setAttribute('aria-hidden', 'true');
+      child.setAttribute('focusable', 'false');
+    });
+  }
+
+  function protectMapCards() {
+    document.querySelectorAll('#map, #homeCityMap, .map-card, .home-city-map-card').forEach(function (el) {
+      hideElementFromVoiceOver(el);
+    });
+  }
+
+  function protectLeaflet() {
+    document.querySelectorAll(MAP_SELECTORS).forEach(function (el) {
+      hideElementFromVoiceOver(el);
+    });
+  }
+
+  function protectListPath() {
+    var listSection = document.getElementById('lista-tappe');
+    var list = document.getElementById('placesList') || document.querySelector('.places-list');
+
+    if (listSection) {
+      listSection.removeAttribute('aria-hidden');
+      listSection.setAttribute('role', 'region');
+      listSection.setAttribute('aria-labelledby', 'lista-title');
+    }
+
+    if (list) {
+      list.removeAttribute('aria-hidden');
+      list.setAttribute('role', 'list');
+      list.setAttribute('aria-label', 'Elenco dei luoghi');
+    }
+  }
+
+  function applyFinalVoiceOverFix() {
+    protectMapCards();
+    protectLeaflet();
+    protectListPath();
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    applyFinalVoiceOverFix();
+
+    setTimeout(applyFinalVoiceOverFix, 300);
+    setTimeout(applyFinalVoiceOverFix, 900);
+    setTimeout(applyFinalVoiceOverFix, 1800);
+
+    var observer = new MutationObserver(function () {
+      applyFinalVoiceOverFix();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'style', 'aria-hidden', 'tabindex']
+    });
+  });
+
+  document.addEventListener('focusin', function (event) {
+    var target = event.target;
+    if (target && target.closest && target.closest(MAP_SELECTORS)) {
+      target.blur();
+      var listTitle = document.getElementById('lista-title');
+      if (listTitle) {
+        listTitle.setAttribute('tabindex', '-1');
+        listTitle.focus({ preventScroll: false });
+      }
+    }
+  }, true);
+})();
+</script>
+
+
+<script id="audio_guida_mp3_fix">
+(function () {
+  function ready(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
+  }
+
+  ready(function () {
+    var audio = document.getElementById('siteGuideAudio');
+    var listenButton = document.getElementById('listenGuideButton');
+    var stopButton = document.getElementById('stopGuideButton');
+
+    if (!audio) return;
+
+    audio.setAttribute('src', 'guida.mp3');
+    audio.setAttribute('preload', 'auto');
+    audio.setAttribute('playsinline', '');
+
+    function playGuide() {
+      try {
+        audio.pause();
+        audio.currentTime = 0;
+        var playPromise = audio.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(function () {
+            // Alcuni browser bloccano l'audio automatico finché non c'è un primo gesto dell'utente.
+          });
+        }
+      } catch (e) {}
+    }
+
+    function stopGuide() {
+      try {
+        audio.pause();
+        audio.currentTime = 0;
+      } catch (e) {}
+    }
+
+    if (listenButton) {
+      listenButton.addEventListener('click', playGuide);
+    }
+
+    if (stopButton) {
+      stopButton.addEventListener('click', stopGuide);
+    }
+
+    // Tentativo di avvio all'apertura.
+    setTimeout(playGuide, 350);
+
+    // Se il browser blocca autoplay, parte al primo gesto utile: click, touch o tastiera.
+    ['click', 'touchstart', 'keydown'].forEach(function (eventName) {
+      document.addEventListener(eventName, function startAfterFirstAction() {
+        playGuide();
+        document.removeEventListener(eventName, startAfterFirstAction, true);
+      }, true);
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
